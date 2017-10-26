@@ -1,8 +1,8 @@
-abel/abelian | アーベル
+﻿abel/abelian | アーベル
 additive category | 加法圏 | 可加範疇/加法範疇
 adjoint (functor) | 随伴ずいはん | 伴隨(函子)
 algebra | 代数 | 代數
-associative | 結合（的な）
+associative | 結合 | 結合
 bilinear　| 双線型　そうせんけい
 bimodule　| 両側加群　りょうがわかぐん
 category　| 圏　けん | 範疇
@@ -14,11 +14,14 @@ co (prefix) | 余よ | 余 / 上
 coefficient　| 係数　けいすう | 係數
 coherent　sheaf　| 連接層 | 凝聚層
 cohomology　| コホモロジー | 上同調
+combinatorics | 組合せ | 組合
 commutative　| 可換（的な） | 交換
 complex | 複体 | 複型
 composition　| 合成　| 複合
 conjugation | 共役 きょうやく | 共軛
 correspondence | 対応　| 對應
+cover | 被覆 | 
+cyclic | 巡回 じゅんかいぐん | 循環
 decomposable | 直可約 ちょくかやく |  可分解
 derived (category/functor)　| 導来　どうらい | 導/導出
 differentiate/differential　| 微分 | 微分
@@ -27,8 +30,9 @@ direct　sum　| 直和 | 直和
 duality | 双対 そうつい | 對偶
 element　| 元　| 元素
 endomorphism | 自己準同型 | 自同態
+envelope | 包絡 ほうらく | 包絡
 epimorphism　| 全射　エピ射 | 滿射
-equivalence (of categories) | (圏)同値 どうち| (範疇的)等價
+equivalence | 同値 どうち| 等價
 exact | 完全かんぜん | 正合
 exchange | 交換 | 
 faithful (functor) | 忠実関手 | 忠實(函子)
@@ -50,7 +54,6 @@ identity element | 単位元たんいげん | 單位元
 identity morphism | 恒等射 | 單位元
 image | 像 | 像
 indecomposable | 直既約 ちょくきやく | 不可分解
-initial seed | |
 inverse | 逆/反転 | 逆
 isomorphism | 同型(写像) | 同構
 kernel | 核 | 核
@@ -60,13 +63,16 @@ map | 写像 | 映射
 matrix | 行列ぎょうれつ　| 矩陣
 module |　加群　かぐん　| 模
 moduli space | モジュライ空間 | 模空間
+monoid | モノイド　(sometimes: 単系 たんけい) | 么半群
 monomial | 単項式 たんこうしき | 單項式
 monomorphism　| モノ射、単射 | 單射
 morphism　| 射　しゃ　モルフィズム　|  態射
 mutation | 突変/変異 | ? 
 natural transformation | | 自然變換
 object | 対象 | 物件
+order | 位数 | 階
 path algebra | 道代数 | 路代數
+poset | 半順序集合 | 
 phase | 位相 | 相
 polynomial | 多項式 | 多項式
 pre (prefix) | 前ぜん | 預
@@ -76,7 +82,6 @@ representation　| 表現ひょうげん | 表示
 ring | 環 | 環
 scalar　| スカラー | 標量
 semi (prefix) | 半 | 半
-seed | |
 sequence | 系列 けいれつ | 列
 set | 集合 | 集合
 sheaf　(faisceau)　| 層　そう | 層
@@ -87,5 +92,6 @@ tensor product　| テンソル積 | 張量積
 tilting | 傾 | 傾斜
 topology　| トポロジー/位相幾何 | 拓樸
 topological space　| 位相空間　いそうくうかん | 拓樸空間
+universal | 普遍 | 泛
 variable　| 変数　| 變數
 vector　| ベクトル　| 向量

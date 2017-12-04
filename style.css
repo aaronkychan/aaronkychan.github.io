@@ -58,7 +58,7 @@ a:hover {
 /* Header */
 
 #header-wrapper {
-	height: 100px;
+	height: 65px;
 	background: #1582AB;
 	border-bottom: 10px solid #2AA1CC;
 }
@@ -150,14 +150,14 @@ a:hover {
 #menu {
 	float: right;
 	width: 450px;
-	height: 90px;
+	height: 65px;
 	margin: 0 auto;
 	padding: 0;
 }
 
 #menu ul {
 	margin: 0;
-	padding: 60px 0px 0px 0px;
+	padding: 26px 0px 0px 0px;
 	list-style: none;
 	line-height: normal;
 }

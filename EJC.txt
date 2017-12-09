@@ -12,6 +12,7 @@ chain | チェイン | 鏈
 class | 類るい | 類
 cluster　| 団　だん / クラスター | 叢
 co (prefix) | 余よ | 余 / 上
+cobordism | | 配邊
 coefficient　| 係数　けいすう | 係數
 coherent　sheaf　| 連接層 | 凝聚層
 cohomology　| コホモロジー | 上同調
@@ -25,6 +26,7 @@ cover | 被覆 | 覆蓋
 cyclic | 巡回 じゅんかいぐん | 循環
 decomposable | 直可約 ちょくかやく |  可分解
 derived (category/functor)　| 導来　どうらい | 導/導出
+determinant | 行列式 | 行列式
 differentiate/differential　| 微分 | 微分
 dimension | 次元 | 維
 direct　sum　| 直和 | 直和
@@ -58,16 +60,18 @@ indecomposable | 直既約 ちょくきやく | 不可分解
 inverse | 逆/反転 | 逆
 isomorphism | 同型(写像) | 同構
 kernel | 核 | 核
+knot | 結び目 | 紐結
 linear | 線型 (rarely: 一次) | 線性
 manifold　| 多様体　たようたい | 流形
 map | 写像 | 映射
 matrix | 行列ぎょうれつ　| 矩陣
+minor | 小行列式 | 余子式
 module | 加群　かぐん　| 模
 moduli space | モジュライ空間 | 模空間
 monoid | モノイド　(sometimes: 単系 たんけい) | 么半群
 monomial | 単項式 たんこうしき | 單項式
 monomorphism　| モノ射、単射 | 單射
-morphism　| 射　しゃ　モルフィズム　|  態射
+morphism　| 射　しゃ　/ モルフィズム　|  態射
 mutation | 突変/変異 | ? 
 natural transformation | | 自然變換
 object | 対象 | 物件/對象
@@ -77,8 +81,11 @@ poset | 半順序集合 | 半偏序集合
 phase | 位相 | 相
 polynomial | 多項式 | 多項式
 pre (prefix) | 前ぜん | 預
+projective module | 射影加群 | 投射模
+projective variety | 射影多様体 | 射影簇
 quasi (prefix) | 準 | 擬
 quiver | 箙 えびら | 箭/箭圖
+regular | 正則 | 
 representation　| 表現ひょうげん | 表示
 ring | 環 | 環
 scalar　| スカラー | 標量/常數
@@ -86,15 +93,16 @@ scheme | スキーム | 概形
 semi (prefix) | 半 | 半
 sequence | 系列 けいれつ | 列
 set | 集合 | 集合
-sheaf　(faisceau)　| 層　そう | 層
+sheaf (faisceau)　| 層　そう | 層
 simple module | 単純加群 | 單模
 skew-symmetric | 歪対称 | 斜對稱
 symmetric | 対称 | 對稱
+symplectic | シンプレクティック | 辛
 tensor product　| テンソル積 | 張量積
 tilting | 傾 | 傾斜
 topology　| トポロジー/位相幾何 | 拓樸
 topological space　| 位相空間　いそうくうかん | 拓樸空間
 universal | 普遍 | 泛
 variable　| 変数　| 變數
-variety | 代数多様体 | 簇
+variety | 代数多様体 | (代數)簇/多樣體
 vector　| ベクトル　| 向量

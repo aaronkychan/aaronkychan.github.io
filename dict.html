@@ -75,7 +75,21 @@ function GenerateTable() {
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
       var cell = document.createElement("td");
-	  if ( entries[j] ) { cell.innerHTML=entries[j]; }
+	  if ( entries[j] ) { 
+	    var subent = entries[j].split("$");
+		if ( subent.length > 1){
+		  // <ruby>Kanji<rt>Furigana</rt></ruby>
+		  var furi = document.createElement("ruby");
+		  var furit = document.createElement("rt");
+		  furi.innerHTML=subent[0];
+		  furit.innerHTML=subent[1];
+		  furi.appendChild(furit);
+		  cell.appendChild(furi);
+		} else {
+		  cell.innerHTML=entries[j]; 
+		}
+	    //cell.innerHTML=entries[j]; 
+      }
       //var cellText = document.createTextNode(entries[j]);
       //cell.appendChild(cellText);
       row.appendChild(cell);

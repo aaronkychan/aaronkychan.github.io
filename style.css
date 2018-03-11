@@ -50,6 +50,8 @@ a {
 a:hover {
 }
 
+rt {font-size: 10pt}
+
 #wrapper {
 	margin: 0 auto;
 	padding: 0;
@@ -374,6 +376,8 @@ a:hover {
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; }
 .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #8C8C8C; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 .datagrid table td, .datagrid table th { padding: 3px 10px; }
+.datagrid table thead tr {background-color:#949494; color:#FFFFFF; font-size: 14px; font-weight: bold; border-left: 1px solid #A3A3A3; }
+.datagrid table thead tr:first-child { border: none; }
 .datagrid table thead th {background-color:#949494; color:#FFFFFF; font-size: 14px; font-weight: bold; border-left: 1px solid #A3A3A3; }
 .datagrid table thead th:first-child { border: none; }
 

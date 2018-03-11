@@ -44,59 +44,62 @@ function LoadFile() {
     //}
 }
 
+/* (1) Detect if 'entry' has annotation
+   (2) If there is annotation, then write text + annotation using ruby.
+   (3) No RETURN value.
+*/
+function writeFuri(entry, cell){
+  var s = entry.split("$");
+  if ( s.length > 1 ) {
+    cell.innerHTML += "<ruby>" + s[0] + "<rp>(</rp><rt>" + s[1] + "</rt><rp>)</rp></ruby>";
+  } else {
+    cell.innerHTML += s[0];
+  }
+}
+
 function GenerateTable() {
   var dtgrid = document.createElement("div");
   dtgrid.classList.add("datagrid");
   var tbl = document.createElement("table");
   
-  //create table heading
-  var hdr = document.createElement("thead");
-  var hdrTitle = ["English", "日本語", "中文"];
-  var row = document.createElement("tr");
+  //  create table heading
+  var hdr = tbl.createTHead();
+  var hdrTitle = ["English", "日本語", "(正體)中文"];
+  var row = hdr.insertRow("tr");
   for (var i=0; i<hdrTitle.length; i++){
-    var cell = document.createElement("th");
+    //Because of JS stupidity, insertCell in thead doesnot give th
+	var cell = document.createElement("th");
 	cell.innerHTML = hdrTitle[i];
 	row.appendChild(cell);
   }
   hdr.appendChild(row);
   tbl.appendChild(hdr);
-
-  //create table main body
+  
+  //  create table main body
   var tblBody = document.createElement("tbody");
  
-  // creating all cells
+  //  creating all cells
   for (var i = 0; i < arrLines.length; i++) {
-    // creates a table row
-    var row = document.createElement("tr");
-	var entries = arrLines[i].split("|");
+    row = tblBody.insertRow(-1);
+	entries = arrLines[i].split("|");
  
-    for (var j = 0; j < 3; j++) {
+    for (var j = 0; j < hdrTitle.length; j++) {
       // Create a <td> element and a text node, make the text
       // node the contents of the <td>, and put the <td> at
       // the end of the table row
-      var cell = document.createElement("td");
+	  var cell = row.insertCell(-1);
 	  if ( entries[j] ) { 
-	    var subent = entries[j].split("$");
-		if ( subent.length > 1){
-		  // <ruby>Kanji<rt>Furigana</rt></ruby>
-		  var furi = document.createElement("ruby");
-		  var furit = document.createElement("rt");
-		  furi.innerHTML=subent[0];
-		  furit.innerHTML=subent[1];
-		  furi.appendChild(furit);
-		  cell.appendChild(furi);
+	    var subent = entries[j].split("/");
+		if (subent.length==1) {
+		  writeFuri(subent[0], cell);
 		} else {
-		  cell.innerHTML=entries[j]; 
+		  for (var k = 0; k < subent.length; k++) {
+		    if (k > 0) {cell.innerHTML += " / ";}
+		    writeFuri(subent[k], cell);
+		  }
 		}
-	    //cell.innerHTML=entries[j]; 
       }
-      //var cellText = document.createTextNode(entries[j]);
-      //cell.appendChild(cellText);
-      row.appendChild(cell);
     }
- 
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
   }
  
   tbl.appendChild(tblBody);
@@ -135,7 +138,7 @@ function GenerateTable() {
 		This is compiled by myself based on various (possibly unreliable) sources, please tell me if there is any corrections; additions and suggestions are also very much welcomed.
 		</p>
 		
-		<p> TODO: add simplified Chinese; implement hiragana annotation system; add usage frequency<br/> Last Update: 22nd Oct, 2017 <br/> 
+		<p> TODO: add simplified Chinese; <s>implement hiragana annotation system</s>; add usage frequency<br/> Last Update: 11th Mar, 2018 <br/> 
 		</p>
 		
 		<div id="dictionary">

@@ -60,6 +60,7 @@ generate | 生成 | 生成
 global | 大域 |
 group | 群 | 群
 hereditary | 遺伝$いでん | 遺傳
+highest weight | 最高ウェイト　| 
 homogeneous | 斉次(式)$せいじ(しき） | 齊次
 homology | ホモロジー | 同調
 homomorphism | (準同型)写像 | 同態/態射
@@ -97,7 +98,8 @@ prime | 素数 | 質數
 natural transformation | | 自然變換
 object | 対象 | 物件/對象
 order | 位数 | 階
-path algebra | 道代数 | 路代數
+path algebra | 道多元環/道代数 | 路代數
+partial order | 半順序 | 偏序
 permutation | 置換$ちかん | 排列
 poset | 半順序集合 | 半偏序集合
 phase | 位相 | 相
@@ -134,4 +136,4 @@ universal | 普遍 | 泛
 variable　| 変数　| 變數
 variety | 代数多様体 | (代數)簇/多樣體
 vector　| ベクトル　| 向量
-weight | 重み |
+weight | 重み/ウェイト |

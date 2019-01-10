@@ -106,7 +106,7 @@ ol li
   /*height: 186px;*/}
 
 #logo
-{ width: 960px;
+{ width: 860px;
   position: relative;
   height: 140px;
   background: #F5F5F5;}
@@ -183,7 +183,7 @@ ul#menu li a:hover
 { color: #323232;}
 
 #site_content
-{ width: 960px;
+{ width: 900px;
   overflow: hidden;
   margin: 20px auto 0 auto;
   padding: 0 0 10px 0;}  

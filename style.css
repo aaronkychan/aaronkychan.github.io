@@ -192,7 +192,8 @@ rt {font-size: 10pt}
 /* Page */
 
 #page {
-	width: 980px;
+	/*width: 980px;*/
+	width: 80%;
 	margin: 0 auto;
 	padding: 0px 0px 0px 0px;
 }
@@ -204,8 +205,9 @@ rt {font-size: 10pt}
 
 #content {
 	float: left;
+	width: 80%
 	/*width: 650px;*/
-	width: 800px;
+	/*width: 800px;*/
 	padding: 0px 0px 0px 0px;
 }
 

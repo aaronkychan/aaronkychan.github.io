@@ -1,25 +1,29 @@
-﻿abel/abelian | アーベル | 
+﻿abel/abelian | アーベル | 阿貝爾
 -able (suffix) | 可$か | 可
 additive category | 加法圏 | 加性範疇/加法範疇
 adjoint | 随伴$ずいはん | 伴隨
 affine | アフィン | 仿射
 algebra | 代数 | 代數
+almost split sequence | 概分裂完全列 |
 associative | 結合 | 結合
+auto- (prefix) | 自己 |
 basis | 基底$きてい | 
 bijection | 全単射$ぜんたんしゃ | 雙射
 bilinear　| 双線型$そうせんけい | 雙線型
 bimodule　| 両側加群$りょうがわかぐん | 雙模
 block | ブロック | 
 bounded | 有界 |
+braid | ブレイド |
 category　| 圏$けん | 範疇
 categorification　| 圏化$けんか | 範疇化
 chain | チェイン | 鏈
 character | 指標 |
-characteristic | 特性 |
+characteristic (of a field) | 標数 |
+characteristic (tilting) | 特性(傾) |
 class | 類$るい | 類
 cluster　| 団$だん / クラスター | 叢
 co (prefix) | 余$よ | 余 / 上
-cobordism | | 配邊
+cobordism | コボルディズム/同境 | 配邊
 coefficient　| 係数$けいすう | 係數
 coherent　sheaf　| 連接層 | 凝聚層
 cohomology　| コホモロジー | 上同調
@@ -27,8 +31,11 @@ combinatorics | 組合せ | 組合
 commutative　| 可換（的な） | 交換
 complex | 複体 | 複型
 composition　| 合成　| 複合
+configuration | 配置 |
 conjugation | 共役$きょうやく | 共軛
+contravariant | 反変　| 
 correspondence | 対応　| 對應
+covariant | 共変 |
 cover | 被覆 | 覆蓋
 cyclic | 巡回$じゅんかい | 循環
 decomposable | 直可約$ちょくかやく | 可分解
@@ -38,16 +45,19 @@ determinant | 行列式 | 行列式
 differentiate/differential　| 微分 | 微分
 dimension | 次元 | 維
 direct　sum　| 直和 | 直和
+disk | 円盤 |
 duality | 双対$そうつい | 對偶
 eigen- (prefix) | 固有 | 
 element　| 元　| 元素
 endomorphism | 自己準同型 | 自同態
 envelope | 包絡$ほうらく | 包絡
+entropy | エントロピー | 熵
 epimorphism　| 全射/エピ射 | 滿射
 equivalence | 同値$どうち| 等價
 exact | 完全$かんぜん | 正合
 exchange | 交換 | 交換
 faithful (functor) | 忠実関手 | 忠實(函子)
+fibre | ファイバー | 
 field | 体 | 域/體
 finite | 有限　| 有限 
 foliation | 葉層構造 | 葉狀結構
@@ -58,6 +68,8 @@ geometry　| 幾何 | 幾何
 geodesic | 測地線$そくちせん |
 generate | 生成 | 生成
 global | 大域 |
+grading | 次数 |
+graded | 次数付き |
 group | 群 | 群
 hereditary | 遺伝$いでん | 遺傳
 highest weight | 最高ウェイト　| 
@@ -72,6 +84,7 @@ image | 像 | 像
 indecomposable | 直既約$ちょくきやく | 不可分解
 indeterminant | 不定元 | 
 injection/injective | 単射$たんしゃ | 單射
+injective (object) | 移入 |
 inverse | 逆/反転 | 逆
 irreducible | 既約 | 
 isomorphism | 同型(写像) | 同構
@@ -83,6 +96,8 @@ local | 局所 |
 manifold　| 多様体$たようたい | 流形
 map | 写像 | 映射
 matrix | 行列$ぎょうれつ　| 矩陣
+metric | 距離 |度量
+minimal | 極小 |
 minor | 小行列式 | 余子式
 modular | モジュラー | 
 module | 加群$かぐん　| 模
@@ -95,7 +110,7 @@ multiplicity | 重複度 |
 mutation | 突変/変異 | ? 
 non (prefix) | 非$ひ | 非
 prime | 素数 | 質數
-natural transformation | | 自然變換
+natural transformation |　自然変換$しぜんへんかん | 自然變換
 object | 対象 | 物件/對象
 order | 位数 | 階
 path algebra | 道多元環/道代数 | 路代數
@@ -107,22 +122,29 @@ polynomial | 多項式$たこうしき | 多項式
 pre (prefix) | 前$ぜん | 預
 projective module | 射影加群 | 投射模
 projective variety | 射影多様体 | 射影簇
+pseudo (prefix) | 擬 |
 quasi (prefix) | 準 | 擬
 quiver | 箙$えびら | 箭/箭圖
 rank | ランク/階数 | 秩
+realise | 実現 |
 regular | 正則 | 
 representation　| 表現$ひょうげん | 表示
+resolution | 分解 |
 ring | 環 | 環
 scalar　| スカラー | 標量/常數
 scheme | スキーム | 概形
 semi (prefix) | 半 | 半
-sequence | 系列$けいれつ | 列
+sequence | (系)列$(けい)れつ | 列
 set | 集合 | 集合
 sheaf (faisceau)　| 層$そう | 層
 simple module | 単純加群 | 單模
+singularity | 特異点 |
 skew-symmetric | 歪対称 | 斜對稱
+stable | 安定 | 穩定
+stack | スタック |
 standard | 標準 |
 sub (prefix) | 部分 | 子
+surface | 曲面 | 
 surjection/surjective | 全射$ぜんしゃ | 滿射
 symmetric | 対称 | 對稱
 symplectic | シンプレクティック | 辛
@@ -131,7 +153,9 @@ tilting | 傾 | 傾斜
 topology　| トポロジー/位相幾何 | 拓樸
 topological space　| 位相空間$いそうくうかん | 拓樸空間
 trace | トレース | 跡
+translation | 並進写像 |
 transpose | 転置 | 轉置
+trefoil knot | 三葉結び目 | 
 universal | 普遍 | 泛
 variable　| 変数　| 變數
 variety | 代数多様体 | (代數)簇/多樣體

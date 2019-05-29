@@ -99,7 +99,7 @@ rt {font-size: 10pt}
 	font: normal 14px Georgia, "Times New Roman", Times, serif;
 	font-style: italic;
 	color: #FFFFFF;
-} 
+}
 
 #logo a {
 	border: none;
@@ -374,6 +374,13 @@ rt {font-size: 10pt}
 #footer a {
 	color: #FFFFFF;
 }
+
+th {
+	vertical-align: top;
+	text-align: left;
+}
+.abt {border-spacing: 12px; padding-bottom: 12px; vertical-align: top;}
+
 
 .datagrid table { border-collapse: collapse; text-align: left; width: 100%; }
 .datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #8C8C8C; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }

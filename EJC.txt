@@ -138,6 +138,8 @@ sequence | (系)列$(けい)れつ | 列
 set | 集合 | 集合
 sheaf (faisceau)　| 層$そう | 層
 simple module | 単純加群 | 單模
+simplex | 単体 | 單純形
+simplicial complex | 単体的な複体 | 單純複形
 singularity | 特異点 |
 skew-symmetric | 歪対称 | 斜對稱
 stable | 安定 | 穩定

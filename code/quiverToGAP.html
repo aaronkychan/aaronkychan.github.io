@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stringpapplet code To QPA code</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+  <style type="text/css">
+    .site_row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    #outColumn {
+      padding: 10px;
+      margin: 10px;
+    }
+
+    textarea {
+      white-space: nowrap;
+      overflow: auto;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function processField() {
+      if (document.getElementById("Rational").checked) {
+        return "Rational";
+      }
+      if (document.getElementById("GF").checked) {
+        return `GF(${size})`;
+      }
+    }
+
+    function sa2qpa() {
+      const field = processField();
+      const strIn = document.getElementById("inTxtBox").value;
+      //very simple validation
+      if (strIn.slice(0, 1) != "{" || strIn.slice(-1) != "}") {
+        alert("Input is not a proper object.");
+        return;
+      }
+
+      var Alg = JSON.parse(strIn);
+      var Q = Alg.quiver;
+
+      // *** translate vertices ***
+      var vxTxt = JSON.stringify(
+        Q.vertices.map(function (v) {
+          return v["id"].toString();
+        })
+      );
+
+      // *** translate arrows ***
+      var arrTxt = JSON.stringify(
+        Q.arrows.map(arrow => [
+          arrow["source"].toString(),
+          arrow["target"].toString(),
+          arrow["id"]
+        ])
+      );
+
+      // *** translate relations ***
+      var relTxt = "";
+      if (Alg.relations.length > 0) {
+        let relns = Alg.relations.replace(/\s+/g, "").split(",");
+        let relArrayTxt = JSON.stringify(
+          relns.map(reln => relationToQPA(reln))
+        ).replace(/"/g, "");
+
+        relTxt = `AssignGeneratorVariables(KQ);\n`;
+        relTxt += `relns:=${relArrayTxt};\n`;
+        relTxt += `A:=KQ/relns;\n`;
+      }
+
+      //Tidy up data
+      var oTB = document.getElementById("outTxtBox");
+      var strOutCurrent = oTB.disabled ? "" : oTB.value;
+      console.log(strOutCurrent.length);
+      var strOut = oTB.disabled ? "" : "\n\n";
+      oTB.disabled = false;
+
+      strOut += `Q:=Quiver(${vxTxt}, ${arrTxt});\n`;
+      strOut += `KQ:=PathAlgebra(${field},Q);\n`;
+      strOut += `${relTxt}`;
+      oTB.value = strOutCurrent + strOut;
+
+      // copy everything to clipboard
+      /*
+      oTB.focus();
+      oTB.select();
+      try {
+        var successful = document.execCommand("copy");
+        var msg = successful ? "successful" : "unsuccessful";
+        console.log("Copy to clipboard was " + msg);
+      } catch (err) {
+        console.log("Oops, unable to copy output to clipboard");
+      }*/
+    }
+
+    /* Translate a relation to a meaningful QPA expression
+             e.g.  ab-2cd  => a*b-2*c*d
+
+             WARNING: This function will break if id of arrows is not a single character!!
+              We also assume relation is admissible and well-defined
+           */
+    function relationToQPA(rel) {
+      var outStr = rel[0];
+      var index = -1;
+      for (var i = 1; i < rel.length; i++) {
+        if (rel[i].match(/[\+-]/)) {
+          outStr += rel[i];
+          index = i;
+        } else {
+          outStr += i == index + 1 ? rel[i] : `*${rel[i]}`;
+        }
+      }
+      //console.log(outStr);
+      return outStr;
+    }
+
+    function clearAll() {
+      document.getElementById("Rational").checked = true;
+      document.getElementById("GF").checked = false;
+      document.getElementById("inTxtBox").value = "";
+      document.getElementById("outTxtBox").value = "";
+      document.getElementById("outTxtBox").disabled = true;
+    }
+  </script>
+</head>
+
+<body>
+  <input type="button" value="Translate to QPA" onclick="sa2qpa()" style="margin:5px" />
+  <input type="button" value="Reset" onclick="clearAll()" />
+  <br />
+  <div class="site_row" id="optionRow">
+    Field:
+    <input type="radio" name="field" id="Rational" checked />
+    Rational (default)
+    <input type="radio" name="field" id="GF" />
+    Finite field GF(p^n), p^n=
+    <input type="text" id="GFp" size="3" value="5" />
+  </div>
+  <div class="site_row">
+    <div id="stringAppletCol">
+      String applet quiver-and-relation data:<br />
+      <textarea id="inTxtBox" value="" cols="70" rows="50" autofocus></textarea>
+      <br /><input type="button" value="Clear Input" onclick="document.getElementById('inTxtBox').value ='';" />
+    </div>
+    <div id="qpaCol">
+      QPA code:<br />
+      <textarea id="outTxtBox" value="" cols="150" rows="50" disabled>
+        </textarea>
+      <br /><input type="button" value="Clear Output"
+        onclick="document.getElementById('outTxtBox').value ='';document.getElementById('outTxtBox').disabled=true;" />
+    </div>
+  </div>
+  <div>
+    Known limitation: <br />
+    - At most 26 arrows (same as String Applet)<br />
+    - Coefficient in finite field<br />
+    - No data validation for input <br/>
+    - Email me (aaron dot kychan at gmail dot com) for comments and issues 
+  </div>
+</body>
+
+</html>

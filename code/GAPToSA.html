@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>QPA output to String Applet object</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <style type="text/css">
+        .site_row {
+            display: flex;
+            flex-direction: row;
+            margin: 8px;
+        }
+
+
+        #outColumn {
+            margin-left: 20px;
+        }
+
+        #outTxtBox {
+            width: 720px;
+            /* assuming roughly 10px per character */
+            height: 480px;
+            border: 1px #000000 solid;
+            padding: 12px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            overflow: scroll;
+            background-color: #a9a9a9;
+        }
+
+        textarea {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        //Dimension of String Applet viewer is 300x300
+        var x0 = 25,
+            y0 = 25;
+        var xRow = [...Array(5).keys()].map(i => x0 + i * 50);
+        // Following works for pre-ES6
+        // c.f.  https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
+        //var xRow = Array(5).fill(x0).map((entry, ind) => entry + ind * 50);
+
+        // For ECMA2019 version, can just use:   Array(5).fill(xRow).flat().
+        // c.f. https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays
+        var x = [].concat.apply([], Array(5).fill(xRow));
+
+        var yStart = [...Array(5).keys()].map(i => y0 + i * 50);
+        var y = [...Array(25).keys()].map(i => yStart[Math.floor(i / 5)] + (i % 5) * 10);
+        //console.table(y);
+
+        //we can do at most 52 arrows this way
+        var letters = [...Array(26).keys()].map(i => String.fromCharCode(97 + i));
+        letters = [...letters, ...[...Array(26).keys()].map(i => String.fromCharCode(65 + i))];
+        //console.log(letters);
+
+        function qpa2sa() {
+            var quiverIn = document.getElementById("inQuiver").value;
+
+            quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
+            quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
+            //console.log(quiverIn);
+            var quiverQPA = JSON.parse(quiverIn);
+
+            // Forbid too many vertices
+            if (quiverQPA[0].length > 25) {
+                document.getElementById("outTxtBox").innerHTML =
+                    "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
+                clearAll();
+                return;
+            }
+
+            // *** translate vx's***
+            var forceID = document.getElementById("forceID").checked;
+            var vxQPA = quiverQPA[0].map((v, i) => forceID ? i + 1 : v.replace(/"/g, ""));
+            var vx = vxQPA.map(function (v, i) {
+                return {
+                    id: v,
+                    x: x[i],
+                    y: y[i]
+                };
+            }); //5 vertices per row, at most 5 rows
+            //console.table(vxQPA);
+            //console.table(vx);
+
+            // *** translate arrows ***
+            var arr = quiverQPA[1].map(function (ar, i) {
+                return {
+                    id: document.getElementById("forceArrow").checked ? letters[i] : ar[2],
+                    source: forceID ? quiverQPA[0].indexOf(ar[0]) + 1 : ar[0],
+                    target: forceID ? quiverQPA[0].indexOf(ar[1]) + 1 : ar[1]
+                };
+            });
+            //console.table(arr);
+
+            const quiverSA = {
+                quiver: {
+                    "vertices": vx,
+                    "arrows": arr
+                },
+                relations: ""
+            };
+
+
+            // *** translate relations (if needed) ***
+            var relns = "";
+            if (document.getElementById("forceArrow").checked) {
+                var arrRelns = document.getElementById("inRelation").value.replace(/[\s\[\]]/g, "").split(",");
+                //console.table(arrRelns);
+                var arrRef = quiverQPA[1].map(entry => entry[2]);
+                relns = [];
+
+                for (rel of arrRelns) {
+                    let readIndex = 0;
+                    let monomials = rel.split(/[\+-]/);
+                    let newMono = Array(monomials.length).fill("");
+                    let newRel = "";
+                    for (let i = 0; i < monomials.length; i++) {
+                        let elts = monomials[i].split("*");
+                        newMono = elts.map(function (e) {
+                            let q = arrRef.indexOf(e);
+                            // q!=-1 => return replaced letters; otherwise its a scalar elt, so return it
+                            return q != -1 ? letters[q] : e;
+                        }).join("*");
+                        //console.log(newMono);
+                        readIndex += monomials[i].length;
+                        newMono += i + 1 == monomials.length ? "" : rel[readIndex];
+                        newRel += newMono;
+                        readIndex++;
+                        //console.log(newRel);
+                    }
+                    relns.push(newRel);
+                }
+                //console.table(relns);
+                relns = relns.join(", ");
+            } else {
+                //just strip brackets and remove heading/tailing whitespaces
+                relns = document.getElementById("inRelation").value.replace(/[\[\]]/g, "").trim();
+            }
+            quiverSA.relations = relns;
+
+            //Tidy up data            
+
+            var oTB = document.getElementById("outTxtBox");
+            oTB.contenteditable = true;
+            oTB.innerHTML = JSON.stringify(quiverSA, null, 2);
+            document.getElementById("saveBtn").disabled = false;
+            //console.log(strOut);
+        }
+
+        function saveSBA() {
+            var oTB = document.getElementById("outTxtBox");
+            console.log(oTB.contenteditable);
+            if (!(oTB.contenteditable)) {
+                oTB.innerHTML = "<span style='color:red; font-size: 20pt'> No Output to save yet! </span>";
+                return;
+            }
+
+            var blob = new Blob([oTB.innerHTML], {
+                type: "text/plain"
+            });
+
+            var fn = document.getElementById("txtFilename").value;
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.target = "_blank";
+            a.download = fn ? `${fn}.sba` : "output.sba";
+            a.click();
+        }
+
+        function clearAll() {
+            document.getElementById("inQuiver").value = "";
+            document.getElementById("inRelation").value = "";
+            document.getElementById("outTxtBox").innerHTML = "";
+            document.getElementById("saveBtn").disabled = true;
+        }
+    </script>
+</head>
+
+<body>
+    Usage:<br />
+    (1) Input data and click <input type="button" value="Translate to QPA" onclick="qpa2sa()"
+        style="margin:5px" /><br />
+    (2) Click <input type="button" id="saveBtn" value="Export" onclick="saveSBA();" disabled /> to save the output to a
+    file named
+    "<input type="text" id="txtFilename" size="10" value="output" style="text-align:right;" />.sba", possibly after
+    further modification in output box<br />
+    (3) Load the file in <a href="https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/">String Applet</a><br />
+    <br />
+    <input type="button" value="Reset Everything" onclick="clearAll()" />
+    <br />
+    <div class="site_row">
+        <input type="checkbox" id="forceID" value="">Force vertices to be labelled by numbers &nbsp;&nbsp;
+        <input type="checkbox" id="forceArrow" value="">Force arrows to be labelled by English letters<br />
+    </div>
+    <br />
+    <div class="site_row">
+        <div id="stringAppletCol">
+            <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
+
+            QPA quiver code:<br />
+            <textarea id="inQuiver" value="" cols="70" rows="5"></textarea>
+            <br />
+
+            <input type="button" value="Clear relations" onclick="document.getElementById('inRelation').value ='';" />
+            QPA relation code:<br />
+            <textarea id="inRelation" value="" cols="70" rows="15"></textarea>
+        </div>
+
+        <div id="qpaCol" style="margin-left:10px">
+            <input type="button" value="Clear Output" onclick="document.getElementById('outTxtBox').innerHTML ='';" />
+            Output:<br />
+
+            <pre id="outTxtBox" contenteditable="false"></pre>
+
+        </div>
+    </div>
+
+    Input format:<br />
+    <div class="site_row">
+        <div style="border:1px #000000 solid; padding:6px; position:relative; top:2px">
+            For quiver:
+            <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> Quiver( [..
+                list of vertices ..], [..[src,tar,arr_name]..] ) </div>
+            "<span style="font-family: 'Courier New', Courier, monospace;">Quiver()</span>" can be omitted.
+        </div>
+        <div
+            style="border:1px #000000 solid; padding:6px; position:relative; top:2px; margin-bottom:5px; margin-left: 10px; ">
+            For relations:
+            <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> [ ... list
+                of relations ... ] </div>
+        </div>
+    </div>
+    <div>
+        Known Limitation:<br />
+        - Only less than 25 vertices allowed.<br />
+        - Display of quiver in the String Applet can be ugly; one needs to manually move the vertices around to get
+        better view.
+        <br/>
+        - Email me (aaron dot kychan at gmail dot com) for comments and issues 
+    </div>
+
+</body>
+
+</html>

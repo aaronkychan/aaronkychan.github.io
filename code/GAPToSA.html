@@ -148,18 +148,26 @@
             oTB.contenteditable = true;
             oTB.innerHTML = JSON.stringify(quiverSA, null, 2);
             document.getElementById("saveBtn").disabled = false;
+            document.getElementById("loadBtn").disabled = false;
             //console.log(strOut);
         }
 
-        function saveSBA() {
+        function getOTBinnerHTML() {
             var oTB = document.getElementById("outTxtBox");
             console.log(oTB.contenteditable);
             if (!(oTB.contenteditable)) {
                 oTB.innerHTML = "<span style='color:red; font-size: 20pt'> No Output to save yet! </span>";
-                return;
+                return null;
             }
 
-            var blob = new Blob([oTB.innerHTML], {
+            return oTB.innerHTML;
+        }
+
+        function saveSBA() {
+            var data = getOTBinnerHTML();
+            if (data == null) return;
+
+            var blob = new Blob([data], {
                 type: "text/plain"
             });
 
@@ -171,11 +179,33 @@
             a.click();
         }
 
+        function loadSBA() {
+            var data = getOTBinnerHTML();
+            if (data == null) return;
+
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("target", "_blank");
+            form.setAttribute("action", "https://www.math.uni-bielefeld.de/~jgeuenich/string-applet-qpa/");
+
+            var TA = document.createElement("input");
+            TA.setAttribute("type", "hidden");
+            TA.setAttribute("name", "stringified_sba");
+            TA.setAttribute("value", data);
+
+            console.log(TA);
+            form.appendChild(TA);
+            document.body.appendChild(form);
+
+            form.submit();
+        }
+
         function clearAll() {
             document.getElementById("inQuiver").value = "";
             document.getElementById("inRelation").value = "";
             document.getElementById("outTxtBox").innerHTML = "";
             document.getElementById("saveBtn").disabled = true;
+            document.getElementById("loadBtn").disabled = true;
         }
     </script>
 </head>
@@ -184,11 +214,13 @@
     Usage:<br />
     (1) Input data and click <input type="button" value="Translate to QPA" onclick="qpa2sa()"
         style="margin:5px" /><br />
-    (2) Click <input type="button" id="saveBtn" value="Export" onclick="saveSBA();" disabled /> to save the output to a
-    file named
-    "<input type="text" id="txtFilename" size="10" value="output" style="text-align:right;" />.sba", possibly after
-    further modification in output box<br />
-    (3) Load the file in <a href="https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/">String Applet</a><br />
+    (2) [Optional] Modify output in output box if needed<br />
+    (3) [Optional] Click <input type="button" id="saveBtn" value="Export" onclick="saveSBA();" disabled /> to save the
+    output to a file named
+    "<input type="text" id="txtFilename" size="10" value="output" style="text-align:right;" />.sba", if wanted<br />
+    (4) Click <input type="button" id="loadBtn" value="Load SBA" onclick="loadSBA();" disabled /> to transfer output to
+    <a href="https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/">String Applet</a> <span
+        style="margin-left:8px; color:#D3D3D3">(I thank Jan Geuenich for extending this functionality!)</span><br />
     <br />
     <input type="button" value="Reset Everything" onclick="clearAll()" />
     <br />
@@ -239,8 +271,8 @@
         - Only less than 25 vertices allowed.<br />
         - Display of quiver in the String Applet can be ugly; one needs to manually move the vertices around to get
         better view.
-        <br/>
-        - Email me (aaron dot kychan at gmail dot com) for comments and issues 
+        <br />
+        - Email me (aaron dot kychan at gmail dot com) for comments and issues
     </div>
 
 </body>

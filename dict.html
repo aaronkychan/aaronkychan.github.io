@@ -11,156 +11,151 @@ Released   : 20100529
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Aaron Chan @ Nagoya</title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Aaron Chan @ Nagoya</title>
+	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 
-<script type="text/javascript">
-//function loadFile(filePath) {
-//  var result = null;
-//  var xmlhttp = new XMLHttpRequest();
-//  xmlhttp.open("GET", filePath, false);
-//  xmlhttp.send();
-//  if (xmlhttp.status==200) {
-//    result = xmlhttp.responseText;
-//  }
-//  return result;
-//}
-var strRawContents, arrLines;
+	<script type="text/javascript">
+		//function loadFile(filePath) {
+		//  var result = null;
+		//  var xmlhttp = new XMLHttpRequest();
+		//  xmlhttp.open("GET", filePath, false);
+		//  xmlhttp.send();
+		//  if (xmlhttp.status==200) {
+		//    result = xmlhttp.responseText;
+		//  }
+		//  return result;
+		//}
+		var strRawContents, arrLines;
 
-function LoadFile() {
-    var oFrame = document.getElementById("frmFile");
-    strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-    while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-    arrLines = strRawContents.split("\n");
-    //alert("File " + oFrame.src + " has " + arrLines.length + " lines");
-    //for (var i = 0; i < arrLines.length; i++) {
-        //var curLine = arrLines[i];
-        //alert("Line #" + (i + 1) + " is: '" + curLine + "'");
-    //}
-}
-
-/* (1) Detect if 'entry' has annotation
-   (2) If there is annotation, then write text + annotation using ruby.
-   (3) No RETURN value.
-*/
-function writeFuri(entry, cell){
-  var s = entry.split("$");
-  if ( s.length > 1 ) {
-    cell.innerHTML += "<ruby>" + s[0] + "<rp>(</rp><rt>" + s[1] + "</rt><rp>)</rp></ruby>";
-  } else {
-    cell.innerHTML += s[0];
-  }
-}
-
-function GenerateTable() {
-  var dtgrid = document.createElement("div");
-  dtgrid.classList.add("datagrid");
-  var tbl = document.createElement("table");
-
-  //  create table heading
-  var hdr = tbl.createTHead();
-  var hdrTitle = ["English", "日本語", "(正體)中文"];
-  var row = hdr.insertRow("tr");
-  for (var i=0; i<hdrTitle.length; i++){
-    //Because of JS stupidity, insertCell in thead doesnot give th
-	var cell = document.createElement("th");
-	cell.innerHTML = hdrTitle[i];
-	row.appendChild(cell);
-  }
-  hdr.appendChild(row);
-  tbl.appendChild(hdr);
-
-  //  create table main body
-  var tblBody = document.createElement("tbody");
-
-  //  creating all cells
-  for (var i = 0; i < arrLines.length; i++) {
-    row = tblBody.insertRow(-1);
-	entries = arrLines[i].split("|");
-
-    for (var j = 0; j < hdrTitle.length; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-	  var cell = row.insertCell(-1);
-	  if ( entries[j] ) {
-	    var subent = entries[j].split("/");
-		if (subent.length==1) {
-		  writeFuri(subent[0], cell);
-		} else {
-		  for (var k = 0; k < subent.length; k++) {
-		    if (k > 0) {cell.innerHTML += " / ";}
-		    writeFuri(subent[k], cell);
-		  }
+		function LoadFile() {
+			var oFrame = document.getElementById("frmFile");
+			strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+			while (strRawContents.indexOf("\r") >= 0)
+				strRawContents = strRawContents.replace("\r", "");
+			arrLines = strRawContents.split("\n");
+			//alert("File " + oFrame.src + " has " + arrLines.length + " lines");
+			//for (var i = 0; i < arrLines.length; i++) {
+			//var curLine = arrLines[i];
+			//alert("Line #" + (i + 1) + " is: '" + curLine + "'");
+			//}
 		}
-      }
-    }
-  }
 
-  tbl.appendChild(tblBody);
-  dtgrid.appendChild(tbl);
-  document.getElementById("dictionary").appendChild(dtgrid)
-}
-</script>
+		/* (1) Detect if 'entry' has annotation
+		   (2) If there is annotation, then write text + annotation using ruby.
+		   (3) No RETURN value.
+		*/
+		function writeFuri(entry, cell) {
+			var s = entry.split("$");
+			if (s.length > 1) {
+				cell.innerHTML += "<ruby>" + s[0] + "<rp>(</rp><rt>" + s[1] + "</rt><rp>)</rp></ruby>";
+			} else {
+				cell.innerHTML += s[0];
+			}
+		}
+
+		function GenerateTable() {
+			var dtgrid = document.createElement("div");
+			dtgrid.classList.add("datagrid");
+			var tbl = document.createElement("table");
+
+			//  create table heading
+			var hdr = tbl.createTHead();
+			var hdrTitle = ["English", "日本語", "(正體)中文"];
+			var row = hdr.insertRow("tr");
+			for (var i = 0; i < hdrTitle.length; i++) {
+				//Because of JS stupidity, insertCell in thead doesnot give th
+				var cell = document.createElement("th");
+				cell.innerHTML = hdrTitle[i];
+				row.appendChild(cell);
+			}
+			hdr.appendChild(row);
+			tbl.appendChild(hdr);
+
+			//  create table main body
+			var tblBody = document.createElement("tbody");
+
+			//  creating all cells
+			for (var i = 0; i < arrLines.length; i++) {
+				row = tblBody.insertRow(-1);
+				entries = arrLines[i].split("|");
+
+				for (var j = 0; j < hdrTitle.length; j++) {
+					// Create a <td> element and a text node, make the text
+					// node the contents of the <td>, and put the <td> at
+					// the end of the table row
+					var cell = row.insertCell(-1);
+					if (entries[j]) {
+						var subent = entries[j].split("/");
+						if (subent.length == 1) {
+							writeFuri(subent[0], cell);
+						} else {
+							for (var k = 0; k < subent.length; k++) {
+								if (k > 0) {
+									cell.innerHTML += " / ";
+								}
+								writeFuri(subent[k], cell);
+							}
+						}
+					}
+				}
+			}
+
+			tbl.appendChild(tblBody);
+			dtgrid.appendChild(tbl);
+			document.getElementById("dictionary").appendChild(dtgrid)
+		}
+	</script>
 </head>
+
 <body onload="GenerateTable();">
-<div id="wrapper">
-<iframe id="frmFile" src="EJC.txt" onload="LoadFile();" style="display: none;"></iframe>
-	<div id="header-wrapper">
-		<div id="header">
-			<div id="logo">
-				<h1><a href="#">Aaron Chan  </a></h1>
+	<iframe id="frmFile" src="EJC.txt" onload="LoadFile();" style="display: none;"></iframe>
+	<div class="site-container">
+		<div class="header">
+			<span id="logo">aaron chan</span>
+			<a id="home" href="index.html">Home</a>
+			<a id="math" href="maths.html">Maths</a>
+			<a id="acti" href="activities.html">Activities</a>
+			<a id="link" href="l#" class="current_page_item">Links</a>
+		</div>
+		<!-- end #header -->
+
+		<div class=" content">
+			<h3> Translation between mathematical terms </h3> (for a representation theorist)
+
+			<p> <br />
+				This is compiled by myself based on various (possibly unreliable) sources, please tell me if
+				there is any corrections; additions and suggestions are also very much welcomed.
+			</p>
+
+			<p> TODO: add simplified Chinese; <s>implement hiragana annotation system</s>; add usage
+				frequency<br /> Last Update: 11th Mar, 2018 <br />
+			</p>
+
+			<div id="dictionary">
 			</div>
-			<div id="menu">
-				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="maths.html">Maths</a></li>
-					<li><a href="activities.html">Activities</a></li>
-					<li><a href="links.html">Links</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
 
-	<!-- end #header -->
-	<div id="page">
-	<div id="page-bgtop">
-	<div id="page-bgbtm">
-		<div id="content">
-		<h3> Translation between mathematical terms </h3> (for a representation theorist)
+			<p>
+				Remark:<br />
+				- [EN/JP] When context is clear, speaker/author will use 多様体 to mean a manifold or a
+				variety. Manifold is usually distinguished using an appropriate adjective, e.g. complex
+				manifold = 複素多様体. When clarity is needed, variety is usually called using the full name
+				"algebraic variety" 代数多様体.
+			</p>
 
-		<p> <br/>
-		This is compiled by myself based on various (possibly unreliable) sources, please tell me if there is any corrections; additions and suggestions are also very much welcomed.
-		</p>
+		</div> <!-- end #content -->
 
-		<p> TODO: add simplified Chinese; <s>implement hiragana annotation system</s>; add usage frequency<br/> Last Update: 11th Mar, 2018 <br/>
-		</p>
+		<div class="footer">
+			<p>Copyright (c) 2020. All rights reserved.</p>
+		</div><!-- end #footer -->
+	</div> <!-- end container -->
 
-		<div id="dictionary">
-		</div>
 
-		<p>
-		Remark:<br/>
-		- [EN/JP] When context is clear, speaker/author will use 多様体 to mean a manifold or a variety.  Manifold is usually distinguished using an appropriate adjective, e.g. complex manifold = 複素多様体.  When clarity is needed, variety is usually called using the full name "algebraic variety" 代数多様体.
-		</p>
-
-		</div>
-		<!-- end #content -->
-				<div style="clear: both;">&nbsp;</div>
-	</div>
-	</div>
-	</div>
-	<!-- end #page -->
-</div>
-
-<div id="footer">
-	<p>Copyright (c) 2014. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
-</div>
-<div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div>
 </body>
+
 </html>

@@ -32,6 +32,7 @@
 
 
         async function getList(url) {
+            let toFilt = document.getElementById("revise-only").checked;
             let response = await fetch(url);
             let data = await response.text();
             const doc = (new DOMParser()).parseFromString(data, 'application/xml');
@@ -41,7 +42,6 @@
             // ******************************
             const articles = doc.getElementsByTagName("entry");
             //let list = [];
-            let dayCount = 1;
             let atDate = articles[0].getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
             let out = `<table><tr><td colspan="2"><b>${atDate}</b></td></tr>`;
 
@@ -71,19 +71,17 @@
 
                 if (atDate != update) {
                     atDate = update;
-                    dayCount++;
-                    if (dayCount > document.getElementById("dayspan").value) {
-                        break;
-                    } else {
-                        out += `<tr><td colspan="2"><b>${atDate}</b></td></tr>`;
-                    }
+                    out += `<tr><td colspan="2"><b>${atDate}</b></td></tr>`;
                 }
 
-                out +=
-                    `<tr><td class="m"><a href="${link}">${id}</a></td> <td>${title}</td></tr>`;
+                if ((!toFilt) || (pub_date != update)) {
+                    out +=
+                        `<tr><td class="m"><a href="${link}">${id}</a></td> <td>${title}</td></tr>`;
+                }
             }
             out += "</table>";
             document.getElementById("pan").innerHTML = out;
+            disablePanel(false);
         }
 
         /* arXiv data 
@@ -220,29 +218,39 @@
 
         /* Start of Program */
 
-        function populate(cat = "math.RT") {
+        function populate() {
             document.getElementById("pan").innerHTML = 'Loading...';
-            let maxRes = 30 * parseInt(document.getElementById("dayspan").value);
+            disablePanel(false);
+
+            let cat = document.getElementById("arxivCats").value;
+            let maxRes = parseInt(document.getElementById("dayspan").value);
+
             console.log("populate -> maxRes", maxRes)
             // http://export.arxiv.org/api/query?search_query=cat:math.RT&sortBy=lastUpdatedDate&sortOrder=ascending
             let requestData = {
                 api: "http://export.arxiv.org/api/query?search_query=",
-                //param: "&date-filter_by=date_range&date-from_date=2020-06-05&date-to_date=2020-06-08&sortBy=lastUpdatedDate&sortOrder=descending",
                 param: "&sortBy=lastUpdatedDate&sortOrder=descending",
                 url: (query) => {
-                    return `${requestData.api}${query?query+"+AND+":""}cat:${cat}&max_results=${maxRes.toString()}${requestData.param}`
+                    return `${requestData.api}${query?query+"+AND+":""}cat:${cat}&max_results=${maxRes}${requestData.param}`
                 }
             };
             console.log("requestData.url: ", requestData.url());
 
             getList(requestData.url());
         }
+
+        function disablePanel(off) {
+            document.getElementById("arxivCats").disabled = off;
+            document.getElementById("dayspan").disabled = off;
+            document.getElementById("populate").disabled = off;
+            document.getElementById("revise-only").disabled = off;
+        }
     </script>
 </head>
 
 <body>
     <div id="control" style="margin-bottom=10px;">
-        <label for="arxivCats">Choose category</label><select id="arxivCats">
+        <label for="arxivCats">Choose category</label><select id="arxivCats" style="margin-right:15px">
             <option value="math.AT">Algebraic Topology</option>
             <option value="math.AP">Analysis of PDEs</option>
             <option value="math.CT">Category Theory</option>
@@ -275,9 +283,12 @@
             <option value="math.ST">Statistics Theory</option>
             <option value="math.SG">Symplectic Geometry</option>
         </select>
-        <label for="dayspan">Choose number of days</label> <input type="text" id="dayspan" size="3" maxlength="3"
-            value="7">
-        <button type="button" onclick="populate(document.getElementById('arxivCats').value)">Retrieve arXiv</button>
+
+        Retrieve <input type="text" id="dayspan" size="3" maxlength="3" value="100"> articles.
+        <input type="checkbox" style="margin-left: 15px" id="revise-only" checked><label for="revise-only">Revised
+            article
+            only.</label>
+        <button type="button" id="populate" style="margin-left: 15px" onclick="populate()">Retrieve arXiv</button>
     </div>
     <div id="pan">
     </div>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>arXiv list</title>
+    <style>
+        td {
+            padding: 5px;
+        }
+
+        .m {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+    <script>
+        /**
+         * Calculate the start date to retrive articles
+         * @param {integer} delta  : number days before today
+         */
+        function calStartDate(delta = 7) {
+            const today = new Date();
+            console.log("today", today);
+
+            let newday = new Date(today.getTime() - (delta * 24 * 60 * 60 * 1000));
+            return `${newday.getFullYear()}-${newday.getMonth()+1}-${newday.getDate()}`;
+        }
+        //console.log("Test Start Date", calStartDate(20));
+
+
+        async function getList(url) {
+            let response = await fetch(url);
+            let data = await response.text();
+            const doc = (new DOMParser()).parseFromString(data, 'application/xml');
+
+            // ******************************
+            // **** Analyse and Populate ****
+            // ******************************
+            const articles = doc.getElementsByTagName("entry");
+            //let list = [];
+            let dayCount = 1;
+            let atDate = articles[0].getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
+            let out = `<table><tr><td colspan="2"><b>${atDate}</b></td></tr>`;
+
+            //let entry = articles[0];
+            for (entry of articles) {
+                let link = entry.getElementsByTagName("id")[0].innerHTML;
+                let id = link.split("/").pop();
+                let pub_date = entry.getElementsByTagName("published")[0].innerHTML.slice(0, 10);
+                let update = entry.getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
+                let title = entry.getElementsByTagName("title")[0].innerHTML;
+                //let summary = entry.getElementsByTagName("summary")[0].innerHTML;
+                //let authors = [...entry.getElementsByTagName("author")].map(a => a.children[0].innerHTML);
+                //console.log("getList -> authors", authors)
+
+                /*
+                list.push({
+                    "id": id,
+                    "title": title,
+                    "authors": authors,
+                    "published": pub_date,
+                    "revise": update,
+                    "summary": summary,
+                    "link": link
+                });
+                */
+                //console.log("getList -> list", list)
+
+                if (atDate != update) {
+                    atDate = update;
+                    dayCount++;
+                    if (dayCount > document.getElementById("dayspan").value) {
+                        break;
+                    } else {
+                        out += `<tr><td colspan="2"><b>${atDate}</b></td></tr>`;
+                    }
+                }
+
+                out +=
+                    `<tr><td class="m"><a href="${link}">${id}</a></td> <td>${title}</td></tr>`;
+            }
+            out += "</table>";
+            document.getElementById("pan").innerHTML = out;
+        }
+
+        /* arXiv data 
+        const arxivCats = [{
+                code: "math.AG",
+                name: "Algebraic Geometry"
+            },
+            {
+                code: "math.AT",
+                name: "Algebraic Topology"
+            },
+            {
+                code: "math.AP",
+                name: "Analysis of PDEs"
+            },
+            {
+                code: "math.CT",
+                name: "Category Theory"
+            },
+            {
+                code: "math.CA",
+                name: "Classical Analysis and ODEs"
+            },
+            {
+                code: "math.CO",
+                name: "Combinatorics"
+            },
+            {
+                code: "math.AC",
+                name: "Commutative Algebra"
+            },
+            {
+                code: "math.CV",
+                name: "Complex Variables"
+            },
+            {
+                code: "math.DG",
+                name: "Differential Geometry"
+            },
+            {
+                code: "math.DS",
+                name: "Dynamical Systems"
+            },
+            {
+                code: "math.FA",
+                name: "Functional Analysis"
+            },
+            {
+                code: "math.GM",
+                name: "General Mathematics"
+            },
+            {
+                code: "math.GN",
+                name: "General Topology"
+            },
+            {
+                code: "math.GT",
+                name: "Geometric Topology"
+            },
+            {
+                code: "math.GR",
+                name: "Group Theory"
+            },
+            {
+                code: "math.HO",
+                name: "History and Overview"
+            },
+            {
+                code: "math.IT",
+                name: "Information Theory"
+            },
+            {
+                code: "math.KT",
+                name: "K - Theory and Homology"
+            },
+            {
+                code: "math.LO",
+                name: "Logic"
+            },
+            {
+                code: "math.MP",
+                name: "Mathematical Physics"
+            },
+            {
+                code: "math.MG",
+                name: "Metric Geometry"
+            },
+            {
+                code: "math.NT",
+                name: "Number Theory"
+            },
+            {
+                code: "math.NA",
+                name: "Numerical Analysis"
+            },
+            {
+                code: "math.OA",
+                name: "Operator Algebras"
+            },
+            {
+                code: "math.OC",
+                name: "Optimization and Control"
+            },
+            {
+                code: "math.PR",
+                name: "Probability"
+            },
+            {
+                code: "math.QA",
+                name: "Quantum Algebra"
+            },
+            {
+                code: "math.RT",
+                name: "Representation Theory"
+            },
+            {
+                code: "math.RA",
+                name: "Rings and Algebras"
+            },
+            {
+                code: "math.SP",
+                name: "Spectral Theory"
+            },
+            {
+                code: "math.ST",
+                name: "Statistics Theory"
+            },
+            {
+                code: "math.SG",
+                name: "Symplectic Geometry"
+            }
+        ];
+        */
+
+        /* Start of Program */
+
+        function populate(cat = "math.RT") {
+            document.getElementById("pan").innerHTML = 'Loading...';
+            let maxRes = 30 * parseInt(document.getElementById("dayspan").value);
+            console.log("populate -> maxRes", maxRes)
+            // http://export.arxiv.org/api/query?search_query=cat:math.RT&sortBy=lastUpdatedDate&sortOrder=ascending
+            let requestData = {
+                api: "http://export.arxiv.org/api/query?search_query=",
+                //param: "&date-filter_by=date_range&date-from_date=2020-06-05&date-to_date=2020-06-08&sortBy=lastUpdatedDate&sortOrder=descending",
+                param: "&sortBy=lastUpdatedDate&sortOrder=descending",
+                url: (query) => {
+                    return `${requestData.api}${query?query+"+AND+":""}cat:${cat}&max_results=${maxRes.toString()}${requestData.param}`
+                }
+            };
+            console.log("requestData.url: ", requestData.url());
+
+            getList(requestData.url());
+        }
+    </script>
+</head>
+
+<body>
+    <div id="control" style="margin-bottom=10px;">
+        <label for="arxivCats">Choose category</label><select id="arxivCats">
+            <option value="math.AT">Algebraic Topology</option>
+            <option value="math.AP">Analysis of PDEs</option>
+            <option value="math.CT">Category Theory</option>
+            <option value="math.CA">Classical Analysis and ODEs</option>
+            <option value="math.CO">Combinatorics</option>
+            <option value="math.AC">Commutative Algebra</option>
+            <option value="math.CV">Complex Variables</option>
+            <option value="math.DG">Differential Geometry</option>
+            <option value="math.DS">Dynamical Systems</option>
+            <option value="math.FA">Functional Analysis</option>
+            <option value="math.GM">General Mathematics</option>
+            <option value="math.GN">General Topology</option>
+            <option value="math.GT">Geometric Topology</option>
+            <option value="math.GR">Group Theory</option>
+            <option value="math.HO">History and Overview</option>
+            <option value="math.IT">Information Theory</option>
+            <option value="math.KT">K - Theory and Homology</option>
+            <option value="math.LO">Logic</option>
+            <option value="math.MP">Mathematical Physics</option>
+            <option value="math.MG">Metric Geometry</option>
+            <option value="math.NT">Number Theory</option>
+            <option value="math.NA">Numerical Analysis</option>
+            <option value="math.OA">Operator Algebras</option>
+            <option value="math.OC">Optimization and Control</option>
+            <option value="math.PR">Probability</option>
+            <option value="math.QA">Quantum Algebra</option>
+            <option value="math.RT" selected>Representation Theory</option>
+            <option value="math.RA">Rings and Algebras</option>
+            <option value="math.SP">Spectral Theory</option>
+            <option value="math.ST">Statistics Theory</option>
+            <option value="math.SG">Symplectic Geometry</option>
+        </select>
+        <label for="dayspan">Choose number of days</label> <input type="text" id="dayspan" size="3" maxlength="3"
+            value="7">
+        <button type="button" onclick="populate()">Retrieve arXiv</button>
+    </div>
+    <div id="pan">
+    </div>
+</body>

@@ -14,6 +14,24 @@
 
         .m {
             font-family: 'Courier New', Courier, monospace;
+            vertical-align: top;
+        }
+
+        .title {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .title:hover {
+            cursor: pointer;
+        }
+
+        .summary {
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(92, 91, 91);
+            border: 2px solid grey;
+            margin: 10px 15px 0px 0px;
+            padding: 15px 15px 15px 15px;
+            display: none;
         }
     </style>
     <script>
@@ -52,7 +70,9 @@
                 let pub_date = entry.getElementsByTagName("published")[0].innerHTML.slice(0, 10);
                 let update = entry.getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
                 let title = entry.getElementsByTagName("title")[0].innerHTML;
-                //let summary = entry.getElementsByTagName("summary")[0].innerHTML;
+                let pdf = entry.querySelectorAll('link[title="pdf"]')[0].getAttribute("href");
+                let summary = entry.getElementsByTagName("summary")[0].innerHTML;
+
                 //let authors = [...entry.getElementsByTagName("author")].map(a => a.children[0].innerHTML);
                 //console.log("getList -> authors", authors)
 
@@ -75,146 +95,15 @@
                 }
 
                 if ((!toFilt) || (pub_date != update)) {
+                    out += `<tr><td class="m"><a href="${link}">${id}</a>(<a href="${pdf}">PDF</a>)</td>`;
                     out +=
-                        `<tr><td class="m"><a href="${link}">${id}</a></td> <td>${title}</td></tr>`;
+                        `<td><span class="title">${title}</span><div class="summary">${summary}</div></td></tr>`;
                 }
             }
             out += "</table>";
             document.getElementById("pan").innerHTML = out;
             disablePanel(false);
         }
-
-        /* arXiv data 
-        const arxivCats = [{
-                code: "math.AG",
-                name: "Algebraic Geometry"
-            },
-            {
-                code: "math.AT",
-                name: "Algebraic Topology"
-            },
-            {
-                code: "math.AP",
-                name: "Analysis of PDEs"
-            },
-            {
-                code: "math.CT",
-                name: "Category Theory"
-            },
-            {
-                code: "math.CA",
-                name: "Classical Analysis and ODEs"
-            },
-            {
-                code: "math.CO",
-                name: "Combinatorics"
-            },
-            {
-                code: "math.AC",
-                name: "Commutative Algebra"
-            },
-            {
-                code: "math.CV",
-                name: "Complex Variables"
-            },
-            {
-                code: "math.DG",
-                name: "Differential Geometry"
-            },
-            {
-                code: "math.DS",
-                name: "Dynamical Systems"
-            },
-            {
-                code: "math.FA",
-                name: "Functional Analysis"
-            },
-            {
-                code: "math.GM",
-                name: "General Mathematics"
-            },
-            {
-                code: "math.GN",
-                name: "General Topology"
-            },
-            {
-                code: "math.GT",
-                name: "Geometric Topology"
-            },
-            {
-                code: "math.GR",
-                name: "Group Theory"
-            },
-            {
-                code: "math.HO",
-                name: "History and Overview"
-            },
-            {
-                code: "math.IT",
-                name: "Information Theory"
-            },
-            {
-                code: "math.KT",
-                name: "K - Theory and Homology"
-            },
-            {
-                code: "math.LO",
-                name: "Logic"
-            },
-            {
-                code: "math.MP",
-                name: "Mathematical Physics"
-            },
-            {
-                code: "math.MG",
-                name: "Metric Geometry"
-            },
-            {
-                code: "math.NT",
-                name: "Number Theory"
-            },
-            {
-                code: "math.NA",
-                name: "Numerical Analysis"
-            },
-            {
-                code: "math.OA",
-                name: "Operator Algebras"
-            },
-            {
-                code: "math.OC",
-                name: "Optimization and Control"
-            },
-            {
-                code: "math.PR",
-                name: "Probability"
-            },
-            {
-                code: "math.QA",
-                name: "Quantum Algebra"
-            },
-            {
-                code: "math.RT",
-                name: "Representation Theory"
-            },
-            {
-                code: "math.RA",
-                name: "Rings and Algebras"
-            },
-            {
-                code: "math.SP",
-                name: "Spectral Theory"
-            },
-            {
-                code: "math.ST",
-                name: "Statistics Theory"
-            },
-            {
-                code: "math.SG",
-                name: "Symplectic Geometry"
-            }
-        ];
-        */
 
         /* Start of Program */
 
@@ -246,12 +135,21 @@
             document.getElementById("revise-only").disabled = off;
         }
 
-        document.getElementById("dayspan").addEventListener("keyup", function (event) {
-            if (event.keyCode === 13) {
+        document.addEventListener("keyup", function (event) {
+            if (event.target.id == "dayspan" && event.keyCode === 13) {
                 event.preventDefault();
                 document.getElementById("populate").click();
             }
         })
+
+        document.addEventListener('click', function (event) {
+            if (event.target && event.target.matches("span.title")) {
+                event.target.nextSibling.style.display = (getComputedStyle(event.target.nextSibling)
+                        .getPropertyValue('display') == "none") ?
+                    "block" : "none";
+                //console.log("res:", );
+            }
+        });
     </script>
 </head>
 

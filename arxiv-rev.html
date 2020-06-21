@@ -33,6 +33,11 @@
             padding: 15px 15px 15px 15px;
             display: none;
         }
+
+        select:disabled input:disabled button:disabled {
+            background-color: #cccccc;
+            color: #666666;
+        }
     </style>
     <script>
         /**
@@ -109,7 +114,7 @@
 
         function populate() {
             document.getElementById("pan").innerHTML = 'Loading...';
-            disablePanel(false);
+            disablePanel(true);
 
             let cat = document.getElementById("arxivCats").value;
             let maxRes = parseInt(document.getElementById("dayspan").value);
@@ -129,10 +134,17 @@
         }
 
         function disablePanel(off) {
-            document.getElementById("arxivCats").disabled = off;
-            document.getElementById("dayspan").disabled = off;
-            document.getElementById("populate").disabled = off;
-            document.getElementById("revise-only").disabled = off;
+            if (off) {
+                document.getElementById("arxivCats").disabled = off;
+                document.getElementById("dayspan").disabled = off;
+                document.getElementById("populate").disabled = off;
+                document.getElementById("revise-only").disabled = off;
+            } else {
+                document.getElementById("arxivCats").disabled = "";
+                document.getElementById("dayspan").disabled = "";
+                document.getElementById("populate").disabled = "";
+                document.getElementById("revise-only").disabled = "";
+            }
         }
 
         document.addEventListener("keyup", function (event) {

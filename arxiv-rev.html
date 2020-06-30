@@ -17,12 +17,25 @@
             vertical-align: top;
         }
 
+        .date {
+            font-weight: bold;
+            font-size: 18pt;
+        }
+
         .title {
             font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
         }
 
         .title:hover {
             cursor: pointer;
+        }
+
+        .comment {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+            margin: 7px 0px 3px 0px;
+            padding: 5px 15px 0px 15px;
         }
 
         .summary {
@@ -49,7 +62,7 @@
             console.log("today", today);
 
             let newday = new Date(today.getTime() - (delta * 24 * 60 * 60 * 1000));
-            return `${newday.getFullYear()}-${newday.getMonth()+1}-${newday.getDate()}`;
+            return `${newday.getFullYear()}-${("0" + (newday.getMonth() + 1)).slice(-2)}-${("0" + newday.getDate()).slice(-2)}`;
         }
         //console.log("Test Start Date", calStartDate(20));
 
@@ -65,18 +78,25 @@
             // ******************************
             const articles = doc.getElementsByTagName("entry");
             //let list = [];
-            let atDate = articles[0].getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
-            let out = `<table><tr><td colspan="2"><b>${atDate}</b></td></tr>`;
+            //let atDate = articles[0].getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
+            let atDate = calStartDate(0);
+            //let out = `<table><tr><td colspan="2" class="date">${atDate}</td></tr>`;
+            let out = "<table>";
 
             //let entry = articles[0];
             for (entry of articles) {
+                //console.log("getList -> entry", entry)
+
                 let link = entry.getElementsByTagName("id")[0].innerHTML;
                 let id = link.split("/").pop();
                 let pub_date = entry.getElementsByTagName("published")[0].innerHTML.slice(0, 10);
                 let update = entry.getElementsByTagName("updated")[0].innerHTML.slice(0, 10);
                 let title = entry.getElementsByTagName("title")[0].innerHTML;
+                let preComment = entry.getElementsByTagNameNS("http://arxiv.org/schemas/atom", "comment");
+                let comment = preComment.length > 0 ? preComment[0].innerHTML : "";
                 let pdf = entry.querySelectorAll('link[title="pdf"]')[0].getAttribute("href");
                 let summary = entry.getElementsByTagName("summary")[0].innerHTML;
+                //let summary = entry.innerHTML;
 
                 //let authors = [...entry.getElementsByTagName("author")].map(a => a.children[0].innerHTML);
                 //console.log("getList -> authors", authors)
@@ -96,13 +116,13 @@
 
                 if (atDate != update) {
                     atDate = update;
-                    out += `<tr><td colspan="2"><b>${atDate}</b></td></tr>`;
+                    out += `<tr><td colspan="2" class="date">${atDate}</td></tr>`;
                 }
 
                 if ((!toFilt) || (pub_date != update)) {
                     out += `<tr><td class="m"><a href="${link}">${id}</a>(<a href="${pdf}">PDF</a>)</td>`;
                     out +=
-                        `<td><span class="title">${title}</span><div class="summary">${summary}</div></td></tr>`;
+                        `<td><span class="title">${title}</span><div class="comment">${comment}</div><div class="summary">${summary}</div></td></tr>`;
                 }
             }
             out += "</table>";
@@ -155,9 +175,17 @@
         })
 
         document.addEventListener('click', function (event) {
+            console.log(event.target);
             if (event.target && event.target.matches("span.title")) {
-                event.target.nextSibling.style.display = (getComputedStyle(event.target.nextSibling)
-                        .getPropertyValue('display') == "none") ?
+
+                let summaryDiv = event.target.nextSibling.nextSibling;
+                console.log("summaryDiv", summaryDiv)
+                let summaryDivStyle = getComputedStyle(summaryDiv).getPropertyValue('display');
+                //console.log("summaryDivStyle", summaryDivStyle)
+
+                //console.log("summaryDiv.innerHTML", summaryDiv.innerHTML)
+                //console.log("summaryDiv.style.display", summaryDiv.style.display)
+                summaryDiv.style.display = summaryDivStyle == "none" ?
                     "block" : "none";
                 //console.log("res:", );
             }
@@ -201,7 +229,7 @@
             <option value="math.SG">Symplectic Geometry</option>
         </select>
 
-        Retrieve <input type="text" id="dayspan" size="3" maxlength="3" value="100"> articles.
+        Retrieve <input type="text" id="dayspan" size="3" maxlength="3" value="20"> articles.
         <input type="checkbox" style="margin-left: 15px" id="revise-only" checked><label for="revise-only">Revised
             article
             only.</label>

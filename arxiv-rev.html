@@ -38,6 +38,11 @@
             padding: 5px 15px 0px 15px;
         }
 
+        .authors {
+            margin-left: 10px;
+            margin-top: 7px;
+        }
+
         .summary {
             font-family: Arial, Helvetica, sans-serif;
             color: rgb(92, 91, 91);
@@ -96,10 +101,9 @@
                 let comment = preComment.length > 0 ? preComment[0].innerHTML : "";
                 let pdf = entry.querySelectorAll('link[title="pdf"]')[0].getAttribute("href");
                 let summary = entry.getElementsByTagName("summary")[0].innerHTML;
-                //let summary = entry.innerHTML;
-
-                //let authors = [...entry.getElementsByTagName("author")].map(a => a.children[0].innerHTML);
-                //console.log("getList -> authors", authors)
+                let authors = [...entry.getElementsByTagName("author")].map(c => c.getElementsByTagName("name")[0]
+                    .innerHTML).join((', '));
+                // getElementsByTagName return HTMLCollection, so use [...xxx] to turn to array
 
                 /*
                 list.push({
@@ -121,8 +125,9 @@
 
                 if ((!toFilt) || (pub_date != update)) {
                     out += `<tr><td class="m"><a href="${link}">${id}</a>(<a href="${pdf}">PDF</a>)</td>`;
+                    out += `<td><span class="title">${title}</span><div class="authors">( ${authors} )</div>`;
                     out +=
-                        `<td><span class="title">${title}</span><div class="comment">${comment}</div><div class="summary">${summary}</div></td></tr>`;
+                        `<div class="comment">${comment}</div><div class="summary">${summary}</div></td></tr>`;
                 }
             }
             out += "</table>";
@@ -178,7 +183,7 @@
             console.log(event.target);
             if (event.target && event.target.matches("span.title")) {
 
-                let summaryDiv = event.target.nextSibling.nextSibling;
+                let summaryDiv = event.target.nextSibling.nextSibling.nextSibling;
                 console.log("summaryDiv", summaryDiv)
                 let summaryDivStyle = getComputedStyle(summaryDiv).getPropertyValue('display');
                 //console.log("summaryDivStyle", summaryDivStyle)

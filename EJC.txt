@@ -33,18 +33,21 @@ complex | 複体 | 複型
 composition　| 合成　| 複合
 configuration | 配置 |
 conjugation | 共役$きょうやく | 共軛
+contractible | 可縮 | 
 contravariant | 反変　| 
 correspondence | 対応　| 對應
 covariant | 共変 |
 cover | 被覆 | 覆蓋
 cyclic | 巡回$じゅんかい | 循環
 decomposable | 直可約$ちょくかやく | 可分解
+degenerate | 退化 | 
 degree | 次数 |
 derived (category/functor)　| 導来$どうらい | 導/導出
 determinant | 行列式 | 行列式
 differentiate/differential　| 微分 | 微分
 dimension | 次元 | 維
 direct　sum　| 直和 | 直和
+discrete | 離散 | 
 disk | 円盤 |
 duality | 双対$そうつい | 對偶
 eigen- (prefix) | 固有 | 
@@ -61,6 +64,8 @@ fibre | ファイバー |
 field | 体 | 域/體
 finite | 有限　| 有限 
 foliation | 葉層構造 | 葉狀結構
+form | 形式 |
+free | 自由 | 
 full (functor) | 充満関手 | 完全/滿(函子)	
 function | 関数$かんすう | 函數
 functor | 関手$かんしゅ | 函子
@@ -139,7 +144,7 @@ set | 集合 | 集合
 sheaf (faisceau)　| 層$そう | 層
 simple module | 単純加群 | 單模
 simplex | 単体 | 單純形
-simplicial complex | 単体的な複体 | 單純複形
+simplicial complex | 単体(的な)複体 | 單純複形
 singularity | 特異点 |
 skew-symmetric | 歪対称 | 斜對稱
 stable | 安定 | 穩定
@@ -159,6 +164,7 @@ translation | 並進写像 |
 transpose | 転置 | 轉置
 trefoil knot | 三葉結び目 | 
 universal | 普遍 | 泛
+valency | 価 |
 variable　| 変数　| 變數
 variety | 代数多様体 | (代數)簇/多樣體
 vector　| ベクトル　| 向量

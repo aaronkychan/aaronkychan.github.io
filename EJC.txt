@@ -159,6 +159,7 @@ tensor product　| テンソル積 | 張量積
 tilting | 傾 | 傾斜
 topology　| トポロジー/位相幾何 | 拓樸
 topological space　| 位相空間$いそうくうかん | 拓樸空間
+torsion | 捩じれ$ねじれ | 撓
 trace | トレース | 跡
 translation | 並進写像 |
 transpose | 転置 | 轉置

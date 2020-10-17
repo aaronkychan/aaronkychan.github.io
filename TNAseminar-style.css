@@ -7,28 +7,13 @@ body {
     /* text colors */
     --text-color: hsl(0, 0%, 0%);
     --text-color-light: hsl(0, 0%, 50%);
-    --link-color: hsl(205, 100%, 35%);
-    --link-hover-color: hsl(205, 100%, 45%);
-    --navigation-link-color: hsl(190, 100%, 30%);
-    --navigation-link-hover-color: hsl(190, 100%, 40%);
     --language-link-color: hsl(0, 0%, 60%);
-    --object-color: hsl(120, 100%, 25%);
+    --object-color: hsl(200, 100%, 25%);
     --tag-text-color-light: hsl(0, 0%, 60%);
     --numberoffilter-color: hsl(0, 0%, 100%);
     --h1-color: hsl(0, 0%, 0%);
-
-    /* tag background colors */
-    --tag-color-light: hsl(0, 0%, 95%);
-    --tag-hover-color-light: hsl(0, 0%, 85%);
-    --tag-color-other: hsl(40, 100%, 85%);
-    --tag-hover-color-other: hsl(40, 100%, 75%);
-    --tag-color-conference: hsl(210, 100%, 88%);
-    --tag-hover-color-conference: hsl(210, 100%, 78%);
-    --tag-color-source: hsl(120, 42%, 85%);
-    --tag-hover-color-source: hsl(120, 42%, 75%);
-    --tag-color-timestamp: hsl(0, 100%, 90%);
-    --tag-hover-color-timestamp: hsl(0, 100%, 85%);
 }
+
 
 
 
@@ -378,19 +363,29 @@ div#main_ja>p.left {
 /*--------------------------------------------------*/
 
 ul.vertical {
+    /*
     display: inline-flex;
     flex-direction: column;
     align-items: flex-start;
+*/
+    width: fit-content;
+
+    width: -moz-fit-content;
+    max-width: 900px;
+    margin: 25px auto 25px;
 
     text-align: left;
     font-size: 15px;
 }
 
 ul.vertical>li {
+    /*
     flex: initial;
     max-width: 900px;
-
     display: flex;
+    */
+    list-style-type: disc;
+    display: list-item;
     align-items: center;
     margin: 0 0 15px 0;
 }
@@ -399,6 +394,8 @@ ul.vertical.fixedwidth>li {
     max-width: 600px;
 }
 
+
+/*
 ul.vertical>li::before {
     flex: none;
     width: 10px;
@@ -408,8 +405,10 @@ ul.vertical>li::before {
     display: block;
     content: "";
 
+    align-self: initial;
     background-color: var(--object-color);
 }
+*/
 
 /*--------------------------------------------------*/
 /* ul.twocolumns */

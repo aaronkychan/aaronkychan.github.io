@@ -90,6 +90,7 @@ indecomposable | 直既約$ちょくきやく | 不可分解
 indeterminant | 不定元 | 
 injection/injective | 単射$たんしゃ | 單射
 injective (object) | 移入 |
+intersect | 交わる$まじわる |
 inverse | 逆/反転 | 逆
 irreducible | 既約 | 
 isomorphism | 同型(写像) | 同構

@@ -73,6 +73,11 @@ div#main_ja {
     text-align: center;
 }
 
+.talk-date{
+    text-decoration:underline;
+    font-weight: bold;
+}
+
 /*--------------------------------------------------*/
 /* h1 */
 /*--------------------------------------------------*/

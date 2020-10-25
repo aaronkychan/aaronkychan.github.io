@@ -1,10 +1,7 @@
 /* colors */
 
 body {
-    /* background colors */
     --background-color: hsl(0, 0%, 100%);
-
-    /* text colors */
     --text-color: hsl(0, 0%, 25%);
     --text-color-light: hsl(0, 0%, 60%);
     --language-link-color: hsl(0, 0%, 60%);
@@ -12,6 +9,7 @@ body {
     --tag-text-color-light: hsl(0, 0%, 60%);
     --numberoffilter-color: hsl(0, 0%, 100%);
     --h1-color: hsl(0, 0%, 30%);
+    --legend-border-color: hsl(0,0%,60%);
 }
 
 
@@ -83,7 +81,7 @@ div#main_ja {
 /*--------------------------------------------------*/
 
 h1 {
-    margin: 30px 0 40px;
+    margin: 30px 0 20px;
 
     text-align: center;
     font-size: 45px;
@@ -197,7 +195,7 @@ h1.small {
 /*--------------------------------------------------*/
 
 h2 {
-    margin: 50px 0 30px;
+    margin: 35px 0 20px;
 
     display: flex;
     justify-content: center;
@@ -241,7 +239,7 @@ h2::after {
 }
 
 h3 {
-    margin: 40px 0 25px;
+    margin: 20px 0 20px;
 
     display: flex;
     justify-content: center;
@@ -339,6 +337,67 @@ h4.fixedwidth {
 }
 
 /*--------------------------------------------------*/
+/* fieldset */
+/*--------------------------------------------------*/
+
+fieldset {
+        /*
+        should change to display:grid for cleverer media query
+        width: fit-content;
+        width: -moz-fit-content;
+        max-width: 900px;*/
+        width:280px;
+        padding: 0 2em ;
+        margin: 25px auto 25px;
+    
+        text-align: left;
+        font-size: 16px;
+
+    /*	background-color: hsl(80, 100%, 95%);*/
+}
+
+
+@media screen and (min-width: 400px) {
+    fieldset {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    fieldset {
+        width: 420px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    fieldset {
+        width: 720px;
+    }
+}
+
+@media screen and (min-width: 980px) {
+    fieldset {
+        width: 900px;
+    }
+}
+
+fieldset legend {
+    font-size: 16px;
+    padding: 0.3em 0.5em;
+    border: 1px solid var(--legend-border-color);
+    /* text-decoration:underline; */
+    font-weight: bold;
+    line-height: 130%;
+}
+
+
+@media screen and (max-width: 500px) {
+    fieldset legend {
+        font-size: 15px;
+    }
+}
+
+/*--------------------------------------------------*/
 /* p */
 /*--------------------------------------------------*/
 
@@ -352,7 +411,7 @@ div#main_ja>p {
     width: fit-content;
     width: -moz-fit-content;
     max-width: 900px;
-    margin: 25px auto 25px;
+    margin: 25px auto 30px;
 
     text-align: left;
 }
@@ -425,7 +484,7 @@ ul.twocolumns {
     display: inline-block;
 
     text-align: left;
-    font-size: 15px;
+    font-size: 16px;
     /*	background-color: hsl(40, 100%, 95%);*/
 }
 
@@ -434,49 +493,6 @@ ul.twocolumns.fixedwidth {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-}
-
-div#filters_div {
-    max-height: 500px;
-
-    transition-property: max-height, margin;
-    transition-duration: 0.5s;
-    overflow: hidden;
-}
-
-@media screen and (max-width: 800px) {
-    div#filters_div {
-        max-height: 600px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    div#filters_div {
-        max-height: 700px;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    div#filters_div {
-        max-height: 800px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    div#filters_div {
-        max-height: 1000px;
-    }
-}
-
-div#filters_div[data-zeroheight] {
-    max-height: 0px;
-    margin: 0px;
-}
-
-ul.twocolumns.conferences,
-ul.twocolumns.filters {
-    /*	padding: 0 0 0 20px;*/
-    /*	display: block;*/
 }
 
 ul.twocolumns>li {
@@ -490,7 +506,7 @@ ul.twocolumns>li {
 
 @media screen and (max-width: 500px) {
     ul.twocolumns>li {
-        margin: 10px 0 15px;
+        margin: 10px 0 2px;
         flex-direction: column;
         align-items: center;
 
@@ -534,22 +550,10 @@ ul.twocolumns.widemargin>li:not(:last-child) {
 
 ul.twocolumns>li>div.leftcolumn {
     flex: none;
-    margin: 0 10px 0 15px;
+    margin: 0 10px 0 5px;
     width: 10px;
 
     /*	background-color: hsl(180, 100%, 95%);*/
-}
-
-@media screen and (max-width: 700px) {
-    ul.twocolumns>li>div.leftcolumn {
-        margin-left: 10px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    ul.twocolumns>li>div.leftcolumn {
-        margin: 0 0 5px;
-    }
 }
 
 ul.twocolumns.left80>li>div.leftcolumn {
@@ -604,14 +608,6 @@ ul.twocolumns>li>div.maincolumn {
     max-width: 800px;
 
     /*	background-color: hsl(0, 100%, 95%);*/
-}
-
-ul.twocolumns.conferences>li>div.maincolumn {
-    /*	max-width: 800px;*/
-}
-
-ul.twocolumns.filters>li>div.maincolumn {
-    /*	max-width: none;*/
 }
 
 ul.twocolumns>li>div.maincolumn>h4 {

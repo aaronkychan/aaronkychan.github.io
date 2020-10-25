@@ -9,16 +9,12 @@
     <title>Tokyo-Nagoya Algebra Seminar 2020</title>
 
     <link rel="stylesheet" href="TNAseminar-style.css" />
-
-    <script>
-    </script>
 </head>
 
 <body>
+    <h1>東京名古屋代数セミナー</h1>
+    <h3>Tokyo-Nagoya Algebra Seminar</h3>
     <div id="main">
-        <h1>東京名古屋代数セミナー</h1>
-        <p>Tokyo-Nagoya Algebra Seminar</p>
-
         <h2>Info</h2>
         <p> This is (yet another) seminar series that will be run ONLINE until further notice. <br />
             We are based in Japan and thus the talks are usually held
@@ -28,61 +24,16 @@
         </p>
 
         <h2>Schedule</h2>
+        <noscript>
+            <h2>JavaScript Is Disabled</h2>
+            <h2>Please enable JavaScript to display the contents.</h2>
+        </noscript>
+        <div id="talkList">
 
-        <p> <span class="talk-date"> 2020-10-27 (Tue 火) <u>1630-1800 Japan Time </span></p>
-        <ul class="vertical">
-            <li>
-                <p> <b>Title:</b> Positive cluster complex and \tau-tilting complex</p>
-            </li>
-            <li>
-                <p><b>Speaker:</b> Yasuaki Gyoda 行田 康晃 (Nagoya)</p>
-            </li>
-            <li>
-                <p><b>Abstract:</b> In cluster algebra theory, cluster complexes are actively studied as
-                    simplicial complexes, which represent the structure of a seed and its
-                    mutations. In this talk, I will discuss a certain subcomplex, called positive 
-                    cluster complex, of a cluster complex. This is a subcomplex whose 
-                    vertex set consists of all cluster variables except for those in the initial seed.
-                    I will also introduce another simplicial complex in this talk - the tau-tilting
-                    complex, which has vertices given by all indecomposable tau-rigid modules, 
-                    and simplices given by basic tau-rigid modules.  In the case of a cluster-tilted 
-                    algebra, it turns out that a tau-tilting complex corresponds to some positive 
-                    cluster complex.  Due to this fact, we can investigate the structure of a 
-                    tau-tilting complex of tau-tilting finite type by using the tools of cluster 
-                    algebra theory. This is joint work with Haruhisa Enomoto.</p>
-            </li>
-            <li>
-                <p><b>Language of talk:</b> Japanese 日本語</p>
-            </li>
-            <li>
-                <p><b>Zoom Access: </b>
-                    <b>ID</b>
-                    959 &nbsp;5475 &nbsp;2309 &nbsp; <b>Password</b> &nbsp; 803431 </p>
-            </li>
-        </ul>
-
-        <p> <span class="talk-date">2020-11-12 (Thu 木) 1630-1800 Japan Time </span></p>
-        <ul class="vertical">
-            <li>
-                <p> <b>Title:</b> TBC</p>
-            </li>
-            <li>
-                <p><b>Speaker:</b> Arashi Sakai 酒井 嵐士 (Nagoya)</p>
-            </li>
-            <li>
-                <p><b>Abstract:</b> TBC</p>
-            </li>
-            <li>
-                <p><b>Language of talk:</b> Japanese 日本語</p>
-            </li>
-            <li>
-                <p><b>Zoom Access: </b>
-                    <b>ID</b> ? <b>Password</b> ? </p>
-            </li>
-        </ul>
+        </div>
 
         <h2>Past Talks</h2>
-        <p>Ordered in reverse choronological order.</p>
+        <div id="pastList"></div>
 
         <p>
             Previous seminars:
@@ -125,4 +76,5 @@
             </ul>
         </p>
     </div>
+    <script src="TNAseminar-script.js"></script>
 </body>

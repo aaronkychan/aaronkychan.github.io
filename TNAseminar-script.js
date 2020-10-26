@@ -43,15 +43,28 @@ let talks = [{
     "lang": "jp",
     "access": {"id":"959 &nbsp;5475 &nbsp;2309", "psw": "803431"}
     },
-    {"ymd": "2020-11-12",
-    "start": "1600",
-    "title": "TBC",
-    "speaker": "Arashi Sakai 酒井 嵐士",
-    "affil": "Nagoya",
-    "abstract": "TBC",
-    "lang": "jp",
-    "access": {"custom": "TBC"}
-    } /*,
+    {
+        "ymd": "2020-11-12",
+        "start": "1600",
+        "title": "TBC",
+        "speaker": "Arashi Sakai 酒井 嵐士",
+        "affil": "Nagoya",
+        "abstract": "TBC",
+        "lang": "jp",
+        "access": {"custom": "TBC"}
+    },
+    {
+        "ymd": "2020-12-03",
+        "start": "1600",
+        "title": "Derived factorization categories of non-Thom--Sebastiani-type sums of potentials (tentative)",
+        "speaker": "Yuki Hirano",
+        "affil": "Kyoto",
+        "abstract": "TBC",
+        "lang": "jp",
+        "access": {"custom":"TBC"}
+    }
+    
+    /*,
     
     {"ymd": "2019-11-12",
     "start": "1000",

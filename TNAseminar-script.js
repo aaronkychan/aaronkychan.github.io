@@ -51,7 +51,7 @@ let talks = [{
     "abstract": "TBC",
     "lang": "jp",
     "access": {"custom": "TBC"}
-    },
+    } /*,
     
     {"ymd": "2019-11-12",
     "start": "1000",
@@ -61,7 +61,7 @@ let talks = [{
     "abstract": "TBC",
     "lang": "jp",
     "access": {"custom": "TBC"}
-    }
+    }*/
 ];
 
 let listHTML = "";
@@ -78,7 +78,8 @@ for (talk of talks){
     let dayString = `(${[ "Sun 日", "Mon 月", "Tue 火", "Wed 水", "Thu 木", "Fri 金", "Sat 土" ][talkdate.getDay()]})`;
     let hh = parseInt(talk.start.slice(0,2)), mm=parseInt(talk.start.slice(-2));
     let duration = ("duration" in talk)?(+duration):90;
-    let timeString = `${hh}:${mm} - ${hh+Math.floor(duration/60)}:${mm+duration%60} Japan time`;
+    let endTime = hh*60+mm+duration;
+    let timeString = `${hh}:${('0'+mm).slice(-2)} - ${Math.floor(endTime/60)}:${('0'+(endTime%60)).slice(-2)} Japan time`;
 
     // start piecing data entry
     let str = `<fieldset> <legend>${talk.ymd} ${dayString}<br/>${timeString}</legend>`;

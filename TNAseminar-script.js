@@ -43,12 +43,12 @@ let talks = [
     
     {
         ymd: "2020-12-10",
-        start: "1600",
-        title: "TBC",
+        start: "1630",
+        title: "Subcategories of module/derived categories and subsets of Zariski spectra",
         speaker: "Hiroki Matsui 松井 紘樹",
         web: "https://www.ms.u-tokyo.ac.jp/~mhiroki/",
         affil: "Tokyo",
-        abstract: "TBC",
+        abstract: "The classification problem of subcategories has been well considered in many areas. This problem is initiated by Gabriel in 1962 by giving a classification of localizing subcategories of the module category Mod R via specialization-closed subsets of the Zariski spectrum Spec R for a commutative noetherian ring. After that several authors tried to generalize this result in many ways. For example, four decades later, Krause introduced the notion of coherent subsets of Spec R and used it to classify wide subcategories of Mod R. In this talk, I will introduce the notions of n-wide subcategories of Mod R and n-coherent subsets of Spec R for a (possibly infinite) non-negative integer n. I will also introduce the notion of n-uniform subcategories of the derived category D(Mod R) and prove the correspondences among these classes. This result unifies/generalizes many known results such as the classification given by Gabriel, Krause, Neeman, Takahashi, Angeleri Hugel-Marks-Stovicek-Takahashi-Vitoria. This talk is based on joint work with Ryo Takahashi.",
         lang: "jp",
         access: {"custom":"TBC"}
     },
@@ -70,7 +70,7 @@ let talks = [
         affil: "Nagoya",
         abstract: "多元環の表現論では、多元環上の加群のなす圏の部分圏が調べられてきた。例えば、torsion class やwide部分圏などがある。今回の講演ではこれら2つの共通の一般化であるアーベル圏のICE-closed 部分圏を紹介する。そしてICE-closed部分圏はwide 部分圏のtorsion classであることを見る。またsupport tau-tilting 加群の一般化であるwide tau-tilting 加群を導入し、ICE-closed 部分圏がwide tau-tilting 加群と対応することを見る。本公演の内容は榎本悠久氏との共同研究に基づいている。",
         lang: "jp",
-        access: {"id":"997 &nbsp;4841 &nbsp;4223", "psw":"154055", "custom": "TBC"}
+        access: {"id":"997 &nbsp;4841 &nbsp;4223", "psw":"154055"}
     },
     {
         ymd: "2020-10-27",

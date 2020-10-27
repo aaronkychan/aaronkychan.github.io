@@ -129,7 +129,7 @@ for (talk of talks){
     }
     str += `</ul></fieldset>`; 
 
-    inSchedule?(listHTML=str+listHTML):(pastlistHTML+=pastlistHTML);
+    inSchedule?(listHTML=str+listHTML):(pastlistHTML+=str);
 }
 
 

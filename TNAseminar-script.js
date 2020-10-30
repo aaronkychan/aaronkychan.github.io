@@ -112,7 +112,7 @@ for (talk of talks){
     let spString = ("web" in talk)?`<a href=${talk.web}>${talk.speaker}${affilString}</a>`:`${talk.speaker}${affilString}`;
     str += `<li><div class="leftcolumn">Speaker:</div><div class="maincolumn">${spString}</div></li>`;
     str += `<li><div class="leftcolumn">Abstract:</div><div class="maincolumn">${talk.abstract}</div></li>`;
-    str += `<li><div class="leftcolumn">Langauge:</div><div class="maincolumn">${talk.lang==="jp"?"Japanese 日本語":"English"}</div></li>`;
+    str += `<li><div class="leftcolumn">Language:</div><div class="maincolumn">${talk.lang==="jp"?"Japanese 日本語":"English"}</div></li>`;
     let accessString = ("id" in talk.access)?`<b>Zoom ID</b>&nbsp;${talk.access.id}&nbsp;`:"";
     accessString += ("psw" in talk.access)?`<b>Password</b>&nbsp;${talk.access.psw}&nbsp;`:"";
     accessString += ("link" in talk.access)?`<a href="${talk.access.link}">${("custom" in talk.access)?talk.access.custom:"LINK"}</a>`:`${("custom" in talk.access)?talk.access.custom:""}`;

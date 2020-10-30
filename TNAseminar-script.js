@@ -40,7 +40,16 @@ custom = any string for extra info (can be HTML)
 
 
 let talks = [
-    
+    {
+        ymd:"TBC",
+        title: "TBC",
+        speaker: "Ryo Ohkawa 大川 領",
+        web: "http://www.math.kobe-u.ac.jp/home-j/ohkawa.html",
+        affil: "Kobe",
+        abstract: "TBC",
+        lang: "jp",
+        access: {custom: "TBC"}
+    },
     {
         ymd: "2020-12-10",
         start: "1630",
@@ -90,22 +99,30 @@ let listHTML = "";
 let pastlistHTML = "";
 
 for (talk of talks){
-    // check date and determine output
-    let d = new Date();
-    let talkdate = new Date(talk.ymd);
+    let str="";
+    let inSchedule=true;
+    if (talk.ymd != "TBC"){    
+        // check date and determine output
+        let d = new Date();
+        let talkdate = new Date(talk.ymd);
     
-    // work out time string
-    let dayString = `(${[ "Sun 日", "Mon 月", "Tue 火", "Wed 水", "Thu 木", "Fri 金", "Sat 土" ][talkdate.getDay()]})`;
-    let hh = parseInt(talk.start.slice(0,2)), mm=parseInt(talk.start.slice(-2));
-    let duration = ("duration" in talk)?(+duration):90;
-    let endTime = hh*60+mm+duration;
-    let timeString = `${hh}:${('0'+mm).slice(-2)} - ${Math.floor(endTime/60)}:${('0'+(endTime%60)).slice(-2)} Japan time`;
-    // compare now and talk's end time
-    talkdate.setHours(parseInt(timeString.slice(8,12)), parseInt(timeString.slice(11,13)));
-    let inSchedule = (d.valueOf() <= talkdate.valueOf());
+        // work out time string
+        let dayString = `(${[ "Sun 日", "Mon 月", "Tue 火", "Wed 水", "Thu 木", "Fri 金", "Sat 土" ][talkdate.getDay()]})`;
+        let hh = parseInt(talk.start.slice(0,2)), mm=parseInt(talk.start.slice(-2));
+        let duration = ("duration" in talk)?(+duration):90;
+        let endTime = hh*60+mm+duration;
+        let timeString = `${hh}:${('0'+mm).slice(-2)} - ${Math.floor(endTime/60)}:${('0'+(endTime%60)).slice(-2)} Japan time`;
+        // compare now and talk's end time
+        talkdate.setHours(parseInt(timeString.slice(8,12)), parseInt(timeString.slice(11,13)));
+        inSchedule = (d.valueOf() <= talkdate.valueOf());
+
+        str += `<fieldset> <legend>${talk.ymd} ${dayString}<br/>${timeString}</legend>`;
+    }else{
+        str += `<fieldset> <legend>TBC</legend>`;
+    }
 
     // start piecing data entry
-    let str = `<fieldset> <legend>${talk.ymd} ${dayString}<br/>${timeString}</legend>`;
+    
     str += `<ul class="twocolumns left80 leftbold">`;
     str += `<li><div class="leftcolumn">Title:</div><div class="maincolumn">${talk.title}</div></li>`;
     let affilString = ("affil" in talk)?` (${talk.affil})`:"";

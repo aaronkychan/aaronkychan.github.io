@@ -41,7 +41,16 @@ custom = any string for extra info (can be HTML)
 
 let talks = [
     {
-        ymd:"TBC",
+        ymd:"2021-02-04",
+        title: "TBC",
+        speaker: "Akishi Ikeda 池田 曉志",
+        affil: "Josai University",
+        abstract: "TBC",
+        lang: "jp",
+        access: {custom: "TBC"}
+    },
+    {
+        ymd:"2021-01-14",
         title: "TBC",
         speaker: "Ryo Ohkawa 大川 領",
         web: "http://www.math.kobe-u.ac.jp/home-j/ohkawa.html",
@@ -51,12 +60,22 @@ let talks = [
         access: {custom: "TBC"}
     },
     {
+        ymd:"2020-12-17",
+        title: "TBC",
+        speaker: "Xiao-Wu Chen 陈 小伍",
+        web: "http://home.ustc.edu.cn/~xwchen/",
+        affil: "University of Science and Technology of China",
+        abstract: "TBC",
+        lang: "en",
+        access: {custom: "TBC"}
+    },
+    {
         ymd: "2020-12-10",
         start: "1630",
         title: "Subcategories of module/derived categories and subsets of Zariski spectra",
         speaker: "Hiroki Matsui 松井 紘樹",
         web: "https://www.ms.u-tokyo.ac.jp/~mhiroki/",
-        affil: "Tokyo",
+        affil: "Uuniversity of Tokyo",
         abstract: "The classification problem of subcategories has been well considered in many areas. This problem is initiated by Gabriel in 1962 by giving a classification of localizing subcategories of the module category Mod R via specialization-closed subsets of the Zariski spectrum Spec R for a commutative noetherian ring. After that several authors tried to generalize this result in many ways. For example, four decades later, Krause introduced the notion of coherent subsets of Spec R and used it to classify wide subcategories of Mod R. In this talk, I will introduce the notions of n-wide subcategories of Mod R and n-coherent subsets of Spec R for a (possibly infinite) non-negative integer n. I will also introduce the notion of n-uniform subcategories of the derived category D(Mod R) and prove the correspondences among these classes. This result unifies/generalizes many known results such as the classification given by Gabriel, Krause, Neeman, Takahashi, Angeleri Hugel-Marks-Stovicek-Takahashi-Vitoria. This talk is based on joint work with Ryo Takahashi.",
         lang: "jp",
         access: {"custom":"TBC"}
@@ -66,7 +85,7 @@ let talks = [
         start: "1600",
         title: "Derived factorization categories of non-Thom--Sebastiani-type sums of potentials (tentative)",
         speaker: "Yuki Hirano 平野 雄貴",
-        affil: "Kyoto",
+        affil: "Kyoto University",
         abstract: "TBC",
         lang: "jp",
         access: {"custom":"TBC"}
@@ -76,7 +95,7 @@ let talks = [
         start: "1600",
         title: "ICE-closed subcategories and wide tau-tilting modules",
         speaker: "Arashi Sakai 酒井 嵐士",
-        affil: "Nagoya",
+        affil: "Nagoya University",
         abstract: "多元環の表現論では、多元環上の加群のなす圏の部分圏が調べられてきた。例えば、torsion class やwide部分圏などがある。今回の講演ではこれら2つの共通の一般化であるアーベル圏のICE-closed 部分圏を紹介する。そしてICE-closed部分圏はwide 部分圏のtorsion classであることを見る。またsupport tau-tilting 加群の一般化であるwide tau-tilting 加群を導入し、ICE-closed 部分圏がwide tau-tilting 加群と対応することを見る。本公演の内容は榎本悠久氏との共同研究に基づいている。",
         lang: "jp",
         access: {"id":"997 &nbsp;4841 &nbsp;4223", "psw":"154055"}
@@ -87,7 +106,7 @@ let talks = [
         title: "Positive cluster complex and tau-tilting complex",
         speaker: "Yasuaki Gyoda 行田 康晃",
         web: "https://yasuaki-gyoda.sakura.ne.jp/wp/",
-        affil: "Nagoya",
+        affil: "Nagoya University",
         abstract: "In cluster algebra theory, cluster complexes are actively studied as simplicial complexes, which represent the structure of a seed and its mutations. In this talk, I will discuss a certain subcomplex, called positive cluster complex, of a cluster complex. This is a subcomplex whose vertex set consists of all cluster variables except for those in the initial seed. I will also introduce another simplicial complex in this talk - the tau-tilting complex, which has vertices given by all indecomposable tau-rigid modules, and simplices given by basic tau-rigid modules. In the case of a cluster-tilted algebra, it turns out that a tau-tilting complex corresponds to some positive cluster complex. Due to this fact, we can investigate the structure of a tau-tilting complex of tau-tilting finite type by using the tools of cluster algebra theory. This is joint work with Haruhisa Enomoto.",
         lang: "jp",
         access: {"id":"959 &nbsp;5475 &nbsp;2309", "psw": "803431"},
@@ -105,18 +124,20 @@ for (talk of talks){
         // check date and determine output
         let d = new Date();
         let talkdate = new Date(talk.ymd);
-    
-        // work out time string
         let dayString = `(${[ "Sun 日", "Mon 月", "Tue 火", "Wed 水", "Thu 木", "Fri 金", "Sat 土" ][talkdate.getDay()]})`;
-        let hh = parseInt(talk.start.slice(0,2)), mm=parseInt(talk.start.slice(-2));
-        let duration = ("duration" in talk)?(+duration):90;
-        let endTime = hh*60+mm+duration;
-        let timeString = `${hh}:${('0'+mm).slice(-2)} - ${Math.floor(endTime/60)}:${('0'+(endTime%60)).slice(-2)} Japan time`;
-        // compare now and talk's end time
-        talkdate.setHours(parseInt(timeString.slice(8,12)), parseInt(timeString.slice(11,13)));
-        inSchedule = (d.valueOf() <= talkdate.valueOf());
+        let timeString = `Time: TBC`;
 
-        str += `<fieldset> <legend>${talk.ymd} ${dayString}<br/>${timeString}</legend>`;
+        if ("start" in talk){
+            // work out time string
+            let hh = parseInt(talk.start.slice(0,2)), mm=parseInt(talk.start.slice(-2));
+            let duration = ("duration" in talk)?(+duration):90;
+            let endTime = hh*60+mm+duration;
+            timeString = `${hh}:${('0'+mm).slice(-2)} - ${Math.floor(endTime/60)}:${('0'+(endTime%60)).slice(-2)} Japan time`;
+            // compare now and talk's end time
+            talkdate.setHours(parseInt(timeString.slice(8,12)), parseInt(timeString.slice(11,13)));
+        }
+        inSchedule = (d.valueOf() <= talkdate.valueOf());
+        str += `<fieldset> <legend>${talk.ymd} ${dayString}<br/>${timeString}</legend>`;        
     }else{
         str += `<fieldset> <legend>TBC</legend>`;
     }

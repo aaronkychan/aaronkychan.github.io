@@ -83,6 +83,7 @@ homology | ホモロジー | 同調
 homomorphism | (準同型)写像 | 同態/態射
 homotopy | ホモトピー | 同倫
 ideal | イデアル | 理想
+idempotent | 冪等 |
 identity element | 単位元$たんいげん | 單位元
 identity morphism | 恒等射 | 單位元
 image | 像 | 像

@@ -60,6 +60,7 @@
         function qpa2sa() {
             var quiverIn = document.getElementById("inQuiver").value;
 
+            quiverIn = quiverIn.replace(/;/g,"");
             quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
             quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
             //console.log(quiverIn);

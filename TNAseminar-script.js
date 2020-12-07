@@ -41,7 +41,8 @@ custom = any string for extra info (can be HTML)
 
 let talks = [
     {
-        ymd:"2021-02-04",
+        ymd:"2021-02-10",
+        start: "1600",
         title: "TBC",
         speaker: "Akishi Ikeda 池田 曉志",
         affil: "Josai University",
@@ -50,24 +51,37 @@ let talks = [
         access: {custom: "TBC"}
     },
     {
+        ymd:"2021-01-21",
+        start: "1700",
+        title: "TBC",
+        speaker: "Hideya Watanabe 渡邉 英也",
+        affil: "RIMS, Kyoto University",
+        abstract: "TBC",
+        lang: "jp",
+        access: {custom: "TBC"}
+    },
+    {
         ymd:"2021-01-14",
+        start: "1600",
         title: "TBC",
         speaker: "Ryo Ohkawa 大川 領",
         web: "http://www.math.kobe-u.ac.jp/home-j/ohkawa.html",
-        affil: "Kobe",
+        affil: "Kobe University",
         abstract: "TBC",
         lang: "jp",
         access: {custom: "TBC"}
     },
     {
         ymd:"2020-12-17",
-        title: "TBC",
+        start: "1600",
+        title: "The finite EI categories of Cartan type",
         speaker: "Xiao-Wu Chen 陈 小伍",
         web: "http://home.ustc.edu.cn/~xwchen/",
         affil: "University of Science and Technology of China",
-        abstract: "TBC",
+        abstract: `We will recall the notion of a finite free EI category introduced by Li. To each Cartan triple, we associate a finite free EI category, called the finite EI category of Cartan type. The corresponding category algebra is isomorphic to the 1-Gorenstein algebra, introduced by Geiss-Leclerc-Schroer, which is associated to possibly another Cartan triple. The construction of the second Cartan triple is related to the well-known unfolding of valued graphs. We will apply the obtained algebra isomorphism to re-interpret some tau-locally free modules as induced modules over a certain skew group algebra. This project is joint with Ren Wang.`,
         lang: "en",
-        access: {custom: "TBC"}
+        access: {id: `921 0388 8808`, psw: `563837`},
+        //record: {slides: `TNA/2020/XWChen-The_Finite_EI_Categories_of_Cartan_Type.pdf`}
     },
     {
         ymd: "2020-12-10",
@@ -76,19 +90,20 @@ let talks = [
         speaker: "Hiroki Matsui 松井 紘樹",
         web: "https://www.ms.u-tokyo.ac.jp/~mhiroki/",
         affil: "Uuniversity of Tokyo",
-        abstract: "The classification problem of subcategories has been well considered in many areas. This problem is initiated by Gabriel in 1962 by giving a classification of localizing subcategories of the module category Mod R via specialization-closed subsets of the Zariski spectrum Spec R for a commutative noetherian ring. After that several authors tried to generalize this result in many ways. For example, four decades later, Krause introduced the notion of coherent subsets of Spec R and used it to classify wide subcategories of Mod R. In this talk, I will introduce the notions of n-wide subcategories of Mod R and n-coherent subsets of Spec R for a (possibly infinite) non-negative integer n. I will also introduce the notion of n-uniform subcategories of the derived category D(Mod R) and prove the correspondences among these classes. This result unifies/generalizes many known results such as the classification given by Gabriel, Krause, Neeman, Takahashi, Angeleri Hugel-Marks-Stovicek-Takahashi-Vitoria. This talk is based on joint work with Ryo Takahashi.",
+        abstract: "The classification problem of subcategories has been well considered in many areas. This problem was initiated by Gabriel in 1962 by giving a classification of localizing subcategories of the module category Mod R via specialization-closed subsets of the Zariski spectrum Spec R for a commutative noetherian ring. After that several authors tried to generalize this result in many ways. For example, four decades later, Krause introduced the notion of coherent subsets of Spec R and used it to classify wide subcategories of Mod R. In this talk, I will introduce the notions of n-wide subcategories of Mod R and n-coherent subsets of Spec R for a (possibly infinite) non-negative integer n. I will also introduce the notion of n-uniform subcategories of the derived category D(Mod R) and prove the correspondences among these classes. This result unifies/generalizes many known results such as the classification given by Gabriel, Krause, Neeman, Takahashi, Angeleri Hugel-Marks-Stovicek-Takahashi-Vitoria. This talk is based on joint work with Ryo Takahashi.",
         lang: "jp",
-        access: {"custom":"TBC"}
+        access: {id: `964 9976 5624`, psw: "195094"}
     },
     {
         ymd: "2020-12-03",
         start: "1600",
-        title: "Derived factorization categories of non-Thom--Sebastiani-type sums of potentials (tentative)",
+        title: "Full strong exceptional collections for invertible polynomials of chain type",
         speaker: "Yuki Hirano 平野 雄貴",
         affil: "Kyoto University",
-        abstract: "TBC",
+        abstract: "Constructing a tilting object in the stable category of graded maximal Cohen-Macaulay modules over a given graded Gorenstein ring is an important problem in the representation theory of graded Gorenstein rings. For a hypersurface S/f in a graded regular ring S, this problem is equivalent to constructing a tilting object in the homotopy category of graded matrix factorizations of f. In this talk, we discuss this problem in the case when S is a polynomial ring, f is an invertible polynomial of chain type and S has a rank one abelian group grading (called the maximal grading of f), and in this case we show the existence of a tilting object arising from a full strong exceptional collection. This is a joint work with Genki Ouchi.",
         lang: "jp",
-        access: {"custom":"TBC"}
+        access: {"id": "959 &nbsp;0189 &nbsp;8837", "psw":"541801"},
+        record: {"slides": `TNA/2020/Hirano-Full_strong_exceptional_collections_for_invertible_polynomials_of_chain_type.pdf`}
     },
     {
         ymd: "2020-11-12",
@@ -98,7 +113,8 @@ let talks = [
         affil: "Nagoya University",
         abstract: "多元環の表現論では、多元環上の加群のなす圏の部分圏が調べられてきた。例えば、torsion class やwide部分圏などがある。今回の講演ではこれら2つの共通の一般化であるアーベル圏のICE-closed 部分圏を紹介する。そしてICE-closed部分圏はwide 部分圏のtorsion classであることを見る。またsupport tau-tilting 加群の一般化であるwide tau-tilting 加群を導入し、ICE-closed 部分圏がwide tau-tilting 加群と対応することを見る。本公演の内容は榎本悠久氏との共同研究に基づいている。",
         lang: "jp",
-        access: {"id":"997 &nbsp;4841 &nbsp;4223", "psw":"154055"}
+        access: {"id":"977 &nbsp;4841 &nbsp;4223", "psw":"154055"},
+        record: {"slides" : `TNA/2020/Sakai-ICE-closed_subcats_and_wide_tau-tilting.pdf`}
     },
     {
         ymd: "2020-10-27",
@@ -158,14 +174,15 @@ for (talk of talks){
     if ("record" in talk) {
         str += `<li><div class="leftcolumn">Record:</div><div class="maincolumn">`;
         if ("slides" in talk.record){
-            str += (talk.record.slides === "contact")?"Contact speaker for slides. ":`<a href="${talk.record.slides}">Slides</a>. `;
+            str += (talk.record.slides === "contact")?"Contact speaker for slides. ":`<a href="${talk.record.slides}">Slides here</a>. `;
         }else{
             str += "No slide will be made available. ";
         }
-        str += ("vid" in talk.record)?`<a href="${talk.record.vid}>Video</a>. `:"Video not available.";
+        //str += ("vid" in talk.record)?`<a href="${talk.record.vid}">Video</a>. `:"Video not available.";
         str += `</div></li>`;
     }
     str += `</ul></fieldset>`; 
+
 
     inSchedule?(listHTML=str+listHTML):(pastlistHTML+=str);
 }

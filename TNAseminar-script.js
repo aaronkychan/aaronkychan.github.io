@@ -53,10 +53,15 @@ let talks = [
     {
         ymd:"2021-01-21",
         start: "1700",
-        title: "TBC",
+        title: `Based modules over the $\\imath$-quantum group of type AI`,
         speaker: "Hideya Watanabe 渡邉 英也",
         affil: "RIMS, Kyoto University",
-        abstract: "TBC",
+        abstract: `In recent years, $\\imath$-quantum groups are intensively studied because of their importance in various branches of mathematics and physics. 
+        Although $\\imath$-quantum groups are thought of as generalizations of Drinfeld-Jimbo quantum groups, their representation theory is much more difficult than that of quantum groups. 
+        In this talk, I will focus on the $\\imath$-quantum group of type AI. It is a non-standard quantization of the special orthogonal Lie algebra $\\mathfrak{so}_n$. 
+        I will report my recent research on based modules, which are modules equipped with distinguished bases, called the $\\imath$-canonical bases. 
+        The first main result is a new combinatorial formula describing the branching rule from $\\mathfrak{sl}_n$ to $\\mathfrak{so}_n$. 
+        The second one is the irreducibility of cell modules associated with the $\\imath$-canonical bases.`,
         lang: "jp",
         access: {custom: "TBC"}
     },
@@ -81,7 +86,7 @@ let talks = [
         abstract: `We will recall the notion of a finite free EI category introduced by Li. To each Cartan triple, we associate a finite free EI category, called the finite EI category of Cartan type. The corresponding category algebra is isomorphic to the 1-Gorenstein algebra, introduced by Geiss-Leclerc-Schroer, which is associated to possibly another Cartan triple. The construction of the second Cartan triple is related to the well-known unfolding of valued graphs. We will apply the obtained algebra isomorphism to re-interpret some tau-locally free modules as induced modules over a certain skew group algebra. This project is joint with Ren Wang.`,
         lang: "en",
         access: {id: `921 0388 8808`, psw: `563837`},
-        //record: {slides: `TNA/2020/XWChen-The_Finite_EI_Categories_of_Cartan_Type.pdf`}
+        record: {slides: `TNA/2020/XWChen-The_Finite_EI_Categories_of_Cartan_Type.pdf`}
     },
     {
         ymd: "2020-12-10",
@@ -92,7 +97,8 @@ let talks = [
         affil: "Uuniversity of Tokyo",
         abstract: "The classification problem of subcategories has been well considered in many areas. This problem was initiated by Gabriel in 1962 by giving a classification of localizing subcategories of the module category Mod R via specialization-closed subsets of the Zariski spectrum Spec R for a commutative noetherian ring. After that several authors tried to generalize this result in many ways. For example, four decades later, Krause introduced the notion of coherent subsets of Spec R and used it to classify wide subcategories of Mod R. In this talk, I will introduce the notions of n-wide subcategories of Mod R and n-coherent subsets of Spec R for a (possibly infinite) non-negative integer n. I will also introduce the notion of n-uniform subcategories of the derived category D(Mod R) and prove the correspondences among these classes. This result unifies/generalizes many known results such as the classification given by Gabriel, Krause, Neeman, Takahashi, Angeleri Hugel-Marks-Stovicek-Takahashi-Vitoria. This talk is based on joint work with Ryo Takahashi.",
         lang: "jp",
-        access: {id: `964 9976 5624`, psw: "195094"}
+        access: {id: `964 9976 5624`, psw: "195094"},
+        record:{ slides: `TNA/2020/Matsui-Subcategories_of_DModA_and_subsets_of_Zariski_spectra.pdf`}
     },
     {
         ymd: "2020-12-03",

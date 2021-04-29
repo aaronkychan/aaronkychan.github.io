@@ -89,6 +89,7 @@ identity morphism | 恒等射 | 單位元
 image | 像 | 像
 indecomposable | 直既約$ちょくきやく | 不可分解
 indeterminant | 不定元 | 
+index | 添字$そえじ |
 injection/injective | 単射$たんしゃ | 單射
 injective (object) | 移入 |
 intersect | 交わる$まじわる |
@@ -139,6 +140,7 @@ representation　| 表現$ひょうげん | 表示
 resolution | 分解 |
 ring | 環 | 環
 scalar　| スカラー | 標量/常數
+scattering diagram| 散乱図式 |
 scheme | スキーム | 概形
 semi (prefix) | 半 | 半
 sequence | (系)列$(けい)れつ | 列

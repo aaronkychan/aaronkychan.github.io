@@ -154,6 +154,7 @@ skew-symmetric | 歪対称 | 斜對稱
 stable | 安定 | 穩定
 stack | スタック |
 standard | 標準 |
+stratify | 階層化 |
 sub (prefix) | 部分 | 子
 surface | 曲面 | 
 surjection/surjective | 全射$ぜんしゃ | 滿射

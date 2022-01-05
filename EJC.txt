@@ -5,6 +5,7 @@ adjoint | 随伴$ずいはん | 伴隨
 affine | アフィン | 仿射
 algebra | 代数 | 代數
 almost split sequence | 概分裂完全列 |
+altnernating group | 交代群 |
 associative | 結合 | 結合
 auto- (prefix) | 自己 |
 basis | 基底$きてい | 

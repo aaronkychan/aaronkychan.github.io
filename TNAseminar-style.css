@@ -12,7 +12,7 @@ body {
     --legend-border-color: hsl(0,0%,60%);
 }
 
-
+html{scroll-behavior:smooth}
 
 
 
@@ -36,7 +36,6 @@ body {
 a {
     color: var(--link-color);
 }
-
 a:hover {
     color: var(--link-hover-color);
 }
@@ -679,4 +678,31 @@ ul.twocolumns>li>div.extracolumn {
         flex: auto;
         align-self: stretch;
     }
+}
+
+#btnToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #AAA; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 6px; /* Some padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#btnToTop:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+#info {
+    position: fixed; /* Fixed/sticky position */
+    top: 20px; /* Place the button at the bottom of the page */
+    left: 30px; /* Place the button 30px from the right */   
+    background-color: #AAA;
 }

@@ -24,8 +24,8 @@
 
   <script type="text/javascript">
     function processField() {
-      if (document.getElementById("Rational").checked) {
-        return "Rational";
+      if (document.getElementById("Rationals").checked) {
+        return "Rationals";
       }
       if (document.getElementById("GF").checked) {
         return `GF(${size})`;
@@ -47,15 +47,15 @@
       // *** translate vertices ***
       var vxTxt = JSON.stringify(
         Q.vertices.map(function (v) {
-          return v["id"].toString();
+          return `v${v["id"]}`;
         })
       );
 
       // *** translate arrows ***
       var arrTxt = JSON.stringify(
         Q.arrows.map(arrow => [
-          arrow["source"].toString(),
-          arrow["target"].toString(),
+          `v${arrow["source"]}`,
+          `v${arrow["target"]}`,
           arrow["id"]
         ])
       );
@@ -120,7 +120,7 @@
     }
 
     function clearAll() {
-      document.getElementById("Rational").checked = true;
+      document.getElementById("Rationals").checked = true;
       document.getElementById("GF").checked = false;
       document.getElementById("inTxtBox").value = "";
       document.getElementById("outTxtBox").value = "";
@@ -135,8 +135,8 @@
   <br />
   <div class="site_row" id="optionRow">
     Field:
-    <input type="radio" name="field" id="Rational" checked />
-    Rational (default)
+    <input type="radio" name="field" id="Rationals" checked />
+    Rationals (default)
     <input type="radio" name="field" id="GF" />
     Finite field GF(p^n), p^n=
     <input type="text" id="GFp" size="3" value="5" />

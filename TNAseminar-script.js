@@ -19,6 +19,7 @@
 /*
 data structure:  
 "ymd": "YYYY-MM-DD",
+"id": string  (use if you want to set up anchor)
 "start": "hhmm" 24hr format  (NOTE: this is in Asia/Tokyo timezone)
 "duration": optional number representing duration in mintue (default to 90, i.e. 1.5hr)
 "title": string
@@ -39,6 +40,155 @@ custom = any string for extra info (can be HTML)
 */
 
 let talks = [
+    {
+        ymd: "TBC",
+        //start: "1030",
+        title: `TBC II`,
+        speaker: "Shigeo Koshitani 越谷 重夫",
+        affil: "Chiba University 千葉大学",
+        web: "http://www.math.s.chiba-u.ac.jp/~koshitan/index.html",
+        abstract: `Continuation of <a href="#Koshitani202202"> part I</a>`,
+        lang: "jp",
+        access: {
+            id: `TBC`,
+            psw: `TBC`,
+        },
+        // record: {
+        //     slides: `TNA/2021/Kozakai-tau-tilting_on_blocks_of_finite_groups.pdf`,
+        // },
+    },
+    {
+        ymd: "TBC",
+        id: "Koshitani202202",
+        //start: "1030",
+        title: `TBC`,
+        speaker: "Shigeo Koshitani 越谷 重夫",
+        affil: "Chiba University 千葉大学",
+        web: "http://www.math.s.chiba-u.ac.jp/~koshitan/index.html",
+        abstract: `TBC`,
+        lang: "jp",
+        access: {
+            id: `TBC`,
+            psw: `TBC`,
+        },
+        // record: {
+        //     slides: `TNA/2021/Kozakai-tau-tilting_on_blocks_of_finite_groups.pdf`,
+        // },
+    },
+    {
+        ymd: "2022-01-21",
+        start: "1645",
+        title: `Exact-categorical properties of subcategories of abelian categories II`,
+        speaker: "Haruhisa Enomoto 榎本 悠久",
+        affil: "Osaka Prefecture University 大阪府立大学",
+        web: "https://haruhisa-enomoto.github.io/",
+        abstract: `Continuation of <a href="#Enomoto202201">part I</a>`,
+        lang: "jp",
+        access: {
+            id: `TBC`,
+            psw: `TBC`,
+        },
+        // record: {
+        //     slides: `TNA/2021/Kozakai-tau-tilting_on_blocks_of_finite_groups.pdf`,
+        // },
+    },
+    {
+        ymd: "2022-01-18",
+        id: "Enomoto202201",
+        start: "1500",
+        title: `Exact-categorical properties of subcategories of abelian categories I`,
+        speaker: "Haruhisa Enomoto 榎本 悠久",
+        affil: "Osaka Prefecture University 大阪府立大学",
+        web: "https://haruhisa-enomoto.github.io/",
+        abstract: `Quillen's exact category is a powerful framework for studying
+        extension-closed subcategories of abelian categories, and provides
+        many interesting questions on such subcategories.
+        In the first talk, I will explain the basics of some properties and
+        invariants of exact categories (e.g. the Jordan-Holder property,
+        simple objects, and Grothendieck monoid).
+        In the second talk, I will give some results and questions about
+        particular classes of exact categories arising in the representation
+        theory of algebras (e.g. torsion(-free) classes over path algebras and
+        preprojective algebras).
+        If time permits, I will discuss questions of whether these results can
+        be generalized to extriangulated categories (extension-closed
+        subcategories of triangulated categories). `,
+        lang: "jp",
+        access: {
+            id: `TBC`,
+            psw: `TBC`,
+        },
+        // record: {
+        //     slides: `TNA/2021/Kozakai-tau-tilting_on_blocks_of_finite_groups.pdf`,
+        // },
+    },
+    {
+        ymd: "2021-12-16",
+        start: "1645",
+        title: `Cyclic polytopes and higher Auslander-Reiten theory`,
+        speaker: "Nicholas Williams",
+        affil: "University of Cologne",
+        //web: "",
+        abstract: `<p>Oppermann and Thomas show that tilting modules over Iyama’s higher
+        Auslander algebras of type A are in bijection with triangulations of
+        even-dimensional cyclic polytopes. Triangulations of cyclic polytopes
+        are partially ordered in two natural ways known as the higher
+        Stasheff-Tamari orders, which were introduced in the 1990s by
+        Kapranov, Voevodsky, Edelman, and Reiner as higher-dimensional
+        generalisations of the Tamari lattice. These two partial orders were
+        conjectured to be equal in 1996 by Edelman and Reiner, and we prove
+        that this conjecture is true. </p>
+        <p>
+        We further show how the higher
+        Stasheff-Tamari orders correspond in even dimensions to natural orders
+        on tilting modules which were studied by Riedtmann, Schofield, Happel,
+        and Unger. This then allows us to complete the picture of Oppermann
+        and Thomas by showing that triangulations of odd-dimensional cyclic
+        polytopes correspond to equivalence classes of d-maximal green
+        sequences, which we introduce as higher-dimensional analogues of
+        Keller’s maximal green sequences. We show that the higher
+        Stasheff-Tamari orders correspond to natural orders on equivalence
+        classes of d-maximal green sequences, which relate to the no-gap
+        conjecture of Brustle, Dupont, and Perotin. The equality of the higher
+        Stasheff-Tamari orders then implies that these algebraic orders on
+        tilting modules and d-maximal green sequences are equal. If time
+        permits, we will also discuss some results on mutation of
+        cluster-tilting objects and triangulations.</p>
+        
+        `,
+        lang: "en",
+        access: {
+            id: `819 1787 0607`,
+            psw: `844177
+        `,
+        },
+        record: {
+            slides: `TNA/2021/Williams-Cyclic_polytopes_and_higher_AR.pdf`,
+        },
+    },
+    {
+        ymd: "2021-11-19",
+        start: "1700",
+        title: `有限群のブロック上の$\\tau$-傾理論`,
+        speaker: "Yuta Kozakai 小境 雄太",
+        affil: "Tokyo Science University 東京理科大学",
+        //web: "",
+        abstract: `Adachi-Iyama-Reiten(2014)により導入された台$\\tau$-傾加群は, 2項準傾複体や半煉瓦, 2項単純系といった,
+        さまざまな表現論的に重要な対象と1対1で対応する。そのため, 近年では, 与えられた有限次元多元環に対して,
+        それらの上での台$\\tau$-傾加群や, それらに対応する対象たちの研究が盛んに行われている。本講演では,
+        $k$を標数$p>0$の代数的閉体とし, 有限群$\\tilde{G}$と, $\\tilde{G}$の正規部分群$G$,
+        群環$kG$のブロック$B$, $B$を被覆する$k\\tilde{G}$のブロック$\\tilde{B}$に対して,
+        より複雑な構造をもつ$\\tilde{B}$上の台$\\tau$-傾加群や2項準傾複体, 半煉瓦, 2項単純系が, $B$上のそれらから,
+        有限群の表現論的な道具を用いて得られることを説明する。さらに, 剰余群$\\tilde{G}/G$が$p$-群のときには,
+        $B$上の台$\\tau$-傾加群全体の集合は, $\\tilde{B}$上のそれと, 半順序集合として同型となることも説明する。
+        本講演は、東京理科大学の小塩遼太郎氏との共同研究に基づく。
+        `,
+        lang: "jp",
+        access: { id: `867 0063 1666`, psw: `088526` },
+        record: {
+            slides: `TNA/2021/Kozakai-tau-tilting_on_blocks_of_finite_groups.pdf`,
+        },
+    },
     {
         ymd: "2021-07-08",
         start: "1600",
@@ -140,7 +290,7 @@ let talks = [
         ymd: "2021-04-22",
         start: "1600",
         title: "Exact categories via $A_\\infty$-algebras",
-        speaker: "Julian Külshammer‬",
+        speaker: "Julian Külshammer",
         affil: "Uppsala University",
         web: "https://katalog.uu.se/profile/?id=N18-1115",
         abstract: `Many instances of extension closed subcategories appear throughout representation theory, e.g. 
@@ -446,7 +596,10 @@ for (talk of talks) {
         // }
         //inSchedule = d.valueOf() <= talkdate.valueOf();
         inSchedule = localtime.valueOf() <= talkstart.valueOf();
-        str += `<fieldset> <legend> ${legendLocal}`;
+        str +=
+            "id" in talk
+                ? `<fieldset id=${talk.id}> <legend> ${legendLocal}`
+                : `<fieldset> <legend> ${legendLocal}`;
         str += sameTime
             ? ""
             : `<br/><span style='color:#D0D0D0;'>In the seminar timezone: ${legend}</span>`;
@@ -526,3 +679,30 @@ function simpleISOTime(dt) {
         includeOffset: false,
     });
 }
+
+/*** Smooth scroll shortcut ***/
+function smScroll(to) {
+    let y = document.getElementById(to).offset - 5;
+    window.scrollTo({ top: y, behaviour: "smooth" });
+}
+
+/****  Scroll to top ****/
+//Get the button:
+btnToTop = document.getElementById("btnToTop");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.addEventListener("scroll", () => {
+    if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+    ) {
+        btnToTop.style.display = "block";
+    } else {
+        btnToTop.style.display = "none";
+    }
+});
+
+let scrollToPos = document.getElementById("sec:schedule").offsetTop - 10; //give 10px padding to top
+btnToTop.addEventListener("click", () => {
+    window.scrollTo({ top: scrollToPos, behavior: "smooth" });
+});

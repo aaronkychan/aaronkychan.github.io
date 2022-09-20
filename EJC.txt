@@ -54,6 +54,7 @@ duality | 双対$そうつい | 對偶
 eigen- (prefix) | 固有 | 
 element　| 元　| 元素
 endomorphism | 自己準同型 | 自同態
+enriched | 豊穣 | 
 envelope | 包絡$ほうらく | 包絡
 entropy | エントロピー | 熵
 epimorphism　| 全射/エピ射 | 滿射
@@ -119,6 +120,7 @@ multiplicity | 重複度 |
 mutation | 突変/変異 | ? 
 non (prefix) | 非$ひ | 非
 prime | 素数 | 質數
+proper | 固有 | 
 natural transformation |　自然変換$しぜんへんかん | 自然變換
 object | 対象 | 物件/對象
 order | 位数 | 階

@@ -14,8 +14,6 @@ body {
 
 html{scroll-behavior:smooth}
 
-
-
 /*--------------------------------------------------*/
 /* all */
 /*--------------------------------------------------*/
@@ -27,19 +25,6 @@ html{scroll-behavior:smooth}
     text-decoration: none;
     list-style-type: none;
 }
-
-/*--------------------------------------------------*/
-/* a */
-/*--------------------------------------------------*/
-
-/*
-a {
-    color: var(--link-color);
-}
-a:hover {
-    color: var(--link-hover-color);
-}
-*/
 
 /*--------------------------------------------------*/
 /* body */
@@ -55,6 +40,16 @@ body {
 
     /*	transition-property: background;*/
     /*	transition-duration: 0.5s;*/
+}
+
+abbr[title] {
+    position: relative;
+    /* ensure consistent styling across browsers */
+    text-decoration: underline dotted; 
+}
+abbr[title]:hover::after,
+abbr[title]:focus::after {
+    content: attr(title);
 }
 
 /*--------------------------------------------------*/
@@ -88,38 +83,11 @@ h1 {
     color: var(--h1-color);
 }
 
-h1.reducespacebelow {
-    margin-bottom: 40px;
-}
-
-h1.index {
-    margin: 40px 0 80px;
-    font-size: 60px;
-}
-
-h1.small {
-    font-size: 35px;
-}
-
 @media screen and (max-width: 800px) {
     h1 {
         margin: 30px 0 45px;
 
         font-size: 40px;
-    }
-
-    h1.reducespacebelow {
-        margin-bottom: 45px;
-    }
-
-    h1.index {
-        margin: 30px 0 65px;
-
-        font-size: 50px;
-    }
-
-    h1.small {
-        font-size: 30px;
     }
 }
 
@@ -129,20 +97,6 @@ h1.small {
 
         font-size: 35px;
     }
-
-    h1.reducespacebelow {
-        margin-bottom: 40px;
-    }
-
-    h1.index {
-        margin: 25px 0 60px;
-
-        font-size: 45px;
-    }
-
-    h1.small {
-        font-size: 26px;
-    }
 }
 
 @media screen and (max-width: 600px) {
@@ -151,20 +105,6 @@ h1.small {
 
         font-size: 30px;
     }
-
-    h1.reducespacebelow {
-        margin-bottom: 30px;
-    }
-
-    h1.index {
-        margin: 20px 0 50px;
-
-        font-size: 40px;
-    }
-
-    h1.small {
-        font-size: 23px;
-    }
 }
 
 @media screen and (max-width: 500px) {
@@ -172,20 +112,6 @@ h1.small {
         margin: 0px 0 25px;
 
         font-size: 25px;
-    }
-
-    h1.reducespacebelow {
-        margin-bottom: 25px;
-    }
-
-    h1.index {
-        margin: 15px 0 45px;
-
-        font-size: 35px;
-    }
-
-    h1.small {
-        font-size: 19px;
     }
 }
 
@@ -454,26 +380,6 @@ ul.vertical>li {
     margin: 0 0 15px 0;
 }
 
-ul.vertical.fixedwidth>li {
-    max-width: 600px;
-}
-
-
-/*
-ul.vertical>li::before {
-    flex: none;
-    width: 10px;
-    height: 2px;
-    margin: 0 15px 0 0;
-
-    display: block;
-    content: "";
-
-    align-self: initial;
-    background-color: var(--object-color);
-}
-*/
-
 /*--------------------------------------------------*/
 /* ul.twocolumns */
 /*--------------------------------------------------*/
@@ -486,13 +392,6 @@ ul.twocolumns {
     text-align: left;
     font-size: 16px;
     /*	background-color: hsl(40, 100%, 95%);*/
-}
-
-ul.twocolumns.fixedwidth {
-    display: block;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 ul.twocolumns>li {
@@ -514,46 +413,12 @@ ul.twocolumns>li {
     }
 }
 
-ul.twocolumns.date>li:not(:first-child) {
-    margin-top: 30px;
-}
-
-ul.twocolumns.date>li:not(:last-child) {
-    margin-bottom: 30px;
-}
-
-ul.twocolumns.shortdaterange>li:not(:first-child) {
-    margin-top: 30px;
-}
-
-ul.twocolumns.shortdaterange>li:not(:last-child) {
-    margin-bottom: 30px;
-}
-
-ul.twocolumns.daterange>li:not(:first-child) {
-    margin-top: 30px;
-}
-
-ul.twocolumns.daterange>li:not(:last-child) {
-    margin-bottom: 30px;
-}
-
-ul.twocolumns.widemargin>li:not(:first-child) {
-    margin-top: 30px;
-}
-
-ul.twocolumns.widemargin>li:not(:last-child) {
-    margin-bottom: 30px;
-}
-
 /* leftcolumn */
 
 ul.twocolumns>li>div.leftcolumn {
     flex: none;
     margin: 0 10px 0 5px;
     width: 10px;
-
-    /*	background-color: hsl(180, 100%, 95%);*/
 }
 
 ul.twocolumns.left80>li>div.leftcolumn {
@@ -570,31 +435,6 @@ ul.twocolumns.left120>li>div.leftcolumn {
 
 ul.twocolumns.left140>li>div.leftcolumn {
     width: 140px;
-}
-
-ul.twocolumns.number>li>div.leftcolumn {
-    width: 60px;
-    /*	padding: 0 20px 0 0;*/
-
-    text-align: center;
-    /*		background-color: hsl(40, 100%, 80%);*/
-
-}
-
-ul.twocolumns.date>li>div.leftcolumn {
-    width: 130px;
-}
-
-ul.twocolumns.shortdaterange.en>li>div.leftcolumn {
-    width: 170px;
-}
-
-ul.twocolumns.shortdaterange.ja>li>div.leftcolumn {
-    width: 200px;
-}
-
-ul.twocolumns.daterange>li>div.leftcolumn {
-    width: 220px;
 }
 
 ul.twocolumns.leftbold>li>div.leftcolumn {
@@ -641,45 +481,6 @@ ul.twocolumns>li>div.maincolumn>ul.normal>li {
     margin: 10px 0 10px;
 }
 
-ul.twocolumns>li>div.maincolumn>ul.normal.widemargin>li {
-    margin: 15px 0 15px;
-}
-
-@media screen and (max-width: 500px) {
-    ul.twocolumns>li>div.maincolumn>ul.normal>li {
-        margin: 3px 0 3px;
-    }
-
-    ul.twocolumns>li>div.maincolumn>ul.normal.widemargin>li {
-        margin: 5px 0 5px;
-    }
-}
-
-ul.twocolumns>li>div.maincolumn>ul.normal>li::before {
-    flex: none;
-    width: 10px;
-    height: 2px;
-    margin: 0 15px 0 0;
-
-    display: block;
-    content: "";
-
-    background-color: var(--object-color);
-}
-
-/* extracolumn */
-
-ul.twocolumns>li>div.extracolumn {
-    flex: none;
-}
-
-@media screen and (max-width: 500px) {
-    ul.twocolumns>li>div.extracolumn {
-        flex: auto;
-        align-self: stretch;
-    }
-}
-
 #btnToTop {
     display: none; /* Hidden by default */
     position: fixed; /* Fixed/sticky position */
@@ -705,4 +506,18 @@ ul.twocolumns>li>div.extracolumn {
     top: 20px; /* Place the button at the bottom of the page */
     left: 30px; /* Place the button 30px from the right */   
     background-color: #AAA;
+}
+
+
+/*--------------------------------------------------*/
+/* css animation */
+/*--------------------------------------------------*/
+.highlighted {
+    animation: fadeIn 1.75s;
+}
+
+@keyframes fadeIn {
+    0% {opactiy: 0;
+        background-color: hsl(54, 100%, 90%);}
+    100% {opacity: 1;background-color: white;}
 }

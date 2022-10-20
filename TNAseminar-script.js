@@ -1,5 +1,32 @@
 let talks = [
     {
+        ymd: "2022-10-20",
+        start: "1640",
+        title: `A surface and a threefold with equivalent singularity categories`,
+        speaker: "Martin Kalck",
+        affil: "Freiburg University",
+        web: "http://home.mathematik.uni-freiburg.de/kalck/",
+        abstract: `<p>We discuss a triangle equivalence between singularity categories of an
+        affine surface and an affine threefold.
+        Both are isolated cyclic quotient singularities.
+        This seems to be the first (non-trivial) example of a singular
+        equivalence involving varieties of even and odd Krull dimension.</p>
+        
+        <p>The same approach recovers a result of Dong Yang showing a singular
+        equivalence between certain cyclic quotient singularities in dimension
+        2 and certain finite dimensional commutative algebras.</p>
+        
+        <p>This talk is based on <a href="https://arxiv.org/pdf/2103.06584.pdf">https://arxiv.org/pdf/2103.06584.pdf</a></p>`,
+        lang: "en",
+        access: {
+            id: `896 4970 4419`,
+            psw: `130543`,
+        },
+        // record: {
+        //     slides: `TNA/2022/Kalck-Update_on_singular_equivalences_between_commutative_rings.pdf`,
+        // },
+    },
+    {
         ymd: "2022-07-20",
         start: "1030",
         title: `Grothendieck enriched categories`,

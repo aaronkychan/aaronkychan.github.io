@@ -22,9 +22,9 @@ let talks = [
             id: `896 4970 4419`,
             psw: `130543`,
         },
-        // record: {
-        //     slides: `TNA/2022/Kalck-Update_on_singular_equivalences_between_commutative_rings.pdf`,
-        // },
+        record: {
+            slides: `TNA/2022/Kalck-Surface_and_threefold_with_equivalent_singularity_categories.pdf`,
+        },
     },
     {
         ymd: "2022-07-20",

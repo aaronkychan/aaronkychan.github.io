@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}
+
+
+\usepackage[margin=2cm]{geometry}
+\usepackage[shortlabels]{enumitem}
+\usepackage{amsmath,amsxtra,amsthm,amssymb,mathrsfs}
+
+\usepackage{exsheets}
+\SetupExSheets{headings=runin}
+\SetupExSheets{question/type=exercise}
+\SetupExSheets{question/name=Ex }
+
+
+\DeclareMathOperator{\moduleCategory}{\mathsf{mod}} \renewcommand{\mod}{\moduleCategory}
+
+\newcommand{\Hom}{\operatorname{Hom}\nolimits}
+\newcommand{\End}{\operatorname{End}\nolimits}
+
+\DeclareMathOperator{\Char}{char}
+\newcommand{\triv}{\operatorname{triv}\nolimits}
+\newcommand{\sgn}{\operatorname{sgn}\nolimits}
+\newcommand{\Mat}{\operatorname{Mat}\nolimits}
+\newcommand{\GL}{\operatorname{GL}\nolimits}
+\DeclareMathOperator{\Sn}{\mathfrak{S}}
+\newcommand{\Res}{\operatorname{Res}\nolimits}
+\newcommand{\Ind}{\operatorname{Ind}\nolimits}
+
+\begin{document}
+
+{\scshape Autumn 2022} \hfill {\scshape \large Topics in Math. Sci. IV} \hfill {\scshape Homework Assignment 2}
+\smallskip
+
+\hrule
+
+\bigskip
+
+
+\begin{question}
+Let $A$ be a $K$-algebra.
+\begin{enumerate}
+\item Show that $Z(A)\cong \End_{A\otimes_K A^{\mathrm{op}}}(A)$ as rings.
+
+\item Suppose $A=B\times B'$ for some $K$-algebras $B,B'$ (in this case, call $B$ and $B'$ the direct factors of $A$).  Show that the identity $1_B$ is a central idempotent of $A$, i.e. an element $b\in Z(A)$ with $b^2=b$.
+
+\item Show that $B$ is a direct factor of $A$ if, and only if, $A\cong B\oplus B'$ as $A\otimes_K A^{\mathrm{op}}$-module.
+
+\item Show that $B$ is a direct factor of $KG$ if, and only if, $B$ is a direct summand of $K(G\times G)$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+For $V,W\in KG\mod$, show that there are the following isomorphisms.
+\begin{enumerate}
+\item $(V\otimes_KW)^*\cong V^*\otimes_K W^*$ as $KG$-modules.
+\item $V^* \otimes_K W \cong \Hom_K(V,W)$ as $KG$-modules.
+\end{enumerate}
+\end{question}
+
+%\begin{question}
+%Suppose $X$ is a $G$-set (i.e. $G$ acts by permuting elements of $X$) or a $KG$-module, denote by $X^G$ the invariant subspace $\{x\in X\mid gx=x \,\forall g\in G\}$ of $X$.
+%Let $U,V,W\in KG\mod$.
+%\begin{enumerate}
+%\item Show that $(V^*\otimes_K V)^G \cong \End_{KG}(V)$.
+%\item Show that $\Hom_{KG}(U\otimes_KV, W)\cong \Hom_{KG}(U, V^* \otimes_K W)$
+%\end{enumerate}
+%\end{question}
+
+\begin{question}
+Recall that $\End_K(V)$ is a ring where multiplication is composition.
+\begin{enumerate}
+\item Find the multiplication on $V^*\otimes_K V$ that makes $\End_K(V)\cong V^*\otimes_K V$ an isomorphism of rings.
+
+\item Suppose $V\in KG\mod$.  Show that $\triv_G$ is a direct summand of $V^*\otimes_K V$ when $\dim_K M$ is invertible in $K$.  (Hint: fix a basis of $V$ and consider also the dual basis.)
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Suppose $H\leq G$ is a subgroup.
+For $g\in G$, let ${}^gH:=gHg^{-1}=\{{}^gh:=ghg^{-1}\mid h\in H\}$, and define for each $KH$-module $W$ a $K({}^gH)$-module ${}^gW:=\{{}^gw\mid w\in W\}$ (${}^gw$ is just a formal symbol) with ${}^gh\cdot w:= {}^g(hw)$.
+Show that 
+\begin{enumerate}
+\item $\Ind_{{}^gH}^G ({}^g W) \cong \Ind_H^G(W)$ as $KG$-module;
+\item ${}^gV \cong V$ as $KG$-module for all $V\in KG\mod$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Let $H\leq G$, $V\in KG\mod$ and $W\in KH\mod$.  Show that
+\begin{enumerate}
+\item $V\otimes_K \Ind_H^G(W) \cong \Ind_H^G(\Res_H^G(V)\otimes_KW)$;
+\item $\Ind_H^G (W^*) \cong (\Ind_H^G(W))^*$;
+\item use (2) to give an alternative proof of permutation module being self-dual.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Consider an integer $n\geq 1$ and an integer $r\leq n/2$.  Let $\Omega_r$ be the set of $r$-subsets (=subsets of size $r$) of $\{1,2,\ldots, n\}$.
+\begin{enumerate}
+\item Find (and prove) a subgroup $H\leq \Sn_n$ such that $K\Omega_r \cong \Ind_H^{\Sn_n}\triv_H$.
+
+\item Let $\pi_r$ be the character of $K\Omega_r$.  Find $\pi_r(1)$.  (Note: $\chi_{K\Omega}(g)=|\{\omega\in \Omega\mid g\omega =\omega\}$ for any $G$-set $\Omega$.)
+\end{enumerate}
+\end{question}
+
+
+
+\vfill
+\hfill Deadline: 22nd November, 2022
+
+
+\end{document}

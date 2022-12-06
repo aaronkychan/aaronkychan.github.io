@@ -1,5 +1,22 @@
 let talks = [
     {
+        ymd: "2023-01-20",
+        start: "1030",
+        title: `TBC`,
+        speaker: "Shunske Kano 狩野 隼輔",
+        affil: "Tohoku University 東北大学",
+        web: "https://sites.google.com/view/shunsuke-kano",
+        abstract: `TBC`,
+        lang: "jp",
+        // access: {
+        //     id: `896 4970 4419`,
+        //     psw: `130543`,
+        // },
+        // record: {
+        //     slides: `TNA/2022/Kalck-Surface_and_threefold_with_equivalent_singularity_categories.pdf`,
+        // },
+    },
+    {
         ymd: "2022-10-20",
         start: "1640",
         title: `A surface and a threefold with equivalent singularity categories`,

@@ -9,16 +9,30 @@
         .site_row {
             display: flex;
             flex-direction: row;
-            margin: 8px;
+            margin: 2ch;
         }
 
+        .box_row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin: 3px;
+        }
+
+        #midCol {
+            /* display: grid;
+            align-self: center; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
 
         #outColumn {
             margin-left: 20px;
         }
 
         #outTxtBox {
-            width: 720px;
+            width: 640px;
             /* assuming roughly 10px per character */
             height: 480px;
             border: 1px #000000 solid;
@@ -39,7 +53,7 @@
         //Dimension of String Applet viewer is 300x300
         var x0 = 25,
             y0 = 25;
-        var xRow = [...Array(5).keys()].map(i => x0 + i * 50);
+        var xRow = [...Array(5).keys()].map(i => x0 + i * 55);
         // Following works for pre-ES6
         // c.f.  https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp
         //var xRow = Array(5).fill(x0).map((entry, ind) => entry + ind * 50);
@@ -48,8 +62,10 @@
         // c.f. https://stackoverflow.com/questions/10865025/merge-flatten-an-array-of-arrays
         var x = [].concat.apply([], Array(5).fill(xRow));
 
-        var yStart = [...Array(5).keys()].map(i => y0 + i * 50);
-        var y = [...Array(25).keys()].map(i => yStart[Math.floor(i / 5)] + (i % 5) * 10);
+        var yStart = [...Array(5).keys()].map(i => y0 + 75 * i);
+        console.log(yStart)
+        var yDelta = [0, 30, 15, 45, 30];
+        var y = [...Array(25).keys()].map(i => yStart[Math.floor(i / 5)] + yDelta[i % 5]);
         //console.table(y);
 
         //we can do at most 52 arrows this way
@@ -57,13 +73,60 @@
         letters = [...letters, ...[...Array(26).keys()].map(i => String.fromCharCode(65 + i))];
         //console.log(letters);
 
+        const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61];
+        const gens = [1, 2, 2, 3, 2, 2, 3, 2, 5, 2, 3, 2, 6, 3, 5, 2, 2, 2];
+
+        function isPowerOfPrime(x) {
+            for (let p of primes) {
+                if (x == p) return [p, 1];
+                let logp = Math.log(x) / Math.log(p);
+                if (logp % 1 === 0) return [p, logp];
+            }
+            console.log(`Cannot find ${x} as a power of prime less than 62`);
+            return [0, 0];
+        }
+
+        function findFieldChar(str) { // find the charactersitic of the field, 
+            // str is of the form "(Z(n)^d)"" or "(Z(n))" for some integers n,d if over finite field
+            // over rations, it will be of the form (1)
+            return str[1] == "Z" ? isPowerOfPrime(parseInt(str.slice(3, str.indexOf(")"))))[0] : 0;
+        }
+
+        function getCpxNum(str) { // if str is of the form (n) for some integer n, then return n; otherwise return everything
+            if (str.indexOf("/") != -1) return str;
+            if (str.indexOf(".") != -1) return str;
+            if (str.indexOf("i") != -1) return str;
+            return str.indexOf("(") != -1 ? str.slice(1, -1) : str;
+        }
+
+        function translateScalar(a, char) {  //input a is of the form "(s)" for string s
+            if (char == -1) return a; //something is strange
+            if (char == 0) {
+                var res = getCpxNum(a);
+                if (res[0] != "(") {
+                    return res == "1" ? "" : (res == "-1" ? "-" : res);
+                } else {
+                    return res;
+                }
+            }
+            // char p case, a is of the form "(Z(n)^d)"" or "(Z(n))" for some integers n,d
+            var hasExpo = a.indexOf("^");
+            var expo = hasExpo != -1 ? a.slice(hasExpo + 1, -1) : 1; //exponent
+            if (expo == 0) return "";
+            else {
+                var result = Math.pow(gens[primes.indexOf(char)], expo);
+                return result == char - 1 ? "-" : result;  //convert to just a minus sign if it is p-1
+            }
+
+        }
+
         function qpa2sa() {
             var quiverIn = document.getElementById("inQuiver").value;
 
-            quiverIn = quiverIn.replace(/;/g,"");
+            quiverIn = quiverIn.replace(/(\\\r\n|\\\r|\\\n)/g, "");
+            quiverIn = quiverIn.replace(/;/g, "");
             quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
             quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
-            //console.log(quiverIn);
             var quiverQPA = JSON.parse(quiverIn);
 
             // Forbid too many vertices
@@ -105,48 +168,38 @@
                 relations: ""
             };
 
-
-            // *** translate relations (if needed) ***
-            var relns = "";
-            if (document.getElementById("forceArrow").checked) {
-                var arrRelns = document.getElementById("inRelation").value.replace(/[\s\[\]]/g, "").split(",");
-                //console.table(arrRelns);
-                var arrRef = quiverQPA[1].map(entry => entry[2]);
-                relns = [];
-
-                for (rel of arrRelns) {
-                    let readIndex = 0;
-                    let monomials = rel.split(/[\+-]/);
-                    let newMono = Array(monomials.length).fill("");
-                    let newRel = "";
-                    for (let i = 0; i < monomials.length; i++) {
-                        let elts = monomials[i].split("*");
-                        newMono = elts.map(function (e) {
-                            let q = arrRef.indexOf(e);
-                            // q!=-1 => return replaced letters; otherwise its a scalar elt, so return it
-                            return q != -1 ? letters[q] : e;
-                        }).join("*");
-                        //console.log(newMono);
-                        readIndex += monomials[i].length;
-                        newMono += i + 1 == monomials.length ? "" : rel[readIndex];
-                        newRel += newMono;
-                        readIndex++;
-                        //console.log(newRel);
-                    }
-                    relns.push(newRel);
+            // **** translate relations ****
+            var relns = [];
+            // strip brackets and whitespaces
+            var arrRelns = document.getElementById("inRelation").value.replace(/[\s\[\]]/g, "").split(",");
+            var arrRef = quiverQPA[1].map(entry => entry[2]);
+            var charFound = -1;  // charactersitic of the field
+            for (let rel of arrRelns) {
+                let readIndex = 0;
+                let monomials = rel.split(/[\+-]/);
+                let newRel = "";
+                for (let i = 0; i < monomials.length; i++) {
+                    let [scalar, ...arrs] = monomials[i].split("*");
+                    charFound = charFound == -1 ? findFieldChar(scalar) : charFound;
+                    scalar = translateScalar(scalar, charFound);  // scalar is integer now
+                    let newMono = arrs.map((x) => {
+                        let q = arrRef.indexOf(x);
+                        // q!=-1 => return replaced letters; otherwise its a scalar elt
+                        return q != -1 ? (document.getElementById("forceArrow").checked ? letters[q] : x) : x;
+                    }).join("*");
+                    readIndex += monomials[i].length;
+                    newMono += i + 1 == monomials.length ? "" : rel[readIndex];
+                    newRel += scalar == "" ? newMono : (scalar == "-" ? `-${newMono}` : `${scalar}*${newMono}`);
+                    readIndex++;
                 }
-                //console.table(relns);
-                relns = relns.join(", ");
-            } else {
-                //just strip brackets and remove heading/tailing whitespaces
-                relns = document.getElementById("inRelation").value.replace(/[\[\]]/g, "").trim();
+                relns.push(newRel);
             }
+            relns = relns.join(", ");
             quiverSA.relations = relns;
 
             //Tidy up data            
-
             var oTB = document.getElementById("outTxtBox");
-            oTB.contenteditable = true;
+            oTB.contentEditable = true;
             oTB.innerHTML = JSON.stringify(quiverSA, null, 2);
             document.getElementById("saveBtn").disabled = false;
             document.getElementById("loadBtn").disabled = false;
@@ -155,8 +208,7 @@
 
         function getOTBinnerHTML() {
             var oTB = document.getElementById("outTxtBox");
-            console.log(oTB.contenteditable);
-            if (!(oTB.contenteditable)) {
+            if (!(oTB.contentEditable)) {
                 oTB.innerHTML = "<span style='color:red; font-size: 20pt'> No Output to save yet! </span>";
                 return null;
             }
@@ -194,7 +246,7 @@
             TA.setAttribute("name", "stringified_sba");
             TA.setAttribute("value", data);
 
-            console.log(TA);
+            //console.log(TA);
             form.appendChild(TA);
             document.body.appendChild(form);
 
@@ -212,44 +264,41 @@
 </head>
 
 <body>
-    Usage:<br />
-    (1) Input data and click <input type="button" value="Translate to QPA" onclick="qpa2sa()"
-        style="margin:5px" /><br />
-    (2) [Optional] Modify output in output box if needed<br />
-    (3) [Optional] Click <input type="button" id="saveBtn" value="Export" onclick="saveSBA();" disabled /> to save the
-    output to a file named
-    "<input type="text" id="txtFilename" size="10" value="output" style="text-align:right;" />.sba", if wanted<br />
-    (4) Click <input type="button" id="loadBtn" value="Load SBA" onclick="loadSBA();" disabled /> to transfer output to
-    <a href="https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/">String Applet</a> <span
-        style="margin-left:8px; color:#D3D3D3">(I thank Jan Geuenich for extending this functionality!)</span><br />
-    <br />
-    <input type="button" value="Reset Everything" onclick="clearAll()" />
-    <br />
     <div class="site_row">
-        <input type="checkbox" id="forceID" value="">Force vertices to be labelled by numbers &nbsp;&nbsp;
-        <input type="checkbox" id="forceArrow" value="">Force arrows to be labelled by English letters<br />
-    </div>
-    <br />
-    <div class="site_row">
-        <div id="stringAppletCol">
-            <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
+        <fieldset id="stringAppletCol">
+            <legend>Input</legend>
+            <input type="checkbox" id="forceID" value="">Force vertices to be labelled by numbers &nbsp;&nbsp;<br>
+            <input type="checkbox" id="forceArrow" value="">Force arrows to be labelled by alphabets<br /><br>
 
-            QPA quiver code:<br />
-            <textarea id="inQuiver" value="" cols="70" rows="5"></textarea>
+
+            <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
+            &nbsp;&nbsp;QPA
+            quiver code:<br />
+            <textarea id="inQuiver" value="" cols="70" rows="10"></textarea>
             <br />
 
             <input type="button" value="Clear relations" onclick="document.getElementById('inRelation').value ='';" />
-            QPA relation code:<br />
-            <textarea id="inRelation" value="" cols="70" rows="15"></textarea>
+            &nbsp;&nbsp;QPA relation code:<br />
+            <textarea id="inRelation" value="" cols="70" rows="10"></textarea>
+        </fieldset>
+        <div id="midCol">
+            <button onclick="qpa2sa()" style="margin:5px; padding: 1ch; margin-bottom:200px; font-size:large">
+                Translate <br> ->
+            </button>
+            <input type="button" value="Reset All" onclick="clearAll()" style="padding:3px;" />
         </div>
 
-        <div id="qpaCol" style="margin-left:10px">
-            <input type="button" value="Clear Output" onclick="document.getElementById('outTxtBox').innerHTML ='';" />
-            Output:<br />
-
+        <fieldset id="qpaCol" style="margin-left:10px">
+            <legend>Output</legend>
+            <div class="box_row">
+                <input type="button" value="Clear Output"
+                    onclick="document.getElementById('outTxtBox').innerHTML ='';" />
+                <input type="button" id="saveBtn" value="Save as .sba file" onclick="saveSBA();" disabled />
+                <input type="button" id="loadBtn" value="Transfer to String Applet" onclick="loadSBA();" disabled />
+            </div>
             <pre id="outTxtBox" contenteditable="false"></pre>
 
-        </div>
+        </fieldset>
     </div>
 
     Input format:<br />
@@ -268,11 +317,24 @@
         </div>
     </div>
     <div>
+        Usage:<br />
+        (1) Input data and click "Translate to QPA" button <br>
+        &nbsp;&nbsp;&nbsp; [Optional] Modify result in the ouput box
+        &nbsp;&nbsp;&nbsp; [Optional] Click "Save to .sba file" to save the
+        output to a file named
+        "<input type="text" id="txtFilename" size="10" value="output" style="text-align:right;" />.sba", if wanted<br />
+        (2) Click "Transfer to <a href="https://www.math.uni-bielefeld.de/~jgeuenich/string-applet/">String Applet</a>"
+        <span style="margin-left:8px; color:#D3D3D3">(I thank Jan Geuenich for extending this
+            functionality!)</span><br />
+        <br />
+    </div>
+    <div>
         Known Limitation:<br />
         - Only less than 25 vertices allowed.<br />
         - Display of quiver in the String Applet can be ugly; one needs to manually move the vertices around to get
         better view.
         <br />
+        - Can only detect finite field of characteristic at most 61<br>
         - Email me (aaron dot kychan at gmail dot com) for comments and issues
     </div>
 

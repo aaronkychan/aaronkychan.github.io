@@ -2,16 +2,21 @@ let talks = [
     {
         ymd: "2023-01-20",
         start: "1030",
-        title: `TBC`,
+        title: `Tropical cluster transformations and train track splittings`,
         speaker: "Shunske Kano 狩野 隼輔",
         affil: "Tohoku University 東北大学",
         web: "https://sites.google.com/view/shunsuke-kano",
-        abstract: `TBC`,
+        abstract: `Fock-Goncharovは箙に対し、クラスター代数と呼ばれる組み合わせ構造を持つような概形であるクラスター多様体を定義した。
+        この概形は良い正値性を持つことから、半体値集合を考えることができる。
+        箙が点付き曲面の三角形分割から得られるとき、トロピカル半体値集合は曲面の測度付き葉層構造の空間の適切な拡張と同一視される。
+        クラスター多様体のトロピカル半体値集合はクラスター構造から定まるPL構造を持つが、一方で曲面の測度付き葉層構造の空間にはトレイントラックと呼ばれるグラフを用いたPL構造が定まることが知られている。
+        本講演では、Goncharov-Shenのクラスター多様体上のLandau-Ginzburgポテンシャル関数のトロピカル化を通してトレイントラックを翻訳し、2つのPL構造が同値であることを確認する。
+        またこのトレイントラックの翻訳を通して、一般の擬Anosov写像類が符号安定性と呼ばれる性質を持つことを説明する。`,
         lang: "jp",
-        // access: {
-        //     id: `896 4970 4419`,
-        //     psw: `130543`,
-        // },
+        access: {
+            id: `820 6834 6105`,
+            psw: `039914`,
+        },
         // record: {
         //     slides: `TNA/2022/Kalck-Surface_and_threefold_with_equivalent_singularity_categories.pdf`,
         // },

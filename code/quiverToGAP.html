@@ -23,17 +23,8 @@
   </style>
 
   <script type="text/javascript">
-    function processField() {
-      if (document.getElementById("Rationals").checked) {
-        return "Rationals";
-      }
-      if (document.getElementById("GF").checked) {
-        return `GF(${size})`;
-      }
-    }
-
     function sa2qpa() {
-      const field = processField();
+      const field = document.querySelector('input[name="field"]:checked').value == "Rationals" ? "Rationals" : `GF(${document.getElementById("GFp").value})`;
       const strIn = document.getElementById("inTxtBox").value;
       //very simple validation
       if (strIn.slice(0, 1) != "{" || strIn.slice(-1) != "}") {
@@ -46,9 +37,7 @@
 
       // *** translate vertices ***
       var vxTxt = JSON.stringify(
-        Q.vertices.map(function (v) {
-          return `v${v["id"]}`;
-        })
+        Q.vertices.map(v => `v${v["id"]}`)
       );
 
       // *** translate arrows ***
@@ -62,26 +51,30 @@
 
       // *** translate relations ***
       var relTxt = "";
-      if (Alg.relations.length > 0) {
-        let relns = Alg.relations.replace(/\s+/g, "").split(",");
-        let relArrayTxt = JSON.stringify(
-          relns.map(reln => relationToQPA(reln))
-        ).replace(/"/g, "");
-
-        relTxt = `AssignGeneratorVariables(KQ);\n`;
-        relTxt += `relns:=${relArrayTxt};\n`;
-        relTxt += `A:=KQ/relns;\n`;
+      let relns = "";
+      if (document.querySelector('input[name="relsep"]:checked').value == "space") {
+        relns = Alg.relations.split(/\s+/);
+      } else {
+        relns = Alg.relations.replace(/\s+/g, "").split(",");
       }
+      let relArrayTxt = JSON.stringify(
+        relns.map(reln => relationToQPA(reln))
+      ).replace(/"/g, "");
+
+      relTxt = `AssignGeneratorVariables(KQ);\r\n`;
+      relTxt += `relns:=${relArrayTxt};\r\n`;
+      relTxt += `A:=KQ/relns;\r\n`;
+      // }
 
       //Tidy up data
       var oTB = document.getElementById("outTxtBox");
       var strOutCurrent = oTB.disabled ? "" : oTB.value;
       console.log(strOutCurrent.length);
-      var strOut = oTB.disabled ? "" : "\n\n";
+      var strOut = oTB.disabled ? "" : "\r\n\r\n";
       oTB.disabled = false;
 
-      strOut += `Q:=Quiver(${vxTxt}, ${arrTxt});\n`;
-      strOut += `KQ:=PathAlgebra(${field},Q);\n`;
+      strOut += `Q:=Quiver(${vxTxt}, ${arrTxt});\r\n`;
+      strOut += `KQ:=PathAlgebra(${field},Q);\r\n`;
       strOut += `${relTxt}`;
       oTB.value = strOutCurrent + strOut;
 
@@ -111,6 +104,9 @@
         if (rel[i].match(/[\+-]/)) {
           outStr += rel[i];
           index = i;
+        } else if (rel[i] === "^") {
+          outStr += "*" + Array(rel[i + 1] - 1).fill(rel[i - 1]).join("*");
+          i = i + 1;
         } else {
           outStr += i == index + 1 ? rel[i] : `*${rel[i]}`;
         }
@@ -120,8 +116,10 @@
     }
 
     function clearAll() {
-      document.getElementById("Rationals").checked = true;
-      document.getElementById("GF").checked = false;
+      // document.getElementById("Rationals").checked = true;
+      // document.getElementById("GF").checked = false;
+      document.querySelector('input[value="Rationals"]').checked = true;
+      document.querySelector('input[value="space"]').checked = true;
       document.getElementById("inTxtBox").value = "";
       document.getElementById("outTxtBox").value = "";
       document.getElementById("outTxtBox").disabled = true;
@@ -133,23 +131,29 @@
   <input type="button" value="Translate to QPA" onclick="sa2qpa()" style="margin:5px" />
   <input type="button" value="Reset" onclick="clearAll()" />
   <br />
-  <div class="site_row" id="optionRow">
+  <div id="optionRow">
     Field:
-    <input type="radio" name="field" id="Rationals" checked />
+    <input type="radio" name="field" value="Rationals" checked />
     Rationals (default)
-    <input type="radio" name="field" id="GF" />
+    <input type="radio" name="field" value="GF" />
     Finite field GF(p^n), p^n=
-    <input type="text" id="GFp" size="3" value="5" />
+    <input type="text" id="GFp" size="3" value="5" /> &nbsp; (!we do not check if the value entered is exactly p^n)
+    <br>
+    Relation separator:
+    <input type="radio" name="relsep" value="space" checked />
+    Space (default)
+    <input type="radio" name="relsep" value="comma" />
+    Comma
   </div>
   <div class="site_row">
     <div id="stringAppletCol">
       String applet quiver-and-relation data:<br />
-      <textarea id="inTxtBox" value="" cols="70" rows="50" autofocus></textarea>
+      <textarea id="inTxtBox" value="" cols="50" rows="40" autofocus></textarea>
       <br /><input type="button" value="Clear Input" onclick="document.getElementById('inTxtBox').value ='';" />
     </div>
     <div id="qpaCol">
       QPA code:<br />
-      <textarea id="outTxtBox" value="" cols="150" rows="50" disabled>
+      <textarea id="outTxtBox" value="" cols="120" rows="40" disabled>
         </textarea>
       <br /><input type="button" value="Clear Output"
         onclick="document.getElementById('outTxtBox').value ='';document.getElementById('outTxtBox').disabled=true;" />
@@ -159,8 +163,8 @@
     Known limitation: <br />
     - At most 26 arrows (same as String Applet)<br />
     - Coefficient in finite field<br />
-    - No data validation for input <br/>
-    - Email me (aaron dot kychan at gmail dot com) for comments and issues 
+    - No data validation for input <br />
+    - Email me (aaron dot kychan at gmail dot com) for comments and issues
   </div>
 </body>
 

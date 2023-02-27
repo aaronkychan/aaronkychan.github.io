@@ -1,5 +1,23 @@
 let talks = [
     {
+        ymd: "2023-02-10",
+        start: "1700",
+        title: `Silting discrete代数上のsemibrick複体とspherical objects`,
+        speaker: "Wahei Hara 原 和平",
+        affil: "University of Glasgow",
+        web: "https://sites.google.com/view/waheihara/",
+        abstract: `Silting discrete代数は導来圏のt構造に関してある種の離散性を満たす有限次元代数であり，代数の表現論の分野で研究されている．(semi)brick複体は導来圏の対象であって，単純加群(の直和)が持つ性質を一般化した条件で定義される．本講演ではまず「silting discrete代数上のsemibrick複体は，実際にとある有界t構造の核として現れる部分Abel圏の単純対象の直和である」という分類結果について紹介する．実際はより強く，負の次数の自己Extが消滅するという条件で，ある有界t構造の核に含まれる対象が特徴づけられるという定理を証明し，semibrick複体の分類はその系となる．
+        後半では幾何学的な側面について紹介する．ある3次元フロップ収縮に対して，Donovan-Wemyssによって定義されたcontraction algebraという有限次元代数はsilting discrete代数の例を与える．このときbrick複体はSeidel-Thomasによって定義されたspherical objectの一般化として捉えることができ，代数幾何やシンプレクティック幾何において自己同値群の決定問題やBridgeland安定性条件の空間の連結性の問題と絡む，幾何学的にも重要な対象である．この背景をもう少し詳しく整理したのち，前半のsemibrick複体の分類結果で用いる手法がこの幾何学的状況にも拡張し，この分野の中心問題のひとつであるspherical objectの分類定理を導くことを紹介する．同様の手法は2次元Kleinian特異点の部分クレパント解消に対しても機能し，これら全ての状況で，null圏と呼ばれる導来圏の部分三角圏の有界t構造の分類や，Bridgeland安定性条件の空間の連結性などを導く．本講演の内容は全てMichael Wemyss氏との共同研究です．`,
+        lang: "jp",
+        access: {
+            id: `872 4679 8561`,
+            psw: `124239`,
+        },
+        record: {
+            slides: `TNA/2023/Hara-Semibrick_complexes_and_spherical_twist_for_silting_discrete_algebras.pdf`,
+        },
+    },
+    {
         ymd: "2023-01-20",
         start: "1030",
         title: `Tropical cluster transformations and train track splittings`,
@@ -17,9 +35,9 @@ let talks = [
             id: `820 6834 6105`,
             psw: `039914`,
         },
-        // record: {
-        //     slides: `TNA/2022/Kalck-Surface_and_threefold_with_equivalent_singularity_categories.pdf`,
-        // },
+        record: {
+            slides: `TNA/2023/Kano-Tropical_cluster_transformations_and_train_track_splittings.pdf`,
+        },
     },
     {
         ymd: "2022-10-20",

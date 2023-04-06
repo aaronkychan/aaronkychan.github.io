@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+    <script src="DiskModel.js"></script>
+    <script src="LNakayama.js"></script>
+    <style>
+        .bkg {
+            background-color: #039403;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="control" style="margin:5px;">
+        Kupisch series: <input type="text" name="kupish" id="kupisch" , value="[3,2,4,3,2,2,1]">
+        <button onclick="generate()">Generate</button>
+        <br>
+        <textarea name="log" id="log" cols="70" rows="5" style="margin:5px;">~Log~</textarea>
+
+        <div id="addModule"
+            style="border:1px dashed #AAA; padding: 5px; margin-top: 2px; margin-bottom:2px; width: max-content;">
+            Module(s): <br>
+            <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
+            <textarea name="modulesInput" id="modulesInput" cols="70" rows="3"
+                style="display:inline-block; vertical-align: top;">[[1,3],[2,2],[3,5],[4,4]]</textarea>
+            <div style="display:inline-block; vertical-align: middle; margin-left:1em;">
+                <button onclick="addModules()" style="padding: 8px; font-size: larger;">Add</button>
+            </div>
+            <!-- <button onclick="removeModule()">Remove</buttononclick> -->
+        </div>
+    </div>
+
+    <svg id="svg" style="width:100%; height:75vh;border:1px solid black">
+        <defs>
+            <!-- <marker id="arrowhead" name="arrowhead" markerWidth="10" markerHeight="8" refX="9.5" refY="5.1"
+                orient="auto" markerUnits="userSpaceOnUse">
+                <polyline points="1 1, 9 5, 1 7" />
+            </marker> -->
+            <marker markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" viewBox="0 0 5 5" orient="auto"
+                id="arrowhead">
+                <polygon points="0,5 1.6666666666666667,2.5 0,0 5,2.5"></polygon>
+            </marker>
+        </defs>
+        <!-- <line id="myline" x1="10" y1="10" x2="90" y2="90" stroke="black" marker-end="url(#arrowhead)" /> -->
+        <!-- <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /> -->
+    </svg>
+    <script>
+        var s = Snap("#svg");
+        var cx = 250, cy = 250; //center of graph
+        var g = 0.4; // gravity towards center of graph
+        var r = 160, vxR = 6; // r=radius of big disk, vxR=radius of mk pts
+        var greenPos = [], redPos = [], labelPos = []; // store positions of green/red mk pts
+        var modules = [];
+        var A, disk;
+        var arrowhead = s.select("#arrowhead");
+
+        function polarToCartesian(radius, degree, cx, cy) {
+            // Convert degree to radians
+            var radians = (degree - 90) * Math.PI / 180;
+
+            // Calculate x and y coordinates
+            var x = radius * Math.cos(radians);
+            var y = radius * Math.sin(radians);
+
+            // Return x,y tuple
+            return [cx + x, cy + y];
+        }
+
+        /**
+         * @param  {string} str
+         * @return {number} -1 if not a string or not valid array; otherwise the dimension of array
+         */
+        function detectStringifiedArrayDim(str) {
+            if (typeof str != "string") {
+                console.log("detectStringifiedArrayDim: require input is a string.");
+                return -1;
+            }
+            let count = 0;
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] === "[") {
+                    count++;
+                } else {
+                    break;
+                }
+            }
+            // dim = 0 if no brackets
+            return count == 0 ? -1 : count;
+        }
+        function SplitArrayOfArrayString(str) {
+            return str.split("],[").join("]||[").split("||");
+        }
+
+        function fracToPoint(start, end, ratio) {
+            return [(1 - ratio) * start[0] + ratio * end[0], (1 - ratio) * start[1] + ratio * end[1]];
+        }
+
+        function attachArrowHead(el) {
+            // var arrowhead = 
+            // <marker id="arrowhead" markerWidth="10" markerHeight="8" refX="9.5" refY="5.1" orient="auto"
+            //         markerUnits="userSpaceOnUse">
+            //         <polyline points="1 1, 9 5, 1 7" />
+            //     </marker>
+            let shape = s.polyline(1, 1, 9, 5, 1, 7).clone();
+            let marker = shape.marker(0, 0, 10, 10, 9.5, 5.1);
+            el.attr({ markerEnd: marker });
+        }
+
+        function computeMkptPosition(m, withLabel = false) {
+            var angleIncrement = 360 / m; // angle increment between vertices
+            var green = [], red = [], labels = [];
+            for (let i = 0; i < m; i++) {
+                var angle = angleIncrement * i;
+                //add marked points positions
+                //postive angle = clockwise direction from 12 o'clock
+                [green, red].forEach((vxs, j) =>
+                    vxs.push(polarToCartesian(r, angle + j * angleIncrement / 2, cx, cy)));
+
+                // add labels positions
+                if (withLabel) {
+                    labels.push(polarToCartesian(r + 2.5 * vxR + 3, angle, cx, cy));
+                }
+            }
+            return [green, red, labels];
+        }
+
+        function drawDisk(recompute = false) {
+            var base = s.circle(cx, cy, r);
+            base.attr({
+                fill: "none",
+                stroke: "#000",
+                strokeWidth: 3
+            });
+            let [green, red, labels] = recompute ? computeMkptPosition(disk.m, true) : [greenPos, redPos, labelPos];
+
+            var fills = ["#FFF", "#F00"];
+            var strokes = ["#0F0", "#F00"];
+            [green, red].forEach((posArr, j) => {
+                posArr.forEach(([x, y]) => {
+                    let v = s.circle(x, y, vxR);
+                    v.attr({
+                        fill: fills[j],
+                        stroke: strokes[j],
+                        strokeWidth: 1.5
+                    });
+                });
+            })
+            labels.forEach(([x, y], i) => {
+                var txt = s.text(x, y, `${i + 1}`);
+                txt.attr({
+                    "text-anchor": "middle",
+                    "dominant-baseline": "central",
+                    "font-size": "10pt"
+                });
+            });
+        }
+
+        function drawCurveOnDisk(start, end) {
+            let ctrl0 = fracToPoint(start, [cx, cy], g);
+            let ctrl1 = fracToPoint(end, [cx, cy], g);
+            return s.path(`M${start} C${ctrl0} ${ctrl1} ${end}`);
+        }
+
+        // use withLabel = {text: t, pos: r, abspos: [x,y], opt: {...}} to 
+        // change label text to t, and display position (ratio r on the arc), or
+        // display at absolute position [x,y]
+        // opt value determines additional attributes to the asociated text object
+        function drawArc(arc, type, withLabel = null, opt = { strokeWidth: 2, fill: "none" }) {
+            let start, end;
+            if (type == "green") {
+                start = greenPos[arc[0] - 1];
+                end = greenPos[arc[1] - 1];
+                opt.stroke = opt.stroke ? opt.stroke : "#0B0";
+            } else {
+                start = redPos[arc[0] - 1];
+                end = redPos[arc[1] - 1];
+                opt.stroke = opt.stroke ? opt.stroke : "#F00";
+            }
+
+            let a = drawCurveOnDisk(start, end);
+            a.attr(opt);
+            if (withLabel) {
+                //let [x, y] = fracToPoint(fracToPoint(start, end, (withLabel.pos ? withLabel.pos : 0.5)), [cx, cy], g - 0.1);
+                let len = a.getTotalLength();
+                let { x, y } = a.getPointAtLength(len * (withLabel.pos ? withLabel.pos : 0.5));
+                let txt = s.text(x, y, withLabel.text);
+                txt.attr({
+                    "text-anchor": "middle",
+                    "dominant-baseline": "central",
+                    "font-size": "14pt"
+                });
+                withLabel.opt ? txt.attr(withLabel.opt) : null;
+            }
+        }
+
+        // function drawRedArc(arc, opt = { stroke: "#F00", strokeWidth: 2 }) {
+        //     let a = s.line(...redPos[arc[0] - 1], ...redPos[arc[1] - 1]);
+        //     a.attr(opt);
+        // }
+
+        function drawDualArcSys(clear = true, onlyarcs = true) {
+            clear ? s.selectAll('SVG > *:not(defs)').remove() : null;
+            for (let a of disk.arcsys) { drawArc(a, "red"); }
+            onlyarcs ? null : drawDisk(false);
+        }
+
+        function drawQuiverAndRelations() {
+            let ox = 60, oy = 35; //relative origin
+            let sep = 60; // how far apart consecutive vertices are
+            let xpos = Array(A.rank).fill(0).map((x, i) => ox + i * sep);
+            // let arrowhead = s.select("#arrowhead");
+            // console.log(arrowhead);
+            //quiver
+            let arrows = [];
+            for (let i = 0; i < A.rank; i++) {
+                let txt = s.text(xpos[i], 40, `${i + 1}`);
+                txt.attr({
+                    "text-anchor": "middle",
+                    "dominant-baseline": "central",
+                    "font-size": "12pt"
+                });
+                if (i > 0) {
+                    let arrow = s.line(xpos[i - 1] + 10, oy, xpos[i] - 15, oy);
+                    arrow.attr({
+                        stroke: "#000",
+                        strokeWidth: 2,
+                        markerEnd: arrowhead
+                    });
+                    arrows.push(arrow);
+                }
+            }
+            //relations
+            let rels = A.relations;
+            for (let r of rels) {
+                let l = r[1] - r[0]
+                let x0 = ox + (r[0] - 1) * sep + sep / 2;
+                let x1 = ox + (r[1] - 2) * sep + sep / 2;
+                let dash = s.path(`M${x0},${oy - 3} C${x0 + 20},${oy - 23} ${x1 - 20},${oy - 23} ${x1},${oy - 3}`);
+                dash.attr({
+                    stroke: "#000",
+                    strokeDasharray: "10,5",
+                    strokeWidth: 1,
+                    fill: "none"
+                })
+            }
+        }
+
+        function generate() {
+            s.selectAll('SVG > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
+            let kup = JSON.parse(document.getElementById("kupisch").value);
+            disk = new DiskModel(kup);
+            [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
+            for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}` }); }
+            // let dualValencies = valenciesFromKupisch(kup, true);
+            // let dualArcs = valenciesToDualArcs(dualValencies);
+            // for (let a of dualArcs) { drawRedArc(a); }
+            A = disk.algebra;
+            drawDualArcSys(false, false);
+            document.getElementById("log").innerHTML = disk.log.join("\n");
+
+            drawQuiverAndRelations();
+        }
+
+
+        function addModules() {
+            // compute
+            let strMs = document.getElementById("modulesInput").value;
+            let dim = detectStringifiedArrayDim(strMs);
+            let Ms = dim == 2 ? JSON.parse(strMs) : [JSON.parse(strMs)];
+            modules = [], arcs = [];
+            for (let M of Ms) {
+                if (A.isModule(M)) {
+                    modules.push(M);
+                    arcs.push(disk.moduleToLaminate(M));
+                }
+            }
+
+            // display log
+            let TA = document.getElementById("log");
+            TA.innerHTML = disk.log.join("\n");
+            TA.scrollTop = TA.scrollHeight;
+
+            // draw
+            drawDualArcSys();
+            for (let [i, a] of Object.entries(arcs)) {
+                drawArc(a, "green", { text: `M(${parseInt(i) + 1})` }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
+            }
+            drawDisk(false);
+        }
+
+        // function addModule(i) {
+        //     let M = [`topM${i}`, `socM${i}`].map(x => parseInt(document.getElementById(x).value));
+        //     if (A.isModule(M)) {
+        //         if (i < modules.length) {
+        //             modules[i] = M;
+        //         } else {
+        //             modules.push(M);
+        //         }
+        //         let arc = A.moduleToGreenArc(M);
+        //         document.getElementById("log").innerHTML = A.log.join("\n");
+        //     }
+        //     drawDualArcSys();
+        //     for (let m of modules) { drawGreenArc(m, { stroke: "#00F", strokeWidth: 2 }); }
+        //     drawDisk(A.numMkpts, false);
+        // }
+
+        // function removeModule(i) { }
+    </script>
+</body>
+
+</html>

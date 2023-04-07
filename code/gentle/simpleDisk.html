@@ -238,8 +238,8 @@
             let rels = A.relations;
             for (let r of rels) {
                 let l = r[1] - r[0]
-                let x0 = ox + (r[0] - 1) * sep + sep / 2;
-                let x1 = ox + (r[1] - 2) * sep + sep / 2;
+                let x0 = ox + r[0] * sep + sep / 2;
+                let x1 = ox + (r[1] - 1) * sep + sep / 2;
                 let dash = s.path(`M${x0},${oy - 3} C${x0 + 20},${oy - 23} ${x1 - 20},${oy - 23} ${x1},${oy - 3}`);
                 dash.attr({
                     stroke: "#000",

@@ -204,7 +204,7 @@
         // }
 
         function drawDualArcSys(clear = true, onlyarcs = true) {
-            clear ? s.selectAll('SVG > *:not(defs)').remove() : null;
+            clear ? s.selectAll('svg > *:not(defs)').remove() : null;
             for (let a of disk.arcsys) { drawArc(a, "red"); }
             onlyarcs ? null : drawDisk(false);
         }
@@ -251,7 +251,7 @@
         }
 
         function generate() {
-            s.selectAll('SVG > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
+            s.selectAll('svg > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
             let kup = JSON.parse(document.getElementById("kupisch").value);
             disk = new DiskModel(kup);
             [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Draw QPA output</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <style type="text/css">
+        .site_row {
+            display: flex;
+            flex-direction: column;
+            margin: 2ch;
+        }
+
+        .box_row {
+            display: flex;
+            flex-direction: row;
+            /* justify-content: space-between; */
+            margin: 3px;
+        }
+
+        #midCol {
+            /* display: grid;
+            align-self: center; */
+            display: flex;
+            flex-direction: row;
+            /* justify-content: space-between; */
+        }
+
+        #inputArea {
+            display: grid;
+            grid-template-areas: "control control"
+                "qpa cyto";
+            width: 80%;
+            /* justify-items: center; */
+            align-items: center;
+        }
+
+        #inputArea textarea {
+            width: 90%;
+        }
+
+        #controlOpt {
+            grid-area: control;
+            /* border: solid 1px blue; */
+            padding: 3px;
+            margin-bottom: 1ch;
+        }
+
+        #cytoCol {
+            width: 80%;
+        }
+
+        #outputDiv {
+            margin-top: 2ch;
+            border: 1px #000000 solid;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+
+        #viewer {
+            width: 97%;
+            height: 480px;
+            margin: 5px;
+            padding: 5px;
+            border: 1px dashed #777;
+        }
+
+        .cy_canvas {
+            width: 100%;
+            height: 480px;
+            display: block;
+        }
+
+        #sysOutput {
+            font-family: monospace;
+            color: red;
+            font-size: 12pt;
+        }
+
+        textarea {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script> -->
+    <script src="./GAPToCyto.min.js" defer></script>
+</head>
+
+<body>
+    <div class="site_row">
+        <fieldset id="inputArea">
+            <legend>Input</legend>
+            <div id="controlOpt">
+                <label><input type="checkbox" id="forceID" value="">Force vertices to be labelled by numbers</label>
+                &nbsp;&nbsp;
+                <label><input type="checkbox" id="forceArrow" value="">Force arrows to be labelled by
+                    alphabets</label>
+                &nbsp;&nbsp;
+                <span id="controlOutput" style="color:red; font-family: monospace; font-size: 12pt;"></span>
+            </div>
+
+            <div>
+                <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
+                &nbsp;&nbsp;QPA
+                quiver code:<br />
+                <textarea id="inQuiver" value="" cols="50" rows="5" placeholder="[..vx..], [ [src,tgt,name],[...],...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);
+                </textarea>
+            </div>
+
+            <div>
+                <input type="button" value="Clear relations"
+                    onclick="document.getElementById('inRelation').value ='';" />
+                &nbsp;&nbsp;QPA relation code:<br />
+                <textarea id="inRelation" value="" cols="50" rows="5" placeholder="[a*b,...]">[a*b]</textarea>
+            </div>
+        </fieldset>
+        <div id="midCol">
+            <button id="translateBtn" style="margin:5px; padding: .5ch; font-size:large">
+                Draw
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <input type="button" value="Reset All" onclick="clearAll()" style="margin: 5px; padding:.5ch;" />
+            &nbsp;&nbsp;&nbsp;
+            <!-- <input type="button" id="testBtn" value="TEST" style="margin: 5px; padding:.5ch;" /> -->
+            <span style="margin-top:4px;">
+                Use mousewheel to zoom in/out. Click-and-drag on canvas/edge to pan. <br>
+                Shorten distance between vertices connected by multple arrows may clarify the arrows.
+            </span>
+        </div>
+
+        <fieldset id="cytoCol">
+            <legend>Output</legend>
+            <div class="box_row">
+                <input type="button" value="Clear Output"
+                    onclick="document.getElementById('outTxtBox').innerHTML ='';" />
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" id="fixCyto" value="Fit canvas" disabled />
+            </div>
+            <div id="outputDiv">
+                <div id="viewer">
+                    <span id="sysOutput"></span>
+                    <div id="cy" class="cy_canvas"></div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    Input format:<br />
+    <div class="site_row">
+        <div style="border:1px #000000 solid; padding:6px; position:relative; top:2px">
+            For quiver:
+            <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> Quiver( [..
+                list of vertices ..], [..[src,tar,arr_name]..] ) </div>
+            "<span style="font-family: 'Courier New', Courier, monospace;">Quiver()</span>" can be omitted.
+        </div>
+        <div
+            style="border:1px #000000 solid; padding:6px; position:relative; top:2px; margin-bottom:5px; margin-left: 10px; ">
+            For relations:
+            <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> [ ... list
+                of relations ... ] </div>
+        </div>
+    </div>
+    <div>
+        Known Limitation:<br />
+        - Can only detect finite field of characteristic at most 61<br>
+        - Email me (aaron dot kychan at gmail dot com) for comments and issues
+    </div>
+
+</body>
+
+</html>

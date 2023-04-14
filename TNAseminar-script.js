@@ -1,5 +1,55 @@
 let talks = [
     {
+        ymd: "2023-04-28",
+        start: "1300",
+        title: `TBC`,
+        speaker: "Takumi Otani 大谷 拓己",
+        affil: "Osaka University 大阪大学",
+        web: "https://otanit0907.github.io/Homepage/",
+        abstract: `TBC
+        `,
+        lang: "jp",
+        // access: {
+        //     id: `872 4679 8561`,
+        //     psw: `124239`,
+        // },
+        // record: {
+        //     slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
+        // },
+    },
+    {
+        ymd: "2023-04-21",
+        start: "1300",
+        title: `Categorifications of deformed Cartan matrices`,
+        speaker: "Kota Murakami 村上 浩大",
+        affil: "Tokyo University 東京大学",
+        web: "https://sites.google.com/view/waheihara/",
+        abstract: `<p>In a series of works of Geis-Leclerc-Schroer, they
+        introduced a version of preprojective algebra associated with a
+        symmetrizable generalized Cartan matrix and its symmetrizer. For
+        finite type, it can be regarded as an un-graded analogue of Jacobian
+        algebra of certain quiver with potential appeared in the theory of
+        (monoidal) categorification of cluster algebras.</p>
+        
+        <p>In this talk, we will present an interpretation of graded structures
+        of the preprojective algebra of general type, in terms of a
+        multi-parameter deformation of generalized Cartan matrix and relevant
+        combinatorics motivated from several contexts in the theory of quantum
+        loop algebras or quiver $\\mathcal{W}$-algebras. From the vantage point
+        of the representation theory of preprojective algebra, we will prove
+        several purely combinatorial properties of these concepts. This talk
+        is based on a joint work with Ryo Fujita (RIMS).</p>
+        `,
+        lang: "jp",
+        access: {
+            id: `816 5650 5440`,
+            psw: `505258`,
+        },
+        // record: {
+        //     slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
+        // },
+    },
+    {
         ymd: "2023-02-10",
         start: "1700",
         title: `Silting discrete代数上のsemibrick複体とspherical objects`,

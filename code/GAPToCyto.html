@@ -89,6 +89,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script> -->
+    <script src=" https://cdn.jsdelivr.net/npm/cytoscape-svg@0.4.0/cytoscape-svg.min.js" defer></script>
     <script src="./GAPToCyto.min.js" defer></script>
 </head>
 
@@ -141,6 +142,9 @@
                     onclick="document.getElementById('outTxtBox').innerHTML ='';" />
                 &nbsp;&nbsp;&nbsp;
                 <input type="button" id="fixCyto" value="Fit canvas" disabled />
+                &nbsp;&nbsp;&nbsp; Filename:&nbsp; <input type="text" id="filenameInput" value="quiver">.svg&nbsp;
+                <input type="button" id="saveSVG" value="Save as SVG" disabled /> &nbsp;&nbsp; (Use &nbsp;<a
+                    href="https://github.com/xyz2tex/svg2tikz">svg2tikz</a>&nbsp; to convert to tikz)
             </div>
             <div id="outputDiv">
                 <div id="viewer">

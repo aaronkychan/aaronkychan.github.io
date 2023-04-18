@@ -334,7 +334,24 @@ function clearAll() {
     document.getElementById("fixCyto").disabled = true;
 }
 
+function saveAsSVG(filename) {
+    var svgContent = cy.svg({ scale: 1, full: true, bg: "#ffffff" });
+    var blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
+    saveAs(blob, filename);
+}
+
+/**
+ *  Event handlers
+ */
+
 document.getElementById("fixCyto").addEventListener("click", () => cy.fit());
+document
+    .getElementById("saveSVG")
+    .addEventListener("click", () =>
+        saveAsSVG(
+            document.getElementsByClassName("filenameInput").value + ".svg"
+        )
+    );
 // document
 //     .getElementById("testBtn")
 // .addEventListener("click", () => initCyto(testdata));

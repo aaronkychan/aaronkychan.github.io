@@ -82,7 +82,7 @@ a {
 }
 
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 320px) {
 	.header {
 		grid-area: header;
 		justify-items: center;
@@ -104,10 +104,10 @@ a {
 	}
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 930px) {
 	.header {
 		grid-area: header;
-		grid-template-columns: minmax(0,4em) 300px repeat(6, 90px) auto;
+		grid-template-columns: minmax(0,4em) 300px repeat(6, 105px) auto;
 		grid-template-areas:
 			". logo home math teach notes acti link .";
 	}

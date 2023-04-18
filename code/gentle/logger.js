@@ -25,11 +25,12 @@ class Logger {
     }
 
     get allFromLastGet() {
+        let res = [];
         if (this.lastGet < this.log.length - 1) {
+            res = this.log.slice(this.lastGet + 1);
             this.lastGet = this.log.length - 1;
-            return this.log.slice(lastGet + 1);
         }
-        return [];
+        return res;
     }
 
     record(from = 0, to = null) {

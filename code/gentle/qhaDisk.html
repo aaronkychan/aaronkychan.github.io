@@ -377,7 +377,7 @@
         }
 
         function updateLog(str = "") {
-            logArea.innerHTML += `\n${str}\n` + disk.log.allFromLastGet().join("\n");
+            logArea.innerHTML += `\n${str}\n` + disk.log.allFromLastGet.join("\n");
             logArea.scrollTop = logArea.scrollHeight;
         }
 

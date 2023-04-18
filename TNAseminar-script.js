@@ -1,12 +1,26 @@
 let talks = [
     {
+        ymd: "2023-05-16",
+        start: "1500",
+        title: "TBC",
+        speaker: "Antoine de Saint Germain",
+        affil: "University of Hong Kong 香港大學",
+        abstract: "TBC",
+        lang: "en",
+        access: {},
+    },
+    {
         ymd: "2023-04-28",
         start: "1300",
-        title: `TBC`,
+        title: `Full exceptional collections associated with Bridgeland stability conditions`,
         speaker: "Takumi Otani 大谷 拓己",
         affil: "Osaka University 大阪大学",
         web: "https://otanit0907.github.io/Homepage/",
-        abstract: `TBC
+        abstract: `<p>The space of Bridgeland stability conditions on a triangulated category is important in mirror symmetry and many people develop various techniques to study it.
+        In order to study the homotopy type of the space of stability conditions, Macri studied stability conditions associated with full exceptional collections.
+        Based on his work, Dimitrov-Katzarkov introduced the notion of a full $\\sigma$-exceptional collection for a stability condition $\\sigma$.</p>
+        
+        <p>In this talk, I will explain the relationship between full exceptional collections and stability conditions and some properties. I will also talk about the existence of full $\\sigma$-exceptional collections for the derived category of an acyclic quiver.</p>
         `,
         lang: "jp",
         // access: {
@@ -23,8 +37,7 @@ let talks = [
         title: `Categorifications of deformed Cartan matrices`,
         speaker: "Kota Murakami 村上 浩大",
         affil: "Tokyo University 東京大学",
-        web: "https://sites.google.com/view/waheihara/",
-        abstract: `<p>In a series of works of Geis-Leclerc-Schroer, they
+        abstract: `<p>In a series of works of Gei&szlig;-Leclerc-Schröer, they
         introduced a version of preprojective algebra associated with a
         symmetrizable generalized Cartan matrix and its symmetrizer. For
         finite type, it can be regarded as an un-graded analogue of Jacobian

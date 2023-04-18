@@ -21,7 +21,7 @@ function cyclicCompare(a, b, order) {
 }
 
 // chain is assumed to be less than 1 revolution
-function isCyclicChain(chain, m, order = null) {
+function isCyclicChain(chain, m, order = null, strict = false) {
     if (order != null) {
         m = order.length;
     } else {
@@ -30,7 +30,7 @@ function isCyclicChain(chain, m, order = null) {
     let diff = chain.map((x) => order.indexOf(x));
     return diff.reduce(
         (isInc, current, i, diff) =>
-            i == 0 ? true : isInc && current >= diff[i - 1],
+            i == 0 ? true : isInc && (current - diff[i - 1] >= strict ? 1 : 0),
         true
     );
 }
@@ -44,17 +44,17 @@ function isCyclicIntervalsNonCrossing(a, b, m) {
 }
 
 class DiskModel {
-    log = [];
+    log;
     algebra;
     valencies;
     dualVals;
     arcsys;
     dissection;
-    constructor(kupisch = null) {
+    constructor(kupisch = null, logger = null) {
         // this.m = m; // number of (single-coloured) marked points
         // this.valencies = Array(m).fill(0);
         // this.dualValencies = Array(m).fill(0);
-        this.log = [];
+        this.log = logger == null ? new Logger() : logger;
         if (kupisch) {
             this.arcSysFromKupisch(kupisch);
         }
@@ -138,17 +138,17 @@ class DiskModel {
     //let d = arcSysOfKupisch([3,2,4,3,2,1]);
     // d = [ [ 1, 7 ], [ 1, 2 ], [ 2, 6 ], [ 2, 3 ], [ 3, 4 ], [ 4, 5 ] ]
     arcSysFromKupisch(kup) {
-        this.algebra = new LNakayama(kup);
+        this.algebra = new LNakayama(kup, this.log);
         if (this.algebra.isGentle) {
             // dissection
-            this.log.push("✔ Dissection and dual arc system.");
+            this.log.add("✔ Dissection and dual arc system.");
         } else {
-            this.log.push("❌ Input algebra is not gentle LNakayama.");
+            this.log.add("❌ Input algebra is not gentle LNakayama.");
         }
 
         this.dualVals = this.constructor.valenciesFromKupisch(kup, true);
         this.m = this.dualVals.length;
-        this.log.push(`✔ Valencies of red pts: [ ${this.dualVals} ]`);
+        this.log.add(`✔ Valencies of red pts: [ ${this.dualVals} ]`);
         let unordArcSys = this.constructor.valenciesToDualArcs(this.dualVals);
         let arcsys = [unordArcSys[0]];
         unordArcSys = unordArcSys.slice(1);
@@ -171,11 +171,11 @@ class DiskModel {
             endpt = arcsys[arcsys.length - 1][1];
         }
         this.arcsys = arcsys;
-        this.log.push(`✔ Dual arc system: [ ${arcsys} ]`);
+        this.log.add(`✔ Dual arc system: [ ${arcsys} ]`);
 
         // organise laminates in dissection to match with (ordered) arc system
         this.valencies = this.constructor.valenciesFromKupisch(kup);
-        this.log.push(`✔ Valencies of green pts: [ ${this.valencies} ]`);
+        this.log.add(`✔ Valencies of green pts: [ ${this.valencies} ]`);
         let unordLams = this.constructor.valenciesToArcs(this.valencies);
         let lams = [[1, this.m]];
         for (let i = 1; i < arcsys.length; i++) {
@@ -194,7 +194,7 @@ class DiskModel {
             lams.push(lam);
         }
         this.dissection = lams;
-        this.log.push(`✔ Dissection: [ ${lams} ]`);
+        this.log.add(`✔ Dissection: [ ${lams} ]`);
 
         return arcsys;
     }
@@ -233,12 +233,12 @@ class DiskModel {
         let projres = this.algebra.projRes(M);
         // let arc0 = dualarcs[projres[0] - 1];
         // let arc1 = dualarcs[projres[projres.length - 1] - 1];
-        this.log.push(
+        this.log.add(
             `Module [${M}] has proj.res: 0 <- P${projres.join(" <- P")} <- 0.`
         );
         if (projres.length == 1) {
-            this.log.push(` -> laminate [${this.dissection[projres[0]]}]`);
-            return this.dissection[projres[0]];
+            this.log.add(` -> laminate [${this.dissection[projres[0] - 1]}]`);
+            return this.dissection[projres[0] - 1];
         } else {
             let idx1 = projres[0],
                 idx2 = projres[projres.length - 1];
@@ -248,27 +248,41 @@ class DiskModel {
             let [x1, x2] = dualarcs[idx1 - 1];
             let [y1, y2] = dualarcs[idx2 - 1];
             if (isCyclicChain([x1, x2, y1, y2], this.m)) {
+                // console.log(
+                //     `cyclic order: arc1(${[x1, x2]})-arc2(${[y1, y2]})`
+                // );
                 orders = [
                     [x1, x2],
                     [y1, y2],
                 ];
             } else if (isCyclicChain([x2, x1, y1, y2], this.m)) {
+                // console.log(
+                //     `cyclic order: rev(arc1)(${[x2, x1]})-arc2(${[y1, y2]})`
+                // );
                 orders = [
                     [x2, x1],
                     [y1, y2],
                 ];
             } else {
-                this.log.push(
+                this.log.add(
                     "❌ Something wrong in the ordering of arcs' endpoints."
                 );
             }
-            // determine green mkpt in the bdry subint.s
+            // determine green mkpt in the bdry subintervals
+            // o[0],o[1] are red, lams[i][0] is green
+            // so need to expand cyclic order to Z/(2m)Z.
+            // green1 = 1, red1=2, green2=3, etc.
             let endpts = orders.map((o, i) =>
-                isCyclicChain([o[0], lams[i][0], o[1]], this.m)
+                isCyclicChain(
+                    [2 * o[0], 2 * lams[i][0] - 1, 2 * o[1]],
+                    2 * this.m,
+                    null,
+                    true
+                )
                     ? lams[i][0]
                     : lams[i][1]
             );
-            this.log.push(` -> laminate [${endpts}]`);
+            this.log.add(` -> laminate [${endpts}]`);
             return endpts[0] < endpts[1] ? endpts : [endpts[1], endpts[0]];
         }
     }

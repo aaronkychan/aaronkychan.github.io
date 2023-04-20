@@ -20,11 +20,12 @@
 
         #container {
             display: grid;
-            grid-template-areas: "control control"
-                "disk cyto";
-            grid-template-columns: 1fr 1fr;
+            grid-template-areas: "control control control"
+                "disk poset qhs";
+            grid-template-columns: 460px 150px auto;
             gap: .5em;
             align-items: center;
+            justify-items: stretch;
         }
 
         #control {
@@ -46,8 +47,7 @@
             height: 60vh;
         }
 
-        #cytoDiv {
-            grid-area: cyto;
+        .cytoDiv {
             box-sizing: border-box;
             width: 100%;
             height: 60vh;
@@ -57,7 +57,15 @@
             align-items: center;
         }
 
-        #viewer {
+        #qhsDiv {
+            grid-area: qhs;
+        }
+
+        #posetDiv {
+            grid-area: poset;
+        }
+
+        .viewer {
             width: 100%;
             box-sizing: border-box;
             height: 60vh;
@@ -120,24 +128,31 @@
             </svg>
         </div>
 
-        <div id="cytoDiv">
-            <div id="viewer">
-                <span id="sysOutput"></span>
-                <div id="cy" class="cy_canvas"></div>
+        <div id="posetDiv" class="cytoDiv">
+            <span>min. ad. order</span>
+            <div class="viewer">
+                <div id="cyPoset" class="cy_canvas"></div>
+            </div>
+        </div>
+
+        <div id="qhsDiv" class="cytoDiv">
+            <div class="viewer">
+                <span id="sysOutput">qhs(A)</span>
+                <div id="cyQHS" class="cy_canvas"></div>
             </div>
         </div>
     </div>
 
     <script>
         var s = Snap("#svg");
-        var cx = 250, cy = 250; //center of graph
+        var cx = 230, cy = 270; //center of graph
         var g = 0.35; // gravity towards center of graph
-        var r = 160, vxR = 6; // r=radius of big disk, vxR=radius of mk pts
+        var r = 180, vxR = 6; // r=radius of big disk, vxR=radius of mk pts
         var greenPos = [], redPos = [], labelPos = []; // store positions of green/red mk pts
         var modules = [];
         var qhs;
-        var A, disk;
-        var cyto;
+        var A, disk, QR;
+        var cyto, posetCyto;
         var arrowhead = s.select("#arrowhead");
         var logArea = document.getElementById("log");
 
@@ -282,7 +297,7 @@
                     });
                     rect.insertBefore(txt);
                 }
-                //withLabel.opt ? txt.attr(withLabel.opt) : null;
+                //　TODO　withLabel.opt ? txt.attr(withLabel.opt) : null;
             }
         }
 
@@ -293,18 +308,19 @@
         }
 
         function drawQuiverAndRelations() {
-            let ox = 60, oy = 35; //relative origin
+            let ox = 30, oy = 40; //relative origin
             let sep = 60; // how far apart consecutive vertices are
             let xpos = Array(A.rank).fill(0).map((x, i) => ox + i * sep);
+            QR = s.g();
             //quiver
-            let arrows = [];
             for (let i = 0; i < A.rank; i++) {
-                let txt = s.text(xpos[i], 40, `${i + 1}`);
+                let txt = s.text(xpos[i], oy, `${i + 1}`);
                 txt.attr({
                     "text-anchor": "middle",
                     "dominant-baseline": "central",
                     "font-size": "12pt"
                 });
+                QR.add(txt);
                 if (i > 0) {
                     let arrow = s.line(xpos[i - 1] + 10, oy, xpos[i] - 15, oy);
                     arrow.attr({
@@ -312,7 +328,7 @@
                         strokeWidth: 2,
                         markerEnd: arrowhead
                     });
-                    arrows.push(arrow);
+                    QR.add(arrow);
                 }
             }
             //relations
@@ -321,14 +337,19 @@
                 let l = r[1] - r[0]
                 let x0 = ox + r[0] * sep + sep / 2;
                 let x1 = ox + (r[1] - 1) * sep + sep / 2;
-                let dash = s.path(`M${x0},${oy - 3} C${x0 + 20},${oy - 23} ${x1 - 20},${oy - 23} ${x1},${oy - 3}`);
+                let dash = s.path(`M${x0 + 2},${oy - 3} C${x0 + 20},${oy - 23} ${x1 - 20},${oy - 23} ${x1 - 2},${oy - 3}`);
                 dash.attr({
                     stroke: "#000",
                     strokeDasharray: "10,5",
                     strokeWidth: 1,
                     fill: "none"
                 })
+                QR.add(dash);
             }
+            //scale if needed
+            (A.rank - 1) * sep > 420 ? QR.attr({
+                transform: `scale(${420 / ((A.rank - 1) * sep)})`
+            }) : null;
         }
 
         function generate() {
@@ -386,12 +407,13 @@
             updateLog();
 
             var poset = coverArrayToCyto(qhs.coverRel);
-            cyto = initSVG(document.getElementById("cy"), poset);
+            cyto = initSVG(document.getElementById("cyQHS"), poset);
             cyto.on("tap", "node", (e) => showTilting(e.target))
         }
 
         function showTilting(node) {
             let struc = qhs.qhs[parseInt(node.id()) - 1];
+            posetCyto = initSVG(document.getElementById("cyPoset"), coverArrayToCyto(struc.coverRel));
             // console.log(`tilting module (id=${node.id()}) = `, A.charTilting(struc.std, struc.costd));
             addModules(A.charTilting(struc.std, struc.costd));
         }

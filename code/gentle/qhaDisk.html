@@ -110,6 +110,7 @@
                 <div style="display:block;margin-top:1ch;">
                     <input type="text" id="selectModule" cols="20">
                     <button id="btnSelectModule" onclick="filtTilt()" disabled>Filter</button>
+                    <button onclick="clearHighlight()">Clear Highlight</button>
                 </div>
                 <!-- <button onclick="removeModule()">Remove</buttononclick> -->
             </div>
@@ -423,7 +424,7 @@
                     matchingID.push(i);
                 }
             }
-            // console.log(matchingID);
+            console.log(matchingID.length);
             updateLog(`Found ${matchingID.length} ch. tilting containing specified direct summand.`);
         }
 
@@ -447,6 +448,12 @@
             posetCyto = initSVG(document.getElementById("cyPoset"), coverArrayToCyto(struc.coverRel));
             // console.log(`tilting module (id=${node.id()}) = `, A.charTilting(struc.std, struc.costd));
             addModules(A.charTilting(struc.std, struc.costd));
+        }
+
+        function clearHighlight() {
+            for (let n of cyto.elements("node")) {
+                n.removeClass("inList");
+            }
         }
     </script>
 </body>

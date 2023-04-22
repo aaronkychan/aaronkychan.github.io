@@ -68,6 +68,8 @@ function initSVG(container, data) {
                 selector: "node:selected",
                 style: {
                     "background-color": "#fa5252",
+                    "border-width": "2px",
+                    "border-color": "#fa5252",
                     width: 30,
                     height: 30,
                 },
@@ -86,7 +88,7 @@ function initSVG(container, data) {
             {
                 selector: "node.inList",
                 style: {
-                    "background-color": "#480",
+                    "background-color": "#63b7f2",
                     shape: "rectangle",
                 },
             },

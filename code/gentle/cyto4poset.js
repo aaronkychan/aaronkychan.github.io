@@ -84,6 +84,14 @@ function initSVG(container, data) {
             },
 
             {
+                selector: "node.inList",
+                style: {
+                    "background-color": "#480",
+                    shape: "rectangle",
+                },
+            },
+
+            {
                 selector: "edge",
                 style: {
                     width: 2,

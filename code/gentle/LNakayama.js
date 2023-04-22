@@ -6,6 +6,7 @@ class LNakayama {
     relations = [];
     projs = [];
     injs = [];
+    qhsPoset = [];
     constructor(kupisch, logger = null) {
         this.log = logger == null ? new Logger() : logger;
         if (!this.isLNakayama(kupisch)) {
@@ -240,6 +241,24 @@ class LNakayama {
         return M[0] == N[0] && M[1] >= N[1];
     }
 
+    isIndecDirectSummand(M, arrN) {
+        return arrN.reduce((prev, N) => prev || this.isIsom(M, N), false);
+    }
+
+    isDirectSummand(arrM, arrN) {
+        let b = true;
+        for (let M of arrM) {
+            b = b && this.isIndecDirectSummand(M, arrN);
+            if (!b) {
+                // this.log.add(
+                //     `[${M}] is not a direct summand of ${JSON.stringify(arrN)}`
+                // );
+                return false;
+            }
+        }
+        return b;
+    }
+
     twistQHS(i, j, covers, std, costd) {
         let struc = {
             coverRel: [...covers],
@@ -276,6 +295,7 @@ class LNakayama {
             }
         }
         struc.coverRel = this.minAdaptedOrder(struc.std, struc.costd);
+        struc.charTilt = this.charTilting(struc.std, struc.costd);
         return res;
     }
 
@@ -307,7 +327,14 @@ class LNakayama {
         let std = this.standardMods(perm);
         let costd = this.costandardMods(perm);
         let poset = this.minAdaptedOrder(std, costd);
-        let foundList = [{ coverRel: poset, std: std, costd: costd }];
+        let foundList = [
+            {
+                coverRel: poset,
+                std: std,
+                costd: costd,
+                charTilt: this.charTilting(std, costd),
+            },
+        ];
         let qhsPoset = []; // each entry is of the from [i,j], meaning foundList[i] < foundList[j]
         let i = 0;
         let currLen = foundList.length;
@@ -331,14 +358,14 @@ class LNakayama {
             i++;
         }
         // console.table(qhsPoset);
-        let res = {
+        this.qhsPoset = {
             qhs: foundList,
             coverRel: CoveringRelation(
                 TransitiveClosure(TuplesToAdjMx(qhsPoset))
             ),
         };
-        this.log.add(`✔ Found all qhs, total: ${res.qhs.length}`);
-        return res;
+        this.log.add(`✔ Found all qhs, total: ${foundList.length}`);
+        return this.qhsPoset;
     }
 }
 

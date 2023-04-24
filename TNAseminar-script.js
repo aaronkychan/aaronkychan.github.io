@@ -2,12 +2,33 @@ let talks = [
     {
         ymd: "2023-05-16",
         start: "1500",
-        title: "TBC",
+        title: "Cluster-additive functions and frieze patterns with coefficients",
         speaker: "Antoine de Saint Germain",
         affil: "University of Hong Kong 香港大學",
-        abstract: "TBC",
+        abstract: `
+        <p>
+            In his study of combinatorial features of cluster categories and cluster-tilted
+            algebras, Ringel introduced an analogue of additive functions of stable translation quivers
+            called cluster-additive functions.
+        </p>
+        <p>
+            In the first part of this talk, we will define cluster-additive functions associated to any
+            acyclic mutation matrix, relate them to mutations of the cluster X variety, and realise their
+            values as certain compatibility degrees between functions on the cluster A variety
+            associated to the Langlands dual mutation matrix (in accordance with the philosophy of
+            Fock-Goncharov). This is based on joint work with Peigen Cao and Jiang-Hua Lu.
+            In the second part of this talk, we will introduce the notion of frieze patterns with
+            coefficients based on joint work with Min Huang and Jiang-Hua Lu. We will then discuss
+            their connection with cluster-additive functions.
+        </p>`,
         lang: "en",
-        access: {},
+        // access: {
+        //     id: `872 4679 8561`,
+        //     psw: `124239`,
+        // },
+        // record: {
+        //     slides: `TNA/2023/deSaintGermain-Cluster-additive_functions_frieze_patterns_with_coefficients.pdf`,
+        // },
     },
     {
         ymd: "2023-04-28",
@@ -23,12 +44,12 @@ let talks = [
         <p>In this talk, I will explain the relationship between full exceptional collections and stability conditions and some properties. I will also talk about the existence of full $\\sigma$-exceptional collections for the derived category of an acyclic quiver.</p>
         `,
         lang: "jp",
-        // access: {
-        //     id: `872 4679 8561`,
-        //     psw: `124239`,
-        // },
+        access: {
+            id: `845 8271 9240`,
+            psw: `737100`,
+        },
         // record: {
-        //     slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
+        //     slides: `TNA/2023/Otani-Full_exceptional_collections_associated_with_Bridgeland_stability_conditions.pdf`,
         // },
     },
     {
@@ -58,9 +79,9 @@ let talks = [
             id: `816 5650 5440`,
             psw: `505258`,
         },
-        // record: {
-        //     slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
-        // },
+        record: {
+            slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
+        },
     },
     {
         ymd: "2023-02-10",

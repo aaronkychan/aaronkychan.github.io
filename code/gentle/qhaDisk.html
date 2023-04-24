@@ -90,7 +90,7 @@
             Kupisch series: <input type="text" name="kupish" id="kupisch" , value="[3,2,4,3,2,2,1]">
             <button onclick="generate()">Generate</button>
             <br>
-            <textarea name="log" id="log" cols="70" rows="5" style="margin:5px;">~Log~</textarea>
+            <textarea name="log" id="log" cols="70" rows="5" style="margin:5px;overflow:scroll">~Log~</textarea>
 
             <div id="addModule"
                 style="border:1px dashed #AAA; padding: 5px; margin-top: 2px; margin-bottom:2px; width: max-content;">
@@ -104,7 +104,7 @@
                 </div>
                 <div style="display:block;margin-top:1ch;">
                     <button onclick="genQHS()">Gen all qh structure</button>
-                    <button onclick="cy.fit()">Fit Hasse quiver to canvas</button>
+                    <button onclick="cyto.fit()">Fit Hasse quiver to canvas</button>
                     <button onclick="genTilt()" disabled>Gen all gen. tilting (TODO)</button>
                 </div>
                 <div style="display:block;margin-top:1ch;">
@@ -313,7 +313,7 @@
         }
 
         function drawQuiverAndRelations() {
-            let ox = 30, oy = 40; //relative origin
+            let ox = 25, oy = 40; //relative origin
             let sep = 60; // how far apart consecutive vertices are
             let xpos = Array(A.rank).fill(0).map((x, i) => ox + i * sep);
             QR = s.g();
@@ -363,17 +363,47 @@
             s.selectAll('svg > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
             let kup = JSON.parse(document.getElementById("kupisch").value);
             disk = new DiskModel(kup);
-            [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
-            for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
             A = disk.algebra;
-            drawDualArcSys(false, false);
-            updateLog("-------New Disk------");
+            if (A.isGentle) {
+                [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
+                for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
+                A = disk.algebra;
+                drawDualArcSys(false, false);
+                updateLog("-------New Disk------");
+            } else {
+                updateLog("Algebra is not gentle; disk will NOT be drawn.");
+            }
 
             drawQuiverAndRelations();
         }
 
         function LoewyDiagram(top, soc) {
             return Array.from(Array(parseInt(soc) + 1 - parseInt(top)).keys(), i => `${parseInt(top) + i}`);
+        }
+
+        function drawLoewyDiagram(x, y, Loewy) {
+            let txt = s.text(x, y, Loewy);
+            txt.attr({
+                "font-family": "monospace",
+                "font-size": "9pt",
+                "text-anchor": "middle",
+                "dominant-baseline": "central",
+            })
+            if (Loewy.length > 1) {
+                let dy = Loewy.length * 10 / 2;
+                txt.selectAll("tspan").forEach(function (tspan, i) {
+                    tspan.attr({ x: x, y: y - dy + 10 * i });
+                });
+            }
+            let bbox = txt.getBBox();
+            let rect = s.rect(bbox.x - 2, bbox.y - 2, bbox.width + 4, bbox.height + 4);
+            rect.attr({
+                fill: "#ddd",
+                "fill-opacity": 0.8,
+                stroke: "#000",
+                strokeWidth: 1
+            });
+            rect.insertBefore(txt);
         }
 
         function addModulesFromInput() {
@@ -386,22 +416,29 @@
         function addModules(Ms) {
             modules = [], arcs = [];
             for (let M of Ms) {
-                if (A.isModule(M)) {
-                    modules.push(M);
-                    arcs.push({ arc: disk.moduleToLaminate(M), Loewy: LoewyDiagram(...M) });
-                }
+                A.isModule(M) ? modules.push({ topsoc: M, Loewy: LoewyDiagram(...M) }) : null;
             }
 
             // display log
             updateLog();
 
             // draw
-            drawDualArcSys(true, true);
-            for (let [i, a] of Object.entries(arcs)) {
-                drawArc(a.arc, "green", { text: a.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
-            }
             drawQuiverAndRelations();
-            drawDisk(false);
+            if (A.isGentle) {
+                drawDualArcSys(true, true);
+                for (let [i, M] of Object.entries(modules)) {
+                    let a = disk.moduleToLaminate(M);
+                    drawArc(a, "green", { text: M.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
+                }
+                drawDisk(false);
+            } else {
+                s.selectAll('svg > *:not(defs)').remove();
+                drawQuiverAndRelations();
+                let ox = 30, oy = 100;
+                for (let [i, M] of Object.entries(modules)) {
+                    drawLoewyDiagram(ox + i * 25, oy, M.Loewy);
+                }
+            }
         }
 
         function filtTilt() {
@@ -414,9 +451,9 @@
                 n.unselect();
                 n.removeClass("inList");
             }
-            console.log(qhs.qhs);
+            // console.log(qhs.qhs);
             for (let [i, T] of Object.entries(qhs.qhs.map((q) => q.charTilt))) {
-                console.log(`i=${i}, T=[${T}]`);
+                // console.log(`i=${i}, T=[${T}]`);
                 if (A.isDirectSummand(Ms, T)) {
                     let node = cyto.getElementById(`${parseInt(i) + 1}`);
                     node.addClass("inList");
@@ -424,8 +461,7 @@
                     matchingID.push(i);
                 }
             }
-            console.log(matchingID.length);
-            updateLog(`Found ${matchingID.length} ch. tilting containing specified direct summand.`);
+            updateLog(`Found ${matchingID.length} char.tilting containing direct sumnand ${JSON.stringify(Ms)}.`);
         }
 
         function updateLog(str = "") {

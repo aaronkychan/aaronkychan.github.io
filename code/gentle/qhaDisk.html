@@ -551,12 +551,12 @@
 
             copyToClipboard(res).then(() => { updateLog("✔ TikZ output copied to clipboard!"); })
                 .catch((error) => {
-                    updateLog("⚠ ERROR: TikZ output cannot be copied to clipboard!")
-                    console.error("⚠ Failed to copy text: ", error);
+                    updateLog("⚠ ERROR: TikZ output cannot be copied to clipboard!  Showing output here:");
+                    updateLog("-----------------------------");
+                    updateLog(res);
+                    updateLog("-----------------------------");
+                    console.error("⚠ Failed to copy text to clipboard", error);
                 });
-
-
-            navigator.clipboard.writeText(res)
             return res;
         }
 
@@ -571,10 +571,10 @@
                 navigator.clipboard.writeText(txt);
             } else {
                 const textArea = document.createElement("textarea");
-                textArea.value = text;
+                textArea.value = txt;
                 document.body.appendChild(textArea);
                 textArea.focus(); textArea.select();
-                try { document.execCommand('copy') } catch (err) { console.error('Unable to copy to clipboard', err) }
+                try { document.execCommand('copy') } catch (err) { console.error('Unable to copy text to clipboard with execCommand', err) }
                 document.body.removeChild(textArea);
             }
         }

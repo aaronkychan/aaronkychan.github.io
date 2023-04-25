@@ -7,6 +7,7 @@ class LNakayama {
     projs = [];
     injs = [];
     qhsPoset = [];
+    // TODO: modules = [];
     constructor(kupisch, logger = null) {
         this.log = logger == null ? new Logger() : logger;
         if (!this.isLNakayama(kupisch)) {
@@ -38,6 +39,24 @@ class LNakayama {
             }
             return [1, i + 1];
         });
+        // TODO: implement full module cat calculation
+        // this.modules = Array(this.rank);
+        // for (let i = 0; i < this.rank; i++) {
+        //     this.modules[i] = Array(this.projs[i]);
+        //     this.modules[i][this.projs[i] - 1] = {
+        //         top: i + 1,
+        //         soc: this.projs[i][1],
+        //         len: this.kupisch[i],
+        //         proj: true,
+        //         inj: this.isInjective(projs[i]),
+        //         projres: [this.projs],
+        //         pdim: 0,
+        //         injres: [],
+        //         idim: null,
+        //         syzygy: 0,
+        //         cosyzygy: null,
+        //     };
+        // }
     }
 
     isValidKupisch(kup) {
@@ -66,7 +85,7 @@ class LNakayama {
 
     isGentle() {
         this.isGentle = (
-            this.relations ? this.relations : this.relations()
+            this.relations ? this.relations : this.computeRelations()
         ).reduce((prev, curr) => prev && curr[1] - curr[0] == 2, true);
         return this.isGentle;
     }
@@ -98,12 +117,45 @@ class LNakayama {
         return syzygyLen > 0 ? [M[1] + 1, M[1] + syzygyLen] : 0;
     }
 
+    cosyzygy(M) {
+        let injenv = this.injs[M[1]];
+        return this.isInjective(M) ? 0 : [injenv[0], M[0] - 1];
+    }
+
     isIsom(M, N) {
         return M[0] == N[0] && M[1] == N[1];
     }
 
     isZero(M) {
         return this.isIsom(M, [0, 0]);
+    }
+
+    isProjective(M) {
+        return this.isIsom(M, this.projs[M[0]]);
+    }
+
+    isInjective(M) {
+        return this.isIsom(M, this.injs[M[1]]);
+    }
+
+    pdim(M) {
+        let d = 0,
+            X = M;
+        while (!this.isProjective(X)) {
+            X = syzygy(X);
+            d++;
+        }
+        return d;
+    }
+
+    idim(M) {
+        let d = 0,
+            X = M;
+        while (!this.isInjective(X)) {
+            X = syzygy(X);
+            d++;
+        }
+        return d;
     }
 
     isNoHom(M, N) {

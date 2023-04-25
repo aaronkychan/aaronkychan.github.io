@@ -26,7 +26,7 @@ class Logger {
 
     get allFromLastGet() {
         let res = [];
-        if (this.lastGet < this.log.length - 1) {
+        if (this.lastGet < this.log.length - 1 && this.log.length > 0) {
             res = this.log.slice(this.lastGet + 1);
             this.lastGet = this.log.length - 1;
         }

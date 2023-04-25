@@ -528,7 +528,6 @@
          * 
          */
 
-
         function printTikz() {
             let withdualarc = document.getElementById("withdualarc").checked;
             let withdissection = document.getElementById("withdissection").checked;
@@ -537,11 +536,9 @@
             res += `\\draw  (0,0) circle (2);\n`;
             let d = 360 / disk.m;
             let greens = Array.from({ length: disk.m }, (_, i) => 90 - i * d);
-            console.log(greens);
             res += greens.map((_, i) => `\\node[inner sep=0pt] (g${i + 1}) at (${greens[i]}:2) {};\\node[inner sep=0pt] (r${i + 1}) at (${greens[i] + d / 2}:2) {};\n`).join("");
 
             //curves
-            console.log(disk.arcsys);
             res += withdualarc ? disk.arcsys.map((a) => `\\draw[red] (r${a[0]}) .. controls (${greens[a[0] - 1] + d / 2}:1.2) and (${greens[a[1] - 1] + d / 2}:1.2) .. (r${a[1]});\n`).join("") : "";
             res += withdissection ? disk.dissection.map((a) => `\\draw[green!70!black] (g${a[0]}) .. controls (${greens[a[0] - 1]}:1.2) and (${greens[a[1] - 1]}:1.2) .. (g${a[1]});\n`).join("") : "";
             res += withmodules ? arcs.map((a) => `\\draw[blue,thick] (g${a[0]}) .. controls (${greens[a[0] - 1]}:1.2) and (${greens[a[1] - 1]}:1.2) .. (g${a[1]});\n`).join("") : "";
@@ -551,19 +548,6 @@
             res += greens.map((a, i) => `\\fill[red] (r${i + 1}) circle (0.05);\n`).join("");
 
             res += `\\end{tikzpicture}`;
-
-            /**
-             * c.f. https://stackoverflow.com/questions/71873824/copy-text-to-clipboard-cannot-read-properties-of-undefined-reading-writetext
-             * Copies the text passed as param to the system clipboard
-             * Check if using HTTPS and navigator.clipboard is available
-             * Then uses standard clipboard API, otherwise uses fallback
-            */
-
-            if (window.isSecureContext && navigator.clipboard) {
-                navigator.clipboard.writeText(res);
-            } else {
-                unsecuredCopyToClipboard(res);
-            }
 
             copyToClipboard(res).then(() => { updateLog("✔ TikZ output copied to clipboard!"); })
                 .catch((error) => {
@@ -577,6 +561,12 @@
         }
 
         async function copyToClipboard(txt) {
+            /**
+             * c.f. https://stackoverflow.com/questions/71873824/copy-text-to-clipboard-cannot-read-properties-of-undefined-reading-writetext
+             * Copies the text passed as param to the system clipboard
+             * Check if using HTTPS and navigator.clipboard is available
+             * Then uses standard clipboard API, otherwise uses fallback
+            */
             if (window.isSecureContext && navigator.clipboard) {
                 navigator.clipboard.writeText(txt);
             } else {

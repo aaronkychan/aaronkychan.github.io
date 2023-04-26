@@ -18,22 +18,25 @@
             background-color: #039403;
         }
 
-        /* 
+
         :root {
-            --canvas-height: max(500px, 75vh);
-        } */
+            --canvas-height: max(500px, 80vh);
+        }
 
         #container {
             min-height: 96vh;
-            display: flex;
-            flex-flow: column;
+            display: grid;
+            /* flex-flow: column; */
+            grid-template-areas: "control"
+                "allviewers";
+            grid-template-rows: 1fr auto;
         }
 
         #control {
             grid-area: control;
             margin: 1rem;
             display: flex;
-            flex-direction: row;
+            flex-flow: row;
             /* flex-wrap: nowrap; */
             /* justify-content: normal; */
             align-items: flex-start;
@@ -47,33 +50,36 @@
         }
 
         #allviewers {
+            grid-area: allviewers;
             display: grid;
             grid-template-areas: "disk poset qhs";
             grid-template-columns: 460px 150px auto;
             gap: .5em;
             align-items: center;
             justify-items: stretch;
-            flex-grow: 1;
+            height: var(--canvas-height);
+            max-height: 100vh;
+            /* flex-grow: 1; */
         }
 
         #svgDiv {
             grid-area: disk;
             box-sizing: border-box;
             width: 100%;
-            height: 100%;
+            height: var(--canvas-height);
             border: 1px solid black
         }
 
         #svg {
             width: 100%;
             box-sizing: border-box;
-            height: 100%;
+            height: var(--canvas-height);
         }
 
         .cytoDiv {
             box-sizing: border-box;
             width: 100%;
-            height: 100%;
+            height: var(--canvas-height);
             border: 1px #000000 solid;
             display: grid;
             justify-items: center;
@@ -91,16 +97,13 @@
         .viewer {
             width: 100%;
             box-sizing: border-box;
-            height: 100%;
-            /* margin: 5px;
-            padding: 5px;
-            border: 1px dashed #777; */
+            height: var(--canvas-height);
         }
 
         .cy_canvas {
             box-sizing: border-box;
             width: 100%;
-            height: 100%;
+            height: var(--canvas-height);
             display: block;
         }
     </style>

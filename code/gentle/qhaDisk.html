@@ -458,7 +458,6 @@
             }
 
             // draw
-            drawQuiverAndRelations();
             if (A.isGentle) {
                 drawDualArcSys(true, true);
                 for (let [i, M] of Object.entries(modules)) {
@@ -469,13 +468,12 @@
                 drawDisk(false);
             } else {
                 s.selectAll('svg > *:not(defs)').remove();
-                drawQuiverAndRelations();
                 let ox = 30, oy = 100;
                 for (let [i, M] of Object.entries(modules)) {
                     drawLoewyDiagram(ox + i * 25, oy, M.Loewy);
                 }
             }
-
+            drawQuiverAndRelations();
             // display log
             updateLog();
         }

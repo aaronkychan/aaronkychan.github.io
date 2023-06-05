@@ -26,9 +26,9 @@ let talks = [
         //     id: `872 4679 8561`,
         //     psw: `124239`,
         // },
-        // record: {
-        //     slides: `TNA/2023/deSaintGermain-Cluster-additive_functions_frieze_patterns_with_coefficients.pdf`,
-        // },
+        record: {
+            slides: `TNA/2023/deSaintGermain-Cluster_additive_functions_frieze_patterns_with_coefficients.pdf`,
+        },
     },
     {
         ymd: "2023-04-28",
@@ -48,9 +48,9 @@ let talks = [
             id: `845 8271 9240`,
             psw: `737100`,
         },
-        // record: {
-        //     slides: `TNA/2023/Otani-Full_exceptional_collections_associated_with_Bridgeland_stability_conditions.pdf`,
-        // },
+        record: {
+            slides: `TNA/2023/Otani-Full_exceptional_collections_associated_with_Bridgeland_stability_conditions.pdf`,
+        },
     },
     {
         ymd: "2023-04-21",

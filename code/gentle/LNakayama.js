@@ -201,6 +201,35 @@ class LNakayama {
         return C;
     }
 
+    computeForModule(M) {
+        let res = { top: M[0], soc: M[1], len: M[1] - M[0] + 1 };
+        res["proj"] = this.isProjective(M);
+        res["inj"] = this.isInjective(M);
+        res["projres"] = this.projRes(M);
+        res["pdim"] = res["projres"].length - 1;
+        res["syzygy"] = this.syzygy(M);
+        return res;
+        // this.modules = Array(this.rank);
+        // for (let i = 0; i < this.rank; i++) {
+        //     this.modules[i] = Array(this.projs[i]);
+        //     this.modules[i][this.projs[i] - 1] = {
+        //         top: i + 1,
+        //         soc: this.projs[i][1],
+        //         len: this.kupisch[i],
+        //         proj: true,
+        //         inj: this.isInjective(projs[i]),
+        //         projres: [this.projs],
+        //         pdim: 0,
+        //         injres: [],
+        //         idim: null,
+        //         syzygy: 0,
+        //         cosyzygy: null,
+        //     };
+        // }
+    }
+
+    /***** Quasi-hereditary structure related *****/
+
     Trace(Ms, N) {
         let hasHom = Ms.filter((M) => !this.isNoHom(M, N)).map((M) => M[0]); //only need the top
         return hasHom.length == 0 ? [0, 0] : [Math.min(...hasHom), N[1]];

@@ -328,7 +328,14 @@
                     let dy = withLabel.text.length * 10 / 2;
                     txt.selectAll("tspan").forEach(function (tspan, i) {
                         tspan.attr({ x: x, y: y - dy + 10 * i });
+                        if (Array.isArray(withLabel.colors)) {
+                            tspan.attr({ fill: withLabel.colors[i] });
+                        }
                     });
+                } else {
+                    if (withLabel.colors) {
+                        txt.attr({ fill: withLabel.colors[0] });
+                    }
                 }
                 if (withLabel.bounded) {
                     let bbox = txt.getBBox();
@@ -451,7 +458,7 @@
             addModules(Ms);
         }
 
-        function addModules(Ms) {
+        function addModules(Ms, highlightIndex = false) {
             modules = [], arcs = [];
             for (let M of Ms) {
                 A.isModule(M) ? modules.push({ topsoc: M, Loewy: LoewyDiagram(...M) }) : null;
@@ -463,7 +470,14 @@
                 for (let [i, M] of Object.entries(modules)) {
                     let a = disk.moduleToLaminate(M.topsoc);
                     arcs.push(a);
-                    drawArc(a, "green", { text: M.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
+                    if (highlightIndex) {
+                        //TODO: change multicolorText to a correct thing
+                        let colorings = M.Loewy.map(s => s == `${parseInt(i) + 1}` ? "#F00" : "#000");
+                        console.log(M.Loewy, `${parseInt(i) + 1}`, colorings);
+                        drawArc(a, "green", { text: M.Loewy, bounded: true, colors: colorings }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
+                    } else {
+                        drawArc(a, "green", { text: M.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
+                    }
                 }
                 drawDisk(false);
             } else {
@@ -521,7 +535,7 @@
             let struc = qhs.qhs[parseInt(node.id()) - 1];
             posetCyto = initSVG(document.getElementById("cyPoset"), coverArrayToCyto(struc.coverRel));
             // console.log(`tilting module (id=${node.id()}) = `, A.charTilting(struc.std, struc.costd));
-            addModules(A.charTilting(struc.std, struc.costd));
+            addModules(A.charTilting(struc.std, struc.costd), true);
         }
 
         function clearHighlight() {

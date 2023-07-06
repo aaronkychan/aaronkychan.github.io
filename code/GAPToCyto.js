@@ -172,10 +172,11 @@ function translateQPA() {
     // TODO: add relation handling
 
     //Tidy up data
+    document.getElementById("saveSVG").disabled = false;
     document.getElementById("fixCyto").disabled = false;
     QuiverData = quiverData;
     console.log("quiverData from translateQPA(): ", quiverData);
-    initCyto(quiverData);
+    cy = initCyto(quiverData);
 }
 
 // var testdata = {
@@ -332,6 +333,7 @@ function clearAll() {
     document.getElementById("inQuiver").value = "";
     document.getElementById("inRelation").value = "";
     document.getElementById("fixCyto").disabled = true;
+    document.getElementById("saveSVG").disabled = true;
 }
 
 function saveAsSVG(filename) {
@@ -348,9 +350,7 @@ document.getElementById("fixCyto").addEventListener("click", () => cy.fit());
 document
     .getElementById("saveSVG")
     .addEventListener("click", () =>
-        saveAsSVG(
-            document.getElementsByClassName("filenameInput").value + ".svg"
-        )
+        saveAsSVG(document.getElementById("filenameInput").value + ".svg")
     );
 // document
 //     .getElementById("testBtn")

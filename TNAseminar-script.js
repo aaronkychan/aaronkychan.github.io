@@ -1,5 +1,60 @@
 let talks = [
     {
+        ymd: "2023-07-14",
+        start: "1030",
+        duration: 90,
+        title: "TBC",
+        speaker: "Michael Wemyss",
+        web: "https://www.maths.gla.ac.uk/~mwemyss/",
+        affil: "University of Glasgow",
+        abstract: `TBC`,
+        lang: "en",
+        // access: {
+        //     id: `844 0560 1675`,
+        //     psw: `381661`,
+        // },
+    },
+    {
+        ymd: "2023-07-07",
+        start: "1500",
+        duration: 90,
+        title: "クイバー表現のパーシステンス加群への応用: 区間加群による近似と分解",
+        speaker: "Hideto Asashiba 浅芝 秀人",
+        web: "https://wwp.shizuoka.ac.jp/asashiba/hideto-asashibas-website/",
+        affil: "静岡大・京大高等研・阪公大数学研",
+        abstract: `位相的データ解析では，入力データーは，$d$次元ユークリッド空間内の有限個の点からなる集合"点雲" $P$ の形で与えられ，
+        各 $r = 0, 1, \\ldots, d$ に対して，パーシステントホモロジー群$H_r(P)$が計算される。
+        これはある自然数nに対する，同方向$A_n$型クイバーQのある体$k$上の表現になっている。
+        Gabrielの定理より，直既約表現の完全代表系は"区間"表現 $V_I$ ($I:= [a,b], 1 \\le a \\le b \\le n$)の
+        全体で与えられる。$Q$の各表現$M$に対して，$d_M(I)$を$M$の直既約分解における$V_I$の重複度とすると，
+        列 $d_M:= (d_M(I))_I$ は同型のもとでの$M$の完全不変量になっている。
+        この重複度を$kQ$のAuslander-Reiten quiver上にプロットした図を$M$のパーシステント図とよぶ。
+        族$(H_r(P))_r$ は$P$に関する重要な情報を保存し，応用研究で活用されるが，
+        パーシステント図 $d_{H_r(P)}$ を用いて，これを解析することができる。
+        次に$P$が他のパラメーター，例えば時間とともに変化する場合，
+        この方法により2次元パーシステンス加群が定義され，さらに多次元に一般化される。
+        これが位相的データ解析での代数的アプローチの主な研究対象になる。
+        一般に$m$次元パーシステンス加群は$m$次元格子の形のクイバー$Q$に関係式を入れた多元環上の加群
+        と理解される。この場合1次元の場合と異なり多元環はほとんどワイルド表現型になるため，
+        リアルタイムで直既約加群の重複度$d_M$を計算しそれを比較するのは困難になる。
+        上に述べたもとの意味の区間表現は，$Q$上の連結かつ凸な部分クイバーを台とする"区間加群"に
+        一般化される。$d_M$の代わりに$M$のこれら区間加群の直和によって$M$を近似することにより
+        リアルタイム性を保証する方法が考えられる。この講演では2通りの意味の近似を提示しそれらの関係を与える。
+        この講演は，エスカラ，中島，吉脇の各氏との共同研究に基づく。`,
+        lang: "jp",
+        access: {
+            id: `844 0560 1675`,
+            psw: `381661`,
+        },
+        record: {
+            slides: [
+                `TNA/2023/Asashiba-Quiver_rep_for_persistence_homology(typed).pdf`,
+                `TNA/2023/Asashiba-Quiver_rep_for_persistence_homology.pdf`,
+            ],
+            slidesDesc: [`Typed notes`, `Handwritten slides`],
+        },
+    },
+    {
         ymd: "2023-05-16",
         start: "1500",
         title: "Cluster-additive functions and frieze patterns with coefficients",
@@ -545,14 +600,23 @@ for (let talk of talks) {
     if ("record" in talk) {
         str += `<li><div class="leftcolumn">Record:</div><div class="maincolumn">`;
         if ("slides" in talk.record) {
-            str +=
-                talk.record.slides === "contact"
+            let slidesArr = Array.isArray(talk.record.slides)
+                ? talk.record.slides
+                : [talk.record.slides];
+            let sdArr =
+                "slidesDesc" in talk.record
+                    ? Array.isArray(talk.record.slidesDesc)
+                        ? talk.record.slidesDesc
+                        : [talk.record.slidesDesc]
+                    : new Array(slidesArr.length).fill("");
+            let out = slidesArr.map((s, i) => {
+                let desc = sdArr[i] === "" ? `Slides ${i + 1}` : sdArr[i];
+                return s === "contact"
                     ? "Contact speaker for slides. "
-                    : `<a href="${talk.record.slides}">${
-                          "slideDesc" in talk.record
-                              ? talk.record.slideDesc
-                              : "Slides here"
-                      }</a>. `;
+                    : `<a href="${s}">${desc}</a>`;
+            });
+            str += out.join(" ; ");
+            str += ".";
         } else {
             str += "No slide will be made available. ";
         }

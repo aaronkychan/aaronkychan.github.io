@@ -31,7 +31,7 @@
             display: grid;
             grid-template-areas: "control control"
                 "qpa cyto";
-            width: 80%;
+            width: max(600px, 80%);
             /* justify-items: center; */
             align-items: center;
         }
@@ -48,19 +48,21 @@
         }
 
         #cytoCol {
-            width: 80%;
+            min-width: 80%;
         }
 
         #outputDiv {
             margin-top: 2ch;
             border: 1px #000000 solid;
-            display: grid;
+            display: flex;
+            flex-direction: row;
             justify-items: center;
-            align-items: center;
+            align-items: stretch;
         }
 
         #viewer {
-            width: 97%;
+            min-width: 50%;
+            flex-grow: 1;
             height: 480px;
             margin: 5px;
             padding: 5px;
@@ -74,9 +76,15 @@
         }
 
         #sysOutput {
+            min-width: 150px;
+            min-height: 100%;
+            border: 1px #777 dotted;
             font-family: monospace;
             color: red;
             font-size: 12pt;
+            margin: 3px;
+            resize: horizontal;
+            overflow: auto;
         }
 
         textarea {
@@ -107,7 +115,7 @@
                 <span id="controlOutput" style="color:red; font-family: monospace; font-size: 12pt;"></span>
             </div>
 
-            <div>
+            <div id="divInputQuiver">
                 <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
                 &nbsp;&nbsp;QPA
                 quiver code:<br />
@@ -123,10 +131,6 @@
             </div>
         </fieldset>
         <div id="midCol">
-            <button id="translateBtn" style="margin:5px; padding: .5ch; font-size:large">
-                Draw
-            </button>
-            &nbsp;&nbsp;&nbsp;
             <input type="button" value="Reset All" onclick="clearAll()" style="margin: 5px; padding:.5ch;" />
             &nbsp;&nbsp;&nbsp;
             <!-- <input type="button" id="testBtn" value="TEST" style="margin: 5px; padding:.5ch;" /> -->
@@ -134,6 +138,10 @@
                 Use mousewheel to zoom in/out. Click-and-drag on canvas/edge to pan. <br>
                 Shorten distance between vertices connected by multple arrows may clarify the arrows.
             </span>
+            &nbsp;&nbsp;&nbsp;
+            <button id="translateBtn" style="margin:5px; padding: .5ch; font-size:large">
+                Draw
+            </button>
         </div>
 
         <fieldset id="cytoCol">
@@ -148,8 +156,8 @@
                     href="https://github.com/xyz2tex/svg2tikz">svg2tikz</a>&nbsp; to convert to tikz)
             </div>
             <div id="outputDiv">
+                <div id="sysOutput" contenteditable="true">Relations:</div>
                 <div id="viewer">
-                    <span id="sysOutput"></span>
                     <div id="cy" class="cy_canvas"></div>
                 </div>
             </div>

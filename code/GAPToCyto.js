@@ -113,7 +113,7 @@ function translateQPA() {
     const quiverData = { nodes: vx, edges: arr };
 
     // **** translate relations ****
-    var relns = [];
+    //var relns = [];
     // strip brackets and whitespaces
     var arrRelns = document
         .getElementById("inRelation")
@@ -128,9 +128,11 @@ function translateQPA() {
         let newRel = "";
         let reldataentry = Array(monomials.length).fill({
             scalar: 1,
-            monomial: [],
+            monomials: [],
+            originalIdx: 0,
         });
         for (let i = 0; i < monomials.length; i++) {
+            reldataentry[i].originalIdx = i;
             let [scalar, ...arrs] = monomials[i].split("*");
             charFound = charFound == -1 ? findFieldChar(scalar) : charFound;
             document.getElementById(
@@ -140,6 +142,7 @@ function translateQPA() {
             }.`;
             scalar = translateScalar(scalar, charFound); // scalar is integer now
             reldataentry[i].scalar = scalar;
+
             let newMono = arrs
                 .map((x) => {
                     let q = arrRef.indexOf(x);
@@ -150,7 +153,7 @@ function translateQPA() {
                                 ? infLetters(q)
                                 : x
                             : x;
-                    reldataentry[i].monomial.push(arr);
+                    reldataentry[i].monomials.push(arr);
                     return arr;
                 })
                 .join("·");
@@ -164,11 +167,12 @@ function translateQPA() {
                     : `${scalar}·${newMono}`;
             readIndex++;
         }
-        relData.push(reldataentry);
-        relns.push(newRel);
+        relData.push({ reln: newRel, terms: reldataentry });
+        // relns.push(newRel);
     }
-    relns = relns.join(", ");
-    document.getElementById("sysOutput").innerHTML = `Relations: ${relns}`;
+    relData.sort(sortReln);
+    var relns = relData.map(({ reln }) => reln).join(",<br>");
+    document.getElementById("sysOutput").innerHTML = `Relations:<br> ${relns}`;
     // TODO: add relation handling
 
     //Tidy up data
@@ -177,6 +181,18 @@ function translateQPA() {
     QuiverData = quiverData;
     console.log("quiverData from translateQPA(): ", quiverData);
     cy = initCyto(quiverData);
+}
+
+/**
+ * relationdata obj: {reln: string, terms: Array<termdata>}
+ * termdata obj: {scalar: number, monomials:Array<string>, originalIdx: number}
+ * @param  {relationdata} a
+ * @param  {relationdata} b
+ */
+function sortReln(a, b) {
+    //sort by num of monomials first
+    let firstsort = a.terms.length - b.terms.length;
+    return firstsort != 0 ? firstsort : a.reln - b.reln;
 }
 
 // var testdata = {
@@ -303,9 +319,11 @@ function initCyto(inputData) {
                 selector: "edge[label]",
                 style: {
                     label: "data(label)",
-                    color: "#0AA",
-                    "text-outline-color": "#DD0",
-                    "text-outline-width": 1,
+                    color: "#ff1818",
+                    "font-size": "22pt",
+                    "font-weight": "bold",
+                    "text-outline-color": "#ee0",
+                    "text-outline-width": 2,
                     // "text-background-color": "#DDD",
                     // "text-background-opacity": 0.6,
                 },

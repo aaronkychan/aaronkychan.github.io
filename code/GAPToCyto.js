@@ -1,12 +1,13 @@
-const letters = [...Array(26).keys()].map((i) => String.fromCharCode(97 + i));
-//letters = [...letters, ...[...Array(26).keys()].map(i => String.fromCharCode(65 + i))]; //add capital letters
-//console.log(letters);
+const letters = [...Array(52).keys()].map((i) =>
+    String.fromCharCode(97 + (i % 26) + (i < 26 ? 0 : -32))
+);
+// 26 small letters, then 26 capital letters
 var QuiverData, cy, Relations;
 
 function infLetters(i) {
-    // i=0,...,25 gives alphabet, othersie alphabet-with-hat
-    var res = letters[i % 26];
-    res += Array(parseInt(i / 26 + 1))
+    // i=0,...,51 gives alphabet, othersie alphabet-with-hat
+    var res = letters[i % 52];
+    res += Array(parseInt(i / 52 + 1))
         .fill("")
         .reduce((prev, curr) => prev + "^");
     return res;
@@ -143,6 +144,7 @@ function translateQPA() {
             scalar = translateScalar(scalar, charFound); // scalar is integer now
             reldataentry[i].scalar = scalar;
 
+            // translate a summand of the relation
             let newMono = arrs
                 .map((x) => {
                     let q = arrRef.indexOf(x);
@@ -171,8 +173,10 @@ function translateQPA() {
         // relns.push(newRel);
     }
     relData.sort(sortReln);
-    var relns = relData.map(({ reln }) => reln).join(",<br>");
-    document.getElementById("sysOutput").innerHTML = `Relations:<br> ${relns}`;
+    var relns = relData.map(({ reln }) => reln).join(" ,<br></span><span>");
+    document.getElementById(
+        "sysOutput"
+    ).innerHTML = `Relations:<br> <span>${relns} </span>`;
     // TODO: add relation handling
 
     //Tidy up data

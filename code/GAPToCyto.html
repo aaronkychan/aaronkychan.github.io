@@ -80,12 +80,21 @@
             min-height: 100%;
             border: 1px #777 dotted;
             font-family: monospace;
-            color: red;
+            color: black;
             font-size: 12pt;
             margin: 3px;
             resize: horizontal;
             overflow: auto;
         }
+
+        #sysOutput span:nth-child(2n+1) {
+            color: rgb(0, 128, 255);
+        }
+
+        #sysOutput span:nth-child(2n) {
+            color: rgb(255, 111, 0);
+        }
+
 
         textarea {
             margin-top: 5px;

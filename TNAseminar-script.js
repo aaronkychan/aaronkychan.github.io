@@ -1,18 +1,56 @@
 let talks = [
     {
+        ymd: "2023-08-24",
+        start: "1030",
+        duration: 90,
+        title: "TF equivalence on the real Grothendieck group",
+        speaker: "Sota Asai 淺井 聡太",
+        affil: "University of Tokyo 東京大学",
+        abstract: `$A$を体$K$上の有限次元多元環とするとき、有限生成射影加群圏の実Grothendieck群$K_0(\\mathsf{proj}A)_{\\mathbb{R}}$は、Euclid空間と同一視できる。
+        Baumann-Kamnitzer-Tingleyは、各元$\\theta\\in K_0(\\mathsf{proj}A)_{\\mathbb{R}}$に対し、商加群や部分加群に関する線型不等式を用いて、有限生成加群圏$\\mathsf{mod} A$の半安定ねじれ対を定めており、これをもとに私は、$K_0(\\mathsf{proj}A)_{\\mathbb{R}}$上の同値関係「TF同値」を導入した。
+        TF同値類の典型例として、ホモトピー圏$\\mathsf{K}^\\mathrm{b}(\\mathsf{proj}A)$の2-term presilting complex $U$の直既約因子が定める錐$C^\\circ(U)$が挙げられ、これを$U$のsilting coneと呼ぶ。TF同値の研究には、silting coneのみならず、その適切な近傍をとることが有効であり、私はやはり半安定ねじれ対を用いて、各2-term presilting\ncomplex $U$に対し、「区間近傍」と呼ばれる$C^\\circ(U)$の開近傍$N_U$を定め、この$N_U$が様々な良い性質を満たしていることを証明した。
+        この講演では、上記の概念について、じっくりと時間をかけて解説する。一部の内容は、伊山修氏（東京大学）との共同研究に基づく。`,
+        lang: "jp",
+        access: {
+            id: "854 0720 5569",
+            psw: "678416",
+        },
+        record: {
+            slides: `TNA/2023/Asai-TF_equivalence_on_the_real_Grothendieck_group.pdf`,
+        },
+    },
+    {
         ymd: "2023-07-14",
         start: "1030",
         duration: 90,
-        title: "TBC",
+        title: "Local Forms of Noncommutative Functions and Applications",
         speaker: "Michael Wemyss",
         web: "https://www.maths.gla.ac.uk/~mwemyss/",
         affil: "University of Glasgow",
-        abstract: `TBC`,
+        abstract: `<p>This talk will explain how Arnold's results for commutative
+        singularities can be extended into the noncommutative setting, with
+        the main result being a classification of certain Jacobi algebras
+        arising from (complete) free algebras. This class includes finite
+        dimensional Jacobi algebras, and also Jacobi algebras of GK dimension
+        one, suitably interpreted. The surprising thing is that a
+        classification should exist at all, and it is even more surprising
+        that ADE enters.</p>
+        
+        <p>I will spend most of my time explaining what the algebras are, what
+        they classify, and how to intrinsically extract ADE information from
+        them. At the end, I'll explain why I'm really interested in this
+        problem, an update including results on different quivers, and the
+        applications of the above classification to curve counting and
+        birational geometry. This is joint work with Gavin Brown.</p>`,
         lang: "en",
-        // access: {
-        //     id: `844 0560 1675`,
-        //     psw: `381661`,
-        // },
+        access: {
+            id: `863 9598 8196`,
+            psw: `423160`,
+        },
+        record: {
+            slides: `TNA/2023/Wemyss-Local_forms_NC_functions.pdf`,
+            vid: { desc: `request` },
+        },
     },
     {
         ymd: "2023-07-07",
@@ -600,7 +638,8 @@ for (let talk of talks) {
     if ("record" in talk) {
         str += `<li><div class="leftcolumn">Record:</div><div class="maincolumn">`;
         if ("slides" in talk.record) {
-            let slidesArr = Array.isArray(talk.record.slides)
+            let multiple = Array.isArray(talk.record.slides);
+            let slidesArr = multiple
                 ? talk.record.slides
                 : [talk.record.slides];
             let sdArr =
@@ -609,6 +648,7 @@ for (let talk of talks) {
                         ? talk.record.slidesDesc
                         : [talk.record.slidesDesc]
                     : new Array(slidesArr.length).fill("");
+            sdArr[0] = multiple || sdArr[0] != "" ? sdArr[0] : "Slides";
             let out = slidesArr.map((s, i) => {
                 let desc = sdArr[i] === "" ? `Slides ${i + 1}` : sdArr[i];
                 return s === "contact"
@@ -619,6 +659,21 @@ for (let talk of talks) {
             str += ".";
         } else {
             str += "No slide will be made available. ";
+        }
+        if ("vid" in talk.record) {
+            str += "&nbsp;&nbsp;";
+            let desc =
+                "desc" in talk.record.vid
+                    ? talk.record.vid.desc
+                    : `Link to video`;
+            desc =
+                desc === "request"
+                    ? `Video recording can be provided upon request.`
+                    : desc;
+            str +=
+                "url" in talk.record.vid
+                    ? `<a href="${talk.record.vid.url}">${desc}</a>`
+                    : desc;
         }
         //str += ("vid" in talk.record)?`<a href="${talk.record.vid}">Video</a>. `:"Video not available.";
         str += `</div></li>`;

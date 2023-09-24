@@ -115,7 +115,11 @@
         <div id="control" style="margin:5px;">
             <div id="addModule">
                 Kupisch series: <input type="text" name="kupish" id="kupisch" , value="[3,2,4,3,2,2,1]">
-                <br><button onclick="generate()">Generate</button>
+                &nbsp;<button onclick="generate()">Generate</button>
+                <br>
+                Integer composition -> gentle LNakayama:
+                <br><input type="text" name="zcomp" id="zcomp" , value="[2,3,1]">
+                &nbsp;<button onclick="generateFromZComp()">Generate</button>
                 <br><br>
                 Show module(s) on disk: <br>
                 <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
@@ -403,23 +407,31 @@
             }) : null;
         }
 
-        function generate() {
+        function generate(kup = 0) {
             document.getElementById("btnSelectModule").disabled = true;
             qhs = [];
             s.selectAll('svg > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
-            let kup = JSON.parse(document.getElementById("kupisch").value);
-            disk = new DiskModel(kup);
+            let kupisch = kup == 0 ? JSON.parse(document.getElementById("kupisch").value) : kup;
+            disk = new DiskModel(kupisch);
             A = disk.algebra;
             if (A.isGentle) {
                 [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
                 for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
                 drawDualArcSys(false, false);
                 updateLog("-------New Disk------");
+                let zcomp = A.gentleZComposition();
+                updateLog();
             } else {
                 updateLog("Algebra is not gentle; disk will NOT be drawn.");
             }
 
             drawQuiverAndRelations();
+        }
+
+        function generateFromZComp() {
+            let zcomp = JSON.parse(document.getElementById("zcomp").value);
+            let kup = LNakayama.kupischFromZComposition(zcomp);
+            generate(kup);
         }
 
         function LoewyDiagram(top, soc) {

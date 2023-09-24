@@ -70,6 +70,14 @@ class LNakayama {
         return test;
     }
 
+    static kupischFromZComposition(zcomp) {
+        let res = zcomp.map((a) => {
+            return new Array(a).fill(0).map((_, j) => a + 1 - j);
+        });
+        res.push(1);
+        return res.flat();
+    }
+
     isLNakayama(kup) {
         if (this.isValidKupisch(kup)) {
             if (kup[kup.length - 1] != 1) {
@@ -88,6 +96,21 @@ class LNakayama {
             this.relations ? this.relations : this.computeRelations()
         ).reduce((prev, curr) => prev && curr[1] - curr[0] == 2, true);
         return this.isGentle;
+    }
+
+    gentleZComposition() {
+        if (this.isGentle) {
+            let res = ArraySplit(this.kupisch, 2)
+                .slice(0, -1)
+                .map((x) => (x.length > 0 ? x[0] - 1 : 1));
+            this.log.add(
+                `Integer composition corresponding to gentle structure: [${res}]`
+            );
+            return res;
+        } else {
+            this.log.add(`Not gentle => no integer composition.`);
+            return false;
+        }
     }
 
     // return format [[s,t],[s',t']] where each [s,t] means path s+1->..->t+1 is a reln
@@ -450,6 +473,12 @@ class LNakayama {
     }
 }
 
+/***********************
+ *
+ * Misc functions
+ *
+ */
+
 function sameAsSet(arr1, arr2) {
     // only works when we know arr1 and arr2 has no duplicate elt's
     // o/w, use Set(...) is faster
@@ -527,6 +556,23 @@ function CoveringRelation(rel) {
             }
         }
         res.push(coveredBy);
+    }
+    return res;
+}
+
+function ArraySplit(arr, separator) {
+    let res = [],
+        curr = [];
+    for (let x of arr) {
+        if (x === separator) {
+            res.push(curr);
+            curr = [];
+        } else {
+            curr.push(x);
+        }
+    }
+    if (curr.length > 0) {
+        res.push(curr);
     }
     return res;
 }

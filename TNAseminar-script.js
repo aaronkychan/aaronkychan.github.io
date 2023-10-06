@@ -1,5 +1,60 @@
 let talks = [
     {
+        ymd: "2024-01-11",
+        start: "1030",
+        duration: 90,
+        title: `TBC`,
+        speaker: "Ryo Fujita 藤田 遼",
+        web: `https://www.kurims.kyoto-u.ac.jp/ja/list/fujita.html`,
+        affil: "RIMS Kyoto 京都大学数理解析研究所",
+        abstract: `TBC`,
+        lang: "jp",
+        // access: {
+        //     id: "814 9648 9424",
+        //     psw: "217157",
+        // },
+        // record: {
+        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        // },
+    },
+    {
+        ymd: "2023-12-14",
+        start: "1030",
+        duration: 90,
+        title: `TBC`,
+        speaker: "Xiaofa Chen",
+        web: `http://home.ustc.edu.cn/~cxf2011/`,
+        affil: "University of Science and Technology of China",
+        abstract: `TBC`,
+        lang: "en",
+        // access: {
+        //     id: "814 9648 9424",
+        //     psw: "217157",
+        // },
+        // record: {
+        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        // },
+    },
+    {
+        ymd: "2023-10-12",
+        start: "1030",
+        duration: 90,
+        title: `$q$-deformed rational numbers, Farey sum and a 2-Calabi-Yau category of $A_2$ quiver`,
+        speaker: "Xin Ren 任 鑫",
+        affil: "Kansai University 関西大学",
+        abstract: `<p>Let $q$ be a positive real number. The left and right $q$-deformed rational numbers were introduced by Bapat, Becker and Licata via regular continued fractions, and the right $q$-deformed rational number is exactly $q$-deformed rational number considered by Morier-Genoud and Ovsienko, when $q$ is a formal parameter. They gave a homological interpretation for left and right $q$-deformed rational numbers by considering a special 2-Calabi–Yau category associated to the $A_2$ quiver.</p> 
+
+        <p>In this talk, we begin by introducing the above definitions and related results. Then we give a formula for computing the $q$-deformed Farey sum of the left $q$-deformed rational numbers based on the negative continued fractions. We combine the homological interpretation of the left and right $q$-deformed rational numbers and the $q$-deformed Farey sum, and give a homological interpretation of the $q$-deformed Farey sum. We also apply the above results to real quadratic irrational numbers with periodic type.</p>`,
+        lang: "jp",
+        access: {
+            id: "814 9648 9424",
+            psw: "217157",
+        },
+        // record: {
+        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        // },
+    },
+    {
         ymd: "2023-08-24",
         start: "1030",
         duration: 90,

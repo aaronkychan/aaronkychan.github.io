@@ -50,9 +50,9 @@ let talks = [
             id: "814 9648 9424",
             psw: "217157",
         },
-        // record: {
-        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
-        // },
+        record: {
+            slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        },
     },
     {
         ymd: "2023-08-24",

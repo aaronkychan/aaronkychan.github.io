@@ -66,19 +66,28 @@ function translateScalar(a, char) {
     }
 }
 
+const pa = (msg) => {
+    document.getElementById(
+        "outTxtBox"
+    ).innerHTML = `<span style='color:red; font-size: 20pt'>${msg}</span>`;
+};
+
 function translateQPA() {
-    var quiverIn = document.getElementById("inQuiver").value;
+    var [quiverIn, relationStr] = document
+        .getElementById("inQuiver")
+        .value.split(";");
 
     quiverIn = quiverIn.replace(/(\\\r\n|\\\r|\\\n)/g, "");
-    quiverIn = quiverIn.replace(/;/g, "");
+    // quiverIn = quiverIn.replace(/;/g, "");
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
     var quiverQPA = JSON.parse(quiverIn);
 
     // Forbid too many vertices
     if (quiverQPA[0].length > 25) {
-        document.getElementById("outTxtBox").innerHTML =
-            "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
+        pa("More than 25 vertices! Abort translation.");
+        // document.getElementById("outTxtBox").innerHTML =
+        //     "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
         clearAll();
         return;
     }
@@ -116,9 +125,13 @@ function translateQPA() {
     // **** translate relations ****
     //var relns = [];
     // strip brackets and whitespaces
-    var arrRelns = document
-        .getElementById("inRelation")
-        .value.replace(/[\s\[\]]/g, "")
+    relationStr =
+        relationStr == null
+            ? document.getElementById("inRelation").value
+            : relationStr;
+    var arrRelns = relationStr
+        .replace(/(\\\r\n|\\\r|\\\n)/g, "")
+        .replace(/[\s\[\]]/g, "")
         .split(",");
     var arrRef = quiverQPA[1].map((entry) => entry[2]);
     var charFound = -1; // charactersitic of the field
@@ -173,18 +186,26 @@ function translateQPA() {
         // relns.push(newRel);
     }
     relData.sort(sortReln);
-    var relns = relData.map(({ reln }) => reln).join(" ,<br></span><span>");
+
+    //Tidy up data
+    dataReady(quiverData, relData);
+}
+
+function dataReady(quiver, relations, isPreset = false) {
+    // Display relations
+    var relns = relations.map(({ reln }) => reln).join(" ,<br></span><span>");
     document.getElementById(
         "sysOutput"
     ).innerHTML = `Relations:<br> <span>${relns} </span>`;
     // TODO: add relation handling
 
-    //Tidy up data
     document.getElementById("saveSVG").disabled = false;
     document.getElementById("fixCyto").disabled = false;
-    QuiverData = quiverData;
-    console.log("quiverData from translateQPA(): ", quiverData);
-    cy = initCyto(quiverData);
+    QuiverData = quiver;
+    Relations = relations;
+    //console.log("Quiver prepared: ", quiver);
+    //console.log("Relations: ",relations);
+    cy = initCyto(quiver, isPreset);
 }
 
 /**
@@ -264,6 +285,7 @@ function sortReln(a, b) {
 //                 target: "c2",
 //                 label: "cc",
 //             },
+//            classes: "loop"
 //         },
 //         {
 //             data: {
@@ -275,8 +297,18 @@ function sortReln(a, b) {
 //         },
 //     ],
 // };
-function initCyto(inputData) {
+function initCyto(inputData, isPreset = false) {
     // **** Cytoscape part
+    let layout = isPreset
+        ? { name: "preset" }
+        : {
+              // name: "dagre",
+              // rankDir: "LR",
+              name: "breadthfirst",
+              fit: true,
+              padding: 20,
+              nodeDimensionsIncludeLabels: true,
+          };
     // TODO: add relation handling; c.f. https://github.com/dmx-systems/cytoscape-edge-connections
     return cytoscape({
         container: document.getElementById("cy"),
@@ -319,6 +351,20 @@ function initCyto(inputData) {
                     "loop-sweep": "45deg",
                 },
             },
+            // todo: dynamically add edge.loopCounter with "Counter"=1,2,...
+            // todo: use inputData to determine loop
+            // {
+            //     selector: "edge.loop2",
+            //     style: {
+            //         width: 2,
+            //         "line-color": "#000",
+            //         "target-arrow-color": "#000",
+            //         "target-arrow-shape": "triangle",
+            //         "curve-style": "bezier",
+            //         "loop-direction": "45deg",
+            //         "loop-sweep": "45deg",
+            //     },
+            // },
             {
                 selector: "edge[label]",
                 style: {
@@ -334,14 +380,7 @@ function initCyto(inputData) {
             },
         ],
 
-        layout: {
-            // name: "dagre",
-            // rankDir: "LR",
-            name: "breadthfirst",
-            fit: true,
-            padding: 20,
-            nodeDimensionsIncludeLabels: true,
-        },
+        layout: layout,
 
         selectionType: "single",
         userZoomingEnabled: true,
@@ -358,10 +397,26 @@ function clearAll() {
     document.getElementById("saveSVG").disabled = true;
 }
 
-function saveAsSVG(filename) {
-    var svgContent = cy.svg({ scale: 1, full: true, bg: "#ffffff" });
-    var blob = new Blob([svgContent], { type: "image/svg+xml;charset=utf-8" });
-    saveAs(blob, filename);
+function savefile(type) {
+    var content, blob, fn;
+    switch (type) {
+        case "svg":
+            content = cy.svg({ scale: 1, full: true, bg: "#ffffff" });
+            blob = new Blob([content], {
+                type: "image/svg+xml;charset=utf-8",
+            });
+            break;
+        case "json":
+            content = { cy: cy.json(), reln: Relations };
+            console.log(JSON.stringify(content));
+            blob = new Blob([JSON.stringify(content)], {
+                type: "application/json;charset=utf-8",
+            });
+            break;
+        default:
+            console.log("Invalid filetype");
+    }
+    saveAs(blob, document.getElementById("filenameInput").value + "." + type);
 }
 
 /**
@@ -371,9 +426,24 @@ function saveAsSVG(filename) {
 document.getElementById("fixCyto").addEventListener("click", () => cy.fit());
 document
     .getElementById("saveSVG")
-    .addEventListener("click", () =>
-        saveAsSVG(document.getElementById("filenameInput").value + ".svg")
+    .addEventListener("click", () => savefile("svg"));
+document
+    .getElementById("saveJSON")
+    .addEventListener("click", () => savefile("json"));
+document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
+    let reader = new FileReader();
+    reader.addEventListener(
+        "load",
+        () => {
+            let res = JSON.parse(reader.result);
+            dataReady(res.cy.elements, res.reln, true);
+            // this will then display a text file
+        },
+        false
     );
+    reader.readAsText(event.target.files[0]);
+});
+
 // document
 //     .getElementById("testBtn")
 // .addEventListener("click", () => initCyto(testdata));

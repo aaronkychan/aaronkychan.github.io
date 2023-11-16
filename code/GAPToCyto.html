@@ -13,8 +13,8 @@
         }
 
         .box_row {
-            display: flex;
-            flex-direction: row;
+            /* display: flex;
+            flex-direction: row; */
             /* justify-content: space-between; */
             margin: 3px;
         }
@@ -108,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script> -->
     <script src=" https://cdn.jsdelivr.net/npm/cytoscape-svg@0.4.0/cytoscape-svg.min.js" defer></script>
     <script src=" https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js "></script>
-    <script src="./GAPToCyto.min.js" defer></script>
+    <script src="./GAPToCyto.js" defer></script>
 </head>
 
 <body>
@@ -127,16 +127,19 @@
             <div id="divInputQuiver">
                 <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
                 &nbsp;&nbsp;QPA
-                quiver code:<br />
-                <textarea id="inQuiver" value="" cols="50" rows="5" placeholder="[..vx..], [ [src,tgt,name],[...],...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);
+                quiver (with relation)<br />
+                <textarea id="inQuiver" value="" cols="50" rows="5"
+                    placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...]);[...relations...]">
+                    Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);
+                    [a*b]
                 </textarea>
             </div>
 
             <div>
                 <input type="button" value="Clear relations"
                     onclick="document.getElementById('inRelation').value ='';" />
-                &nbsp;&nbsp;QPA relation code:<br />
-                <textarea id="inRelation" value="" cols="50" rows="5" placeholder="[a*b,...]">[a*b]</textarea>
+                &nbsp;&nbsp;Relation array:<br />
+                <textarea id="inRelation" value="" cols="50" rows="5" placeholder="[a*b,...]"></textarea>
             </div>
         </fieldset>
         <div id="midCol">
@@ -160,7 +163,12 @@
                     onclick="document.getElementById('outTxtBox').innerHTML ='';" />
                 &nbsp;&nbsp;&nbsp;
                 <input type="button" id="fixCyto" value="Fit canvas" disabled />
-                &nbsp;&nbsp;&nbsp; Filename:&nbsp; <input type="text" id="filenameInput" value="quiver">.svg&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
+                <br><br>
+                Filename:&nbsp; <input type="text" id="filenameInput" value="quiver">
+                &nbsp;&nbsp;&nbsp;
+                <input type="button" id="saveJSON" value="Save as JSON" />
                 <input type="button" id="saveSVG" value="Save as SVG" disabled /> &nbsp;&nbsp; (Use &nbsp;<a
                     href="https://github.com/xyz2tex/svg2tikz">svg2tikz</a>&nbsp; to convert to tikz)
             </div>
@@ -176,17 +184,19 @@
     Input format:<br />
     <div class="site_row">
         <div style="border:1px #000000 solid; padding:6px; position:relative; top:2px">
-            For quiver:
+            For quiver (with relations):
             <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> Quiver( [..
-                list of vertices ..], [..[src,tar,arr_name]..] ) </div>
-            "<span style="font-family: 'Courier New', Courier, monospace;">Quiver()</span>" can be omitted.
+                list of vertices ..], [..[src,tar,arr_name]..] );[ ... list of relations ... ] </div>
+            "<span style="font-family: 'Courier New', Courier, monospace;">Quiver()</span>" can be omitted. <br>
+            Relations must be after a semi-colon (possibly with space or newline after). <br>
+            Relations in the "QPA Quiver code" has priority over those in "Relation code".
         </div>
-        <div
+        <!-- <div
             style="border:1px #000000 solid; padding:6px; position:relative; top:2px; margin-bottom:5px; margin-left: 10px; ">
-            For relations:
+            Relation format:
             <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> [ ... list
                 of relations ... ] </div>
-        </div>
+        </div> -->
     </div>
     <div>
         Known Limitation:<br />

@@ -82,6 +82,7 @@ function translateQPA() {
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
     var quiverQPA = JSON.parse(quiverIn);
+    relationStr = relationStr.replace(/\s+/, "");
 
     // Forbid too many vertices
     if (quiverQPA[0].length > 25) {
@@ -129,6 +130,7 @@ function translateQPA() {
         relationStr == null
             ? document.getElementById("inRelation").value
             : relationStr;
+    document.getElementById("inRelation").value = relationStr;
     var arrRelns = relationStr
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
         .replace(/[\s\[\]]/g, "")

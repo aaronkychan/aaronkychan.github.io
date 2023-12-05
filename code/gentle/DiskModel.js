@@ -50,13 +50,23 @@ class DiskModel {
     dualVals;
     arcsys;
     dissection;
-    constructor(kupisch = null, logger = null) {
+    constructor(
+        { kupisch = [], logger = null, diskmodel = null } = { kupisch: [] }
+    ) {
         // this.m = m; // number of (single-coloured) marked points
         // this.valencies = Array(m).fill(0);
         // this.dualValencies = Array(m).fill(0);
-        this.log = logger == null ? new Logger() : logger;
-        if (kupisch) {
+        this.log = logger === null ? new Logger() : logger;
+        if (kupisch.length > 1) {
             this.arcSysFromKupisch(kupisch);
+        } else if (diskmodel !== null) {
+            Object.assign(this, diskmodel);
+            this.algebra = new LNakayama({
+                logger: this.log,
+                data: diskmodel.algebra,
+            });
+        } else {
+            this.log.add("‼ Error in constructing disk model.");
         }
     }
 
@@ -138,7 +148,7 @@ class DiskModel {
     //let d = arcSysOfKupisch([3,2,4,3,2,1]);
     // d = [ [ 1, 7 ], [ 1, 2 ], [ 2, 6 ], [ 2, 3 ], [ 3, 4 ], [ 4, 5 ] ]
     arcSysFromKupisch(kup) {
-        this.algebra = new LNakayama(kup, this.log);
+        this.algebra = new LNakayama({ kupisch: kup, logger: this.log });
         if (this.algebra.isGentle) {
             // dissection
             this.log.add("✔ Dissection and dual arc system.");
@@ -197,6 +207,10 @@ class DiskModel {
         this.log.add(`✔ Dissection: [ ${lams} ]`);
 
         return arcsys;
+    }
+
+    resetLog() {
+        this.log = new Logger();
     }
 
     // find the arc in a given set of arcs after the given arc at given endpoint in given direction

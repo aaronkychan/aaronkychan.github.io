@@ -255,7 +255,7 @@
         function generate() {
             s.selectAll('svg > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
             let kup = JSON.parse(document.getElementById("kupisch").value);
-            disk = new DiskModel(kup);
+            disk = new DiskModel({ kupisch: kup });
             [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
             for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
             A = disk.algebra;

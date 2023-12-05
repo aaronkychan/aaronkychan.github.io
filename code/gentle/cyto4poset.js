@@ -46,7 +46,29 @@ function convertGroupsOfPoset(posets) {
  * Cytoscape part
  */
 
-function initSVG(container, data) {
+function initSVG(container, data, isPreset = false) {
+    let layout = isPreset
+        ? { name: "preset" }
+        : {
+              name: "elk",
+              elk: {
+                  algorithm: "layered",
+                  "elk.direction": "DOWN",
+              },
+              fit: true,
+              padding: 20,
+              nodeDimensionsIncludeLabels: true,
+          };
+    // : {
+    //       name: "dagre",
+    //       fit: true,
+    //       padding: 20,
+    //       nodeDimensionsIncludeLabels: true,
+    //       // name: "breadthfirst",
+    //       // roots: "max",
+    //       // ready:,
+    //       // stop:,
+    //   };
     return cytoscape({
         container: container,
         elements: data,
@@ -57,7 +79,8 @@ function initSVG(container, data) {
                     width: 25,
                     height: 25,
                     "background-color": "#ffff00",
-                    border: "1px solid #000",
+                    "border-width": "1px",
+                    "border-color": "#999",
                     content: "data(id)",
                     "text-valign": "center",
                     "text-halign": "center",
@@ -88,7 +111,7 @@ function initSVG(container, data) {
             {
                 selector: "node.inList",
                 style: {
-                    "background-color": "#63b7f2",
+                    // "background-color": "#63b7f2",
                     shape: "rectangle",
                 },
             },
@@ -115,21 +138,12 @@ function initSVG(container, data) {
             },
         ],
 
-        layout: {
-            name: "dagre",
-            fit: true,
-            padding: 20,
-            nodeDimensionsIncludeLabels: true,
-            // name: "breadthfirst",
-            // roots: "max",
-            // ready:,
-            // stop:,
-        },
+        layout: layout,
 
         selectionType: "single",
         userZoomingEnabled: true,
         userPanningEnabled: true,
-        wheelSensitivity: 0.5,
+        wheelSensitivity: 0.3,
         pan: { x: 40, y: 40 },
     });
 }

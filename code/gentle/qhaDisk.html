@@ -8,152 +8,122 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js "></script>
+    <script src=" https://cdn.jsdelivr.net/npm/elkjs@0.8.2/lib/elk.bundled.min.js "></script>
+    <script src=" https://cdn.jsdelivr.net/npm/cytoscape-elk@2.2.0/dist/cytoscape-elk.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="logger.min.js"></script>
     <script src="LNakayama.min.js"></script>
     <script src="DiskModel.min.js"></script>
-    <script src="cyto4poset.js"></script>
-    <style>
-        .bkg {
-            background-color: #039403;
-        }
-
-
-        :root {
-            --canvas-height: max(500px, 80vh);
-        }
-
-        #container {
-            min-height: 96vh;
-            display: grid;
-            /* flex-flow: column; */
-            grid-template-areas: "control"
-                "allviewers";
-            grid-template-rows: 1fr auto;
-        }
-
-        #control {
-            grid-area: control;
-            margin: 1rem;
-            display: flex;
-            flex-flow: row;
-            /* flex-wrap: nowrap; */
-            /* justify-content: normal; */
-            align-items: flex-start;
-        }
-
-        #control>div {
-            border: 1px dashed #AAA;
-            padding: 5px;
-            margin: 2px 5px;
-            width: max-content;
-        }
-
-        #allviewers {
-            grid-area: allviewers;
-            display: grid;
-            grid-template-areas: "disk poset qhs";
-            grid-template-columns: 460px 150px auto;
-            gap: .5em;
-            align-items: center;
-            justify-items: stretch;
-            height: var(--canvas-height);
-            max-height: 100vh;
-            /* flex-grow: 1; */
-        }
-
-        #svgDiv {
-            grid-area: disk;
-            box-sizing: border-box;
-            width: 100%;
-            height: var(--canvas-height);
-            border: 1px solid black
-        }
-
-        #svg {
-            width: 100%;
-            box-sizing: border-box;
-            height: var(--canvas-height);
-        }
-
-        .cytoDiv {
-            box-sizing: border-box;
-            width: 100%;
-            height: var(--canvas-height);
-            border: 1px #000000 solid;
-            display: grid;
-            justify-items: center;
-            align-items: center;
-        }
-
-        #qhsDiv {
-            grid-area: qhs;
-        }
-
-        #posetDiv {
-            grid-area: poset;
-        }
-
-        .viewer {
-            width: 100%;
-            box-sizing: border-box;
-            height: var(--canvas-height);
-        }
-
-        .cy_canvas {
-            box-sizing: border-box;
-            width: 100%;
-            height: var(--canvas-height);
-            display: block;
-        }
-    </style>
+    <script src="cyto4poset.min.js"></script>
+    <link rel="stylesheet" href="style.min.css">
     <title>LNakayama and its disk model</title>
 </head>
 
 <body>
     <div id="container">
         <div id="control" style="margin:5px;">
-            <div id="addModule">
-                Kupisch series: <input type="text" name="kupish" id="kupisch" , value="[3,2,4,3,2,2,1]">
-                &nbsp;<button onclick="generate()">Generate</button>
-                <br>
-                Integer composition -> gentle LNakayama:
-                <br><input type="text" name="zcomp" id="zcomp" , value="[2,3,1]">
-                &nbsp;<button onclick="generateFromZComp()">Generate</button>
-                <br><br>
-                Show module(s) on disk: <br>
-                <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
-                <!-- <textarea name="modulesInput" id="modulesInput" cols="70" rows="3"
-                    style="display:inline-block; vertical-align: top;">[[1,3],[2,2],[3,5],[4,4]]</textarea> -->
-                <input type="text" name="modulesInput" id="modulesInput" size="35"
-                    placeholder="[[1,3],[2,2],[3,5],[4,4]]">
-                <div style="display:inline-block; vertical-align: middle; margin-left:.2em;">
-                    <button onclick="addModulesFromInput()">Draw</button>
+            <div>
+                <div>
+                    ▪ Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
+                    <br>
+                    ▪ By Kupisch series: <input type="text" name="kupish" id="kupisch" value="[3,2,4,3,2,2,1]"
+                        size="27">
+                    &nbsp;<button id="genByKupisch">Generate</button>
+                    <br>
+                    ▪ By integer composition (only gentle):
+                    <input type="text" name="zcomp" id="zcomp" value="[2,3,1]" size="10">
+                    &nbsp;<button onclick="generateFromZComp()">Generate</button>
+                </div>
+                <hr>
+                <div style="display:block;">
+                    Has direct summands: <input type="text" id="selectModule" cols="20"
+                        placeholder="[[1,3],[2,2]]">&nbsp;
+                    <button id="btnSelectModule" onclick="filtTilt()" disabled>Filter</button>
+                    <br>
+                    <div style="display:inline-block">
+                        <button onclick="partitionQHS()">Partition QHS</button>
+                        -&gt; Select group <select name="partitionGroup" id="partitionGroup">
+                            <option value=""> deselect all </option>
+                        </select>
+                    </div>
+                    <br>
+                    <button onclick="clearHighlight()">Clear selection</button>
                 </div>
             </div>
-            <div>
-                Translate to TikZ <br>
-                <label><input type="checkbox" name="" id="withdualarc" checked>with dual arc system</label> <br>
-                <label><input type="checkbox" name="" id="withdissection">with dissection</label> <br>
-                <label><input type="checkbox" name="" id="withmodules" checked>with modules shown</label> <br>
-                <button onclick="printTikz()" style="margin-top:1ch;">Translate</button>
-            </div>
+
+
             <div style="display:flex; flex-direction:column;">
                 <div style="display:block;">
-                    <button onclick="genQHS()">Gen all qh structure</button><br>
-                    <button onclick="cyto.fit()">Fit Hasse quiver to canvas</button>
+                    <!-- <button onclick="genQHS()">Gen all qh structure</button><br> -->
+                    <button onclick="cyto.fit()">Fit canvas</button>
+                    <br>
+
                     <!-- <button onclick="genTilt()" disabled>Gen all gen. tilting (TODO)</button> -->
                 </div>
-                <div style="display:block;margin-top:2ch;">
-                    Reduction at: <br>
-                    <input type="text" id="selectModule" cols="20" placeholder="[[1,3],[2,2]]"><br>
-                    <button id="btnSelectModule" onclick="filtTilt()" disabled>Filter</button>
-                    <button onclick="clearHighlight()">Clear Highlight</button>
-                </div>
+
                 <!-- <button onclick="removeModule()">Remove</buttononclick> -->
             </div>
             <div>
-                <textarea name="log" id="log" cols="70" rows="6" style="margin:5px;overflow:scroll">~Log~</textarea>
+                <textarea name="log" id="log" cols="70" rows="8" style="margin:5px;overflow:scroll">~Log~</textarea>
+            </div>
+
+            <div class="accordion">
+                <div id="saveJSON-panel" class="accordion-panel">
+                    <button id="saveJSON-trigger" class="accordion-trigger" aria-expanded="false"
+                        aria-controls="saveJSON-content" disabled>
+                        Save to JSON
+                    </button>
+
+                    <div class="accordion-content" role="region" aria-labelledby="saveJSON-trigger" aria-hidden="true"
+                        id="saveJSON-content">
+                        <div>
+                            Filename:&nbsp; <input type="text" id="filenameInput" value="filename" col="20">
+                            &nbsp;&nbsp;&nbsp;
+                            <input type="button" id="saveJSON" value="Save" />
+                        </div>
+                    </div>
+                </div>
+                <div id="tikzTranslate-panel" class="accordion-panel">
+                    <button id="tikzTranslate-trigger" class="accordion-trigger" aria-expanded="false"
+                        aria-controls="tikzTranslate-content">
+                        Translate to TikZ
+                    </button>
+
+                    <div class="accordion-content" role="region" aria-labelledby="tikzTranslate-trigger"
+                        aria-hidden="true" id="tikzTranslate-content">
+                        <div>
+                            <label><input type="checkbox" name="" id="withdualarc" checked>with dual arc system</label>
+                            <br>
+                            <label><input type="checkbox" name="" id="withdissection">with dissection</label> <br>
+                            <label><input type="checkbox" name="" id="withmodules" checked>with modules shown</label>
+                            <br>
+                            <button onclick="printTikz()" style="margin-top:1ch;">Translate</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="drawModule-panel" class="accordion-panel">
+                    <button id="drawModule-trigger" class="accordion-trigger" aria-expanded="false"
+                        aria-controls="drawModule-content">
+                        Draw curves of modules
+                    </button>
+
+                    <div class="accordion-content" role="region" aria-labelledby="drawModule-trigger" aria-hidden="true"
+                        id="drawModule-content">
+                        <div>
+                            <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
+                            <!-- <textarea name="modulesInput" id="modulesInput" cols="70" rows="3"
+                        style="display:inline-block; vertical-align: top;">[[1,3],[2,2],[3,5],[4,4]]</textarea> -->
+                            <input type="text" name="modulesInput" id="modulesInput" size="35"
+                                placeholder="[[1,3],[2,2],[3,5],[4,4]]">
+                            <div style="display:inline-block; vertical-align: middle; margin-left:.2em;">
+                                <button onclick="addModulesFromInput()">Draw</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -173,12 +143,11 @@
                     <!-- <line id="myline" x1="10" y1="10" x2="90" y2="90" stroke="black" marker-end="url(#arrowhead)" /> -->
                     <!-- <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /> -->
                 </svg>
-            </div>
-
-            <div id="posetDiv" class="cytoDiv">
-                <div class="viewer">
-                    <span>min. ad. order</span>
-                    <div id="cyPoset" class="cy_canvas"></div>
+                <div id="posetDiv">
+                    <div class="smallviewer">
+                        <span>qh structure</span>
+                        <div id="cyPoset" class="cy_smallcanvas"></div>
+                    </div>
                 </div>
             </div>
 
@@ -189,16 +158,17 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
         var s = Snap("#svg");
-        var cx = 230, cy = 270; //center of graph
+        var cx = 230, cy = 250; //center of graph
         var g = 0.35; // gravity towards center of graph
         var r = 180, vxR = 6; // r=radius of big disk, vxR=radius of mk pts
         var greenPos = [], redPos = [], labelPos = []; // store positions of green/red mk pts
         var modules = [], arcs = [];
-        var qhs;
+        var qhs, partition;
         var A, disk, QR;
         var cyto, posetCyto;
         var arrowhead = s.select("#arrowhead");
@@ -363,7 +333,7 @@
         }
 
         function drawQuiverAndRelations() {
-            let ox = 25, oy = 40; //relative origin
+            let ox = 25, oy = 30; //relative origin
             let sep = 60; // how far apart consecutive vertices are
             let xpos = Array(A.rank).fill(0).map((x, i) => ox + i * sep);
             QR = s.g();
@@ -407,13 +377,23 @@
             }) : null;
         }
 
-        function generate(kup = 0) {
+        function generate(kupisch = [], data = null) {
             document.getElementById("btnSelectModule").disabled = true;
-            qhs = [];
+            const gps = document.querySelectorAll("#partitionGroup > option:not(:first-child)");
+            for (let g of gps) { g.remove(); }
             s.selectAll('svg > *:not(defs)').remove(); //s.clear() will remove everything under <defs> too
-            let kupisch = kup == 0 ? JSON.parse(document.getElementById("kupisch").value) : kup;
-            disk = new DiskModel(kupisch);
+            if (kupisch == [] && data == null) {
+                updateLog("Need data to generate algebra and disk model.");
+            }
+            disk = new DiskModel({
+                kupisch: kupisch,
+                diskmodel: data !== null ? data.disk : null
+            });
             A = disk.algebra;
+            document.getElementById("filenameInput").value = `[${A.kupisch}]`;
+            document.getElementById("kupisch").value = `[${A.kupisch}]`;
+            genQHS(data);
+
             if (A.isGentle) {
                 [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
                 for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
@@ -430,8 +410,7 @@
 
         function generateFromZComp() {
             let zcomp = JSON.parse(document.getElementById("zcomp").value);
-            let kup = LNakayama.kupischFromZComposition(zcomp);
-            generate(kup);
+            generate({ kupisch: LNakayama.kupischFromZComposition(zcomp) });
         }
 
         function LoewyDiagram(top, soc) {
@@ -485,7 +464,7 @@
                     if (highlightIndex) {
                         //TODO: change multicolorText to a correct thing
                         let colorings = M.Loewy.map(s => s == `${parseInt(i) + 1}` ? "#F00" : "#000");
-                        console.log(M.Loewy, `${parseInt(i) + 1}`, colorings);
+                        // console.log(M.Loewy, `${parseInt(i) + 1}`, colorings);
                         drawArc(a, "green", { text: M.Loewy, bounded: true, colors: colorings }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
                     } else {
                         drawArc(a, "green", { text: M.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
@@ -527,20 +506,46 @@
             updateLog(`Found ${matchingID.length} char.tilting containing direct sumnand ${JSON.stringify(Ms)}.`);
         }
 
+        function selectTilts(list, overrideText = "") {
+            // console.log(Ms);
+            let matchingID = [];
+            for (let n of cyto.elements("node")) {
+                n.unselect();
+                n.removeClass("inList");
+            }
+            // console.log(qhs.qhs);
+            for (let i of list) {
+                let node = cyto.getElementById(`${parseInt(i) + 1}`);
+                node.addClass("inList");
+                node.select();
+                matchingID.push(i);
+            }
+            updateLog(overrideText === "" ? `-> Selecting ${matchingID.length} char.tiltings` : overrideText);
+        }
+
+        function resetLog() {
+            logArea.innerHTML = "";
+        }
         function updateLog(str = "") {
             logArea.innerHTML += `\n${str}\n` + disk.log.allFromLastGet.join("\n");
             // console.log(`lastGet: ${disk.log.lastGet}.  logLenL: ${disk.log.log.length}`);
             logArea.scrollTop = logArea.scrollHeight;
         }
 
-        function genQHS() {
-            qhs = A.findAllMAOs();
-            updateLog();
+        function genQHS(data = null) {
+            if (data === null) {
+                qhs = A.findAllMAOs();
+                let poset = coverArrayToCyto(qhs.coverRel);
+                updateLog();
+                cyto = initSVG(document.getElementById("cyQHS"), poset);
+            } else {
+                qhs = data.qhs;
+                cyto = initSVG(document.getElementById("cyQHS"), data.cytoElts, true);
+            }
 
-            var poset = coverArrayToCyto(qhs.coverRel);
-            cyto = initSVG(document.getElementById("cyQHS"), poset);
             cyto.on("tap", "node", (e) => showTilting(e.target));
             document.getElementById("btnSelectModule").disabled = false;
+            document.getElementById("saveJSON-trigger").disabled = false;
         }
 
         function showTilting(node) {
@@ -550,9 +555,116 @@
             addModules(A.charTilting(struc.std, struc.costd), true);
         }
 
+        function partitionQHS() {
+            partition = A.partitionQHS();
+            //slow method, but practically enough
+            let palette = chroma.scale('RdYlBu').colors(partition.length)
+                .map((c) => chroma(c).brighten(1).hex());
+
+            const selElt = document.getElementById("partitionGroup");
+
+            for (let i = 0; i < partition.length; i++) {
+                // console.log(`color ${palette[i]} (type: ${typeof palette[i]})`);
+                let ii = i * (partition.length - 1) % partition.length;
+                for (let elt of partition[i]) {
+                    cyto.getElementById(`${parseInt(elt) + 1}`).style("background-color", palette[ii]);
+                }
+                // TODO: add displacement of node group
+                const item = document.createElement("option");
+                item.appendChild(document.createTextNode(`Group ${i + 1}`));
+                item.setAttribute("value", i);
+                selElt.appendChild(item);
+            }
+            selElt.addEventListener("change", (e) => {
+                if (e.target.value == "") {
+                    for (let n of cyto.elements("node")) {
+                        n.unselect();
+                        n.removeClass("inList");
+                    }
+                } else {
+                    selectTilts(partition[parseInt(e.target.value)]);
+                }
+            });
+        }
+
         function clearHighlight() {
             for (let n of cyto.elements("node")) {
+                n.unselect();
                 n.removeClass("inList");
+            }
+        }
+
+        /***********************
+         *  File IO
+         * 
+         */
+        document.getElementById("genByKupisch").addEventListener("click", (e) => {
+            generate(JSON.parse(document.getElementById("kupisch").value));
+        });
+        document.getElementById("saveJSON").addEventListener("click", (e) => {
+            if (!A.isGentle) {
+                updateLog("Cannot save data when algebra is not gentle");
+                return;
+            }
+            let templog = disk.log.record();
+            disk.resetLog();
+            let templog2 = disk.algebra.log.record();
+            disk.algebra.resetLog();
+            let obj = { "disk": disk, "qhs": qhs, "cytoElts": cyto.json().elements };
+            let blob = new Blob([JSON.stringify(obj)], {
+                type: "application/json;charset=utf-8",
+            });
+            saveAs(blob, document.getElementById("filenameInput").value + ".json");
+            disk.log.load(templog);
+            disk.algebra.log.load(templog2);
+        });
+
+        document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
+            let reader = new FileReader();
+            reader.addEventListener(
+                "load",
+                () => {
+                    let res = JSON.parse(reader.result);
+                    resetLog();
+                    generate(res.disk.algebra.kupisch, res);
+                    genQHS(res);
+                },
+                false
+            );
+            reader.readAsText(event.target.files[0]);
+        });
+
+        /***********************
+         *  accordion handling (Kevin Powell style)
+         * 
+         */
+        const accordion = document.querySelector(".accordion");
+        accordion.addEventListener("click", (e) => {
+            if (e.target.matches(".accordion-trigger")) {
+                const activePanel = e.target.closest(".accordion-panel");
+                if (!activePanel) return;
+                toggleAccordion(activePanel);
+            }
+        });
+
+        function toggleAccordion(panel) {
+            const activeButton = panel.querySelector("button");
+            const activePanel = panel.querySelector(".accordion-content");
+
+            if (activeButton.getAttribute("aria-expanded") === "true") {
+                panel
+                    .querySelector("button")
+                    .setAttribute("aria-expanded", false);
+
+                panel
+                    .querySelector(".accordion-content")
+                    .setAttribute("aria-hidden", true);
+            } else {
+                panel.querySelector("button").setAttribute("aria-expanded", true);
+
+                panel
+                    .querySelector(".accordion-content")
+                    .setAttribute("aria-hidden", false);
             }
         }
 

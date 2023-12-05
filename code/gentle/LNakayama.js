@@ -7,60 +7,68 @@ class LNakayama {
     projs = [];
     injs = [];
     qhsPoset = [];
+    qhsPosetPartitioned = [];
     // TODO: modules = [];
-    constructor(kupisch, logger = null) {
-        this.log = logger == null ? new Logger() : logger;
-        if (!this.isLNakayama(kupisch)) {
-            return this.log;
-        }
-        this.kupisch = kupisch;
-        this.rank = kupisch.length;
-        this.relations = this.computeRelations();
-        this.isGentle = this.relations.reduce(
-            (prev, curr) => prev && curr[1] - curr[0] == 2,
-            true
-        );
-        this.log.add(
-            `Loaded ${this.isGentle ? "" : "non-"}gentle LNakayama of rank ${
-                this.rank
-            }.`
-        );
-        this.projs = kupisch.map((l, i) => [i + 1, i + l]);
-        this.injs = Array.from(Array(this.rank).keys()).map((i) => {
-            let j = i;
-            while (j >= 0) {
-                let top = this.relations.filter((r) => r[1] == j);
-                if (top.length > 0) {
-                    //there is relation from top[0][0]+1 to j<=i
-                    return [top[0][0] + 2, i + 1];
-                } else {
-                    j--;
-                }
+    constructor(
+        { kupisch = [], logger = null, data = null } = { kupisch: [] }
+    ) {
+        if (data !== null) {
+            Object.assign(this, data);
+            this.log = logger == null ? new Logger() : logger;
+        } else {
+            this.log = logger == null ? new Logger() : logger;
+            if (!this.isLNakayama(kupisch)) {
+                return this.log;
             }
-            return [1, i + 1];
-        });
-        // TODO: implement full module cat calculation
-        // this.modules = Array(this.rank);
-        // for (let i = 0; i < this.rank; i++) {
-        //     this.modules[i] = Array(this.projs[i]);
-        //     this.modules[i][this.projs[i] - 1] = {
-        //         top: i + 1,
-        //         soc: this.projs[i][1],
-        //         len: this.kupisch[i],
-        //         proj: true,
-        //         inj: this.isInjective(projs[i]),
-        //         projres: [this.projs],
-        //         pdim: 0,
-        //         injres: [],
-        //         idim: null,
-        //         syzygy: 0,
-        //         cosyzygy: null,
-        //     };
-        // }
+            this.kupisch = kupisch;
+            this.rank = kupisch.length;
+            this.relations = this.computeRelations();
+            this.isGentle = this.relations.reduce(
+                (prev, curr) => prev && curr[1] - curr[0] == 2,
+                true
+            );
+            this.log.add(
+                `Loaded ${
+                    this.isGentle ? "" : "non-"
+                }gentle LNakayama of rank ${this.rank}.`
+            );
+            this.projs = kupisch.map((l, i) => [i + 1, i + l]);
+            this.injs = Array.from(Array(this.rank).keys()).map((i) => {
+                let j = i;
+                while (j >= 0) {
+                    let top = this.relations.filter((r) => r[1] == j);
+                    if (top.length > 0) {
+                        //there is relation from top[0][0]+1 to j<=i
+                        return [top[0][0] + 2, i + 1];
+                    } else {
+                        j--;
+                    }
+                }
+                return [1, i + 1];
+            });
+            // TODO: implement full module cat calculation
+            // this.modules = Array(this.rank);
+            // for (let i = 0; i < this.rank; i++) {
+            //     this.modules[i] = Array(this.projs[i]);
+            //     this.modules[i][this.projs[i] - 1] = {
+            //         top: i + 1,
+            //         soc: this.projs[i][1],
+            //         len: this.kupisch[i],
+            //         proj: true,
+            //         inj: this.isInjective(projs[i]),
+            //         projres: [this.projs],
+            //         pdim: 0,
+            //         injres: [],
+            //         idim: null,
+            //         syzygy: 0,
+            //         cosyzygy: null,
+            //     };
+            // }
+        }
     }
 
     isValidKupisch(kup) {
-        let test = true;
+        let test = kup.length > 1;
         let i = 0;
         while (test && i < kup.length - 1) {
             test = kup[i + 1] >= kup[i] - 1 && kup[i] - 1 >= 1;
@@ -76,6 +84,10 @@ class LNakayama {
         });
         res.push(1);
         return res.flat();
+    }
+
+    resetLog() {
+        this.log = new Logger();
     }
 
     isLNakayama(kup) {
@@ -363,6 +375,71 @@ class LNakayama {
         return b;
     }
 
+    partitionQHS() {
+        if (this.qhsPoset.length == 0) {
+            this.findAllMAOs();
+        }
+
+        if (!this.isGentle) {
+            this.qhsPosetPartitioned = [this.qhsPoset];
+            return this.qhsPosetPartitioned;
+        }
+
+        let parts;
+
+        // no relation across vertex i:=lastNoRel+1 <= this.rank-2
+        let lastNoRel = this.kupisch.findLastIndex((x) => x > 2);
+        let hasRelAtEnd = this.rank > 2 && this.kupisch[this.rank - 3] == 2;
+        if (lastNoRel < this.rank - 1 && !hasRelAtEnd) {
+            // no relation across vertex n-1
+            let lastRel = this.kupisch
+                .slice(0, -2)
+                .findLastIndex((x) => x == 2);
+            // no relation across vertices lastRel+2
+            let n = this.rank - 1 - lastRel;
+            // console.log(`partition into ${n} parts (${n - 1}-th Catalan)`);
+            parts = Array.from({ length: n }, () => []);
+            for (let j = 0; j < this.qhsPoset.qhs.length; j++) {
+                let tilt = this.qhsPoset.qhs[j].charTilt;
+                for (let i = 0; i < n; i++) {
+                    //console.log(`Testing aginst [${this.projs[this.rank - 1 - i]}]`);
+                    if (
+                        this.isIndecDirectSummand(
+                            this.projs[this.rank - 1 - i],
+                            tilt
+                        )
+                    ) {
+                        let M = [...this.projs[this.rank - 1 - i]];
+                        if (M[1] > M[0]) {
+                            M[1]--;
+                            if (this.isIndecDirectSummand(M, tilt)) {
+                                parts[i].push(j);
+                                break;
+                            }
+                        } else {
+                            parts[i].push(j);
+                            break;
+                        }
+                    }
+                }
+            }
+        } else {
+            parts = [[], []];
+            for (let i = 0; i < this.qhsPoset.qhs.length; i++) {
+                let at = isMinimalInPoset(
+                    this.rank - 1,
+                    this.qhsPoset.qhs[i].coverRel
+                )
+                    ? 0
+                    : 1;
+                parts[at].push(i);
+            }
+        }
+        this.qhsPosetPartitioned = parts;
+        // console.log("qhs partition:", parts);
+        return parts;
+    }
+
     twistQHS(i, j, covers, std, costd) {
         let struc = {
             coverRel: [...covers],
@@ -558,6 +635,14 @@ function CoveringRelation(rel) {
         res.push(coveredBy);
     }
     return res;
+}
+
+function isMinimalInPoset(i, coverRel) {
+    return (
+        coverRel.findIndex((coveredBy) => {
+            return coveredBy.indexOf(i) > -1;
+        }) == -1
+    );
 }
 
 function ArraySplit(arr, separator) {

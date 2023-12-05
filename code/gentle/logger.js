@@ -10,6 +10,11 @@ class Logger {
         this.log.push(str);
     }
 
+    load(arr) {
+        this.log = arr;
+        this.lastGet = arr.length - 1;
+    }
+
     get length() {
         return this.log.length;
     }
@@ -36,5 +41,10 @@ class Logger {
     record(from = 0, to = null) {
         this.lastGet = to != null && this.lastGet > to ? to : this.lastGet;
         return to == null ? this.log.slice(from) : this.log.slice(from, to);
+    }
+
+    reset() {
+        this.log = [];
+        this.lastGet = -1;
     }
 }

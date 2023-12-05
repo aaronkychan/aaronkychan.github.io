@@ -14,7 +14,27 @@ let talks = [
         //     psw: "217157",
         // },
         // record: {
-        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        //     slides: `TNA/2024/Fujita-.pdf`,
+        // },
+    },
+    {
+        ymd: "2024-02-27",
+        start: "1500",
+        duration: 90,
+        title: `TBC`,
+        speaker: "Ivan Losev",
+        web: `https://gauss.math.yale.edu/~il282/`,
+        affil: "Yale",
+        abstract: `TBC`,
+        lang: "en",
+        access: {
+            custom: ` ~Hybrid~<br> `,
+            customInfo: ` Online: Zoom<br>Location: University of Tokyo (TBC)`,
+            // id: "814 9648 9424",
+            // psw: "217157",
+        },
+        // record: {
+        //     slides: `TNA/2023/Losev-.pdf`,
         // },
     },
     {
@@ -27,12 +47,13 @@ let talks = [
         affil: "University of Science and Technology of China",
         abstract: `TBC`,
         lang: "en",
-        // access: {
-        //     id: "814 9648 9424",
-        //     psw: "217157",
-        // },
+        access: {
+            link: "https://us02web.zoom.us/j/87933176930",
+            custom: ` Zoom `,
+            customInfo: `<b>ID</b> 879 3317 6930 <b>Password</b> 103671`,
+        },
         // record: {
-        //     slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
+        //     slides: `TNA/2023/Chen_Xiaofa-Exact_dg_cat.pdf`,
         // },
     },
     {
@@ -669,15 +690,21 @@ for (let talk of talks) {
                       ""
                   )}`
                 : "";
-        let label = "custom" in talk.access ? talk.access.custom : "Zoom";
-        let showlink = inSchedule
-            ? `[&nbsp;<a href="${linkurl}" target="_blank">${label}</a>&nbsp;]&nbsp;`
-            : `<b>Zoom </b>`;
 
-        let accessString =
-            linkurl === ""
-                ? "TBC"
-                : `${showlink}<b>ID</b>&nbsp;${talk.access.id}&nbsp;`;
+        let label = "custom" in talk.access ? talk.access.custom : "Zoom";
+        let accessString = inSchedule
+            ? linkurl.length > 1
+                ? `[&nbsp;<a href="${linkurl}" target="_blank">${label}</a>&nbsp;]&nbsp;`
+                : label
+            : `Meeting ended `;
+
+        accessString +=
+            "customInfo" in talk.access ? talk.access.customInfo : "";
+
+        accessString +=
+            "id" in talk.access
+                ? `<b>Zoom ID</b>&nbsp;${talk.access.id}&nbsp;`
+                : ``;
 
         accessString +=
             "psw" in talk.access

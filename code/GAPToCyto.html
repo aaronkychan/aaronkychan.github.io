@@ -128,10 +128,8 @@
                 <input type="button" value="Clear quiver" onclick="document.getElementById('inQuiver').value ='';" />
                 &nbsp;&nbsp;QPA
                 quiver (with relation)<br />
-                <textarea id="inQuiver" value="" cols="50" rows="5"
-                    placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...]);[...relations...]">
-                    Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);
-                    [a*b]
+                <textarea id="inQuiver" value="" cols="50" rows="4"
+                    placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...]);[...relations...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);[a*b]
                 </textarea>
             </div>
 
@@ -139,7 +137,7 @@
                 <input type="button" value="Clear relations"
                     onclick="document.getElementById('inRelation').value ='';" />
                 &nbsp;&nbsp;Relation array:<br />
-                <textarea id="inRelation" value="" cols="50" rows="5" placeholder="[a*b,...]"></textarea>
+                <textarea id="inRelation" value="" cols="10" rows="4" placeholder="[a*b,...]"></textarea>
             </div>
         </fieldset>
         <div id="midCol">

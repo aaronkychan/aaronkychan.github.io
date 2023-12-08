@@ -583,6 +583,8 @@
         }
 
         function clearHighlight() {
+            const gps = document.querySelectorAll("#partitionGroup > option:not(:first-child)");
+            for (let g of gps) { g.remove(); }
             for (let n of cyto.elements("node")) {
                 n.unselect();
                 n.removeClass("inList");

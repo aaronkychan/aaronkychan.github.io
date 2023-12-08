@@ -386,7 +386,6 @@ class LNakayama {
         }
 
         let parts;
-
         // no relation across vertex i:=lastNoRel+1 <= this.rank-2
         let lastNoRel = this.kupisch.findLastIndex((x) => x > 2);
         let hasRelAtEnd = this.rank > 2 && this.kupisch[this.rank - 3] == 2;
@@ -424,15 +423,22 @@ class LNakayama {
                 }
             }
         } else {
-            parts = [[], []];
-            for (let i = 0; i < this.qhsPoset.qhs.length; i++) {
-                let at = isMinimalInPoset(
-                    this.rank - 1,
-                    this.qhsPoset.qhs[i].coverRel
-                )
-                    ? 0
-                    : 1;
-                parts[at].push(i);
+            // has relation across vertex n-1
+            // num tailing vertices with full relation = this.rank-lastNoRel-2
+            let n = this.rank - 1 - lastNoRel;
+            parts = Array.from({ length: n }, () => []);
+            for (let j = 0; j < this.qhsPoset.qhs.length; j++) {
+                let tilt = this.qhsPoset.qhs[j].charTilt;
+                let done = false;
+                for (let i = 0; i < n - 1; i++) {
+                    let S = [this.rank - i, this.rank - i];
+                    if (this.isIndecDirectSummand(S, tilt)) {
+                        parts[i].push(j);
+                        done = true;
+                        break;
+                    }
+                }
+                if (!done) parts[n - 1].push(j);
             }
         }
         this.qhsPosetPartitioned = parts;

@@ -72,21 +72,48 @@ const pa = (msg) => {
     ).innerHTML = `<span style='color:red; font-size: 20pt'>${msg}</span>`;
 };
 
-function translateQPA() {
-    var [quiverIn, relationStr] = document
-        .getElementById("inQuiver")
-        .value.split(";");
+const stripLineBreaksAndSpaces = (str) =>
+    str.replace(/(\\\r\n|\\\r|\\\n)/, "").replace(/\s+/g, "");
 
-    quiverIn = quiverIn.replace(/(\\\r\n|\\\r|\\\n)/g, "");
-    // quiverIn = quiverIn.replace(/;/g, "");
+const matchDeepestBrackets = (str) => str.match(/\[([^\[\]])*\]/g);
+
+function detectRelation(str) {
+    // brackets that do not contain brackets inside
+    let deepest = matchDeepestBrackets(str);
+    console.log(deepest);
+    // match a double bracket
+    // ! there should be only one such; code breaks if this is not the case
+    let s = str.search(/\[\s*\[/),
+        t = str.search(/\]\s*\]/);
+    // the sliced string contains the list of arrays inside the 2-dim array
+    // without the outermost bracket
+    let m = matchDeepestBrackets(
+        str.slice(s + 1, t + str.match(/\]\s*\]/)[0].length - 1)
+    ).length;
+
+    // bad if deepest.length-m is neither 2 nor 1
+    // console.log("deepest.len - level2.len = ", deepest.length - m);
+    s = deepest.length - m == 2 ? str.search(/\[([^\[\]])*\]\s*$/) : str.length;
+    return [str.slice(0, s), str.slice(s)];
+}
+
+function translateQPA() {
+    var [quiverIn, relationStr] = detectRelation(
+        document.getElementById("inQuiver").value
+    );
+
+    console.log("quiver: ", quiverIn);
+    console.log("relations: ", relationStr);
+
+    quiverIn = stripLineBreaksAndSpaces(quiverIn);
+    quiverIn = quiverIn.replace(/;/g, "");
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
     var quiverQPA = JSON.parse(quiverIn);
-    relationStr = relationStr.replace(/\s+/, "");
 
     // Forbid too many vertices
-    if (quiverQPA[0].length > 25) {
-        pa("More than 25 vertices! Abort translation.");
+    if (quiverQPA[0].length > 100) {
+        pa("More than 100 vertices! Abort translation.");
         // document.getElementById("outTxtBox").innerHTML =
         //     "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
         clearAll();
@@ -127,7 +154,7 @@ function translateQPA() {
     //var relns = [];
     // strip brackets and whitespaces
     relationStr =
-        relationStr == null
+        relationStr === ""
             ? document.getElementById("inRelation").value
             : relationStr;
     document.getElementById("inRelation").value = relationStr;

@@ -25,7 +25,7 @@
 <body>
     <div id="container">
         <div id="control" style="margin:5px;">
-            <div>
+            <div style="display:flex; flex-direction: column; justify-content: space-between;">
                 <div>
                     ▪ Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
                     <br>
@@ -33,41 +33,36 @@
                         size="27">
                     &nbsp;<button id="genByKupisch">Generate</button>
                     <br>
-                    ▪ By integer composition (only gentle):
+                    <!-- ▪ By integer composition (only gentle):
                     <input type="text" name="zcomp" id="zcomp" value="[2,3,1]" size="10">
-                    &nbsp;<button onclick="generateFromZComp()">Generate</button>
+                    &nbsp;<button onclick="generateFromZComp()">Generate</button> -->
+                    <hr>
                 </div>
-                <hr>
                 <div style="display:block;">
                     Has direct summands: <input type="text" id="selectModule" cols="20"
                         placeholder="[[1,3],[2,2]]">&nbsp;
                     <button id="btnSelectModule" onclick="filtTilt()" disabled>Filter</button>
                     <br>
-                    <div style="display:inline-block">
-                        <button onclick="partitionQHS()">Partition QHS</button>
-                        -&gt; Select group <select name="partitionGroup" id="partitionGroup">
-                            <option value=""> deselect all </option>
-                        </select>
+                    <div style="display:flex; flex-direction:row;justify-content: space-between; margin-top:2px;">
+                        <div>
+                            <button onclick="partitionQHS()">Partition QHS</button>
+                            -&gt; Select group <select name="partitionGroup" id="partitionGroup">
+                                <option value=""> deselect all </option>
+                            </select>
+                        </div>
+                        <button onclick="clearHighlight()">Clear highlight</button>
                     </div>
-                    <br>
-                    <button onclick="clearHighlight()">Clear selection</button>
+                    <hr>
+                </div>
+                <div style="display:block;margin-left: auto; margin-right:0;">
+                    <button onclick="cyto.fit()">Fit qhs(A) to
+                        canvas</button>
+                    <!-- <button onclick="svgScaleToggle()">Resize disk</button> -->
                 </div>
             </div>
 
-
-            <div style="display:flex; flex-direction:column;">
-                <div style="display:block;">
-                    <!-- <button onclick="genQHS()">Gen all qh structure</button><br> -->
-                    <button onclick="cyto.fit()">Fit canvas</button>
-                    <br>
-
-                    <!-- <button onclick="genTilt()" disabled>Gen all gen. tilting (TODO)</button> -->
-                </div>
-
-                <!-- <button onclick="removeModule()">Remove</buttononclick> -->
-            </div>
             <div>
-                <textarea name="log" id="log" cols="70" rows="8" style="margin:5px;overflow:scroll">~Log~</textarea>
+                <textarea name="log" id="log" cols="70" rows="10" style="margin:1px;overflow:scroll">~Log~</textarea>
             </div>
 
             <div class="accordion">
@@ -89,7 +84,7 @@
                 <div id="tikzTranslate-panel" class="accordion-panel">
                     <button id="tikzTranslate-trigger" class="accordion-trigger" aria-expanded="false"
                         aria-controls="tikzTranslate-content">
-                        Translate to TikZ
+                        Disk picture to TikZ
                     </button>
 
                     <div class="accordion-content" role="region" aria-labelledby="tikzTranslate-trigger"
@@ -558,7 +553,7 @@
         function partitionQHS() {
             partition = A.partitionQHS();
             //slow method, but practically enough
-            let palette = chroma.scale('RdYlBu').colors(partition.length)
+            let palette = chroma.scale('RdYlBu').colors(Math.min(partition.length, 3))
                 .map((c) => chroma(c).brighten(1).hex());
 
             const selElt = document.getElementById("partitionGroup");
@@ -591,6 +586,7 @@
             for (let n of cyto.elements("node")) {
                 n.unselect();
                 n.removeClass("inList");
+                n.style("background-color", "#ffff00");
             }
         }
 
@@ -633,6 +629,19 @@
             );
             reader.readAsText(event.target.files[0]);
         });
+
+        /***********************
+         *  SVG div zooming
+         * 
+         */
+        // var svgScale = 1;
+        // document.getElementById("svg").addEventListener("wheel", (e) => {
+        //     e.preventDefault();
+        //     svgScale += event.deltaY * -0.001;
+        //     svgScale = Math.min(Math.max(0.125, svgScale), 1);
+        //     // Apply scale transform
+        //     document.getElementById("svg").style.transform = `scale(${svgScale})`;
+        // });
 
         /***********************
          *  accordion handling (Kevin Powell style)

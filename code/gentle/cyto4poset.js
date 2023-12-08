@@ -91,8 +91,8 @@ function initSVG(container, data, isPreset = false) {
                 selector: "node:selected",
                 style: {
                     "background-color": "#fa5252",
-                    "border-width": "2px",
-                    "border-color": "#fa5252",
+                    "border-width": "3px",
+                    "border-color": "#000",
                     width: 30,
                     height: 30,
                 },

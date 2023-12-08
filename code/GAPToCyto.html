@@ -108,7 +108,7 @@
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script> -->
     <script src=" https://cdn.jsdelivr.net/npm/cytoscape-svg@0.4.0/cytoscape-svg.min.js" defer></script>
     <script src=" https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js "></script>
-    <script src="./GAPToCyto.js" defer></script>
+    <script src="./GAPToCyto.min.js" defer></script>
 </head>
 
 <body>
@@ -129,14 +129,15 @@
                 &nbsp;&nbsp;QPA
                 quiver (with relation)<br />
                 <textarea id="inQuiver" value="" cols="50" rows="4"
-                    placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...]);[...relations...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]]);[a*b]
+                    placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...])\n[...relations...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]])
+[a*b]
                 </textarea>
             </div>
 
             <div>
                 <input type="button" value="Clear relations"
                     onclick="document.getElementById('inRelation').value ='';" />
-                &nbsp;&nbsp;Relation array:<br />
+                &nbsp;&nbsp;Relation array (obsolete if relations are detected in quiver input)<br />
                 <textarea id="inRelation" value="" cols="10" rows="4" placeholder="[a*b,...]"></textarea>
             </div>
         </fieldset>
@@ -184,9 +185,9 @@
         <div style="border:1px #000000 solid; padding:6px; position:relative; top:2px">
             For quiver (with relations):
             <div style="font-family: 'Courier New', Courier, monospace; margin-top:5px; margin-bottom:5px "> Quiver( [..
-                list of vertices ..], [..[src,tar,arr_name]..] );[ ... list of relations ... ] </div>
+                list of vertices ..], [..[src,tar,arr_name]..] ) [ ... list of relations ... ] </div>
             "<span style="font-family: 'Courier New', Courier, monospace;">Quiver()</span>" can be omitted. <br>
-            Relations must be after a semi-colon (possibly with space or newline after). <br>
+            Relations must be the last array and cannot be 2-dimensional. <br>
             Relations in the "QPA Quiver code" has priority over those in "Relation code".
         </div>
         <!-- <div

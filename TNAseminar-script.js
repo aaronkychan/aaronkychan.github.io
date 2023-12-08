@@ -41,11 +41,11 @@ let talks = [
         ymd: "2023-12-14",
         start: "1030",
         duration: 90,
-        title: `TBC`,
+        title: `On exact dg categories`,
         speaker: "Xiaofa Chen",
         web: `http://home.ustc.edu.cn/~cxf2011/`,
         affil: "University of Science and Technology of China",
-        abstract: `TBC`,
+        abstract: ` In this talk, I will give an introduction to exact dg categories and then explore their application to various correspondences in representation theory. We will generalize the Auslander–Iyama correspondence, the Iyama–Solberg correspondence, and a correspondence considered in a paper by Iyama in 2005 to the setting of exact dg categories. The slogan is that solving correspondence-type problems becomes easier using dg categories, and interesting phenomena emerge when the dg category is concentrated in degree zero or is abelian.`,
         lang: "en",
         access: {
             link: "https://us02web.zoom.us/j/87933176930",

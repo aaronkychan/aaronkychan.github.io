@@ -552,8 +552,9 @@
 
         function partitionQHS() {
             partition = A.partitionQHS();
+            updateLog();
             //slow method, but practically enough
-            let palette = chroma.scale('RdYlBu').colors(Math.min(partition.length, 3))
+            let palette = chroma.scale('RdYlBu').colors(Math.max(partition.length, 3))
                 .map((c) => chroma(c).brighten(1).hex());
 
             const selElt = document.getElementById("partitionGroup");

@@ -233,7 +233,7 @@ class LNakayama {
         //         ? `💭 No hom [${M}]->[${N}] => Coker=0`
         //         : `💭 Coker( [${M}]->[${N}] ) = [${C}]`
         // );
-        return C;
+        return C[0] > C[1] ? [0, 0] : C;
     }
 
     computeForModule(M) {
@@ -358,7 +358,9 @@ class LNakayama {
     }
 
     isIndecDirectSummand(M, arrN) {
-        return arrN.reduce((prev, N) => prev || this.isIsom(M, N), false);
+        return this.isZero(M)
+            ? arrN
+            : arrN.reduce((prev, N) => prev || this.isIsom(M, N), false);
     }
 
     isDirectSummand(arrM, arrN) {
@@ -396,36 +398,37 @@ class LNakayama {
                 .findLastIndex((x) => x == 2);
             // no relation across vertices lastRel+2
             let n = this.rank - 1 - lastRel;
-            // console.log(`partition into ${n} parts (${n - 1}-th Catalan)`);
-            parts = Array.from({ length: n }, () => []);
-            for (let j = 0; j < this.qhsPoset.qhs.length; j++) {
-                let tilt = this.qhsPoset.qhs[j].charTilt;
-                for (let i = 0; i < n; i++) {
-                    //console.log(`Testing aginst [${this.projs[this.rank - 1 - i]}]`);
-                    if (
-                        this.isIndecDirectSummand(
-                            this.projs[this.rank - 1 - i],
-                            tilt
-                        )
-                    ) {
-                        let M = [...this.projs[this.rank - 1 - i]];
-                        if (M[1] > M[0]) {
-                            M[1]--;
-                            if (this.isIndecDirectSummand(M, tilt)) {
-                                parts[i].push(j);
-                                break;
-                            }
-                        } else {
-                            parts[i].push(j);
-                            break;
-                        }
-                    }
-                }
-            }
+            this.log.add(
+                `Catalan-type partition: relationless tail of length ${n}`
+            );
+            parts = this.projs
+                .slice(-n)
+                .reverse()
+                .map((P, i) => {
+                    let Q = this.Coker([this.rank, this.rank], P);
+                    // TRICK! use flatMap to get indices of filtered elements
+                    let re = this.qhsPoset.qhs.flatMap(({ charTilt }, j) =>
+                        this.isDirectSummand([P, Q], charTilt) ? [j] : []
+                    );
+                    this.log.add(
+                        `(Group ${i}) reduction at [${P}]+[${Q}] : ${re.length} modules`
+                    );
+                    return re;
+                });
         } else {
             // has relation across vertex n-1
             // num tailing vertices with full relation = this.rank-lastNoRel-2
             let n = this.rank - 1 - lastNoRel;
+            // Array.from({length: n}, (_,i)=>[this.rank-i,this.rank-i])
+            //     .map((S)=>{
+            //         let re = this.qhsPoset.qhs.flatMap(({ charTilt }, j) =>
+            //             this.isIndecDirectSummand(S, charTilt) ? [j] : []
+            //         );
+            //         this.log.add(
+            //             `(Group ${i}) reduction at [${S}] : ${re.length} modules`
+            //         );
+            //         return re;
+            // })
             parts = Array.from({ length: n }, () => []);
             for (let j = 0; j < this.qhsPoset.qhs.length; j++) {
                 let tilt = this.qhsPoset.qhs[j].charTilt;
@@ -440,6 +443,16 @@ class LNakayama {
                 }
                 if (!done) parts[n - 1].push(j);
             }
+            parts.slice(0, -1).map((p, i) => {
+                this.log.add(
+                    `(Group ${i}) reduction at S(${this.rank - i}): ${
+                        p.length
+                    } modules`
+                );
+            });
+            this.log.add(
+                `(Group ${n}) all others: ${parts[n - 1].length} modules`
+            );
         }
         this.qhsPosetPartitioned = parts;
         // console.log("qhs partition:", parts);

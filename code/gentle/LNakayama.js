@@ -419,16 +419,6 @@ class LNakayama {
             // has relation across vertex n-1
             // num tailing vertices with full relation = this.rank-lastNoRel-2
             let n = this.rank - 1 - lastNoRel;
-            // Array.from({length: n}, (_,i)=>[this.rank-i,this.rank-i])
-            //     .map((S)=>{
-            //         let re = this.qhsPoset.qhs.flatMap(({ charTilt }, j) =>
-            //             this.isIndecDirectSummand(S, charTilt) ? [j] : []
-            //         );
-            //         this.log.add(
-            //             `(Group ${i}) reduction at [${S}] : ${re.length} modules`
-            //         );
-            //         return re;
-            // })
             parts = Array.from({ length: n }, () => []);
             for (let j = 0; j < this.qhsPoset.qhs.length; j++) {
                 let tilt = this.qhsPoset.qhs[j].charTilt;

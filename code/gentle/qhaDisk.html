@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js "></script>
     <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
     <script src=" https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js "></script>
@@ -557,13 +557,27 @@
             let palette = chroma.scale('RdYlBu').colors(Math.max(partition.length, 3))
                 .map((c) => chroma(c).brighten(1).hex());
 
-            const selElt = document.getElementById("partitionGroup");
 
+            const selElt = document.getElementById("partitionGroup");
             for (let i = 0; i < partition.length; i++) {
                 // console.log(`color ${palette[i]} (type: ${typeof palette[i]})`);
                 let ii = i * (partition.length - 1) % partition.length;
+                // const style = document.createElement('style');
+                // style.type = 'text/css';
+                // style.innerHTML = `.vxGp${i} { background-color: #fff; }`;
+                // document.getElementsByTagName('head')[0].appendChild(style);
+
                 for (let elt of partition[i]) {
-                    cyto.getElementById(`${parseInt(elt) + 1}`).style("background-color", palette[ii]);
+                    let node = cyto.getElementById(`${parseInt(elt) + 1}`);
+                    // node.addClass(`vxGp${i}`); // addClass doesn't really apply style
+                    node.style("background-color", palette[ii]);
+
+                    // bad behaviour with white color
+                    // arrow tip doesn't change color....
+                    // let edges = node.edgesWith(`.vxGp${i}`);
+                    // for (let e of edges) {
+                    //     e.style("line-color", palette[ii])
+                    // }
                 }
                 // TODO: add displacement of node group
                 const item = document.createElement("option");

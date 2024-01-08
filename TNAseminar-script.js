@@ -3,16 +3,17 @@ let talks = [
         ymd: "2024-01-11",
         start: "1030",
         duration: 90,
-        title: `TBC`,
+        title: `量子Grothendieck環とその量子団代数構造について`,
         speaker: "Ryo Fujita 藤田 遼",
         web: `https://www.kurims.kyoto-u.ac.jp/ja/list/fujita.html`,
         affil: "RIMS Kyoto 京都大学数理解析研究所",
-        abstract: `TBC`,
+        abstract: `量子Grothendieck環は量子ループ代数の有限次元表現の成すモノイダル圏のGrothendieck環の1パラメータ変形であり、既約表現のq指標の決定アルゴリズムに関する予想（Kazhdan-Lusztig型予想）の定式化に用いられる。この予想はADE型の場合には箙多様体の幾何を用いて証明されるが、残りのBCFG型の場合は現時点で未解決である。近年、量子ループ代数の有限次元表現論において、団代数のモノイダル圏化が盛んに研究されている。本講演ではその量子アナローグとして、量子Grothendieck環が量子団代数の構造を持ち、到達可能な（＝団単項式に対応する）既約表現に対して新たにKazhdan-Lusztig型予想が正しいことを説明する。これはDavidHernandez氏、Se-jin Oh氏、大矢浩徳氏との共同研究(arXiv:2304.02562)に基づく。
+        `,
         lang: "jp",
-        // access: {
-        //     id: "814 9648 9424",
-        //     psw: "217157",
-        // },
+        access: {
+            id: "843 9425 6742",
+            psw: "199578",
+        },
         // record: {
         //     slides: `TNA/2024/Fujita-.pdf`,
         // },
@@ -27,8 +28,9 @@ let talks = [
         abstract: `See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
         lang: "en",
         access: {
-            custom: ` ~Hybrid~ <br> `,
-            customInfo: ` <b>Online</b>: TBC <br><b>Location</b>: Nagoya University, School of Science + Graduate School of Mathematics`,
+            custom: ` ~Hybrid~<br> `,
+            customInfo: `&nbsp;<b>Online</b>: <a href="
+            https://u-tokyo-ac-jp.zoom.us/j/82234946547">Zoom</a> <b>ID</b> 822 3494 6547 <b>Password</b> 920218 <br>&nbsp;<b>Location</b>: Nagoya University. &nbsp;See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
             // id: "814 9648 9424",
             // psw: "217157",
         },
@@ -48,7 +50,7 @@ let talks = [
         lang: "en",
         access: {
             custom: ` ~Hybrid~<br> `,
-            customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/87435810573">Zoom</a> <b>ID</b> 874 3581 0573 <b>Password</b> 957963 <br>&nbsp;<b>Location</b>:<br>&nbsp;Room 002, Graduate School of Mathematical Sciences, University of Tokyo<br>&nbsp;東京大学 大学院数理科学研究科 002号室`,
+            customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/87435810573">Zoom</a> <b>ID</b> 874 3581 0573 <b>Password</b> 957963 <br>&nbsp;<b>Location</b>: 東京大学大学院数理科学研究科 002号室<br/>&nbsp;Graduate School of Mathematical Science Room 002, University of Tokyo`,
             // id: "814 9648 9424",
             // psw: "217157",
         },
@@ -64,11 +66,23 @@ let talks = [
         speaker: "Kaveh Mousavand",
         web: `https://kavehmousavand.wixsite.com/math`,
         affil: "OIST",
-        abstract: `TBC`,
+        abstract: `In these talks, I try to accomplish two goals: First, to give a summary
+        of some new developments in the study of bricks and their connections to several open
+        problems/conjectures in $\tau$-tilting theory, stability conditions and related topics.
+        Second, to share some concrete problems that can be viewed as the middle steps towards a
+        systematic treatment of these conjectures. These talks will be primarily based on my earlier
+        work in my PhD thesis and a series of recent joint papers with Charles Paquette. Our
+        treatment of bricks relies on the fruitful interplays between the algebraic and geometric
+        aspects of representation theory of finite dimensional algebras. While doing so, we revisit
+        some classical notions and problems (such as generic modules and the celebrated
+        Brauer-Thrall conjectures) and then use some new results on the behavior of bricks to give
+        new characterizations of some classical families of algebras and study their modern
+        counterparts.`,
         lang: "en",
         access: {
             custom: ` ~Hybrid~<br> `,
-            customInfo: `&nbsp;<b>Online</b>: TBC <br>&nbsp;<b>Location</b>: Nagoya University<br/>&nbsp;Talk 1: A328 School of Science, Talk 2: B114 School of Science <br>&nbsp;See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
+            customInfo: `&nbsp;<b>Online</b>: <a href="
+            https://u-tokyo-ac-jp.zoom.us/j/82234946547">Zoom</a> <b>ID</b> 822 3494 6547 <b>Password</b> 920218 <br>&nbsp;<b>Location</b>: Nagoya University<br/>&nbsp;Talk 1: A328 School of Science, Talk 2: B114 School of Science <br>&nbsp;See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
             // id: "814 9648 9424",
             // psw: "217157",
         },

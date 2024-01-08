@@ -129,16 +129,20 @@ class LNakayama {
     // code is extracted and modified from QPA
     computeRelations() {
         let rels = [];
-        let i = 0;
-        while (this.kupisch[i] < this.rank - i) {
+        // let i = 0;
+        for (let i = 0; i < this.rank - 2; i++) {
             if (this.kupisch[i] - 1 != this.kupisch[i + 1]) {
                 rels.push([i, i + this.kupisch[i]]);
-                i = i + this.kupisch[i] - 1;
-            } else {
-                i++;
             }
         }
+        // while (this.kupisch[i] < this.rank - i) {
+        //         // i = i + this.kupisch[i] - 1;
+        //     // } else {
+        //         // i++;
+        //     }
+        // }
         this.relations = rels;
+        this.log.add(`Relations [src vx,tgt vx]: ${JSON.stringify(rels)}`);
         return rels;
     }
 

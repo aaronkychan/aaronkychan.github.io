@@ -102,13 +102,25 @@ function translateQPA() {
         document.getElementById("inQuiver").value
     );
 
-    console.log("quiver: ", quiverIn);
-    console.log("relations: ", relationStr);
+    // console.log("quiver: ", quiverIn);
+    // console.log("relations: ", relationStr);
 
     quiverIn = stripLineBreaksAndSpaces(quiverIn);
     quiverIn = quiverIn.replace(/;/g, "");
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
-    quiverIn = "[" + quiverIn.replace(/\)(\s*)$/, "") + "]";
+    quiverIn = quiverIn.replace(/\)(\s*)$/, "");
+    console.log(quiverIn);
+    if (quiverIn[0] != "[") {
+        let numVx = parseInt(quiverIn.split(",", 1));
+        if (numVx > 0) {
+            let arrv = Array.from({ length: numVx }, (_, i) => i + 1);
+            quiverIn =
+                JSON.stringify(arrv) + quiverIn.slice(quiverIn.indexOf(","));
+        } else {
+            console.log("not a number before first comma");
+        }
+    }
+    quiverIn = "[" + quiverIn + "]";
     var quiverQPA = JSON.parse(quiverIn);
 
     // Forbid too many vertices
@@ -123,7 +135,7 @@ function translateQPA() {
     // *** translate vx's***
     var forceID = document.getElementById("forceID").checked;
     var vxQPA = quiverQPA[0].map((v, i) =>
-        forceID ? i + 1 : v.replace(/"/g, "")
+        forceID ? i + 1 : `${v}`.replace(/"/g, "")
     );
     var vx = vxQPA.map((v) => {
         return {

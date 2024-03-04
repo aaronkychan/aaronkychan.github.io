@@ -1,5 +1,23 @@
 let talks = [
     {
+        ymd: "2024-03-14",
+        start: "1030",
+        duration: 90,
+        title: `Lattices of torsion classes in representation theory of finite groups`,
+        speaker: "Arashi Sakai 酒井 嵐士",
+        affil: "Nagoya University 名古屋大学",
+        abstract: `多元環の表現論においてtorsion classは古くから重要な部分圏の1つである。特にtorsion classの包含関係から得られるtorsion classの束は近年盛んに研究されており、wide intervalやbrick labellingはさまざまな良い性質が知られている。本講演では有限群の表現論においてtorsion classの束を観察する。具体的には有限群とその正規部分群の群環上の有限生成加群の圏においてtorsion classの束をそれぞれ考え、表現の誘導と制限がこれらの間に良い対応を誘導することを紹介する。また小塩-小境による台tau傾加群と誘導関手に関する結果、有限群の表現論における基本的な結果であるCliffordの定理が上記の良い対応とどのように関連するかを説明する。本講演は東京理科大学の小境雄太氏との共同研究(arXiv:2312.07299)に基づく。
+        `,
+        lang: "jp",
+        // access: {
+        //     id: "843 9425 6742",
+        //     psw: "199578",
+        // },
+        // record: {
+        //     slides: `TNA/2024/Fujita-.pdf`,
+        // },
+    },
+    {
         ymd: "2024-01-11",
         start: "1030",
         duration: 90,

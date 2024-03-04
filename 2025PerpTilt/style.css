@@ -1,0 +1,534 @@
+/* colors */
+
+body {
+    --background-color: hsl(0, 0%, 100%);
+    --text-color: hsl(0, 0%, 25%);
+    --text-color-light: hsl(0, 0%, 60%);
+    --language-link-color: hsl(0, 0%, 60%);
+    --object-color: hsl(200, 100%, 25%);
+    --tag-text-color-light: hsl(0, 0%, 60%);
+    --numberoffilter-color: hsl(0, 0%, 100%);
+    --h1-color: hsl(0, 0%, 30%);
+    --legend-border-color: hsl(0,0%,60%);
+}
+
+html{scroll-behavior:smooth}
+
+/*--------------------------------------------------*/
+/* all */
+/*--------------------------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+
+    /* text-decoration: none; */
+    list-style-type: none;
+}
+
+/*--------------------------------------------------*/
+/* body */
+/*--------------------------------------------------*/
+
+body {
+    -webkit-text-size-adjust: 100%;
+
+    font-size: 6px;
+    font-family: sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+
+    /*	transition-property: background;*/
+    /*	transition-duration: 0.5s;*/
+}
+
+abbr[title] {
+    position: relative;
+    /* ensure consistent styling across browsers */
+    text-decoration: underline dotted; 
+}
+abbr[title]:hover::after,
+abbr[title]:focus::after {
+    content: attr(title);
+}
+
+/*--------------------------------------------------*/
+/* main */
+/*--------------------------------------------------*/
+
+div#main,
+div#main_en,
+div#main_ja {
+    width: var(--header-main-width);
+    margin: 0 auto 100px;
+    font-size: 16pt;
+    text-align: center;
+}
+
+/*--------------------------------------------------*/
+/* h1 */
+/*--------------------------------------------------*/
+
+h1 {
+    margin: 30px 0 20px;
+
+    text-align: center;
+    font-size: 45px;
+    font-weight: bold;
+    color: var(--h1-color);
+}
+
+@media screen and (max-width: 800px) {
+    h1 {
+        margin: 30px 0 45px;
+
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    h1 {
+        margin: 25px 0 40px;
+
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        margin: 20px 0 30px;
+
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    h1 {
+        margin: 0px 0 25px;
+
+        font-size: 25px;
+    }
+}
+
+/*--------------------------------------------------*/
+/* h2 h3 */
+/*--------------------------------------------------*/
+
+h2 {
+    margin: 35px 0 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    font-size: 25px;
+    font-weight: lighter;
+
+    transition-property: margin;
+    transition-duration: 0.5s;
+}
+
+h2::before,
+h2::after {
+    flex: auto;
+    min-width: 50px;
+    height: 1px;
+
+    display: block;
+    content: "";
+
+    background-color: var(--object-color);
+}
+
+h2::before {
+    margin-right: 25px;
+}
+
+h2::after {
+    margin-left: 25px;
+}
+
+h3 {
+    margin: 20px 0 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+h3::before,
+h3::after {
+    flex: auto;
+    max-width: 50px;
+    height: 1px;
+
+    display: block;
+    content: "";
+
+    background-color: var(--object-color);
+}
+
+h3::before {
+    margin-right: 25px;
+}
+
+h3::after {
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 800px) {
+
+    h2,
+    h3 {
+        margin: 40px 0 25px;
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    h2,
+    h3 {
+        margin: 30px 0 25px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    h2,
+    h3 {
+        margin: 25px 0 20px;
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    h2,
+    h3 {
+        margin: 20px 0 20px;
+        font-size: 16px;
+    }
+}
+
+/*--------------------------------------------------*/
+/* h4 */
+/*--------------------------------------------------*/
+
+h4 {
+    margin: 30px 0 20px;
+
+    font-size: 18px;
+
+    /*	background-color: hsl(80, 100%, 95%);*/
+}
+
+h4.fixedwidth {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: left;
+}
+
+@media screen and (max-width: 500px) {
+    h4 {
+        font-size: 15px;
+    }
+
+    h4.fixedwidth {
+        text-align: center;
+    }
+}
+
+/*--------------------------------------------------*/
+/* fieldset */
+/*--------------------------------------------------*/
+
+fieldset {
+        /*
+        should change to display:grid for cleverer media query
+        width: fit-content;
+        width: -moz-fit-content;
+        max-width: 900px;*/
+        width:280px;
+        padding: 0 2em ;
+        margin: 25px auto 25px;
+    
+        text-align: left;
+        font-size: 16px;
+
+    /*	background-color: hsl(80, 100%, 95%);*/
+}
+
+
+@media screen and (min-width: 400px) {
+    fieldset {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    fieldset {
+        width: 420px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    fieldset {
+        width: 720px;
+    }
+}
+
+@media screen and (min-width: 980px) {
+    fieldset {
+        width: 900px;
+    }
+}
+
+fieldset legend {
+    font-size: 16px;
+    padding: 0.3em 0.5em;
+    border: 1px solid var(--legend-border-color);
+    /* text-decoration:underline; */
+    font-weight: bold;
+    line-height: 130%;
+}
+
+
+@media screen and (max-width: 500px) {
+    fieldset legend {
+        font-size: 15px;
+    }
+}
+
+/*--------------------------------------------------*/
+/* p */
+/*--------------------------------------------------*/
+
+p {
+    text-align: left;
+    font-size: 16px;
+}
+
+div#main>p,
+div#main_en>p,
+div#main_ja>p,
+div#timeInfo>p {
+    width: fit-content;
+    width: -moz-fit-content;
+    max-width: 900px;
+    margin: 25px auto 30px;
+    text-align: left;
+}
+
+div#main>p.left,
+div#main_en>p.left,
+div#main_ja>p.left {
+    width: auto;
+}
+
+/*--------------------------------------------------*/
+/* ul.vertical */
+/*--------------------------------------------------*/
+
+ul.vertical {
+    /*
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+*/
+    width: fit-content;
+
+    width: -moz-fit-content;
+    max-width: 900px;
+    margin: 25px auto 25px;
+
+    text-align: left;
+    font-size: 15px;
+}
+
+ul.vertical>li {
+    /*
+    flex: initial;
+    max-width: 900px;
+    display: flex;
+    */
+    list-style-type: disc;
+    display: list-item;
+    align-items: center;
+    margin: 0 0 15px 0;
+}
+
+ul.vertical ul>li{
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+ul.vertical ul ul>li{
+    margin: .2em 1em;
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+/*--------------------------------------------------*/
+/* ul.twocolumns */
+/*--------------------------------------------------*/
+
+/* twocolumns */
+
+ul.twocolumns {
+    display: inline-block;
+
+    text-align: left;
+    font-size: 16px;
+    /*	background-color: hsl(40, 100%, 95%);*/
+}
+
+ul.twocolumns>li {
+    margin: 15px 0 15px;
+
+    display: flex;
+    justify-content: left;
+
+    /*	background-color: hsl(40, 100%, 80%);*/
+}
+
+@media screen and (max-width: 500px) {
+    ul.twocolumns>li {
+        margin: 10px 0 2px;
+        flex-direction: column;
+        align-items: center;
+
+        text-align: center;
+    }
+}
+
+/* leftcolumn */
+
+ul.twocolumns>li>div.leftcolumn {
+    flex: none;
+    margin: 0 10px 0 5px;
+    width: 10px;
+    text-wrap: wrap;
+}
+
+ul.twocolumns.left80>li>div.leftcolumn {
+    width: 80px;
+}
+
+ul.twocolumns.left100>li>div.leftcolumn {
+    width: 100px;
+}
+
+ul.twocolumns.left120>li>div.leftcolumn {
+    width: 120px;
+}
+
+ul.twocolumns.left140>li>div.leftcolumn {
+    width: 140px;
+}
+
+ul.twocolumns.leftbold>li>div.leftcolumn {
+    font-weight: bold;
+}
+
+/* maincolumn */
+
+ul.twocolumns>li>div.maincolumn {
+    flex: auto;
+    max-width: 800px;
+
+    /*	background-color: hsl(0, 100%, 95%);*/
+}
+
+ul.twocolumns>li>div.maincolumn>h4 {
+    margin: 0 0 4px;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+ul.twocolumns>li>div.maincolumn>p {
+    margin: 0 0 10px;
+    
+    font-weight: normal;
+}
+
+ul.twocolumns>li>div.maincolumn>ul.normal {
+    text-align: left;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 500px) {
+    ul.twocolumns>li>div.maincolumn>ul.normal {
+        display: inline-flex;
+        flex-direction: column;
+    }
+}
+
+ul.twocolumns>li>div.maincolumn>ul.normal>li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0 10px;
+}
+
+#btnToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #AAA; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 6px; /* Some padding */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+}
+
+#btnToTop:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+/*--------------------------------------------------*/
+/* timetable */
+/*--------------------------------------------------*/
+.timetable {
+    background-color: #FFFFFF;
+    text-align: center;
+    border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    margin: 25px auto 30px;
+}
+
+.timetable th {
+    border: 1px solid #AAAAAA;
+    padding: 1em;
+}
+
+.timetable td{
+    border: 1px solid #AAAAAA;
+    padding: 1em;
+}
+
+.timetable thead {
+    background: #DDDDDD;
+}
+
+.timetable thead th,
+.timetable .timeslot {
+    background: #DDDDDD;
+    text-align: center;
+    padding: .4em;
+    font-weight: bold;
+}

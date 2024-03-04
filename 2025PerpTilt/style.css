@@ -349,9 +349,8 @@ ul.vertical {
     width: -moz-fit-content;
     max-width: 900px;
     margin: 25px auto 25px;
-
     text-align: left;
-    font-size: 15px;
+    font-size: 14pt;
 }
 
 ul.vertical>li {

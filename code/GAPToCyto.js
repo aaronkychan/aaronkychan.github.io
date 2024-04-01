@@ -80,7 +80,7 @@ const matchDeepestBrackets = (str) => str.match(/\[([^\[\]])*\]/g);
 function detectRelation(str) {
     // brackets that do not contain brackets inside
     let deepest = matchDeepestBrackets(str);
-    console.log(deepest);
+    // console.log(deepest);
     // match a double bracket
     // ! there should be only one such; code breaks if this is not the case
     let s = str.search(/\[\s*\[/),
@@ -109,7 +109,7 @@ function translateQPA() {
     quiverIn = quiverIn.replace(/;/g, "");
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = quiverIn.replace(/\)(\s*)$/, "");
-    console.log(quiverIn);
+    // console.log(quiverIn);
     if (quiverIn[0] != "[") {
         let numVx = parseInt(quiverIn.split(",", 1));
         if (numVx > 0) {
@@ -158,7 +158,7 @@ function translateQPA() {
         };
         return { data: core };
     });
-    //console.table(arr);
+    // console.table(arr);
 
     const quiverData = { nodes: vx, edges: arr };
 

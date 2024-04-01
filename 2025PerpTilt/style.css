@@ -334,6 +334,12 @@ div#main_ja>p.left {
     width: auto;
 }
 
+
+ul.compact >li {
+    margin: 5px 0 5px 1.6em;
+    list-style: disc;
+}
+
 /*--------------------------------------------------*/
 /* ul.vertical */
 /*--------------------------------------------------*/

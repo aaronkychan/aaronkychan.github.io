@@ -1,593 +1,43 @@
 let talks = [
     {
-        ymd: "2024-03-14",
-        start: "1030",
+        ymd: "2024-06-21",
+        start: "1630",
         duration: 90,
-        title: `Lattices of torsion classes in representation theory of finite groups`,
-        speaker: "Arashi Sakai 酒井 嵐士",
-        affil: "Nagoya University 名古屋大学",
-        abstract: `多元環の表現論においてtorsion classは古くから重要な部分圏の1つである。特にtorsion classの包含関係から得られるtorsion classの束は近年盛んに研究されており、wide intervalやbrick labellingはさまざまな良い性質が知られている。本講演では有限群の表現論においてtorsion classの束を観察する。具体的には有限群とその正規部分群の群環上の有限生成加群の圏においてtorsion classの束をそれぞれ考え、表現の誘導と制限がこれらの間に良い対応を誘導することを紹介する。また小塩-小境による台tau傾加群と誘導関手に関する結果、有限群の表現論における基本的な結果であるCliffordの定理が上記の良い対応とどのように関連するかを説明する。本講演は東京理科大学の小境雄太氏との共同研究(arXiv:2312.07299)に基づく。
-        `,
-        lang: "jp",
-        access: {
-            id: "878 7878 1478",
-            psw: "436692",
-        },
-        record: {
-            slides: `TNA/2024/Sakai-Torsion_classes_over_group_algebras.pdf`,
-        },
-    },
-    {
-        ymd: "2024-01-11",
-        start: "1030",
-        duration: 90,
-        title: `量子Grothendieck環とその量子団代数構造について`,
-        speaker: "Ryo Fujita 藤田 遼",
-        web: `https://www.kurims.kyoto-u.ac.jp/ja/list/fujita.html`,
-        affil: "RIMS Kyoto 京都大学数理解析研究所",
-        abstract: `量子Grothendieck環は量子ループ代数の有限次元表現の成すモノイダル圏のGrothendieck環の1パラメータ変形であり、既約表現のq指標の決定アルゴリズムに関する予想（Kazhdan-Lusztig型予想）の定式化に用いられる。この予想はADE型の場合には箙多様体の幾何を用いて証明されるが、残りのBCFG型の場合は現時点で未解決である。近年、量子ループ代数の有限次元表現論において、団代数のモノイダル圏化が盛んに研究されている。本講演ではその量子アナローグとして、量子Grothendieck環が量子団代数の構造を持ち、到達可能な（＝団単項式に対応する）既約表現に対して新たにKazhdan-Lusztig型予想が正しいことを説明する。これはDavidHernandez氏、Se-jin Oh氏、大矢浩徳氏との共同研究(arXiv:2304.02562)に基づく。
-        `,
-        lang: "jp",
-        access: {
-            id: "843 9425 6742",
-            psw: "199578",
-        },
-        // record: {
-        //     slides: `TNA/2024/Fujita-.pdf`,
-        // },
-    },
-    {
-        ymd: "2023-12-27",
-        start: "0930",
-        duration: 540,
-        title: `Seminar on tau-tilting-finiteness and beyond`,
-        speaker: "Osmau Iyama and Sota Asai",
-        affil: "Tokyo",
-        abstract: `See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
-        lang: "en",
-        access: {
-            custom: ` ~Hybrid~<br> `,
-            customInfo: `&nbsp;<b>Online</b>: <a href="
-            https://u-tokyo-ac-jp.zoom.us/j/82234946547">Zoom</a> <b>ID</b> 822 3494 6547 <b>Password</b> 920218 <br>&nbsp;<b>Location</b>: Nagoya University. &nbsp;See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
-            // id: "814 9648 9424",
-            // psw: "217157",
-        },
-        // record: {
-        //     slides: `TNA/2023/Losev-.pdf`,
-        // },
-    },
-    {
-        ymd: "2023-12-26",
-        start: "1500",
-        duration: 90,
-        title: `t-structures on the equivariant derived category of the Steinberg scheme`,
-        speaker: "Ivan Losev",
-        web: `https://gauss.math.yale.edu/~il282/`,
-        affil: "Yale",
-        abstract: `The Steinberg scheme and the equivariant coherent sheaves on it play a very important role in Geometric Representation theory. In this talk we will discuss various t-structures on the equivariant derived category of the Steinberg of importance for Representation theory in positive characteristics. Based on arXiv:<a href="https://arxiv.org/abs/2302.05782">2302.05782</a>.`,
-        lang: "en",
-        access: {
-            custom: ` ~Hybrid~<br> `,
-            customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/87435810573">Zoom</a> <b>ID</b> 874 3581 0573 <b>Password</b> 957963 <br>&nbsp;<b>Location</b>: 東京大学大学院数理科学研究科 002号室<br/>&nbsp;Graduate School of Mathematical Science Room 002, University of Tokyo`,
-            // id: "814 9648 9424",
-            // psw: "217157",
-        },
-        // record: {
-        //     slides: `TNA/2023/Losev-.pdf`,
-        // },
-    },
-    {
-        ymd: ["2023-12-25", "2023-12-25"],
-        start: ["1030", "1445"],
-        duration: 90,
-        title: `Rigidity of bricks and brick-Brauer-Thrall conjectures`,
-        speaker: "Kaveh Mousavand",
-        web: `https://kavehmousavand.wixsite.com/math`,
-        affil: "OIST",
-        abstract: `In these talks, I try to accomplish two goals: First, to give a summary
-        of some new developments in the study of bricks and their connections to several open
-        problems/conjectures in $\tau$-tilting theory, stability conditions and related topics.
-        Second, to share some concrete problems that can be viewed as the middle steps towards a
-        systematic treatment of these conjectures. These talks will be primarily based on my earlier
-        work in my PhD thesis and a series of recent joint papers with Charles Paquette. Our
-        treatment of bricks relies on the fruitful interplays between the algebraic and geometric
-        aspects of representation theory of finite dimensional algebras. While doing so, we revisit
-        some classical notions and problems (such as generic modules and the celebrated
-        Brauer-Thrall conjectures) and then use some new results on the behavior of bricks to give
-        new characterizations of some classical families of algebras and study their modern
-        counterparts.`,
-        lang: "en",
-        access: {
-            custom: ` ~Hybrid~<br> `,
-            customInfo: `&nbsp;<b>Online</b>: <a href="
-            https://u-tokyo-ac-jp.zoom.us/j/82234946547">Zoom</a> <b>ID</b> 822 3494 6547 <b>Password</b> 920218 <br>&nbsp;<b>Location</b>: Nagoya University<br/>&nbsp;Talk 1: A328 School of Science, Talk 2: B114 School of Science <br>&nbsp;See: <a href="TNASpecial.html">Special seminar on tau-tilting-finiteness and beyond</a>`,
-            // id: "814 9648 9424",
-            // psw: "217157",
-        },
-        // record: {
-        //     slides: `TNA/2023/Losev-.pdf`,
-        // },
-    },
-    {
-        ymd: "2023-12-14",
-        start: "1030",
-        duration: 90,
-        title: `On exact dg categories`,
-        speaker: "Xiaofa Chen",
-        web: `http://home.ustc.edu.cn/~cxf2011/`,
-        affil: "University of Science and Technology of China",
-        abstract: ` In this talk, I will give an introduction to exact dg categories and then explore their application to various correspondences in representation theory. We will generalize the Auslander–Iyama correspondence, the Iyama–Solberg correspondence, and a correspondence considered in a paper by Iyama in 2005 to the setting of exact dg categories. The slogan is that solving correspondence-type problems becomes easier using dg categories, and interesting phenomena emerge when the dg category is concentrated in degree zero or is abelian.`,
-        lang: "en",
-        access: {
-            link: "https://us02web.zoom.us/j/87933176930",
-            custom: ` Zoom `,
-            customInfo: `<b>ID</b> 879 3317 6930 <b>Password</b> 103671`,
-        },
-        record: {
-            slides: `TNA/2023/Chen_Xiaofa-Exact_dg_cat.pdf`,
-        },
-    },
-    {
-        ymd: "2023-10-12",
-        start: "1030",
-        duration: 90,
-        title: `$q$-deformed rational numbers, Farey sum and a 2-Calabi-Yau category of $A_2$ quiver`,
-        speaker: "Xin Ren 任 鑫",
-        affil: "Kansai University 関西大学",
-        abstract: `<p>Let $q$ be a positive real number. The left and right $q$-deformed rational numbers were introduced by Bapat, Becker and Licata via regular continued fractions, and the right $q$-deformed rational number is exactly $q$-deformed rational number considered by Morier-Genoud and Ovsienko, when $q$ is a formal parameter. They gave a homological interpretation for left and right $q$-deformed rational numbers by considering a special 2-Calabi–Yau category associated to the $A_2$ quiver.</p> 
-
-        <p>In this talk, we begin by introducing the above definitions and related results. Then we give a formula for computing the $q$-deformed Farey sum of the left $q$-deformed rational numbers based on the negative continued fractions. We combine the homological interpretation of the left and right $q$-deformed rational numbers and the $q$-deformed Farey sum, and give a homological interpretation of the $q$-deformed Farey sum. We also apply the above results to real quadratic irrational numbers with periodic type.</p>`,
-        lang: "jp",
-        access: {
-            id: "814 9648 9424",
-            psw: "217157",
-        },
-        record: {
-            slides: `TNA/2023/Ren-q-deformed_rational_numbers_2CY_category_of_A2_quiver.pdf`,
-        },
-    },
-    {
-        ymd: "2023-08-24",
-        start: "1030",
-        duration: 90,
-        title: "TF equivalence on the real Grothendieck group",
-        speaker: "Sota Asai 淺井 聡太",
-        affil: "University of Tokyo 東京大学",
-        abstract: `$A$を体$K$上の有限次元多元環とするとき、有限生成射影加群圏の実Grothendieck群$K_0(\\mathsf{proj}A)_{\\mathbb{R}}$は、Euclid空間と同一視できる。
-        Baumann-Kamnitzer-Tingleyは、各元$\\theta\\in K_0(\\mathsf{proj}A)_{\\mathbb{R}}$に対し、商加群や部分加群に関する線型不等式を用いて、有限生成加群圏$\\mathsf{mod} A$の半安定ねじれ対を定めており、これをもとに私は、$K_0(\\mathsf{proj}A)_{\\mathbb{R}}$上の同値関係「TF同値」を導入した。
-        TF同値類の典型例として、ホモトピー圏$\\mathsf{K}^\\mathrm{b}(\\mathsf{proj}A)$の2-term presilting complex $U$の直既約因子が定める錐$C^\\circ(U)$が挙げられ、これを$U$のsilting coneと呼ぶ。TF同値の研究には、silting coneのみならず、その適切な近傍をとることが有効であり、私はやはり半安定ねじれ対を用いて、各2-term presilting\ncomplex $U$に対し、「区間近傍」と呼ばれる$C^\\circ(U)$の開近傍$N_U$を定め、この$N_U$が様々な良い性質を満たしていることを証明した。
-        この講演では、上記の概念について、じっくりと時間をかけて解説する。一部の内容は、伊山修氏（東京大学）との共同研究に基づく。`,
-        lang: "jp",
-        access: {
-            id: "854 0720 5569",
-            psw: "678416",
-        },
-        record: {
-            slides: `TNA/2023/Asai-TF_equivalence_on_the_real_Grothendieck_group.pdf`,
-        },
-    },
-    {
-        ymd: "2023-07-14",
-        start: "1030",
-        duration: 90,
-        title: "Local Forms of Noncommutative Functions and Applications",
-        speaker: "Michael Wemyss",
-        web: "https://www.maths.gla.ac.uk/~mwemyss/",
-        affil: "University of Glasgow",
-        abstract: `<p>This talk will explain how Arnold's results for commutative
-        singularities can be extended into the noncommutative setting, with
-        the main result being a classification of certain Jacobi algebras
-        arising from (complete) free algebras. This class includes finite
-        dimensional Jacobi algebras, and also Jacobi algebras of GK dimension
-        one, suitably interpreted. The surprising thing is that a
-        classification should exist at all, and it is even more surprising
-        that ADE enters.</p>
-        
-        <p>I will spend most of my time explaining what the algebras are, what
-        they classify, and how to intrinsically extract ADE information from
-        them. At the end, I'll explain why I'm really interested in this
-        problem, an update including results on different quivers, and the
-        applications of the above classification to curve counting and
-        birational geometry. This is joint work with Gavin Brown.</p>`,
-        lang: "en",
-        access: {
-            id: `863 9598 8196`,
-            psw: `423160`,
-        },
-        record: {
-            slides: `TNA/2023/Wemyss-Local_forms_NC_functions.pdf`,
-            vid: { desc: `request` },
-        },
-    },
-    {
-        ymd: "2023-07-07",
-        start: "1500",
-        duration: 90,
-        title: "クイバー表現のパーシステンス加群への応用: 区間加群による近似と分解",
-        speaker: "Hideto Asashiba 浅芝 秀人",
-        web: "https://wwp.shizuoka.ac.jp/asashiba/hideto-asashibas-website/",
-        affil: "静岡大・京大高等研・阪公大数学研",
-        abstract: `位相的データ解析では，入力データーは，$d$次元ユークリッド空間内の有限個の点からなる集合"点雲" $P$ の形で与えられ，
-        各 $r = 0, 1, \\ldots, d$ に対して，パーシステントホモロジー群$H_r(P)$が計算される。
-        これはある自然数nに対する，同方向$A_n$型クイバーQのある体$k$上の表現になっている。
-        Gabrielの定理より，直既約表現の完全代表系は"区間"表現 $V_I$ ($I:= [a,b], 1 \\le a \\le b \\le n$)の
-        全体で与えられる。$Q$の各表現$M$に対して，$d_M(I)$を$M$の直既約分解における$V_I$の重複度とすると，
-        列 $d_M:= (d_M(I))_I$ は同型のもとでの$M$の完全不変量になっている。
-        この重複度を$kQ$のAuslander-Reiten quiver上にプロットした図を$M$のパーシステント図とよぶ。
-        族$(H_r(P))_r$ は$P$に関する重要な情報を保存し，応用研究で活用されるが，
-        パーシステント図 $d_{H_r(P)}$ を用いて，これを解析することができる。
-        次に$P$が他のパラメーター，例えば時間とともに変化する場合，
-        この方法により2次元パーシステンス加群が定義され，さらに多次元に一般化される。
-        これが位相的データ解析での代数的アプローチの主な研究対象になる。
-        一般に$m$次元パーシステンス加群は$m$次元格子の形のクイバー$Q$に関係式を入れた多元環上の加群
-        と理解される。この場合1次元の場合と異なり多元環はほとんどワイルド表現型になるため，
-        リアルタイムで直既約加群の重複度$d_M$を計算しそれを比較するのは困難になる。
-        上に述べたもとの意味の区間表現は，$Q$上の連結かつ凸な部分クイバーを台とする"区間加群"に
-        一般化される。$d_M$の代わりに$M$のこれら区間加群の直和によって$M$を近似することにより
-        リアルタイム性を保証する方法が考えられる。この講演では2通りの意味の近似を提示しそれらの関係を与える。
-        この講演は，エスカラ，中島，吉脇の各氏との共同研究に基づく。`,
-        lang: "jp",
-        access: {
-            id: `844 0560 1675`,
-            psw: `381661`,
-        },
-        record: {
-            slides: [
-                `TNA/2023/Asashiba-Quiver_rep_for_persistence_homology(typed).pdf`,
-                `TNA/2023/Asashiba-Quiver_rep_for_persistence_homology.pdf`,
-            ],
-            slidesDesc: [`Typed notes`, `Handwritten slides`],
-        },
-    },
-    {
-        ymd: "2023-05-16",
-        start: "1500",
-        title: "Cluster-additive functions and frieze patterns with coefficients",
-        speaker: "Antoine de Saint Germain",
-        affil: "University of Hong Kong 香港大學",
-        abstract: `
-        <p>
-            In his study of combinatorial features of cluster categories and cluster-tilted
-            algebras, Ringel introduced an analogue of additive functions of stable translation quivers
-            called cluster-additive functions.
-        </p>
-        <p>
-            In the first part of this talk, we will define cluster-additive functions associated to any
-            acyclic mutation matrix, relate them to mutations of the cluster X variety, and realise their
-            values as certain compatibility degrees between functions on the cluster A variety
-            associated to the Langlands dual mutation matrix (in accordance with the philosophy of
-            Fock-Goncharov). This is based on joint work with Peigen Cao and Jiang-Hua Lu.
-            In the second part of this talk, we will introduce the notion of frieze patterns with
-            coefficients based on joint work with Min Huang and Jiang-Hua Lu. We will then discuss
-            their connection with cluster-additive functions.
-        </p>`,
+        title: ``,
+        speaker: "Daigo Ito 伊藤 大悟",
+        affil: "UC Berkeley",
+        web: `https://daigoi.github.io/`,
+        abstract: ``,
         lang: "en",
         // access: {
-        //     id: `872 4679 8561`,
-        //     psw: `124239`,
+        //     id: "",
+        //     psw: "",
         // },
-        record: {
-            slides: `TNA/2023/deSaintGermain-Cluster_additive_functions_frieze_patterns_with_coefficients.pdf`,
-        },
+        // record: {
+        //     slides: `TNA/2024/Sakai-Torsion_classes_over_group_algebras.pdf`,
+        // },
     },
     {
-        ymd: "2023-04-28",
-        start: "1300",
-        title: `Full exceptional collections associated with Bridgeland stability conditions`,
-        speaker: "Takumi Otani 大谷 拓己",
-        affil: "Osaka University 大阪大学",
-        web: "https://otanit0907.github.io/Homepage/",
-        abstract: `<p>The space of Bridgeland stability conditions on a triangulated category is important in mirror symmetry and many people develop various techniques to study it.
-        In order to study the homotopy type of the space of stability conditions, Macri studied stability conditions associated with full exceptional collections.
-        Based on his work, Dimitrov-Katzarkov introduced the notion of a full $\\sigma$-exceptional collection for a stability condition $\\sigma$.</p>
-        
-        <p>In this talk, I will explain the relationship between full exceptional collections and stability conditions and some properties. I will also talk about the existence of full $\\sigma$-exceptional collections for the derived category of an acyclic quiver.</p>
-        `,
+        ymd: "2024-06-07",
+        start: "1630",
+        duration: 90,
+        title: ``,
+        speaker: "Taiki Shibata 柴田 大樹",
+        affil: "Okayama University of Science 岡山理科大学",
+        web: `https://sites.google.com/site/mathshibata`,
+        abstract: ``,
         lang: "jp",
-        access: {
-            id: `845 8271 9240`,
-            psw: `737100`,
-        },
-        record: {
-            slides: `TNA/2023/Otani-Full_exceptional_collections_associated_with_Bridgeland_stability_conditions.pdf`,
-        },
-    },
-    {
-        ymd: "2023-04-21",
-        start: "1300",
-        title: `Categorifications of deformed Cartan matrices`,
-        speaker: "Kota Murakami 村上 浩大",
-        affil: "Tokyo University 東京大学",
-        abstract: `<p>In a series of works of Gei&szlig;-Leclerc-Schröer, they
-        introduced a version of preprojective algebra associated with a
-        symmetrizable generalized Cartan matrix and its symmetrizer. For
-        finite type, it can be regarded as an un-graded analogue of Jacobian
-        algebra of certain quiver with potential appeared in the theory of
-        (monoidal) categorification of cluster algebras.</p>
-        
-        <p>In this talk, we will present an interpretation of graded structures
-        of the preprojective algebra of general type, in terms of a
-        multi-parameter deformation of generalized Cartan matrix and relevant
-        combinatorics motivated from several contexts in the theory of quantum
-        loop algebras or quiver $\\mathcal{W}$-algebras. From the vantage point
-        of the representation theory of preprojective algebra, we will prove
-        several purely combinatorial properties of these concepts. This talk
-        is based on a joint work with Ryo Fujita (RIMS).</p>
-        `,
-        lang: "jp",
-        access: {
-            id: `816 5650 5440`,
-            psw: `505258`,
-        },
-        record: {
-            slides: `TNA/2023/Murakami-Categorifications_of_deformed_Cartan_matrices.pdf`,
-        },
-    },
-    {
-        ymd: "2023-02-10",
-        start: "1700",
-        title: `Silting discrete代数上のsemibrick複体とspherical objects`,
-        speaker: "Wahei Hara 原 和平",
-        affil: "University of Glasgow",
-        web: "https://sites.google.com/view/waheihara/",
-        abstract: `Silting discrete代数は導来圏のt構造に関してある種の離散性を満たす有限次元代数であり，代数の表現論の分野で研究されている．(semi)brick複体は導来圏の対象であって，単純加群(の直和)が持つ性質を一般化した条件で定義される．本講演ではまず「silting discrete代数上のsemibrick複体は，実際にとある有界t構造の核として現れる部分Abel圏の単純対象の直和である」という分類結果について紹介する．実際はより強く，負の次数の自己Extが消滅するという条件で，ある有界t構造の核に含まれる対象が特徴づけられるという定理を証明し，semibrick複体の分類はその系となる．
-        後半では幾何学的な側面について紹介する．ある3次元フロップ収縮に対して，Donovan-Wemyssによって定義されたcontraction algebraという有限次元代数はsilting discrete代数の例を与える．このときbrick複体はSeidel-Thomasによって定義されたspherical objectの一般化として捉えることができ，代数幾何やシンプレクティック幾何において自己同値群の決定問題やBridgeland安定性条件の空間の連結性の問題と絡む，幾何学的にも重要な対象である．この背景をもう少し詳しく整理したのち，前半のsemibrick複体の分類結果で用いる手法がこの幾何学的状況にも拡張し，この分野の中心問題のひとつであるspherical objectの分類定理を導くことを紹介する．同様の手法は2次元Kleinian特異点の部分クレパント解消に対しても機能し，これら全ての状況で，null圏と呼ばれる導来圏の部分三角圏の有界t構造の分類や，Bridgeland安定性条件の空間の連結性などを導く．本講演の内容は全てMichael Wemyss氏との共同研究です．`,
-        lang: "jp",
-        access: {
-            id: `872 4679 8561`,
-            psw: `124239`,
-        },
-        record: {
-            slides: `TNA/2023/Hara-Semibrick_complexes_and_spherical_twist_for_silting_discrete_algebras.pdf`,
-        },
-    },
-    {
-        ymd: "2023-01-20",
-        start: "1030",
-        title: `Tropical cluster transformations and train track splittings`,
-        speaker: "Shunske Kano 狩野 隼輔",
-        affil: "Tohoku University 東北大学",
-        web: "https://sites.google.com/view/shunsuke-kano",
-        abstract: `Fock-Goncharovは箙に対し、クラスター代数と呼ばれる組み合わせ構造を持つような概形であるクラスター多様体を定義した。
-        この概形は良い正値性を持つことから、半体値集合を考えることができる。
-        箙が点付き曲面の三角形分割から得られるとき、トロピカル半体値集合は曲面の測度付き葉層構造の空間の適切な拡張と同一視される。
-        クラスター多様体のトロピカル半体値集合はクラスター構造から定まるPL構造を持つが、一方で曲面の測度付き葉層構造の空間にはトレイントラックと呼ばれるグラフを用いたPL構造が定まることが知られている。
-        本講演では、Goncharov-Shenのクラスター多様体上のLandau-Ginzburgポテンシャル関数のトロピカル化を通してトレイントラックを翻訳し、2つのPL構造が同値であることを確認する。
-        またこのトレイントラックの翻訳を通して、一般の擬Anosov写像類が符号安定性と呼ばれる性質を持つことを説明する。`,
-        lang: "jp",
-        access: {
-            id: `820 6834 6105`,
-            psw: `039914`,
-        },
-        record: {
-            slides: `TNA/2023/Kano-Tropical_cluster_transformations_and_train_track_splittings.pdf`,
-        },
-    },
-    {
-        ymd: "2022-10-20",
-        start: "1640",
-        title: `A surface and a threefold with equivalent singularity categories`,
-        speaker: "Martin Kalck",
-        affil: "Freiburg University",
-        web: "http://home.mathematik.uni-freiburg.de/kalck/",
-        abstract: `<p>We discuss a triangle equivalence between singularity categories of an
-        affine surface and an affine threefold.
-        Both are isolated cyclic quotient singularities.
-        This seems to be the first (non-trivial) example of a singular
-        equivalence involving varieties of even and odd Krull dimension.</p>
-        
-        <p>The same approach recovers a result of Dong Yang showing a singular
-        equivalence between certain cyclic quotient singularities in dimension
-        2 and certain finite dimensional commutative algebras.</p>
-        
-        <p>This talk is based on <a href="https://arxiv.org/pdf/2103.06584.pdf">https://arxiv.org/pdf/2103.06584.pdf</a></p>`,
-        lang: "en",
-        access: {
-            id: `896 4970 4419`,
-            psw: `130543`,
-        },
-        record: {
-            slides: `TNA/2022/Kalck-Surface_and_threefold_with_equivalent_singularity_categories.pdf`,
-        },
-    },
-    {
-        ymd: "2022-07-20",
-        start: "1030",
-        title: `Grothendieck enriched categories`,
-        speaker: "Yuki Imamura 今村悠希",
-        affil: "Osaka University 大阪大学",
-        abstract: `Grothendieck圏は、入射的余生成子の存在や随伴関手定理の成立など、アーベル圏の中でも特に良い性質を持つことで知られる。通常Grothendieck圏は、生成子を持つ余完備なアーベル圏であって、フィルター余極限を取る関手が完全関手になるような圏として内在的な性質で以て定義されるが、加群圏の"良い部分圏"として実現できるという外在的な特徴づけ(Gabriel-Popescuの定理)も存在する。アーベル圏が自然なプレ加法圏(アーベル群の圏Ab上の豊穣圏)の構造を持つことから、Gabriel-Popescuの定理はAb-豊穣圏に対する定理だと思うことができる。本講演では、より一般のGrothendieckモノイダル圏V上の豊穣圏に対してGabriel-Popescuの定理の一般化を定式化し証明する。特にVとしてアーベル群の複体の圏Chを取ることによりGrothendieck圏のdg圏類似とそのGabriel-Popescuの定理が得られることも確認する。`,
-        lang: "jp",
-        access: {
-            id: `814 5195 3418`,
-            psw: `166305`,
-        },
-        record: {
-            slides: `TNA/2022/Imamura-Grothendieck_enriched_categories.pdf`,
-        },
-    },
-    {
-        ymd: "2022-07-06",
-        start: "1030",
-        id: "nickSeries3",
-        title: `Cyclic polytopes and higher Auslander--Reiten theory 3`,
-        speaker: "Nicholas Williams",
-        affil: "University of Tokyo 東京大学",
-        web: "https://nchlswllms.github.io/",
-        abstract: `This continues <a href="#nickSeries2">part 2</a>.
-        In the third talk, we consider the relationship between the objects
-from the first two talks. We explain how triangulations of
-even-dimensional cyclic polytopes may be interpreted in terms of
-tilting modules, cluster-tilting objects, or d-silting complexes. We
-then proceed in the d-silting framework, and show how the higher
-Stasheff--Tamari orders may be interpreted algebraically for even
-dimensions. We explain how this allows one to interpret
-odd-dimensional triangulations algebraically, namely, as equivalence
-classes of d-maximal green sequences. We briefly digress to consider
-the issue of equivalence of maximal green sequences itself. We then
-show how one can interpret the higher Stasheff--Tamari orders on
-equivalence classes of d-maximal green sequences. We finish by drawing
-out some consequences of this algebraic interpretation of the higher
-Stasheff--Tamari orders.`,
-        lang: "en",
-        access: {
-            id: `812 0508 5626`,
-            psw: `826814`,
-        },
-        record: {
-            slides: `TNA/2022/Williams-Cyclic_polytopes_and_higher_AR_theory3.pdf`,
-        },
-    },
-    {
-        ymd: "2022-06-29",
-        start: "1030",
-        id: "nickSeries2",
-        title: `Cyclic polytopes and higher Auslander--Reiten theory 2`,
-        speaker: "Nicholas Williams",
-        affil: "University of Tokyo 東京大学",
-        web: "https://nchlswllms.github.io/",
-        abstract: `This continues <a href="#nickSeries1">part 1</a>.
-        In the second talk, we focus on higher Auslander--Reiten theory. We
-        survey the basic setting of this theory, starting with
-        d-cluster-tilting subcategories of module categories. We then move on
-        to d-cluster-tilting subcategories of derived categories in the case
-        of d-representation-finite d-hereditary algebras. We explain how one
-        can construct (d + 2)-angulated cluster categories for such algebras,
-        generalising classical cluster categories. We finally consider the
-        d-almost positive category, which is the higher generalisation of the
-        category of two-term complexes. Throughout, we illustrate the results
-        using the higher Auslander algebras of type A, and explain how the
-        different categories can be interpreted combinatorially for these
-        algebras.`,
-        lang: "en",
-        access: {
-            id: `812 0508 5626`,
-            psw: `826814`,
-        },
-        record: {
-            slides: `TNA/2022/Williams-Cyclic_polytopes_and_higher_AR_theory2.pdf`,
-        },
-    },
-    {
-        ymd: "2022-06-22",
-        start: "1700",
-        title: `Update on singular equivalences between commutative rings`,
-        speaker: "Martin Kalck",
-        affil: "Freiburg University",
-        web: "http://home.mathematik.uni-freiburg.de/kalck/",
-        abstract: `<p>We will start with an introduction to singularity categories, which
-        were first studied by Buchweitz and later rediscovered by Orlov.
-        Then we will explain what is known about triangle equivalences between
-        singularity categories of commutative rings, recalling results of
-        Knörrer, D. Yang (based on our joint works on relative singularity
-        categories. This result also follows from work of Kawamata and was
-        generalized in a joint work with Karmazyn) and a new equivalence
-        obtained in arXiv:2103.06584.</p>        
-        <p>
-        In the remainder of the talk, we will focus on the case of Gorenstein
-        isolated singularities and especially hypersurfaces, where we give a
-        complete description of quasi-equivalence classes of dg enhancements
-        of singularity categories, answering a question of Keller & Shinder.
-        This is based on arXiv:2108.03292.</p>`,
-        lang: "en",
-        access: {
-            id: `864 8429 4885`,
-            psw: `825732`,
-        },
-        record: {
-            slides: `TNA/2022/Kalck-Update_on_singular_equivalences_between_commutative_rings.pdf`,
-        },
-    },
-    {
-        ymd: "2022-06-15",
-        start: "1030",
-        id: "nickSeries1",
-        title: `Cyclic polytopes and higher Auslander--Reiten theory 1`,
-        speaker: "Nicholas Williams",
-        affil: "University of Tokyo 東京大学",
-        web: "https://nchlswllms.github.io/",
-        abstract: `<p>In this series of three talks, we expand upon the previous talk (see <a href="http://www.math.nagoya-u.ac.jp/~aaron.chan/TNA/2021/Williams-Cyclic_polytopes_and_higher_AR.pdf">slides here</a>) given
-        at the seminar and study the relationship between cyclic polytopes and
-        higher Auslander--Reiten theory in more detail.
-        </p>
-        
-        <p>In the first talk, we focus on cyclic polytopes. We survey important
-        properties of cyclic polytopes, such as different ways to construct
-        them, the Upper Bound Theorem, and their Ramsey-theoretic properties.
-        We then move on to triangulations of cyclic polytopes. We give
-        efficient combinatorial descriptions of triangulations of
-        even-dimensional and odd-dimensional cyclic polytopes, which we will
-        use in subsequent talks. We finally define the higher Stasheff--Tamari
-        orders on triangulations of cyclic polytopes. We give important
-        results on the orders, including Rambau's Theorem, and the equality of
-        the two orders.</p>`,
-        lang: "en",
-        access: {
-            id: `812 0508 5626`,
-            psw: `826814`,
-        },
-        record: {
-            slides: `TNA/2022/Williams-Cyclic_polytopes_and_higher_AR_theory1.pdf`,
-        },
-    },
-    {
-        ymd: ["2022-06-01", "2022-06-08"],
-        start: ["1030", "1030"],
-        title: `超平面配置の特性準多項式`,
-        id: "Yoshinaga202206a",
-        speaker: "Masahiko Yoshinaga 吉永 正彦",
-        affil: "Osaka University 大阪大学",
-        web: "http://www4.math.sci.osaka-u.ac.jp/~yoshinaga/index.html",
-        abstract: `$n$ ベクトル空間内の $(n-1)$ 次元（アフィン）部分空間のいくつかの集まりを超平面配置という。ルート系、コクセター群、配置空間など様々な文脈で自然に表れる対象である。超平面配置の重要な不変量の一つとして「特性多項式」が挙げられる。特性多項式は（実配置の）部屋数、（複素配置の）補集合のポアンカレ多項式、（有限体上の）点の数など様々な情報を持っている。本講演では、アフィンルート系のある種の有限部分配置を主な対象に、特性多項式の性質や計算方法を、特に 2007年に Kamiya-Takemura-Terao により導入された「特性準多項式」に焦点をあてて紹介する。特性準多項式は特性多項式の精密化であるだけでなく、当初から多面体のEhrhart理論（格子点の数え上げ理論）との密接な関係が示唆されていた。特性多項式よりは複雑で扱いにくい側面もあるが、その複雑さの中に、代数的トーラス内のトーラス配置の位相幾何的情報や多面体の対称性に関する情報が見えてくるという最近の研究を紹介したい。`,
-        lang: "jp",
-        access: {
-            id: `816 4624 3436`,
-            psw: `182732`,
-        },
-        record: {
-            slides: `TNA/2022/Yoshinaga-Quasipolynomial_of hyperplane_arrangements.pdf`,
-        },
-    },
-    {
-        ymd: "2022-04-13",
-        start: "1030",
-        title: `Tilting ideals of deformed preprojective algebras`,
-        speaker: "Yuta Kimura 木村 雄太",
-        affil: "Osaka Metropolitan University 大阪公立大学",
-        abstract: `<p>Let $K$ be a field and $Q$ a finite quiver.
-        For a weight $\\lambda \\in K^{|Q_0|}$, the deformed preprojective
-        algebra $\\Pi^{\\lambda}$ was introduced by Crawley-Boevey and Holland
-        to study deformations of Kleinian singularities.
-        If $\\lambda = 0$, then $\\Pi^{0}$ is the preprojective algebra
-        introduced by Gelfand-Ponomarev, and appears in many areas of
-        mathematics.
-        Among interesting properties of $\\Pi^{0}$, the classification of
-        tilting ideals of $\\Pi^{0}$, shown by Buan-Iyama-Reiten-Scott, is
-        fundamental and important.
-        They constructed a bijection between the set of tilting ideals of
-        $\\Pi^{0}$ and the Coxeter group $W_Q$ of $Q$.</p>
-        <p>
-        In this talk, when $Q$ is non-Dynkin, we see that $\\Pi^{\\lambda}$ is a
-        $2$-Calabi-Yau algebra, and show that there exists a bijection between
-        tilting ideals and a Coxeter group.
-        However $W_Q$ does not appear, since $\\Pi^{\\lambda}$ is not necessarily basic.
-        Instead of $W_Q$, we consider the Ext-quiver of rigid simple modules,
-        and use its Coxeter group.
-        When $Q$ is an extended Dynkin quiver, we see that the Ext-quiver is
-        finite and this has information of singularities of a
-        representation space of semisimple modules.
-        This is joint work with William Crawley-Boevey.</p>`,
-        lang: "jp",
-        access: {
-            id: `893 7563 9538`,
-            psw: `069232`,
-        },
-        record: {
-            slides: `TNA/2022/Kimura-Tilting_ideals_of_deformed_preprojective_algebras.pdf`,
-        },
+        // access: {
+        //     id: "",
+        //     psw: "",
+        // },
+        // record: {
+        //     slides: `TNA/2024/Sakai-Torsion_classes_over_group_algebras.pdf`,
+        // },
     },
 ];
 
+//#region Code starts
 let talkList = "",
     pastList = "";
 
@@ -694,6 +144,7 @@ function timeDataToHTML(ymd, start, duration) {
     return [str, inSchedule];
 }
 
+//#region Page Generation
 // ***** Actual page generation starts here
 for (let talk of talks) {
     let str = `<fieldset ${
@@ -835,6 +286,9 @@ for (let talk of talks) {
 
     inSchedule ? (talkList = str + talkList) : (pastList += str);
 
+    // for producing pastlist as HTML without compiling KaTex
+    // console.log(pastList);
+
     docTalkList.innerHTML = `<p>Loading talks...</p>` + talkList;
     docPastList.innerHTML = `<p>Loading talks...</p>` + pastList;
 }
@@ -887,6 +341,7 @@ document.addEventListener(`click`, (e) => {
     }
 });
 
+//#region Notes for json data
 /* FOR COPY AND PASTE:
 { 
     ymd: "2000-01-01",
@@ -920,10 +375,25 @@ data structure:
 "access": { "id": string, "psw": string, "link": string, "custom": string }  all entry optional (leave blank = TBC)
 "record": { "slides": string ("contact" or provide link), "vid": string (provide link, leave blank = display "No video recorded" } (leave blank = don't display)
 
+about array form:
+Example
+{
+    ymd: ["2023-12-25", "2023-12-25"],
+    start: ["1030", "1445"],
+    ...
+}
+
 about acess data:
 id, psw = zoom id/zoom psw
 link = provide link (anchor to custom text)
 custom = any string for extra info (can be HTML)
+
+Example of hardcoding zoom info into custom:
+access: {
+    custom: ` ~Hybrid~<br> `,
+    customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/87435810573">Zoom</a> <b>ID</b> 874 3581 0573 <b>Password</b> 957963 <br>&nbsp;<b>Location</b>: 東京大学大学院数理科学研究科 002号室<br/>&nbsp;Graduate School of Mathematical Science Room 002, University of Tokyo`,
+}
+            
 
 ***** 1st entry of array  = NEWEST TALK *******
 */

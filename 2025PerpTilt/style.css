@@ -537,3 +537,13 @@ ul.twocolumns>li>div.maincolumn>ul.normal>li {
     padding: .4em;
     font-weight: bold;
 }
+
+.timetable .lecture{
+    background-color: hsl(240, 100%, 80%);
+}
+.timetable .invited{
+    background-color: hsl(39, 100%, 80%);
+}
+.timetable .short{
+    background-color: hsl(120, 100%, 80%);
+}

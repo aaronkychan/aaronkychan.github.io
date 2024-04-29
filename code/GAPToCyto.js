@@ -164,7 +164,6 @@ function translateQPA() {
     const quiverData = { nodes: vx, edges: arr };
 
     //region#  translate relations
-    //var relns = [];
     // strip brackets and whitespaces
     relationStr =
         relationStr === ""
@@ -318,8 +317,6 @@ function sortReln(a, b) {
 }
 
 function selectRelation(relnStr) {
-    // clear previously selected paths first
-    cy.elements(`edge:unselected`).style(coloredEdgeStyle("#000"));
     // select new paths
     let foundReln = Relations.find(({ reln }) => reln == relnStr);
     for (const t of foundReln.terms) {
@@ -328,7 +325,7 @@ function selectRelation(relnStr) {
             cy.elements(`edge[id="${m}"]`).style(coloredEdgeStyle("#ff6f00"));
         }
     }
-    console.log("found relation: ", foundReln);
+    // console.log("found relation: ", foundReln);
 }
 
 // var testdata = {
@@ -516,10 +513,10 @@ function bendArrow(dir) {
         let dist = 0;
         switch (dir) {
             case "L":
-                dist = -60;
+                dist = -40;
                 break;
             case "R":
-                dist = 60;
+                dist = 40;
                 break;
             case "S":
                 dist = 0;
@@ -529,7 +526,6 @@ function bendArrow(dir) {
         if (!strCurrDist) {
             e.style("control-point-weights", 0.5); // at midpoint
             e.style("control-point-distance", dist); // >0 = bend right, <0 = bend left
-            e.style("curve-style", "unbundled-bezier");
         } else {
             let currDist = parseInt(
                 strCurrDist.substring(0, strCurrDist.indexOf("px"))
@@ -540,6 +536,9 @@ function bendArrow(dir) {
                 e.style("control-point-distance", 0);
             }
             e.style("control-point-weights", 0.5);
+        }
+        if (e.codirectedEdges().length == 1) {
+            // need this to make it curve
             e.style("curve-style", "unbundled-bezier");
         }
     }

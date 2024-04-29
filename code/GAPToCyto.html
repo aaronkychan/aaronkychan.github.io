@@ -19,6 +19,10 @@
             margin: 3px;
         }
 
+        .relationRow {
+            cursor: pointer;
+        }
+
         #midCol {
             /* display: grid;
             align-self: center; */
@@ -53,7 +57,7 @@
 
         #outputDiv {
             margin-top: 2ch;
-            border: 1px #000000 solid;
+            border: 1px #000 solid;
             display: flex;
             flex-direction: row;
             justify-items: center;
@@ -87,12 +91,12 @@
             overflow: auto;
         }
 
-        #sysOutput span:nth-child(2n+1) {
+        #sysOutput div:nth-child(2n+1) {
             color: rgb(0, 128, 255);
         }
 
-        #sysOutput span:nth-child(2n) {
-            color: rgb(255, 111, 0);
+        #sysOutput div:nth-child(2n) {
+            color: #ff6f00;
         }
 
 
@@ -130,7 +134,7 @@
                 quiver (with relation)<br />
                 <textarea id="inQuiver" value="" cols="50" rows="4"
                     placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...])\n[...relations...]">Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]])
-[a*b]
+[a*b, a*d]
                 </textarea>
             </div>
 
@@ -164,12 +168,18 @@
                 <input type="button" id="fixCyto" value="Fit canvas" disabled />
                 &nbsp;&nbsp;&nbsp;
                 Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
-                <br><br>
+                <br>
                 Filename:&nbsp; <input type="text" id="filenameInput" value="quiver">
                 &nbsp;&nbsp;&nbsp;
                 <input type="button" id="saveJSON" value="Save as JSON" />
                 <input type="button" id="saveSVG" value="Save as SVG" disabled /> &nbsp;&nbsp; (Use &nbsp;<a
                     href="https://github.com/xyz2tex/svg2tikz">svg2tikz</a>&nbsp; to convert to tikz)
+
+                <div style="margin: .7em 0em;">
+                    Bend edge more (select edge first and choose):
+                    <input type="button" id="bendLeft" value="Bend left" />
+                    <input type="button" id="bendRight" value="Bend right" />
+                </div>
             </div>
             <div id="outputDiv">
                 <div id="sysOutput" contenteditable="true">Relations:</div>

@@ -61,7 +61,7 @@ function translateScalar(a, char) {
     var expo = hasExpo != -1 ? a.slice(hasExpo + 1, -1) : 1; //exponent
     if (expo == 0) return "";
     else {
-        var result = Math.pow(gens[primes.indexOf(char)], expo);
+        var result = Math.pow(gens[primes.indexOf(char)], parseInt(expo));
         return result == char - 1 ? "-" : result; //convert to just a minus sign if it is p-1
     }
 }
@@ -109,8 +109,9 @@ function translateQPA() {
     quiverIn = quiverIn.replace(/;/g, "");
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = quiverIn.replace(/\)(\s*)$/, "");
-    // console.log(quiverIn);
+    // turn input Quiver([vxs], [arrows]) into array [ [vxs], [arrows] ]
     if (quiverIn[0] != "[") {
+        // input is possibly in the from Quiver( n, [arrows] )
         let numVx = parseInt(quiverIn.split(",", 1));
         if (numVx > 0) {
             let arrv = Array.from({ length: numVx }, (_, i) => i + 1);
@@ -132,7 +133,7 @@ function translateQPA() {
         return;
     }
 
-    // *** translate vx's***
+    //region# translate vx's
     var forceID = document.getElementById("forceID").checked;
     var vxQPA = quiverQPA[0].map((v, i) =>
         forceID ? i + 1 : `${v}`.replace(/"/g, "")
@@ -145,8 +146,8 @@ function translateQPA() {
     //console.table(vxQPA);
     //console.table(vx);
 
-    // *** translate arrows ***
-    var arr = quiverQPA[1].map(function (ar, i) {
+    //region# translate arrow
+    var arr = quiverQPA[1].map((ar, i) => {
         var idlabel = document.getElementById("forceArrow").checked
             ? infLetters(i)
             : ar[2];
@@ -162,7 +163,7 @@ function translateQPA() {
 
     const quiverData = { nodes: vx, edges: arr };
 
-    // **** translate relations ****
+    //region#  translate relations
     //var relns = [];
     // strip brackets and whitespaces
     relationStr =
@@ -170,6 +171,7 @@ function translateQPA() {
             ? document.getElementById("inRelation").value
             : relationStr;
     document.getElementById("inRelation").value = relationStr;
+    // remove line change and spaces
     var arrRelns = relationStr
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
         .replace(/[\s\[\]]/g, "")
@@ -188,18 +190,38 @@ function translateQPA() {
         });
         for (let i = 0; i < monomials.length; i++) {
             reldataentry[i].originalIdx = i;
-            let [scalar, ...arrs] = monomials[i].split("*");
-            charFound = charFound == -1 ? findFieldChar(scalar) : charFound;
-            document.getElementById(
-                "controlOutput"
-            ).innerHTML = `Detected characteristic as ${
-                charFound != -1 ? charFound : "unknown"
-            }.`;
-            scalar = translateScalar(scalar, charFound); // scalar is integer now
-            reldataentry[i].scalar = scalar;
+            // split each monomial into scalar and generating factors
+            let factors = monomials[i].split("*");
+            let arrInMon = [],
+                scalar = "1";
+            if (factors[0][0] != "(") {
+                // first factor is probably not a scalar
+                if (arr.find(({ data }) => data.id == factors[0])) {
+                    arrInMon = factors;
+                } else {
+                    scalar = factors[0];
+                    arrInMon = factors.slice(1);
+                }
+            } else {
+                scalar = factors[0];
+                arrInMon = factors.slice(1);
+            }
+            // let [scalar, ...arrs] = monomials[i].split("*");
+            if (charFound == -1) {
+                // try to find characteristic if not yet known
+                charFound = findFieldChar(scalar);
+                document.getElementById(
+                    "controlOutput"
+                ).innerHTML = `Detected characteristic as ${
+                    charFound != -1 ? charFound : "unknown"
+                }.`;
+            }
+            // translate scalar string to more readable form if possible
+            scalar = translateScalar(scalar, charFound);
+            reldataentry[i].scalar = scalar; // empty string if scalar is 1
 
             // translate a summand of the relation
-            let newMono = arrs
+            let newMono = arrInMon
                 .map((x) => {
                     let q = arrRef.indexOf(x);
                     // q!=-1 => return replaced letters; otherwise its a scalar elt
@@ -215,6 +237,7 @@ function translateQPA() {
                 .join("·");
             readIndex += monomials[i].length;
             newMono += i + 1 == monomials.length ? "" : rel[readIndex];
+            // TODO: extract following out of loop, calculate relation string after sorting terms
             newRel +=
                 scalar == ""
                     ? newMono
@@ -229,25 +252,58 @@ function translateQPA() {
     relData.sort(sortReln);
 
     //Tidy up data
-    dataReady(quiverData, relData);
+    QuiverData = quiverData;
+    Relations = relData;
+    //console.log("Quiver prepared: ", quiverData);
+    //console.log("Relations: ",relData);
+    presentData(quiverData, relData);
 }
 
-function dataReady(quiver, relations, isPreset = false) {
-    // Display relations
-    var relns = relations.map(({ reln }) => reln).join(" ,<br></span><span>");
-    document.getElementById(
-        "sysOutput"
-    ).innerHTML = `Relations:<br> <span>${relns} </span>`;
+function presentData(quiver, relations, isPreset = false) {
+    //region# Display relations
+    // var relns = relations.map(({ reln }) => reln).join(" ,<br></span><span>");
+    // document.getElementById(
+    //     "sysOutput"
+    // ).innerHTML = `Relations:<br> <span>${relns} </span>`;
     // TODO: add relation handling
+    // document.getElementById("sysOutput").innerHTML = relationOutput(relations);
+    let outputDiv = document.getElementById("sysOutput");
+    outputDiv.innerHTML = `Relations:<br>`;
+    for (const r of relations) {
+        let divElt = document.createElement("div");
+        divElt.classList.add("relationRow");
+        divElt.setAttribute("id", r.reln);
+        divElt.innerHTML = r.reln;
+        divElt.addEventListener("click", () => selectRelation(r.reln));
+        outputDiv.appendChild(divElt);
+    }
 
+    // get Cyto ready
     document.getElementById("saveSVG").disabled = false;
     document.getElementById("fixCyto").disabled = false;
-    QuiverData = quiver;
-    Relations = relations;
-    //console.log("Quiver prepared: ", quiver);
-    //console.log("Relations: ",relations);
     cy = initCyto(quiver, isPreset);
 }
+
+// composition of comparisons (sort order)
+/**
+ * @param  {[ [any,any]->int ]} compfuncs array of comparison functions
+ * @param  {any} a
+ * @param  {any} b
+ */
+function composeCompares(compfuncs, a, b) {
+    let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
+    return c.reduce((accum, curr) => (accum ? accum : curr));
+}
+
+const positiveCoeffFirst = (x, y) =>
+    x.scalar > 0 ? (y.scalar > 0 ? 0 : -1) : 1;
+const increasingMonomialLength = (x, y) =>
+    x.monomials.length - y.monomials.length;
+const increasingNumOfTerms = (r1, r2) => r1.terms.length - r2.terms.length;
+const monomialWithPositiveCoeffFirst = (r1, r2) =>
+    r1.terms.length == 1 && r2.terms.length == 1
+        ? positiveCoeffFirst(r1.terms[0], r2.terms[0])
+        : increasingNumOfTerms(r1, r2);
 
 /**
  * relationdata obj: {reln: string, terms: Array<termdata>}
@@ -256,9 +312,23 @@ function dataReady(quiver, relations, isPreset = false) {
  * @param  {relationdata} b
  */
 function sortReln(a, b) {
-    //sort by num of monomials first
-    let firstsort = a.terms.length - b.terms.length;
-    return firstsort != 0 ? firstsort : a.reln - b.reln;
+    // let firstsort = a.terms.length - b.terms.length;
+    // return firstsort != 0 ? firstsort : a.reln - b.reln;
+    return monomialWithPositiveCoeffFirst(a, b);
+}
+
+function selectRelation(relnStr) {
+    // clear previously selected paths first
+    cy.elements(`edge:unselected`).style(coloredEdgeStyle("#000"));
+    // select new paths
+    let foundReln = Relations.find(({ reln }) => reln == relnStr);
+    for (const t of foundReln.terms) {
+        for (const m of t.monomials) {
+            // TODO: add few more colors, one for each term
+            cy.elements(`edge[id="${m}"]`).style(coloredEdgeStyle("#ff6f00"));
+        }
+    }
+    console.log("found relation: ", foundReln);
 }
 
 // var testdata = {
@@ -337,7 +407,19 @@ function sortReln(a, b) {
 //             },
 //         },
 //     ],
-// };
+// };]
+const coloredEdgeStyle = (color) => {
+    return {
+        width: 2,
+        "line-color": color,
+        "target-arrow-color": color,
+        "target-arrow-shape": "triangle",
+        "curve-style": "bezier",
+        "loop-direction": "0deg",
+        "loop-sweep": "45deg",
+    };
+};
+
 function initCyto(inputData, isPreset = false) {
     // **** Cytoscape part
     let layout = isPreset
@@ -382,15 +464,11 @@ function initCyto(inputData, isPreset = false) {
             },
             {
                 selector: "edge",
-                style: {
-                    width: 2,
-                    "line-color": "#000",
-                    "target-arrow-color": "#000",
-                    "target-arrow-shape": "triangle",
-                    "curve-style": "bezier",
-                    "loop-direction": "0deg",
-                    "loop-sweep": "45deg",
-                },
+                style: coloredEdgeStyle("#000"),
+            },
+            {
+                selector: "edge:selected",
+                style: coloredEdgeStyle("#7379f4"),
             },
             // todo: dynamically add edge.loopCounter with "Counter"=1,2,...
             // todo: use inputData to determine loop
@@ -431,6 +509,42 @@ function initCyto(inputData, isPreset = false) {
     });
 }
 
+function bendArrow(dir) {
+    let edges = cy.$("edge:selected");
+    for (let e of edges) {
+        let strCurrDist = e.style("control-point-distance");
+        let dist = 0;
+        switch (dir) {
+            case "L":
+                dist = -60;
+                break;
+            case "R":
+                dist = 60;
+                break;
+            case "S":
+                dist = 0;
+                break;
+        }
+        console.log(strCurrDist);
+        if (!strCurrDist) {
+            e.style("control-point-weights", 0.5); // at midpoint
+            e.style("control-point-distance", dist); // >0 = bend right, <0 = bend left
+            e.style("curve-style", "unbundled-bezier");
+        } else {
+            let currDist = parseInt(
+                strCurrDist.substring(0, strCurrDist.indexOf("px"))
+            );
+            if ((currDist >= 0 && dist > 0) || (currDist <= 0 && dist < 0)) {
+                e.style("control-point-distance", currDist + dist);
+            } else {
+                e.style("control-point-distance", 0);
+            }
+            e.style("control-point-weights", 0.5);
+            e.style("curve-style", "unbundled-bezier");
+        }
+    }
+}
+
 function clearAll() {
     document.getElementById("inQuiver").value = "";
     document.getElementById("inRelation").value = "";
@@ -463,6 +577,12 @@ function savefile(type) {
 /**
  *  Event handlers
  */
+document
+    .getElementById("bendLeft")
+    .addEventListener("click", () => bendArrow("L"));
+document
+    .getElementById("bendRight")
+    .addEventListener("click", () => bendArrow("R"));
 
 document.getElementById("fixCyto").addEventListener("click", () => cy.fit());
 document
@@ -477,7 +597,7 @@ document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
         "load",
         () => {
             let res = JSON.parse(reader.result);
-            dataReady(res.cy.elements, res.reln, true);
+            presentData(res.cy.elements, res.reln, true);
             // this will then display a text file
         },
         false

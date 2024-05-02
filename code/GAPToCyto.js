@@ -573,9 +573,7 @@ function savefile(type) {
     saveAs(blob, document.getElementById("filenameInput").value + "." + type);
 }
 
-/**
- *  Event handlers
- */
+//region# Event handlers
 document
     .getElementById("bendLeft")
     .addEventListener("click", () => bendArrow("L"));

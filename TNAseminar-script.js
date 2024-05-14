@@ -14,25 +14,28 @@ let talks = [
         //     psw: "",
         // },
         // record: {
-        //     slides: `TNA/2024/Sakai-Torsion_classes_over_group_algebras.pdf`,
+        //     slides: `TNA/2024/ItoDaigo-.pdf`,
         // },
     },
     {
         ymd: "2024-06-07",
         start: "1630",
         duration: 90,
-        title: ``,
+        title: `スーパー代数群の表現と奇鏡映について`,
         speaker: "Taiki Shibata 柴田 大樹",
         affil: "Okayama University of Science 岡山理科大学",
         web: `https://sites.google.com/site/mathshibata`,
-        abstract: ``,
+        abstract: `<p>良く知られているように分裂簡約代数群の表現論は，原理的には付随するルート・データ（やワイル群）の言葉で記述することが可能であり，既約表現の分類や指標理論などの研究が今日に至るまで盛んに行われてきている．一方で，スーパー代数群は対称テンソル圏の理論で本質的な役割を果たす（Deligneの定理）ことは知られていたが，それ自体の構造論や表現論に関する研究はまだ始まったばかりであり，非スーパーのときと比べて十分理解されているとは言い難い．例えば「付随するルート系の言葉で既約表現のパラメータを記述せよ」という問いは基本的であるにもかかわらず，いくつかのスーパー代数群に対してしか解決されていない．その理由としては，スーパーの場合はルートやボレル部分群の振る舞いが特異であり，そのコントロールが難しいという点があげられる．</p>
+
+        <p>本講演では，スーパー代数群の定義から始めて，いくつかの具体例をそのルート系とともに見ていく．そして誘導表現を用いた既約表現の構成法を紹介し，現状でどこまで（既約）表現に関して分かっているのか，またどのような困難があるのかを具体例を見ながら解説する．その後に Serganova らによって導入された（ワイル群のある意味の補完である）奇鏡映と呼ばれる操作が，スーパー代数群の誘導表現に対してどのように振る舞うかを解説する．</p>
+        `,
         lang: "jp",
         // access: {
         //     id: "",
         //     psw: "",
         // },
         // record: {
-        //     slides: `TNA/2024/Sakai-Torsion_classes_over_group_algebras.pdf`,
+        //     slides: `TNA/2024/Shibata-SuperGroupRep_and_OddReflection.pdf`,
         // },
     },
 ];

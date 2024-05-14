@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@2.5.4/dist/zero-md.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        div#main {
+            /* background-color: aqua; */
+            width: fit-content;
+            margin: 0 auto 100px;
+            padding: 1em 1em;
+            border: black 1px solid;
+        }
+
+        /*--------------------------------------------------*/
+        /* timetable */
+        /*--------------------------------------------------*/
+        .timetable {
+            background-color: #FFFFFF;
+            text-align: center;
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+            margin: 25px auto 30px;
+        }
+
+        .timetable th {
+            border: 1px solid #AAAAAA;
+            padding: 1em;
+        }
+
+        .timetable td {
+            border: 1px solid #AAAAAA;
+            padding: 1em;
+        }
+
+        .timetable thead {
+            background: #DDDDDD;
+        }
+
+        .timetable thead th,
+        .timetable .timeslot {
+            background: #DDDDDD;
+            text-align: center;
+            padding: .4em;
+            font-weight: bold;
+        }
+
+        .timetable .lecture {
+            background-color: hsl(240, 100%, 80%);
+        }
+
+        .timetable .invited {
+            background-color: hsl(39, 100%, 80%);
+        }
+
+        .timetable .short {
+            background-color: hsl(120, 100%, 80%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <zero-md src="notes.md">
+            <!-- Wrap with a <template> tag -->
+            <!-- <template> -->
+            <!-- Define your own styles inside a `<style>` tag -->
+            <!-- <style>
+                h1 {
+                    color: rgb(76, 0, 255);
+                }
+
+                code {
+                    background-color: hsl(0, 0%, 30%);
+                }
+            </style>
+        </template> -->
+            <link rel="stylesheet"
+                href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css" />
+            <!-- Write your markdown inside a `<script type="text/markdown">` tag 
+             Do not se src attribute if so
+            -->
+            <!-- <script type="text/markdown">
+        </script> -->
+        </zero-md>
+
+        <h2>Timetable</h2>
+        <div>
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Monday</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thur</th>
+                        <th>Fri</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="timeslot">09:30 - 10:30</td>
+                        <td>Selected 1</td>
+                        <td>Selected 2</td>
+                        <td class="invited">Invited</td>
+                        <td>Selected 3</td>
+                        <td>Selected 4</td>
+                    </tr>
+                    <tr>
+                        <td class="timeslot">11:00 - 12:00<br><span class="comm">(10:45 - 11:45)</span></td>
+                        <td class="lecture">Zwara 1</td>
+                        <td class="lecture">Derksen 1</td>
+                        <td class="lecture">Mizuno 2</td>
+                        <td class="lecture">Zwara 2</td>
+                        <td class="lecture">Mizuno 3</td>
+                    </tr>
+                    <tr>
+                        <td class="timeslot">12:00 - 14:00<br><span class="comm">(11:45 - 13:00)</span></td>
+                        <td colspan="5">Lunch</td>
+                    </tr>
+                    <tr>
+                        <td class="timeslot">14:00 - 15:00<br><span class="comm">(13:00 - 14:00)</span></td>
+                        <td class="short">Short Talks 1/2</td>
+                        <td class="short">Short Talks 3/4</td>
+                        <td rowspan="3"> Free </td>
+                        <td class="short">Short Talks 5/6</td>
+                        <td class="short">Short Talks 7/8</td>
+                    </tr>
+                    <tr>
+                        <td class="timeslot">15:30 - 16:30<br><span class="comm">(14:30 - 15:30)</span></td>
+                        <td class="lecture">Mizuno 1</td>
+                        <td class="lecture">Zwara 2</td>
+                        <!-- <td>cell4_5</td> -->
+                        <td class="lecture">Derksen 3</td>
+                        <td class="lecture">Zwara 3</td>
+                    </tr>
+                    <tr>
+                        <td class="timeslot">17:00 - 18:00<br><span class="comm">(15:45 - 16:45)</span></td>
+                        <td class="invited">Invited 2</td>
+                        <td class="invited">Invited 3</td>
+                        <!-- <td>cell4_6</td> -->
+                        <td class="invited">Invited 4</td>
+                        <td class="invited">Invited 5</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ul class="vertical">
+                <li>!! Schedule is only for counting purpose for now !!</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

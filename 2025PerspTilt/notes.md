@@ -41,7 +41,7 @@
 ## Organisation schedule
 * 3月： Homepage 作成
 * 4月： 1st announcement
-  * Status: annouce in ML, OIST workshop
+  * Status: annouced in ML, OIST workshop
   * Announce in FDLIST: 予定なし（国内研究者向けのため）
 * 9月： 講演募集
 * 12月： 募集締め切り、プログラム作成

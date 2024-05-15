@@ -414,8 +414,7 @@ ul.twocolumns>li {
         margin: 10px 0 2px;
         flex-direction: column;
         align-items: center;
-
-        text-align: center;
+        text-align: left;
     }
 }
 

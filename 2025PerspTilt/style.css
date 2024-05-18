@@ -224,7 +224,7 @@ h3::after {
 h4 {
     margin: 30px 0 20px;
 
-    font-size: 18px;
+    font-size: small;
 
     /*	background-color: hsl(80, 100%, 95%);*/
 }

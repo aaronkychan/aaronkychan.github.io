@@ -1,5 +1,25 @@
 let talks = [
     {
+        ymd: "2024-06-28",
+        start: "1630",
+        duration: 90,
+        title: `Classifying KE-closed subcategories`,
+        speaker: "Shunya Saito 斎藤 峻也",
+        affil: "University of Tokyo 東京大学",
+        web: `https://sites.google.com/view/shunya-saito-math`,
+        abstract: `圏の局所化や導来圏のt構造、傾加群とその変異など種々の理論と関連して、これまで様々な種類のアーベル圏の部分圏が導入・研究されてきた。とくに環を固定したとき、その加群圏にはどのような部分圏があり、それらはどのように分類されるのかという問題は環の表現論において活発に研究されてきた。可換環の場合には、様々な部分圏がプライム・スペクトラムを用いて分類できることや、一般のアーベル圏では異なるクラスの部分圏が一致してしまうことなどがこれまでの研究で明らかにされてきた。
+本公演では、進行中の可換環上の加群圏におけるKE閉部分圏（＝核と拡大で閉じる部分圏）の分類について話す。とくに良いクラスの可換環に対してはKE閉部分圏がプライム・スペクトラムを用いて分類できることや他のクラスの部分圏と一致してしまうことを紹介する。またこれらを示すうえで加群の自己準同型環の中心の考察が重要な役割を果たしており、その性質やKE閉部分圏の分類との関係について述べる。分類に関する予想や関連する問題についても述べたいと考えている。
+本公演の内容は小林稔周氏（明治大学）との共同研究に基づく。`,
+        lang: "jp",
+        access: {
+            id: "890 0928 7250",
+            psw: "360908",
+        },
+        record: {
+            slides: `TNA/2024/Saito-Classify_KE-closed_subcats.pdf`,
+        },
+    },
+    {
         ymd: "2024-06-21",
         start: "1630",
         duration: 90,
@@ -14,9 +34,9 @@ let talks = [
             id: "871 0903 4557",
             psw: "788435",
         },
-        // record: {
-        //     slides: `TNA/2024/ItoDaigo-.pdf`,
-        // },
+        record: {
+            slides: `TNA/2024/Ito-Reinterpret_reconstruction_theorem_for_Matsui_spectrum.pdf`,
+        },
     },
     {
         ymd: "2024-06-07",

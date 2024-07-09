@@ -260,20 +260,22 @@ function translateQPA() {
 
 function presentData(quiver, relations, isPreset = false) {
     //region# Display relations
-    // var relns = relations.map(({ reln }) => reln).join(" ,<br></span><span>");
-    // document.getElementById(
-    //     "sysOutput"
-    // ).innerHTML = `Relations:<br> <span>${relns} </span>`;
-    // TODO: add relation handling
-    // document.getElementById("sysOutput").innerHTML = relationOutput(relations);
+    // TODO: improve relation handling
     let outputDiv = document.getElementById("sysOutput");
     outputDiv.innerHTML = `Relations:<br>`;
-    for (const r of relations) {
+    for (let i = 0; i < relations.length; i++) {
+        // for (const r of relations) {
         let divElt = document.createElement("div");
         divElt.classList.add("relationRow");
-        divElt.setAttribute("id", r.reln);
-        divElt.innerHTML = r.reln;
-        divElt.addEventListener("click", () => selectRelation(r.reln));
+        divElt.setAttribute("id", relations[i].reln);
+        divElt.innerHTML = relations[i].reln;
+        divElt.addEventListener("click", () => {
+            selectNthRelation(i);
+            //     relations[i].reln,
+            //     i % 2 == 0 ? "#ff6f00" : "#0080ff"
+            // );
+            // divElt.classList.add("selectedRelationRow");
+        });
         outputDiv.appendChild(divElt);
     }
 
@@ -316,16 +318,44 @@ function sortReln(a, b) {
     return monomialWithPositiveCoeffFirst(a, b);
 }
 
-function selectRelation(relnStr) {
-    // select new paths
-    let foundReln = Relations.find(({ reln }) => reln == relnStr);
-    for (const t of foundReln.terms) {
-        for (const m of t.monomials) {
-            // TODO: add few more colors, one for each term
-            cy.elements(`edge[id="${m}"]`).style(coloredEdgeStyle("#ff6f00"));
+// function selectRelation(relnStr, color = "#ff6f00") {
+//     // unselect all paths
+//     for (const e of cy.edges()) {
+//         e.style(coloredEdgeStyle("#000"));
+//     }
+//     // select new paths
+//     let foundReln = Relations.find(({ reln }) => reln == relnStr);
+//     for (const t of foundReln.terms) {
+//         for (const m of t.monomials) {
+//             // TODO: add few more colors, one for each term
+//             cy.edges(`[id="${m}"]`).style(coloredEdgeStyle(color));
+//         }
+//     }
+//     // console.log("found relation: ", foundReln);
+// }
+
+function selectNthRelation(n) {
+    let rows = document.querySelectorAll("#sysOutput div");
+    // unselect all paths
+    for (const e of cy.edges()) {
+        e.style(coloredEdgeStyle("#000"));
+    }
+    // un/highlight the row and select new paths
+    // if n=-1, then it will just unhighlight all rows and select no path
+    for (let i = 0; i < rows.length; i++) {
+        if (i == n) {
+            rows[i].classList.add("selectedRelationRow");
+            for (const t of Relations[i].terms) {
+                for (const m of t.monomials) {
+                    cy.edges(`[id="${m}"]`).style(
+                        coloredEdgeStyle(i % 2 == 0 ? "#ff6f00" : "#0080ff")
+                    );
+                }
+            }
+        } else {
+            rows[i].classList.remove("selectedRelationRow");
         }
     }
-    // console.log("found relation: ", foundReln);
 }
 
 // var testdata = {
@@ -608,3 +638,7 @@ document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
 document
     .getElementById("translateBtn")
     .addEventListener("click", () => translateQPA());
+
+document
+    .getElementById("btnUnselectRelns")
+    .addEventListener("click", () => selectNthRelation(-1));

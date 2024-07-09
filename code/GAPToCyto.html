@@ -23,6 +23,10 @@
             cursor: pointer;
         }
 
+        .selectedRelationRow {
+            background: #ffff00;
+        }
+
         #midCol {
             /* display: grid;
             align-self: center; */
@@ -143,7 +147,7 @@
         }
 
         #sysOutput div:nth-child(2n+1) {
-            color: rgb(0, 128, 255);
+            color: #0080ff;
         }
 
         #sysOutput div:nth-child(2n) {
@@ -225,18 +229,22 @@
                     onclick="document.getElementById('outTxtBox').innerHTML ='';" />
                 &nbsp;&nbsp;&nbsp;
                 <input type="button" id="fixCyto" value="Fit canvas" disabled />
-                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; | &nbsp;
                 <!-- save load -->
-                Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
-                <br>
-                Filename:&nbsp; <input type="text" id="filenameInput" value="quiver">
-                &nbsp;&nbsp;&nbsp;
+                Filename:&nbsp; <input type="text" id="filenameInput" value="quiver" size="10">
+                &nbsp;
                 <input type="button" id="saveJSON" value="Save as JSON" />
                 <input type="button" id="saveSVG" value="Save as SVG" disabled /> &nbsp;&nbsp; (Use &nbsp;<a
                     href="https://github.com/xyz2tex/svg2tikz">svg2tikz</a>&nbsp; to convert to tikz)
+                &nbsp;&nbsp; | &nbsp;&nbsp;
+                Load from JSON: <input id="loadJsonBtn" type="file" accept="application/json">
+
+                <!-- <br> -->
 
                 <!-- graph control -->
                 <div style="margin: .7em 0em;">
+                    <input type="button" id="btnUnselectRelns" value="Unselect all relations" />
+                    &nbsp;&nbsp; | &nbsp;&nbsp;
                     Bend edge more (select edge first and choose):
                     <input type="button" id="bendLeft" value="Bend left" />
                     <input type="button" id="bendRight" value="Bend right" />

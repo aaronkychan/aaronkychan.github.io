@@ -34,7 +34,7 @@ body {
     -webkit-text-size-adjust: 100%;
 
     font-size: 6px;
-    font-family: sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: var(--text-color);
     background-color: var(--background-color);
 
@@ -343,6 +343,15 @@ ul.compact >li {
     margin: 5px 0 5px 1.6em;
     list-style: disc;
     font-size: 12pt;
+}
+
+ul.compact ul{
+    margin: .5em 0;
+}
+ul.compact ul>li{
+    list-style-type: circle;
+    list-style-position: inside;
+    margin: .3em 0;
 }
 
 /*--------------------------------------------------*/

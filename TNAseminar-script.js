@@ -16,9 +16,9 @@ let talks = [
             id: "810 1799 9876",
             psw: "456782",
         },
-        // record: {
-        //     slides: `TNA/2024/Saito-Classify_KE-closed_subcats.pdf`,
-        // },
+        record: {
+            slides: `TNA/2024/Gyoda-Generalised_Markov_numbers.pdf`,
+        },
     },
     {
         ymd: "2024-06-28",

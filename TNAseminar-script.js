@@ -1,5 +1,23 @@
 let talks = [
     {
+        ymd: "2024-12-20",
+        start: "1700",
+        duration: 90,
+        title: `Semiinfinite sheaves on affine flag varieties`,
+        speaker: "Simon Riche",
+        affil: "Université Clermont Auvergne",
+        web: `https://lmbp.uca.fr/~riche/`,
+        abstract: `We will explain how, generalizing a construction of Gaitsgory, one can define and study a category of sheaves on the affine flag variety of a complex reductive group that "models" sheaves on the corresponding semiinfinite flag variety, with coefficients in a field of positive characteristic, and which should provide a geometric model for a category of representations of the Langlands dual Lie algebra over the given coefficient field. As an application, we use this construction to compute the dimensions of stalks of the intersection cohomology complex on Drinfeld's compactification, with coefficients in any field of good characteristic. This is joint work with Pramod Achar and Gurbir Dhillon.`,
+        lang: "en",
+        access: {
+            id: "882 1561 8969",
+            psw: "531394",
+        },
+        // record: {
+        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
+        // },
+    },
+    {
         ymd: "2024-10-23",
         start: "1030",
         duration: 90,

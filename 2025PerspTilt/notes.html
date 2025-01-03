@@ -17,6 +17,65 @@
         }
 
         /*--------------------------------------------------*/
+        /* grid timetable */
+        /*--------------------------------------------------*/
+        .ttgrid {
+            display: grid;
+            grid-template-columns: 5em repeat(5, 12em);
+            background-color: #fff;
+            gap: 2px;
+            font-family: Arial, Helvetica, sans-serif;
+            border: red 1px solid;
+            margin: 3ch auto;
+            width: fit-content;
+        }
+
+        .ttgrid>.timeColumn {
+            display: grid;
+            grid-template-rows: 2em 5em 1em 5em 1em 5em 2em 3em 5em 1em 3em 1em 5em 2em;
+        }
+
+        .ttgrid>.timeColumn>.timeCell {
+            align-content: center;
+            background-color: #ddd;
+            border-bottom: 1px solid #555;
+            border-right: 1px solid #555;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.5ch;
+        }
+
+        .ttgrid>.dayColumn {
+            display: grid;
+            border: 1px black solid;
+        }
+
+        .ttgrid>.dayColumn>.heading {
+            align-content: center;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: solid black 1px;
+        }
+
+        .ttgrid>.dayColumn>.cell {
+            background-color: #aaa;
+            height: 100%;
+            border-radius: 5px;
+            margin: auto 0;
+            padding: .2em;
+            border: 1px solid #999;
+            box-sizing: border-box;
+            text-shadow:
+                -1px -1px 0 #fff,
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff;
+            /* allow child div to appear at bottom */
+            /* display: grid;
+            grid-template-rows: 1fr auto; */
+        }
+
+        /*--------------------------------------------------*/
         /* timetable */
         /*--------------------------------------------------*/
         .timetable {
@@ -50,46 +109,130 @@
             font-weight: bold;
         }
 
-        .timetable .lecture {
+        .lecture {
             background-color: hsl(240, 100%, 80%);
         }
 
-        .timetable .invited {
+        .invited {
             background-color: hsl(39, 100%, 80%);
         }
 
-        .timetable .short {
+        .short {
             background-color: hsl(120, 100%, 80%);
+        }
+
+        .contributed {
+            color: blue;
         }
     </style>
 </head>
 
 <body>
     <div id="main">
-        <zero-md src="notes.md">
-            <!-- Wrap with a <template> tag -->
-            <!-- <template> -->
-            <!-- Define your own styles inside a `<style>` tag -->
-            <!-- <style>
-                h1 {
-                    color: rgb(76, 0, 255);
-                }
-
-                code {
-                    background-color: hsl(0, 0%, 30%);
-                }
-            </style>
-        </template> -->
-            <link rel="stylesheet"
-                href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css" />
-            <!-- Write your markdown inside a `<script type="text/markdown">` tag 
-             Do not se src attribute if so
-            -->
-            <!-- <script type="text/markdown">
-        </script> -->
-        </zero-md>
-
+        <h1>Organiser's notes</h1>
         <h2>Timetable</h2>
+        Current suggestion:
+        <ul>
+            <li>Short talks (30min. x 4): one of the McKay, Fushimi, Mochizuki, Tomonaga</li>
+            <li>Contribtued talks (40min.): all others</li>
+        </ul>
+        注意事項：Confirmation with Hille.
+        <div>
+            <div class="ttgrid">
+                <div class="timeColumn">
+                    <div></div>
+                    <div class="timeCell">09:00<br>|<br>09:50</div>
+                    <div></div>
+                    <div class="timeCell">10:00<br>|<br>10:50</div>
+                    <div></div>
+                    <div class="timeCell">11:00<br>|<br>11:50</div>
+                    <div class="timeCell">|<br>12:10</div>
+                    <div style="text-align:center;align-content: center;">Lunch</div>
+                    <div class="timeCell">14:00<br>|<br>14:50</div>
+                    <div></div>
+                    <div class="timeCell">15:00<br>|<br>15:30</div>
+                    <div></div>
+                    <div class="timeCell">15:50<br>|<br>16:40</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 6em 5em 1em 5em 5em 5em 1em 3em 1em 5em 2em;">
+                    <div class="heading">Monday</div>
+                    <div></div>
+                    <div class="cell">Mizuno</div>
+                    <div></div>
+                    <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell">Derksen</div>
+                    <div></div>
+                    <div class="cell contributed">short</div>
+                    <div></div>
+                    <div class="cell">Hirano</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 4em 5em 5em 1em 3em 1em 5em 2em;">
+                    <div class="heading">Tuesday</div>
+                    <div class="cell">Mizuno</div>
+                    <div></div>
+                    <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>contributed</div>
+                        <div>11:10~11:50</div>
+                    </div>
+                    <div></div>
+                    <div class="cell">Derksen</div>
+                    <div></div>
+                    <div class="cell contributed">short</div>
+                    <div></div>
+                    <div class="cell">Yoshino</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 3em 5em auto 2em;">
+                    <div class="heading">Wednesday</div>
+                    <div class="cell">Mizuno</div>
+                    <div></div>
+                    <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell">
+                        <div>Derksen</div>
+                        <div>11:20~12:10</div>
+                    </div>
+                    <div></div>
+                    <div style="border-top:dashed 2px black;">Conference dinner 18:00~</div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
+                    <div class="heading">Thursday</div>
+                    <div class="cell">Mousavand</div>
+                    <div></div>
+                    <div class="cell contributed">contributed 10:10~10:50</div>
+                    <div></div>
+                    <div class="cell contributed">contributed</div>
+                    <div></div>
+                    <div class="cell contributed">contributed</div>
+                    <div></div>
+                    <div class="cell contributed">short</div>
+                    <div></div>
+                    <div class="cell">Murakami</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
+                    <div class="heading">Friday</div>
+                    <div class="cell">Hanihara</div>
+                    <div></div>
+                    <div class="cell contributed">contributed</div>
+                    <div></div>
+                    <div class="cell contributed">contributed</div>
+                    <div></div>
+                    <div class="cell contributed">contributed</div>
+                    <div></div>
+                    <div class="cell contributed">short</div>
+                    <div></div>
+                    <div class="cell">Ishii</div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <!-- 
         <div>
             <table class="timetable">
                 <thead>
@@ -135,7 +278,7 @@
                         <td class="timeslot">14:30 - 15:30</td>
                         <td class="lecture">Mizuno 1</td>
                         <td class="lecture">Zwara 2</td>
-                        <!-- <td>cell4_5</td> -->
+                        <!-- <td>cell4_5</td> 
                         <td class="lecture">Zwara 3</td>
                         <td class="lecture">Derksen 3</td>
                     </tr>
@@ -143,7 +286,7 @@
                         <td class="timeslot">15:45 - 16:45</td>
                         <td class="invited">Invited 2</td>
                         <td class="invited">Invited 3</td>
-                        <!-- <td>cell4_6</td> -->
+                        <!-- <td>cell4_6</td> 
                         <td class="invited">Invited 4</td>
                         <td class="invited">Invited 5</td>
                     </tr>
@@ -152,8 +295,33 @@
             <ul class="vertical">
                 <li>!! Schedule is only for counting purpose for now !!</li>
             </ul>
-        </div>
+        </div>-->
+
+
+        <zero-md src="notes.md">
+            <!-- Wrap with a <template> tag -->
+            <!-- <template> -->
+            <!-- Define your own styles inside a `<style>` tag -->
+            <!-- <style>
+                h1 {
+                    color: rgb(76, 0, 255);
+                }
+    
+                code {
+                    background-color: hsl(0, 0%, 30%);
+                }
+            </style>
+        </template> -->
+            <link rel="stylesheet"
+                href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css" />
+            <!-- Write your markdown inside a `<script type="text/markdown">` tag 
+             Do not se src attribute if so
+            -->
+            <!-- <script type="text/markdown">
+        </script> -->
+        </zero-md>
     </div>
+
 </body>
 
 </html>

@@ -13,9 +13,9 @@ let talks = [
             id: "882 1561 8969",
             psw: "531394",
         },
-        // record: {
-        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
-        // },
+        record: {
+            slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
+        },
     },
     {
         ymd: "2024-10-23",

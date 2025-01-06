@@ -48,6 +48,7 @@
         .ttgrid>.dayColumn {
             display: grid;
             border: 1px black solid;
+            color: #fff;
         }
 
         .ttgrid>.dayColumn>.heading {
@@ -55,10 +56,11 @@
             font-weight: bold;
             text-align: center;
             border-bottom: solid black 1px;
+            color: black;
         }
 
         .ttgrid>.dayColumn>.cell {
-            background-color: #aaa;
+            background-color: #bbb;
             height: 100%;
             border-radius: 5px;
             margin: auto 0;
@@ -66,14 +68,25 @@
             border: 1px solid #999;
             box-sizing: border-box;
             text-shadow:
-                -1px -1px 0 #fff,
-                1px -1px 0 #fff,
-                -1px 1px 0 #fff,
-                1px 1px 0 #fff;
+                -1px -1px 0 #000,
+                1px -1px 0 #000,
+                -1px 1px 0 #000,
+                1px 1px 0 #000;
             /* allow child div to appear at bottom */
             /* display: grid;
-            grid-template-rows: 1fr auto; */
+            grid-template-rows: 1fr auto; 
+            cursor: pointer; */
         }
+
+        .ttgrid>.dayColumn>.cell:hover {
+            /* color: var(--primary-color); */
+            text-decoration: underline;
+        }
+
+        /* .ttgrid>.dayColumn>.cell .subtitle {
+            color: #6e6b80;
+            font-size: 0.8rem;
+        } */
 
         /*--------------------------------------------------*/
         /* timetable */
@@ -122,7 +135,7 @@
         }
 
         .contributed {
-            color: blue;
+            color: rgb(255, 255, 0);
             display: grid;
             grid-template-rows: 1fr auto;
         }
@@ -130,7 +143,7 @@
         .contributed>.subtitle {
             text-align: right;
             font-size: smaller;
-            color: blue;
+            color: rgb(255, 255, 0);
         }
     </style>
 </head>
@@ -166,82 +179,62 @@
                 <div class="dayColumn" style="grid-template-rows: 2em 6em 5em 1em 5em 5em 5em 1em 3em 1em 5em 2em;">
                     <div class="heading">Monday</div>
                     <div></div>
-                    <div class="cell">Mizuno</div>
-                    <div></div>
                     <div class="cell">Zwara</div>
                     <div></div>
-                    <div class="cell">Derksen</div>
-                    <div></div>
-                    <div class="cell contributed">
-                        <div>Tomonaga</div>
-                        <div class="subtitle">CM rep invar subring</div>
-                    </div>
-                    <div></div>
-                    <div class="cell">Hirano</div>
-                    <div></div>
-                </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 4em 5em 5em 1em 3em 1em 5em 2em;">
-                    <div class="heading">Tuesday</div>
                     <div class="cell">Mizuno</div>
                     <div></div>
-                    <div class="cell">Zwara</div>
-                    <div></div>
-                    <div class="cell contributed">
-                        <div>contributed? Hille?</div>
-                        <div>11:10~11:50 (1100-1150)</div>
-                    </div>
-                    <div></div>
-                    <div class="cell">Derksen</div>
+                    <div class="cell">Hanihara</div>
                     <div></div>
                     <div class="cell contributed">
                         <div>Fushimi</div>
                         <div class="subtitle">Silt-SMC duality</div>
                     </div>
                     <div></div>
-                    <div class="cell">Mousavand</div>
+                    <div class="cell">Hirano</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 1em 5em 5em 5em 1em 3em 1em 5em 2em;">
+                    <div class="heading">Tuesday</div>
+                    <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell">Mizuno</div>
+                    <div></div>
+                    <div class="cell">Derksen
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>!!!! [TBC] Hille</div>
+                        <div class="subtitle"></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Tomonaga</div>
+                        <div class="subtitle">CM rep invar subring</div>
+                    </div>
+                    <div></div>
+                    <div class="cell">Ishii</div>
                     <div></div>
                 </div>
                 <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 3em 5em auto 2em;">
                     <div class="heading">Wednesday</div>
-                    <div class="cell">Mizuno</div>
-                    <div></div>
                     <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell">Mizuno</div>
                     <div></div>
                     <div class="cell">
                         <div>Derksen</div>
                         <div>11:20~12:10</div>
                     </div>
                     <div></div>
-                    <div style="border-top:dashed 2px black;">Conference dinner 18:00~</div>
+                    <div style="color:black;border-top:dashed 2px black;">Conference dinner 18:00~</div>
                 </div>
                 <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
                     <div class="heading">Thursday</div>
-                    <div class="cell">Murakami </div>
+                    <div class="cell">Derksen</div>
                     <div></div>
                     <div class="cell contributed">
                         <div>Barcelo Nieves 10:10~10:50</div>
                         <div class="subtitle">Large (co)silting bijections</div>
-                    </div>
-                    <div></div>
-                    <div class="cell contributed">Fan or Capellan</div>
-                    <div></div>
-                    <div class="cell contributed">
-                        <div>Chalupnik</div>
-                        <div class="subtitle">Char tilting of polyn functors</div>
-                    </div>
-                    <div></div>
-                    <div class="cell contributed">Fan or Capellan</div>
-                    <div></div>
-                    <div class="cell">Ishii</div>
-                    <div></div>
-                </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
-                    <div class="heading">Friday</div>
-                    <div class="cell">Hanihara</div>
-                    <div></div>
-                    <div class="cell contributed">
-                        <div>Saito</div>
-                        <div class="subtitle">KE-closed subcats of comm ring</div>
                     </div>
                     <div></div>
                     <div class="cell contributed">
@@ -250,8 +243,35 @@
                     </div>
                     <div></div>
                     <div class="cell contributed">
+                        <div>Fan</div>
+                        <div class="subtitle">McKay in positive char.</div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Capellan</div>
+                        <div class="subtitle">McKay dihedral</div>
+                    </div>
+                    <div></div>
+                    <div class="cell">Mousavand</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
+                    <div class="heading">Friday</div>
+                    <div class="cell">Murakami</div>
+                    <div></div>
+                    <div class="cell contributed">
                         <div>Yahiro</div>
                         <div class="subtitle">2-param persistent mod crystal</div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Chalupnik</div>
+                        <div class="subtitle">Char tilting of polyn functors</div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Saito</div>
+                        <div class="subtitle">KE-closed subcats of comm ring</div>
                     </div>
                     <div></div>
                     <div class="cell contributed">

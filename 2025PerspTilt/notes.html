@@ -23,7 +23,7 @@
             display: grid;
             grid-template-columns: 5em repeat(5, 12em);
             background-color: #fff;
-            gap: 2px;
+            /* gap: 2px; */
             font-family: Arial, Helvetica, sans-serif;
             border: red 1px solid;
             margin: 3ch auto;
@@ -32,7 +32,6 @@
 
         .ttgrid>.timeColumn {
             display: grid;
-            grid-template-rows: 2em 5em 1em 5em 1em 5em 2em 3em 5em 1em 3em 1em 5em 2em;
         }
 
         .ttgrid>.timeColumn>.timeCell {
@@ -49,6 +48,7 @@
             display: grid;
             border: 1px black solid;
             color: #fff;
+            border-collapse: collapse;
         }
 
         .ttgrid>.dayColumn>.heading {
@@ -160,51 +160,32 @@
         注意事項：Confirmation with Hille.
         <div>
             <div class="ttgrid">
-                <div class="timeColumn">
+                <div class="timeColumn" style="
+            grid-template-rows: 2em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
                     <div></div>
                     <div class="timeCell">09:00<br>|<br>09:50</div>
                     <div></div>
                     <div class="timeCell">10:00<br>|<br>10:50</div>
                     <div></div>
-                    <div class="timeCell">11:00<br>|<br>11:50</div>
-                    <div class="timeCell">|<br>12:10</div>
+                    <div class="timeCell">11:10<br>|<br>12:00</div>
                     <div style="text-align:center;align-content: center;">Lunch</div>
-                    <div class="timeCell">14:00<br>|<br>14:50</div>
+                    <div class="timeCell">14:00<br>|<br>14:40</div>
                     <div></div>
-                    <div class="timeCell">15:00<br>|<br>15:30</div>
+                    <div class="timeCell">14:50<br>|<br>15:30</div>
                     <div></div>
                     <div class="timeCell">15:50<br>|<br>16:40</div>
                     <div></div>
                 </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 6em 5em 1em 5em 5em 5em 1em 3em 1em 5em 2em;">
+                <div class="dayColumn" style="grid-template-rows: 2em 6em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
                     <div class="heading">Monday</div>
                     <div></div>
                     <div class="cell">Zwara</div>
                     <div></div>
                     <div class="cell">Mizuno</div>
                     <div></div>
-                    <div class="cell">Hanihara</div>
-                    <div></div>
                     <div class="cell contributed">
-                        <div>Fushimi</div>
-                        <div class="subtitle">Silt-SMC duality</div>
-                    </div>
-                    <div></div>
-                    <div class="cell">Hirano</div>
-                    <div></div>
-                </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 1em 5em 5em 5em 1em 3em 1em 5em 2em;">
-                    <div class="heading">Tuesday</div>
-                    <div class="cell">Zwara</div>
-                    <div></div>
-                    <div class="cell">Mizuno</div>
-                    <div></div>
-                    <div class="cell">Derksen
-                    </div>
-                    <div></div>
-                    <div class="cell contributed">
-                        <div>!!!! [TBC] Hille</div>
-                        <div class="subtitle"></div>
+                        <div>Kimura</div>
+                        <div class="subtitle">AS-Gor tilting</div>
                     </div>
                     <div></div>
                     <div class="cell contributed">
@@ -215,32 +196,47 @@
                     <div class="cell">Ishii</div>
                     <div></div>
                 </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 3em 5em auto 2em;">
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
+                    <div class="heading">Tuesday</div>
+                    <div class="cell">Zwara</div>
+                    <div></div>
+                    <div class="cell">Mizuno</div>
+                    <div></div>
+                    <div class="cell">Derksen
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Barcelo Nieves</div>
+                        <div class="subtitle">Large (co)silting bijections</div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div>Fushimi</div>
+                        <div class="subtitle">Silt-SMC duality</div>
+                    </div>
+                    <div></div>
+                    <div class="cell">Hirano</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 5em auto 2em;">
                     <div class="heading">Wednesday</div>
                     <div class="cell">Zwara</div>
                     <div></div>
                     <div class="cell">Mizuno</div>
                     <div></div>
-                    <div class="cell">
-                        <div>Derksen</div>
-                        <div>11:20~12:10</div>
-                    </div>
+                    <div class="cell">Derksen </div>
                     <div></div>
                     <div style="color:black;border-top:dashed 2px black;">Conference dinner 18:00~</div>
                 </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em;">
                     <div class="heading">Thursday</div>
                     <div class="cell">Derksen</div>
                     <div></div>
-                    <div class="cell contributed">
-                        <div>Barcelo Nieves 10:10~10:50</div>
-                        <div class="subtitle">Large (co)silting bijections</div>
+                    <div class="cell">
+                        <div>!!!! TBC !!!!</div>
                     </div>
                     <div></div>
-                    <div class="cell contributed">
-                        <div>Kimura</div>
-                        <div class="subtitle">AS-Gor tilting</div>
-                    </div>
+                    <div class="cell">Hanihara</div>
                     <div></div>
                     <div class="cell contributed">
                         <div>Fan</div>
@@ -255,7 +251,7 @@
                     <div class="cell">Mousavand</div>
                     <div></div>
                 </div>
-                <div class="dayColumn" style="grid-template-rows: 2em 5em 2em 4em 2em 4em 5em 4em 2em 3em 1em 5em 2em;">
+                <div class="dayColumn" style="grid-template-rows: 2em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em;">
                     <div class="heading">Friday</div>
                     <div class="cell">Murakami</div>
                     <div></div>

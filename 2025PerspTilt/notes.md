@@ -20,9 +20,26 @@
 -   伏見陸
     -   Duality between silting objects and simple-mded icollections
     -   本公演では silting objects と simple-minded collections の間の双対関係を対応する dg 代数の間の Koszul 双対性の理論へと持ち上げる。
--   Capellan, John Ashley (Nagoya) (submitted 2 title, no abstract)
-    -   The McKay correspondence for dihedral groups: The moduli space and the tautological bundles
-    -   On Dimer Models and the McKay Correspondence
+-   Capellan, John Ashley (Nagoya) (submitted 2 titls)
+    -   The McKay correspondence for dihedral groups: The moduli space and
+        the tautological bundles
+        -   A conjecture by Ishii states that for a finite subgroup $G$ of $GL(2,C)$, a resolution $Y$ of $C^2/G$ is isomorphic to a
+            moduli space $M_{\theta}$ of $G$-constellations for some
+            generic stability parameter $\theta$ if and only if $Y$ is dominated by
+            the maximal resolution. This paper affirms the conjecture in the case of
+            dihedral groups as a class of complex reflection groups, and offers an
+            extension of McKay correspondence.
+    -   Towards the McKay correspondence for dimer models: The arrow
+        contraction algorithm and the tilting condition
+        -   The McKay correspondence for finite Abelian subgroups of
+            SL(3,C) has been well established. There is a generalization
+            of the Abelian case via the McKay quiver to the case of algebras
+            associated to dimer models. The arrow contraction operation contracts an
+            arrow in the quiver corresponding to the dimer model. We show some
+            directions in this talk that after the arrow contraction algorithm, the
+            tilting condition is preserved. This is one of the essential ingredients
+            towards the construction of the McKay correspondence. This is currently
+            a work in progress.
 -   Linghu Fan
     -   McKay correspondence in positive characteristic for specific modular groups
     -   Over complex numbers, McKay correspondence can be described as a relation between irreducible representations of finite groups and geometric properties of the associated quotient singularities. However, the naive analog of such relation fails when the ground field has a prime characteristic. In this talk, I will introduce a series of modular groups for what the analogous McKay correspondence in positive characteristic holds, and discuss about a potential way to adjust the analog such that it works for more groups in positive characteristic.

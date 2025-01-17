@@ -133,7 +133,7 @@ const contribtuedTalks = [
         id: "kimura",
         affiliate: "Hiroshima Institute of Technology 広島工業大学",
         title: "Tilting for Artin-Schelter Gorenstein algebras of dimension one",
-        abstract: `The existence of tilting or silting objects is a significant feature in algebraic triangulated categories, as it establishes an equivalence with the derived category of a ring. In this study, we focus on the existence of tilting objects in the stable category of Cohen-Macaulay modules over Artin-Schelter Gorenstein algebras. These algebras extend the concept of Gorenstein commutative characterization of the existence of tilting objects in stable categories using Gorenstein parameters. Our result is a noncommutative generalization of results established by Buchweitz, Iyama, and Yamaura.`,
+        abstract: "", //`The existence of tilting or silting objects is a significant feature in algebraic triangulated categories, as it establishes an equivalence with the derived category of a ring. In this study, we focus on the existence of tilting objects in the stable category of Cohen-Macaulay modules over Artin-Schelter Gorenstein algebras. These algebras extend the concept of Gorenstein commutative characterization of the existence of tilting objects in stable categories using Gorenstein parameters. Our result is a noncommutative generalization of results established by Buchweitz, Iyama, and Yamaura.`,
         category: "contributed",
         timeIndex: 0,
     },
@@ -142,15 +142,16 @@ const contribtuedTalks = [
         id: "tomonaga",
         affiliate: "Tokyo 東京大学",
         title: "Cohen-Macaulay representations of invariant subrings admitting field extensions",
-        abstract: `The two-dimensional quotient singularities provide examples of rings of finite Cohen-Macaulay type.
-                    Furthermore, the Auslander-Reiten quivers of the categories of Cohen-Macaulay modules coincide with
-                    the McKay quivers (algebraic McKay correspondence). Conversely, two-dimensional Cohen-Macaulay local
-                    rings of finite Cohen-Macaulay type are precisely quotient singularities if their residue fields are
-                    algebraically closed and of characteristic zero. In this talk, we generalize the above classical
-                    results to situations where the coefficient fields are not necessarily algebraically closed by
-                    introducing quotient singularities admitting field extensions. Moreover, we will see how to draw the
-                    McKay quivers in this new setting through determining irreducible representations of skew group
-                    algebras.`,
+        abstract: "",
+        // abstract: `The two-dimensional quotient singularities provide examples of rings of finite Cohen-Macaulay type.
+        //             Furthermore, the Auslander-Reiten quivers of the categories of Cohen-Macaulay modules coincide with
+        //             the McKay quivers (algebraic McKay correspondence). Conversely, two-dimensional Cohen-Macaulay local
+        //             rings of finite Cohen-Macaulay type are precisely quotient singularities if their residue fields are
+        //             algebraically closed and of characteristic zero. In this talk, we generalize the above classical
+        //             results to situations where the coefficient fields are not necessarily algebraically closed by
+        //             introducing quotient singularities admitting field extensions. Moreover, we will see how to draw the
+        //             McKay quivers in this new setting through determining irreducible representations of skew group
+        //             algebras.`,
         category: "contributed",
         timeIndex: 1,
     },

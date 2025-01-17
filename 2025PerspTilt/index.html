@@ -5,16 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perspectives in Tilting Theory and Related Topics</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"
-        integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"
-        integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"
-        crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="style.min.css">
+    <script src="./script.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.css"
+        integrity="sha384-7lU0muIg/i1plk7MgygDUp3/bNRA65orrBub4/OSWHECgwEsY83HaS1x3bljA/XV" crossorigin="anonymous">
 
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/katex.min.js"
+        integrity="sha384-RdymN7NRJ+XoyeRY4185zXaxq9QWOOx3O7beyyrRK4KQZrPlCDQQpCu95FoCGPAE"
+        crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.19/dist/contrib/auto-render.min.js"
+        integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -64,12 +68,13 @@
                         <h4>Invited lectures 招待講演</h4>
                         <ul class="compact">
                             <li>Norihiro Hanihara 埴原 紀宏 (Kyushu 九州大学)</li>
+                            <li>Naoya Hiramae 平前 直也 (Kyoto 京都大学)</li>
                             <li>Yuki Hirano 平野 雄貴 (Tokyo U. of Agriculture and Technology 東京農工大学)</li>
                             <li>Akira Ishii 石井 亮 (Nagoya 名古屋大学)</li>
                             <li><a href="https://kavehmousavand.wixsite.com/math">Kaveh Mousavand</a> (OIST 沖縄科学技術大学院大学)
                             </li>
                             <li>Kota Murakami 村上 浩大 (Tokyo 東京大学)</li>
-                            <li>Yuji Yoshino 吉野 雄二 (Okayama 岡山大学) *TBC</li>
+                            <li>Yuji Yoshino 吉野 雄二 (Okayama 岡山大学)</li>
                         </ul>
                     </div>
                 </li>
@@ -78,30 +83,24 @@
                     <div class="maincolumn">
                         <ul class="compact">
                             <li><a href="https://forms.gle/W1sMaqbVJrpnve9w7">Registration form 申し込みフォーム</a>
-                            </li>
-                            <li>Conference dinner 懇親会: <a href="https://forms.gle/kMpNV7QhG6s4eFgm8">Registration
-                                    登録</a><br>
-                            </li>
-                            <li>Deadline 締め切り
                                 <ul>
-                                    <li><s>Contributed talk application 講演募集: <strong>2024-12-31</strong></s></li>
-                                    <li>Registration 参加登録: <strong>2025-02-15</strong></li>
-                                    <li>Conference dinner registration 懇親会登録: <strong>2025-01-24</strong></li>
+                                    <li>Deadline 締め切り: <strong>2025-02-15</strong></li>
+                                    <!-- <li><s>Deadline for Contributed talk application 講演募集: <strong>2024-12-31</strong></s></li> -->
                                 </ul>
                             </li>
+                            <li>Conference dinner 懇親会: <a href="https://forms.gle/kMpNV7QhG6s4eFgm8">Registration
+                                    登録</a>
 
-                            <!-- <li>Registration and contributed talk application will be opened in September
-                                2024.<br /> 参加登録と講演募集は2024年9月開始予定です。</li>
-                            <li>Contributed talks can be in either English or Japanese.</li> -->
+                                <ul>
+                                    <li>Deadline 締め切り: <strong>2025-01-24</strong></li>
+                                </ul>
+                            </li>
                             <li>Please contact the organisers directly ASAP in case if you need any urgent or special
                                 requirement
                                 (such
                                 as invitation letter). <br>招待状など、緊急のあるいは特別な必要物があれば、主催者までなるべく早くご連絡ください。 </li>
                         </ul>
                         <br>
-                        <!-- (***Link to Google form***) <br>
-                        Deadline for contributed talks application: 2024-12-29 <br>
-                        Deadline for registration: until full capacity or 2025-02-01 -->
                     </div>
                 </li>
             </ul>
@@ -109,8 +108,121 @@
 
         <h2>Timetable <br>タイムテーブル</h2>
         <div>
+            <div class="ttgrid">
+                <div class="timeColumn" style="
+            grid-template-rows: 1.5em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
+                    <div></div>
+                    <div class="timeCell">09:00<br>|<br>09:50</div>
+                    <div class="smallernote">10min. rest</div>
+                    <div class="timeCell">10:00<br>|<br>10:50</div>
+                    <div class="smallernote">20min. rest</div>
+                    <div class="timeCell">11:10<br>|<br>12:00</div>
+                    <div class="note">Lunch</div>
+                    <div class="timeCell">14:00<br>|<br>14:40</div>
+                    <div class="smallernote">10min. rest</div>
+                    <div class="timeCell">14:50<br>|<br>15:30</div>
+                    <div class="smallernote">20min. rest</div>
+                    <div class="timeCell">15:50<br>|<br>16:40</div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 1.5em 6em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
+                    <div class="heading">Monday</div>
+                    <div></div>
+                    <div class="cell"><a href="#zwara">Zwara</a></div>
+                    <div></div>
+                    <div class="cell"><a href="#mizuno">Mizuno<br>水野</a></div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#kimura">Kimura<br>木村</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#tomonaga">Tomonaga<br>朝永</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell"><a href="#ishii">Ishii<br>石井</a></div>
+                    <div></div>
+                </div>
+                <div class="dayColumn"
+                    style="grid-template-rows: 1.5em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em 2em;">
+                    <div class="heading">Tuesday</div>
+                    <div class="cell"><a href="#zwara">Zwara</a></div>
+                    <div></div>
+                    <div class="cell"><a href="#mizuno">Mizuno<br>水野</a></div>
+                    <div></div>
+                    <div class="cell"><a href="#derksen">Derksen</a></div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#barcelonieves">Barceló Nieves</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#fushimi">Fushimi<br>伏見</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell"><a href="#hirano">Hirano<br>平野</a></div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 1.5em 5em 1em 5em 2em 5em auto 2em;">
+                    <div class="heading">Wednesday</div>
+                    <div class="cell"><a href="#zwara">Zwara</a></div>
+                    <div></div>
+                    <div class="cell"><a href="#mizuno">Mizuno<br>水野</a></div>
+                    <div></div>
+                    <div class="cell"><a href="#derksen">Derksen </a></div>
+                    <div></div>
+                    <div class="note" style="color:black;border-top:dashed 2px black;">
+                        Conference dinner <br>18:00~</div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 1.5em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em;">
+                    <div class="heading">Thursday</div>
+                    <div class="cell"><a href="#derksen">Derksen</a></div>
+                    <div></div>
+                    <div class="cell">
+                        <a href="#hiramae">Hiramae<br>平前</a>
+                    </div>
+                    <div></div>
+                    <div class="cell"><a href="#hanihara">Hanihara<br>埴原</a></div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#capellan">Capellan</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#fan">Fan<br>范</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell"><a href="#mousavand">Mousavand</a></div>
+                    <div></div>
+                </div>
+                <div class="dayColumn" style="grid-template-rows: 1.5em 5em 1em 5em 2em 5em 3em 4em 1em 4em 2em 5em;">
+                    <div class="heading">Friday</div>
+                    <div class="cell">
+                        <a href="#murakami">Murakami<br>村上</a>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#yahiro">Yahiro<br>八尋</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#chalupnik">Chałupnik</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#saito">Saito<br>齋藤</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell contributed">
+                        <div><a href="#mochizuki">Mochizuki<br>望月</a></div>
+                    </div>
+                    <div></div>
+                    <div class="cell"><a href="#yoshino">Yoshino<br>吉野</a></div>
+                    <div></div>
+                </div>
+            </div>
             <!-- <table class="timetable"></table>            -->
-            <div style="width:fit-content; margin:0 auto; text-align: left;">
+            <!-- <div style="width:fit-content; margin:0 auto; text-align: left;">
                 <ul class="compact">
                     <li>
                         <p>Program will start on 9am Monday morning, and will end at 5pm Friday afternoon.
@@ -120,11 +232,24 @@
                         <p>集会は月曜の9時に始まり金曜の17時に終わります。<br />詳細は改めてお知らせします。</p>
                     </li>
                 </ul>
-            </div>
+            </div> -->
         </div>
 
         <h2>Title &amp; Abstract <br> タイトルとアブストラクト</h2>
-        TBC
+        <div class="option">
+            <button id="btnAbstractOpen" style="padding:.1em 1.2em;">Expand all abstract</button>
+            <br><br>
+            Sorting:
+            <label>
+                <input type="radio" name="order" value="time" checked />
+                Chronological
+            </label>
+            <label>
+                <input type="radio" name="order" value="alpha" />
+                Alphabetical
+            </label>
+        </div>
+        <div id="titleAbstractDiv"></div>
 
         <h2 id="equipment">About equipment <br> 会場設備について</h2>
         <div style="width:fit-content; margin:0 auto; text-align: left;">

@@ -9,10 +9,12 @@ body {
     --tag-text-color-light: hsl(0, 0%, 60%);
     --numberoffilter-color: hsl(0, 0%, 100%);
     --h1-color: hsl(0, 0%, 30%);
-    --legend-border-color: hsl(0,0%,60%);
+    --legend-border-color: hsl(0, 0%, 60%);
 }
 
-html{scroll-behavior:smooth}
+html {
+    scroll-behavior: smooth;
+}
 
 /*--------------------------------------------------*/
 /* all */
@@ -45,7 +47,7 @@ body {
 abbr[title] {
     position: relative;
     /* ensure consistent styling across browsers */
-    text-decoration: underline dotted; 
+    text-decoration: underline dotted;
 }
 abbr[title]:hover::after,
 abbr[title]:focus::after {
@@ -182,7 +184,6 @@ h3::after {
 }
 
 @media screen and (max-width: 800px) {
-
     h2,
     h3 {
         margin: 40px 0 25px;
@@ -191,7 +192,6 @@ h3::after {
 }
 
 @media screen and (max-width: 700px) {
-
     h2,
     h3 {
         margin: 30px 0 25px;
@@ -200,7 +200,6 @@ h3::after {
 }
 
 @media screen and (max-width: 600px) {
-
     h2,
     h3 {
         margin: 25px 0 20px;
@@ -209,7 +208,6 @@ h3::after {
 }
 
 @media screen and (max-width: 500px) {
-
     h2,
     h3 {
         margin: 20px 0 20px;
@@ -247,69 +245,8 @@ h4.fixedwidth {
     }
 }
 
-.comm{
+.comm {
     font-size: small;
-}
-
-/*--------------------------------------------------*/
-/* fieldset */
-/*--------------------------------------------------*/
-
-fieldset {
-        /*
-        should change to display:grid for cleverer media query
-        width: fit-content;
-        width: -moz-fit-content;
-        max-width: 900px;*/
-        width:280px;
-        padding: 0 2em ;
-        margin: 25px auto 25px;
-    
-        text-align: left;
-        font-size: 16px;
-
-    /*	background-color: hsl(80, 100%, 95%);*/
-}
-
-
-@media screen and (min-width: 400px) {
-    fieldset {
-        width: 320px;
-    }
-}
-
-@media screen and (min-width: 500px) {
-    fieldset {
-        width: 420px;
-    }
-}
-
-@media screen and (min-width: 800px) {
-    fieldset {
-        width: 720px;
-    }
-}
-
-@media screen and (min-width: 980px) {
-    fieldset {
-        width: 900px;
-    }
-}
-
-fieldset legend {
-    font-size: 16px;
-    padding: 0.3em 0.5em;
-    border: 1px solid var(--legend-border-color);
-    /* text-decoration:underline; */
-    font-weight: bold;
-    line-height: 130%;
-}
-
-
-@media screen and (max-width: 500px) {
-    fieldset legend {
-        font-size: 15px;
-    }
 }
 
 /*--------------------------------------------------*/
@@ -318,13 +255,13 @@ fieldset legend {
 
 p {
     text-align: left;
-    font-size: 16px;
+    font-size: 14pt;
 }
 
-div#main>p,
-div#main_en>p,
-div#main_ja>p,
-div#timeInfo>p {
+div#main > p,
+div#main_en > p,
+div#main_ja > p,
+div#timeInfo > p {
     width: fit-content;
     width: -moz-fit-content;
     max-width: 900px;
@@ -332,26 +269,25 @@ div#timeInfo>p {
     text-align: left;
 }
 
-div#main>p.left,
-div#main_en>p.left,
-div#main_ja>p.left {
+div#main > p.left,
+div#main_en > p.left,
+div#main_ja > p.left {
     width: auto;
 }
 
-
-ul.compact >li {
+ul.compact > li {
     margin: 5px 0 5px 1.6em;
     list-style: disc;
     font-size: 12pt;
 }
 
-ul.compact ul{
-    margin: .5em 0;
+ul.compact ul {
+    margin: 0.5em 0;
 }
-ul.compact ul>li{
+ul.compact ul > li {
     list-style-type: circle;
     list-style-position: inside;
-    margin: .3em 0;
+    margin: 0.3em 0;
 }
 
 /*--------------------------------------------------*/
@@ -373,7 +309,7 @@ ul.vertical {
     font-size: 14pt;
 }
 
-ul.vertical>li {
+ul.vertical > li {
     /*
     flex: initial;
     max-width: 900px;
@@ -385,13 +321,13 @@ ul.vertical>li {
     margin: 0 0 15px 0;
 }
 
-ul.vertical ul>li{
+ul.vertical ul > li {
     list-style-type: circle;
     list-style-position: inside;
 }
 
-ul.vertical ul ul>li{
-    margin: .2em 1em;
+ul.vertical ul ul > li {
+    margin: 0.2em 1em;
     list-style-type: square;
     list-style-position: inside;
 }
@@ -410,7 +346,7 @@ ul.twocolumns {
     /*	background-color: hsl(40, 100%, 95%);*/
 }
 
-ul.twocolumns>li {
+ul.twocolumns > li {
     margin: 15px 0 15px;
 
     display: flex;
@@ -420,7 +356,22 @@ ul.twocolumns>li {
 }
 
 @media screen and (max-width: 500px) {
-    ul.twocolumns>li {
+    ul.twocolumns > li > div.leftcolumn {
+        text-align: center;
+    }
+    ul.twocolumns > li > div.leftcolumn::before,
+    ul.twocolumns > li > div.leftcolumn::after {
+        flex: auto;
+        min-width: 25px;
+        height: 1px;
+        display: block;
+        content: "";
+        background-color: var(--object-color);
+    }
+    ul.twocolumns > li > div.maincolumn {
+        margin-top: 0.8em;
+    }
+    ul.twocolumns > li {
         margin: 10px 0 2px;
         flex-direction: column;
         align-items: center;
@@ -430,68 +381,68 @@ ul.twocolumns>li {
 
 /* leftcolumn */
 
-ul.twocolumns>li>div.leftcolumn {
+ul.twocolumns > li > div.leftcolumn {
     flex: none;
     margin: 0 10px 0 5px;
     width: 10px;
     text-wrap: wrap;
 }
 
-ul.twocolumns.left80>li>div.leftcolumn {
+ul.twocolumns.left80 > li > div.leftcolumn {
     width: 80px;
 }
 
-ul.twocolumns.left100>li>div.leftcolumn {
+ul.twocolumns.left100 > li > div.leftcolumn {
     width: 100px;
 }
 
-ul.twocolumns.left120>li>div.leftcolumn {
+ul.twocolumns.left120 > li > div.leftcolumn {
     width: 120px;
 }
 
-ul.twocolumns.left140>li>div.leftcolumn {
+ul.twocolumns.left140 > li > div.leftcolumn {
     width: 140px;
 }
 
-ul.twocolumns.leftbold>li>div.leftcolumn {
+ul.twocolumns.leftbold > li > div.leftcolumn {
     font-weight: bold;
 }
 
 /* maincolumn */
 
-ul.twocolumns>li>div.maincolumn {
+ul.twocolumns > li > div.maincolumn {
     flex: auto;
     max-width: 800px;
 
     /*	background-color: hsl(0, 100%, 95%);*/
 }
 
-ul.twocolumns>li>div.maincolumn>h4 {
+ul.twocolumns > li > div.maincolumn > h4 {
     margin: 0 0 4px;
 
     font-size: 15px;
     font-weight: bold;
 }
 
-ul.twocolumns>li>div.maincolumn>p {
+ul.twocolumns > li > div.maincolumn > p {
     margin: 0 0 10px;
-    
+
     font-weight: normal;
 }
 
-ul.twocolumns>li>div.maincolumn>ul.normal {
+ul.twocolumns > li > div.maincolumn > ul.normal {
     text-align: left;
     font-size: 15px;
 }
 
 @media screen and (max-width: 500px) {
-    ul.twocolumns>li>div.maincolumn>ul.normal {
+    ul.twocolumns > li > div.maincolumn > ul.normal {
         display: inline-flex;
         flex-direction: column;
     }
 }
 
-ul.twocolumns>li>div.maincolumn>ul.normal>li {
+ul.twocolumns > li > div.maincolumn > ul.normal > li {
     display: flex;
     align-items: center;
     margin: 10px 0 10px;
@@ -505,7 +456,7 @@ ul.twocolumns>li>div.maincolumn>ul.normal>li {
     z-index: 99; /* Make sure it does not overlap */
     border: none; /* Remove borders */
     outline: none; /* Remove outline */
-    background-color: #AAA; /* Set a background color */
+    background-color: #aaa; /* Set a background color */
     color: white; /* Text color */
     cursor: pointer; /* Add a mouse pointer on hover */
     padding: 6px; /* Some padding */
@@ -518,45 +469,210 @@ ul.twocolumns>li>div.maincolumn>ul.normal>li {
 }
 
 /*--------------------------------------------------*/
-/* timetable */
+/* grid timetable */
 /*--------------------------------------------------*/
-.timetable {
-    background-color: #FFFFFF;
-    text-align: center;
-    border-collapse: collapse;
+.ttgrid {
+    display: grid;
+    grid-template-columns: 3em repeat(5, 8em);
+    background-color: #fff;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 12pt;
-    margin: 25px auto 30px;
+    margin: 3ch auto;
+    width: fit-content;
 }
 
-.timetable th {
-    border: 1px solid #AAAAAA;
-    padding: 1em;
+.ttgrid a {
+    color: black;
 }
 
-.timetable td{
-    border: 1px solid #AAAAAA;
-    padding: 1em;
+@media screen and (max-width: 900px) {
+    .ttgrid {
+        grid-template-columns: 3em repeat(5, 6em);
+    }
 }
 
-.timetable thead {
-    background: #DDDDDD;
+@media screen and (max-width: 700px) {
+    .ttgrid {
+        grid-template-columns: 3em repeat(5, 6em);
+        font-size: 8pt;
+    }
 }
 
-.timetable thead th,
-.timetable .timeslot {
-    background: #DDDDDD;
+.ttgrid > .timeColumn {
+    display: grid;
+    border: 1px solid #999;
+}
+
+.ttgrid > .timeColumn > .note {
+    font-size: 10pt;
     text-align: center;
-    padding: .4em;
-    font-weight: bold;
+    align-content: center;
+}
+.ttgrid > .timeColumn > .smallernote {
+    font-size: 8pt;
+    text-align: center;
+    align-content: center;
 }
 
-.timetable .lecture{
-    background-color: hsl(240, 100%, 80%);
+.ttgrid > .timeColumn > .timeCell {
+    align-content: center;
+    background-color: #eee;
+    border-bottom: 1px solid #555;
+    border-right: 1px solid #555;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5ch;
+    width: 100%;
+    font-size: 10pt;
 }
-.timetable .invited{
-    background-color: hsl(39, 100%, 80%);
+
+.ttgrid > .dayColumn {
+    display: grid;
+    /* border: 1px black solid; */
+    /* color: #fff; */
+    color: black;
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
 }
-.timetable .short{
-    background-color: hsl(120, 100%, 80%);
+
+.ttgrid > .dayColumn > .heading {
+    align-content: center;
+    font-weight: bold;
+    text-align: center;
+    border-top: solid black 1px;
+    border-bottom: solid black 1px;
+    color: black;
+    font-size: 12pt;
+}
+
+.ttgrid > .dayColumn > .cell {
+    background-color: #ddd;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    margin: auto 0;
+    padding: 0.2em;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    font-size: 12pt;
+    /* display: block; */
+    align-content: center;
+    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+        1px 1px 0 #000; */
+}
+
+@media screen and (max-width: 700px) {
+    .ttgrid > .timeColumn > .note,
+    .ttgrid > .timeColumn > .smallernote {
+        font-size: 4pt;
+    }
+    .ttgrid > .timeColumn > .timeCell {
+        font-size: 6pt;
+    }
+    .ttgrid > .dayColumn > .heading,
+    .ttgrid > .dayColumn > .cell {
+        font-size: 8pt;
+    }
+}
+
+.ttgrid > .dayColumn > .cell:hover {
+    /* color: var(--primary-color); */
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* 
+.contributed {
+    display: grid;
+    grid-template-rows: 1fr auto;
+} */
+/* 
+.contributed > .subtitle {
+    text-align: right;
+    font-size: smaller;
+    color: #555;
+} */
+
+.ttgrid > .dayColumn > .note {
+    font-size: 10pt;
+    padding-top: 6px;
+}
+@media screen and (max-width: 700px) {
+    .ttgrid > .dayColumn > .note {
+        font-size: 4pt;
+        padding-top: 3px;
+    }
+}
+
+/*--------------------------------------------------*/
+/* clamp */
+/*--------------------------------------------------*/
+.clamp {
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+}
+@media screen and (max-width: 700px) {
+    .clamp {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .clamp {
+        width: 80%;
+    }
+}
+
+.option {
+    font-size: 12pt;
+    justify-content: center;
+}
+
+.option label {
+    margin: 0 1em;
+}
+
+/*--------------------------------------------------*/
+/* accordion like  */
+/*--------------------------------------------------*/
+.talk_details {
+    border: 1px solid #aaa;
+    padding: 0 1rem;
+    background: white;
+}
+.talk_details + .talk_details {
+    border-top: none;
+}
+.talk_details > p {
+    padding: 0.4em 3em;
+    font-size: 12pt;
+    text-align: justify;
+}
+@media screen and (max-width: 700px) {
+    .talk_details > p {
+        padding: 0;
+    }
+}
+.talk_details > .talk_summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 1rem 2em 1rem 0;
+    font-size: 12pt;
+}
+.talk_details > .talk_summary > .subtitle {
+    cursor: pointer;
+    padding-left: 1.5em;
+    padding-top: 0.4em;
+    font-weight: bold;
+    font-size: 12pt;
+}
+.talk_summary::before {
+    content: " ►";
+    margin-right: 5px;
+}
+.talk_details[open] {
+    padding-bottom: 1em;
+}
+.talk_details[open] .talk_summary:before {
+    content: " ▼";
+    margin-right: 5px;
 }

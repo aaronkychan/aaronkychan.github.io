@@ -131,7 +131,7 @@ const contribtuedTalks = [
     {
         author: "Yuta Kimura 木村 雄太",
         id: "kimura",
-        affiliate: "Hiroshima Indstrial 広島工業大学",
+        affiliate: "Hiroshima Institute of Technology 広島工業大学",
         title: "Tilting for Artin-Schelter Gorenstein algebras of dimension one",
         abstract: `The existence of tilting or silting objects is a significant feature in algebraic triangulated categories, as it establishes an equivalence with the derived category of a ring. In this study, we focus on the existence of tilting objects in the stable category of Cohen-Macaulay modules over Artin-Schelter Gorenstein algebras. These algebras extend the concept of Gorenstein commutative characterization of the existence of tilting objects in stable categories using Gorenstein parameters. Our result is a noncommutative generalization of results established by Buchweitz, Iyama, and Yamaura.`,
         category: "contributed",
@@ -177,7 +177,7 @@ const contribtuedTalks = [
         author: "Riku Fushimi 伏見 陸",
         id: "fushimi",
         affiliate: "Nagoya 名古屋大学",
-        title: `Duality between silting objects and simple-minded collections`,
+        title: `Non-positive dg algebras and positive dg algebras`,
         abstract:
             "" /*`本公演では silting objects と simple-minded collections の間の双対関係を対応する dg 代数の間の Koszul 双対性の理論へと持ち上げる。`,*/,
         category: "contributed",
@@ -246,7 +246,7 @@ const contribtuedTalks = [
         author: "Shunya Saito 齋藤 峻也",
         id: "saito",
         affiliate: "Tokyo 東京大学",
-        title: `Classifying KE-closed subcategories over a commutative ring`,
+        title: `Classifying KE-closed subcategories over a noetherian commutative ring`,
         abstract:
             "" /*`Classifying subcategories is an active subject in the representation theory of algebras. Especially,
                     several subcategories of the module category of a commutative noetherian ring have been classified
@@ -256,7 +256,7 @@ const contribtuedTalks = [
         timeIndex: 8,
     },
     {
-        author: "Nao Mochizuki 望月",
+        author: "Nao Mochizuki 望月 直央",
         id: "mochizuki",
         affiliate: "Nagoya 名古屋大学",
         title: `High-dimensional generalization of abelian categories via DG categories`,

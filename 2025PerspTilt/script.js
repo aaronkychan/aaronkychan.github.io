@@ -206,8 +206,7 @@ const contribtuedTalks = [
         id: "fan",
         affiliate: "Tokyo 東京大学",
         title: `McKay correspondence in positive characteristic for specific modular groups`,
-        abstract: `Over complex numbers, McKay correspondence can be described as a re-
-                    lation between irreducible representations of finite groups and geometric properties of
+        abstract: `Over complex numbers, McKay correspondence can be described as a relation between irreducible representations of finite groups and geometric properties of
                     the associated quotient singularities, such as Euler characteristic of crepant resolutions.
                     This relation is known as Batyrev's theorem. When the ground field is replaced by an
                     algebraically closed field of prime characteristic, the naive analog of Batyrev's theorem

@@ -9,6 +9,15 @@
 -   一月中旬：プログラム確定
 -   一月末：懇親会登録〆切
 
+## Announcement
+
+Day 1
+
+-   撤退タイム
+-   RIMS PC で登録
+-   懇親会 （？）
+-   ランチ可能場所
+
 ## Submitted talks title and abstract
 
 -   朝永 龍

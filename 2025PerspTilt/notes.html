@@ -150,7 +150,34 @@
 
 <body>
     <div id="main">
+
         <h1>Organiser's notes</h1>
+
+
+        <zero-md src="notes.md">
+            <!-- Wrap with a <template> tag -->
+            <!-- <template> -->
+            <!-- Define your own styles inside a `<style>` tag -->
+            <!-- <style>
+                h1 {
+                    color: rgb(76, 0, 255);
+                }
+    
+                code {
+                    background-color: hsl(0, 0%, 30%);
+                }
+            </style>
+        </template> -->
+            <link rel="stylesheet"
+                href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css" />
+            <!-- Write your markdown inside a `<script type="text/markdown">` tag 
+             Do not se src attribute if so
+            -->
+            <!-- <script type="text/markdown">
+        </script> -->
+        </zero-md>
+
+
         <h2>Timetable</h2>
         Current suggestion:
         <ul>
@@ -345,29 +372,6 @@
             </ul>
         </div>-->
 
-
-        <zero-md src="notes.md">
-            <!-- Wrap with a <template> tag -->
-            <!-- <template> -->
-            <!-- Define your own styles inside a `<style>` tag -->
-            <!-- <style>
-                h1 {
-                    color: rgb(76, 0, 255);
-                }
-    
-                code {
-                    background-color: hsl(0, 0%, 30%);
-                }
-            </style>
-        </template> -->
-            <link rel="stylesheet"
-                href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css" />
-            <!-- Write your markdown inside a `<script type="text/markdown">` tag 
-             Do not se src attribute if so
-            -->
-            <!-- <script type="text/markdown">
-        </script> -->
-        </zero-md>
     </div>
 
 </body>

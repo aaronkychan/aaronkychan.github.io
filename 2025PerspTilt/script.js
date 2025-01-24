@@ -246,12 +246,9 @@ const contribtuedTalks = [
         author: "Shunya Saito 齋藤 峻也",
         id: "saito",
         affiliate: "Tokyo 東京大学",
-        title: `Classifying KE-closed subcategories over a noetherian commutative ring`,
+        title: `Classifying KE-closed subcategories over a commutative noetherian ring`,
         abstract:
-            "" /*`Classifying subcategories is an active subject in the representation theory of algebras. Especially,
-                    several subcategories of the module category of a commutative noetherian ring have been classified
-                    so far. In this talk, we will give a classification result of KE-closed subcategories (additive
-                    subcategories closed under extensions and kernels) for a commutative noetherian ring.`,*/,
+            "Classifying subcategories is an active subject in the representation theory of algebras. Especially, several subcategories of the module category of a commutative noetherian ring have been classified so far. In this talk, we will give a classification result of KE-closed subcategories (additive subcategories closed under extensions and kernels) for a commutative noetherian ring.",
         category: "contributed",
         timeIndex: 8,
     },

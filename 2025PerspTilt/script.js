@@ -25,7 +25,15 @@ const lectureSeries = [
         id: "zwara",
         affiliate: "Nicolaus Copernicus",
         title: `Singularities of orbit closures in module varieties`,
-        abstract: ``,
+        abstract: `Let $\\Bbbk$ be an algebraically closed field and $A$ be a finitely generated associative $\\Bbbk$-algebra. The $A$-module structures on the vector space $\\Bbbk^d$, $d\\ge 1$, form an affine
+variety $\\mathrm{mod}_A(d)$ called a module variety. The general linear group $\\mathrm{GL}(d)$ acts regularly
+on $\\mathrm{mod}_A(d)$ such that the orbits correspond bijectively to the isomorphism classes of $d$-dimensional $A$-modules. The orbits are locally closed subsets in $\\mathrm{mod}_A(d)$ and their
+closures (in the Zariski topology) form an interesting class of affine varieties. One can
+ask if these varieties are nonsingular, regular in codimension 1 or 2, normal, unibranch,
+complete intersections, Cohen-Macaulay, etc. What is more interesting, we would like to
+know how these geometric properties are reflected in terms of $A$-modules. Instead of modules over a $\\Bbbk$-algebra, we may consider finite dimensional representations of a quiver or a bound quiver. Here we get orbit closures as well. Bongartz showed that the orbit closures
+in module varieties and in the varieties of representations of the corresponding bound quivers are related by associated fibre bundles (in particular, the types of singularities are identical).<br><br>
+During the series of lectures we will present old and new results on local geometric properties of orbit closures in varieties of modules (or quiver representations), and their relationship with the spaces of homomorphisms or extensions between modules (or representations). We will also explain geometric relations between representations of quivers, and Schubert and affine Schubert varieties. In the last lecture, transversal slices in quiver varieties will be discussed.`,
         category: "lecture",
         timeIndex: 0,
     },
@@ -55,7 +63,10 @@ const invitedTalks = [
         id: "ishii",
         affiliate: "Nagoya 名古屋大学",
         title: `On the McKay correspondence for some reflection groups in dimension three`,
-        abstract: ``,
+        abstract: `The McKay correspondence relates the geometry of nice resolutions of a quotient singularity and the representation theory of the corresponding finite group. It is usually considered for small subgroups $G$ of $GL(n, \\mathbb{C})$, where $G$ is said to be small if $G$ contains no complex reflection. To consider the McKay correspondence for complex
+reflection groups, we consider not just the quotient variety (which is smooth) but the pair consisting of the quotient variety and the discriminant divisor with suitable coefficients. There is a conjectural semi-orthogonal decomposition of the $G$-equivariant derived
+category by Polishchuk and Van den Bergh, indexed by the conjugacy classes in $G$. In
+dimension two, the conjecture follows from a theorem of Kawamata.  In this talk, we discuss some cases in dimension three by using the notion of the maximal $\\mathbb{Q}$-factorial terminalization of the pair, which Kawamata used to study $GL(3)$-McKay correspondence.`,
         category: "invited",
         timeIndex: 0,
     },
@@ -64,7 +75,15 @@ const invitedTalks = [
         id: "hirano",
         affiliate: "Tokyo U. of Agriculture and Technology 東京農工大学",
         title: `Length of triangulated categories`,
-        abstract: ``,
+        abstract: `Composition series is fundamental in the study of finite groups and finite
+dimensional modules. One of the most important properties of such composition series is
+the Jordan-Hölder property, and this implies the property (called the Jordan–Dedekind
+property) that all composition series have the same length. In this talk, I will introduce
+the notion of composition series for triangulated categories, and discuss composition series
+of derived categories of certain finite dimensional algebras and smooth projective varieties.
+In particular, I will explain that the Jordan–Dedekind property does not hold for derived
+categories of certain finite dimensional algebras of finite global dimension and certain
+smooth projective toric surfaces. This talk is based on joint work with Kalck and Ouchi.`,
         category: "invited",
         timeIndex: 1,
     },
@@ -82,7 +101,17 @@ const invitedTalks = [
         id: "hiramae",
         affiliate: "Kyoto 京都大学",
         title: `Silting-discreteness of group algebras`,
-        abstract: ``,
+        abstract: `Silting-discreteness of finite dimensional algebras has been actively
+studied in recent years. One of the motivations for studying
+silting-discreteness is that over silting-discrete algebras, any two
+silting complexes are connected by iterative irreducible silting
+mutations. In this talk, we examine when group algebras are
+silting-discrete. For a finite group $G$ and an algebraically closed
+field $k$ of positive characteristic $p$, we give a sufficient condition
+for a group algebra $kG$ to be silting-discrete in terms of a
+$p$-hyperfocal subgroup of $G$. Moreover, we see that this is also a
+necessary condition in some cases. This talk is based on a joint work
+with Yuta Kozakai.`,
         category: "invited",
         timeIndex: 3,
     },
@@ -94,7 +123,7 @@ const invitedTalks = [
         abstract: `We investigate the set of pairwise Hom-orthogonal modules in the context of several open conjectures
                     that have emerged in recent years, to which we refer as the brick-Brauer-Thrall (bBT) Conjectures.
                     The bBT conjectures are closely connected to the study of bricks, and therefore to wide
-                    subcategories, torsion pairs, $\tau$-tilting theory, stability conditions, g-fan, and related
+                    subcategories, torsion pairs, $\\tau$-tilting theory, stability conditions, g-fan, and related
                     subjects. In this talk, we first adopt a geometric perspective to see the significance of
                     Hom-orthogonality in the context of a conjecture that I posed in 2019, now known as the Second
                     Brick-Brauer-Thrall (2nd bBT) Conjecture. Then, we show that some of the more recent bBT conjectures
@@ -133,7 +162,19 @@ const contribtuedTalks = [
         id: "kimura",
         affiliate: "Hiroshima Institute of Technology 広島工業大学",
         title: "Tilting for Artin-Schelter Gorenstein algebras of dimension one",
-        abstract: "", //`The existence of tilting or silting objects is a significant feature in algebraic triangulated categories, as it establishes an equivalence with the derived category of a ring. In this study, we focus on the existence of tilting objects in the stable category of Cohen-Macaulay modules over Artin-Schelter Gorenstein algebras. These algebras extend the concept of Gorenstein commutative characterization of the existence of tilting objects in stable categories using Gorenstein parameters. Our result is a noncommutative generalization of results established by Buchweitz, Iyama, and Yamaura.`,
+        abstract: `This talk is based on joint work with Ueyama and Iyama.
+The existence of tilting or silting objects is a significant feature of
+algebraic triangulated categories, as it establishes an equivalence with
+the derived category of a ring. In this study, we focus on the existence
+of tilting objects in the stable category of Cohen–Macaulay modules over
+Artin–Schelter Gorenstein algebras. These algebras extend the concept of
+Gorenstein commutative rings from the perspective of noncommutative
+algebraic geometry. In the representation theory of Gorenstein
+commutative rings, the Gorenstein parameter plays a crucial role. This
+talk provides a characterization of the existence of tilting objects in
+stable categories using Gorenstein parameters. Our result is a
+noncommutative generalization of the results established by Buchweitz,
+Iyama and Yamaura.`,
         category: "contributed",
         timeIndex: 0,
     },
@@ -142,16 +183,10 @@ const contribtuedTalks = [
         id: "tomonaga",
         affiliate: "Tokyo 東京大学",
         title: "Cohen-Macaulay representations of invariant subrings admitting field extensions",
-        abstract: "",
-        // abstract: `The two-dimensional quotient singularities provide examples of rings of finite Cohen-Macaulay type.
-        //             Furthermore, the Auslander-Reiten quivers of the categories of Cohen-Macaulay modules coincide with
-        //             the McKay quivers (algebraic McKay correspondence). Conversely, two-dimensional Cohen-Macaulay local
-        //             rings of finite Cohen-Macaulay type are precisely quotient singularities if their residue fields are
-        //             algebraically closed and of characteristic zero. In this talk, we generalize the above classical
-        //             results to situations where the coefficient fields are not necessarily algebraically closed by
-        //             introducing quotient singularities admitting field extensions. Moreover, we will see how to draw the
-        //             McKay quivers in this new setting through determining irreducible representations of skew group
-        //             algebras.`,
+        abstract: `In this talk, we generalize the algebraic McKay correspondence and the clas-
+sification result of 2-dimensional rings of finite Cohen-Macaulay type to the case where
+the base field is non-algebraically closed. Moreover, to draw McKay quivers, we give a
+recipe to determine the irreducible representations of skew group algebras.`,
         category: "contributed",
         timeIndex: 1,
     },

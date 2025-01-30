@@ -636,16 +636,17 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
 /*--------------------------------------------------*/
 .talk_details {
     border: 1px solid #aaa;
-    padding: 0 1rem;
+    padding: 0 0.8rem;
     background: white;
 }
 .talk_details + .talk_details {
     border-top: none;
 }
 .talk_details > p {
-    padding: 0.4em 3em;
+    padding: 0.4em 1.5em;
     font-size: 12pt;
     text-align: justify;
+    border-left: 1px #555 solid;
 }
 @media screen and (max-width: 700px) {
     .talk_details > p {

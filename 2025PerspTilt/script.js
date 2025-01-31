@@ -42,7 +42,14 @@ During the series of lectures we will present old and new results on local geome
         id: "mizuno",
         affiliate: "Osaka Metropolitan 大阪公立大学",
         title: `Silting theory and related topics`,
-        abstract: ``,
+        abstract: `In this lecture series, I will discuss silting theory and various related topics.
+In the first lecture, I will provide an overview of the basic properties of partial order and mutation of silting complexes, as well as their connections to objects in the derived category.
+In the second lecture, I will focus on 2-term silting complexes and explore their relationships with objects in the module category, such as tau-tilting modules and semibricks.
+These topics are interesting in their own right and are still actively studied by many researchers.
+In the third lecture, I will address the properties of fans associated with the g-vectors of 2-term silting complexes.
+Specifically, I will discuss how the properties of silting complexes, discussed in the first and second lectures, are reflected in the characteristics of fans.
+Furthermore, I will explore how the properties of fans relate to those of representation theory, and examine their mutual relationships.
+`,
         category: "lecture",
         timeIndex: 1,
     },
@@ -214,8 +221,7 @@ recipe to determine the irreducible representations of skew group algebras.`,
         id: "fushimi",
         affiliate: "Nagoya 名古屋大学",
         title: `Non-positive dg algebras and positive dg algebras`,
-        abstract:
-            "" /*`本公演では silting objects と simple-minded collections の間の双対関係を対応する dg 代数の間の Koszul 双対性の理論へと持ち上げる。`,*/,
+        abstract: `By Koenig and Yang's result, there exists a bijection between basic silting objects of $K^b(proj\\Lambda)$ and simple-minded collections of $D^b(mod\\Lambda)$ for every finite dimensional algebra $\\Lambda$. By taking the dg-End algebra, we obtain a non-positive dg algebra from silting objects and a positive dg algebra from simple-minded collection. In this talk, I will connect these two classes of dg algebras via Koszul duality and present applications to representation theory and triangulated category theory.`,
         category: "contributed",
         timeIndex: 3,
     },

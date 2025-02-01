@@ -15,7 +15,7 @@ Day 1
 
 -   撤退タイム
 -   RIMS PC で登録
--   懇親会 （？）
+-   懇親会につて、場所紹介、最後登録チャンス、 費用を集め等事項
 -   ランチ可能場所
 
 ## Submitted talks title and abstract

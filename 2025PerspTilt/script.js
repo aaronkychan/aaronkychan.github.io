@@ -99,7 +99,13 @@ smooth projective toric surfaces. This talk is based on joint work with Kalck an
         id: "hanihara",
         affiliate: "Kyushu 九州大学",
         title: `Tilting ideals and Calabi-Yau structures`,
-        abstract: ``,
+        abstract: `We study singularity categories of Gorenstein algebras. There are many
+such rings whose singularity categories are Calabi-Yau, for example,
+preprojective algebras, their quotients by tilting ideals, cluster
+tilted algebras, and so on. These algebras and categories have played a
+prominent role in the development of cluster theory. We will discuss a
+lift of these Calabi-Yau properties to their dg enhancements. This is
+based on joint works with Bernhard Keller.`,
         category: "invited",
         timeIndex: 2,
     },
@@ -145,8 +151,17 @@ with Yuta Kozakai.`,
         author: "Kota Murakami 村上 浩大",
         id: "murakami",
         affiliate: "Tokyo 東京大学",
-        title: `On graded preprojective algebras and certain cluster combinatorics`,
-        abstract: ``,
+        title: `On graded preprojective algebras and rigid modules`,
+        abstract: `Hernandez-Leclerc studied certain Jacobian algebras of quivers with
+potentials called graded preprojective algebras. The generating
+functions of Euler characteristics of submodule Grassmannians of some
+modules over graded preprojective algebras give $q$-characters of certain
+class of representations of quantum affine algebras. In this talk, we
+will discuss the modules over graded preprojective algebras which are
+induced from some rigid modules over preprojective algebras with
+suitable grading, and give similar generating functions and equalities
+which they satisfy. This is a report on an ongoing joint work with
+Bernard Leclerc.`,
         category: "invited",
         timeIndex: 5,
     },

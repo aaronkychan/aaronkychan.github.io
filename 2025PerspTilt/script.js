@@ -57,8 +57,18 @@ Furthermore, I will explore how the properties of fans relate to those of repres
         author: "Harm Derksen",
         id: "derksen",
         affiliate: "Northeastern",
-        title: `Representation Theory of Algebras and Invariant Theory`,
-        abstract: ``,
+        title: `Invariant Theory and Quiver Representations`,
+        abstract: `For a given quiver and a given dimension vector, we have a group acting
+on the representation space by base change. We will discuss polynomial
+invariants and semi-invariants for this group actions. Following A.
+King, semi-invariants and geometric invariant theory can be used to
+construct moduli spaces for quiver representations (and more generally
+modules over an algebra). Studying dimension vectors of representations
+leads to a very rich combinatorial structure. Some combinatorical topics
+that we will encounter are root systems of Kac-Moody Lie algebras,
+Littlewood-Richardson coefficients, the braid group action on
+exceptional sequences, Kac' canonical decomposition of dimension
+vectors, cluster algebras and simplicial complexes.`,
         category: "lecture",
         timeIndex: 2,
     },
@@ -217,17 +227,15 @@ recipe to determine the irreducible representations of skew group algebras.`,
         id: "barcelonieves",
         affiliate: "Verona",
         title: `On (Co)silting Bijections Involving the Category of Large Projective Presentations`,
-        abstract:
-            "" /*`Based on results by Adachi-Iyama-Reiten, Marks-Šťovíček, Pauksztello-Zvonareva and Adachi-Tsukamoto,
+        abstract: `Based on results by Adachi-Iyama-Reiten, Marks-Šťovíček, Pauksztello-Zvonareva and Adachi-Tsukamoto,
                     García successfully completed a commutative 'triangular prism' of bijections connecting the classes
                     of support tau-tilting modules, functorially-finite torsion pairs and left finite wide subcategories
-                    in the category of finitely-generated A-modules—where A is a finite-dimensional algebra over an
-                    algebraically closed field—to the classes of 'silting objects', complete cotorsion pairs and thick
+                    in the category of finitely-generated $A$-modules — where $A$ is a finite-dimensional algebra over an
+                    algebraically closed field — to the classes of 'silting objects', complete cotorsion pairs and thick
                     subcategories with enough injectives in the category of projective presentations of objects in
-                    mod(A)—which has many powerful properties. In this talk, we will present advances towards
-                    generalizing these results to the realm of infinite-dimensional modules over more general classes of
-                    rings—and, furthermore, dualizing them to the cosilting side. It is based on joint work in progress
-                    with Lidia Angeleri Hügel.`,*/,
+                    $\\mathrm{mod}(A)$ — which has many powerful properties. In this talk, we will present advances towards
+                    generalizing these results to the realm of infinite-dimensional modules, as well as their dualizations. It is based on joint
+work in progress with Lidia Angeleri Hügel.`,
         category: "contributed",
         timeIndex: 2,
     },
@@ -313,10 +321,23 @@ recipe to determine the irreducible representations of skew group algebras.`,
         id: "mochizuki",
         affiliate: "Nagoya 名古屋大学",
         title: `High-dimensional generalization of abelian categories via DG categories`,
-        abstract:
-            "" /*`In this lecture, we introduce a higher-dimensional analogue of abelian categories in DG categories as
-                    an axiomatization of subcategories called n-extended hearts of t-structures in triangulated
-                    categories, and provide an overview of the fundamental theory.`,*/,
+        abstract: `$k$-linear DG-categories have been understood as one of the models for
+$k$-linear
+$(\\infty,1)$-categories. Consequently, certain special DG-categories can
+be regarded as
+$k$-linear $(n,1)$-categories. Inspire by this model, we introduce the
+notion of abelian $(n,1)$-categories as a higher-dimensional
+generalization of abelian categories. This concept recovers abelian
+categories when $n=1$ and stable DG-categories when $n=\\infty$. <br><br>
+In this talk, we will explain this notion and their basic properties and
+show that their homotopy categories naturally acquire structures such as
+extriangulated categories and pretriangulated categories. Moreover, we
+show that abelian $(n,1)$-category is a suitable candidate for
+DG-enhancement of $n$-extended module category, that is, the
+subcategory of the derived category consisting of $n$-term complexes of
+modules.  These categories serve as a natural setting for developing for
+higher $\\tau$-tilting theory and their associated $(n+1)$-term silting
+theory.`,
         category: "contributed",
         timeIndex: 8,
     },

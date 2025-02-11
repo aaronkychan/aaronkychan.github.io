@@ -642,14 +642,14 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
 .talk_details + .talk_details {
     border-top: none;
 }
-.talk_details > p {
+.talk_details p {
     padding: 0.4em 1.5em;
     font-size: 12pt;
     text-align: justify;
     border-left: 1px #555 solid;
 }
 @media screen and (max-width: 700px) {
-    .talk_details > p {
+    .talk_details p {
         padding: 0;
     }
 }

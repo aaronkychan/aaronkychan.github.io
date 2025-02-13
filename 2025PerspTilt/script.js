@@ -325,7 +325,7 @@ work in progress with Lidia Angeleri Hügel.`,
 $k$-linear
 $(\\infty,1)$-categories. Consequently, certain special DG-categories can
 be regarded as
-$k$-linear $(n,1)$-categories. Inspire by this model, we introduce the
+$k$-linear $(n,1)$-categories. Inspired by this model, we introduce the
 notion of abelian $(n,1)$-categories as a higher-dimensional
 generalization of abelian categories. This concept recovers abelian
 categories when $n=1$ and stable DG-categories when $n=\\infty$. <br><br>

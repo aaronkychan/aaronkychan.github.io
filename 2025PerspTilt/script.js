@@ -215,8 +215,7 @@ Iyama and Yamaura.`,
         id: "tomonaga",
         affiliate: "Tokyo 東京大学",
         title: "Cohen-Macaulay representations of invariant subrings admitting field extensions",
-        abstract: `In this talk, we generalize the algebraic McKay correspondence and the clas-
-sification result of 2-dimensional rings of finite Cohen-Macaulay type to the case where
+        abstract: `In this talk, we generalize the algebraic McKay correspondence and the classification result of 2-dimensional rings of finite Cohen-Macaulay type to the case where
 the base field is non-algebraically closed. Moreover, to draw McKay quivers, we give a
 recipe to determine the irreducible representations of skew group algebras.`,
         category: "contributed",

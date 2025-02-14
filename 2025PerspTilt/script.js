@@ -13,8 +13,8 @@ const talkOrder = [
     "fan",
     "mousavand",
     "murakami",
-    "yahiro",
     "chalupnik",
+    "yahiro",
     "saito",
     "mochizuki",
     "yoshino",
@@ -331,7 +331,7 @@ categories when $n=1$ and stable DG-categories when $n=\\infty$. <br><br>
 In this talk, we will explain this notion and their basic properties and
 show that their homotopy categories naturally acquire structures such as
 extriangulated categories and pretriangulated categories. Moreover, we
-show that abelian $(n,1)$-category is a suitable candidate for
+show that an abelian $(n,1)$-category is a suitable candidate as a 
 DG-enhancement of $n$-extended module category, that is, the
 subcategory of the derived category consisting of $n$-term complexes of
 modules.  These categories serve as a natural setting for developing for

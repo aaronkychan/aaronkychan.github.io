@@ -33,7 +33,8 @@ ask if these varieties are nonsingular, regular in codimension 1 or 2, normal, u
 complete intersections, Cohen-Macaulay, etc. What is more interesting, we would like to
 know how these geometric properties are reflected in terms of $A$-modules. Instead of modules over a $\\Bbbk$-algebra, we may consider finite dimensional representations of a quiver or a bound quiver. Here we get orbit closures as well. Bongartz showed that the orbit closures
 in module varieties and in the varieties of representations of the corresponding bound quivers are related by associated fibre bundles (in particular, the types of singularities are identical).<br><br>
-During the series of lectures we will present old and new results on local geometric properties of orbit closures in varieties of modules (or quiver representations), and their relationship with the spaces of homomorphisms or extensions between modules (or representations). We will also explain geometric relations between representations of quivers, and Schubert and affine Schubert varieties. In the last lecture, transversal slices in quiver varieties will be discussed.`,
+During the series of lectures we will present old and new results on local geometric properties of orbit closures in varieties of modules (or quiver representations), and their relationship with the spaces of homomorphisms or extensions between modules (or representations). We will also explain geometric relations between representations of quivers, and Schubert and affine Schubert varieties. In the last lecture, transversal slices in quiver varieties will be discussed.
+<br><br><a href="./Zwara1.pdf">Slides 1</a>`,
         category: "lecture",
         timeIndex: 0,
     },

@@ -34,7 +34,7 @@ complete intersections, Cohen-Macaulay, etc. What is more interesting, we would 
 know how these geometric properties are reflected in terms of $A$-modules. Instead of modules over a $\\Bbbk$-algebra, we may consider finite dimensional representations of a quiver or a bound quiver. Here we get orbit closures as well. Bongartz showed that the orbit closures
 in module varieties and in the varieties of representations of the corresponding bound quivers are related by associated fibre bundles (in particular, the types of singularities are identical).<br><br>
 During the series of lectures we will present old and new results on local geometric properties of orbit closures in varieties of modules (or quiver representations), and their relationship with the spaces of homomorphisms or extensions between modules (or representations). We will also explain geometric relations between representations of quivers, and Schubert and affine Schubert varieties. In the last lecture, transversal slices in quiver varieties will be discussed.
-<br><br><a href="./Zwara1.pdf">Slides 1</a>`,
+<br><br><a href="./Zwara1.pdf">Slides 1</a>&nbsp; <a href="./Zwara2.pdf">Slides 2</a>&nbsp; <a href="./Zwara3.pdf">Slides 3</a>`,
         category: "lecture",
         timeIndex: 0,
     },
@@ -235,7 +235,7 @@ recipe to determine the irreducible representations of skew group algebras.`,
                     subcategories with enough injectives in the category of projective presentations of objects in
                     $\\mathrm{mod}(A)$ — which has many powerful properties. In this talk, we will present advances towards
                     generalizing these results to the realm of infinite-dimensional modules, as well as their dualizations. It is based on joint
-work in progress with Lidia Angeleri Hügel.`,
+work in progress with Lidia Angeleri Hügel. <br><br> <a href="./Nieves.pdf">Slides</a>`,
         category: "contributed",
         timeIndex: 2,
     },

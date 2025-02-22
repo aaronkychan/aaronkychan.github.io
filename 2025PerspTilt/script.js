@@ -135,7 +135,9 @@ field $k$ of positive characteristic $p$, we give a sufficient condition
 for a group algebra $kG$ to be silting-discrete in terms of a
 $p$-hyperfocal subgroup of $G$. Moreover, we see that this is also a
 necessary condition in some cases. This talk is based on a joint work
-with Yuta Kozakai.`,
+with Yuta Kozakai.<br><br>
+                    <a href="./Hiramae.pdf">Slides</a>
+`,
         category: "invited",
         timeIndex: 3,
     },
@@ -302,7 +304,8 @@ work in progress with Lidia Angeleri Hügel. <br><br> <a href="./Nieves.pdf">Sli
         abstract: `I will survey how the idea of tilting can be used in various functor categories including the
                     category of strict polynomial functors $P_d$, which is closely related to the category of
                     representations of $GL_n$. More specifically I will discuss such topics as Koszul duality, de Rham
-                    complex and certain form of the Hilbert-Riemann correspondence, which can be studied in $P_d$.`,
+                    complex and certain form of the Hilbert-Riemann correspondence, which can be studied in $P_d$.<br><br>
+                    <a href="./Chalupnik.pdf">Slides</a>`,
         category: "contributed",
         timeIndex: 7,
     },

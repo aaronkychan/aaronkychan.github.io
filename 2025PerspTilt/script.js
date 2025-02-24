@@ -69,7 +69,7 @@ leads to a very rich combinatorial structure. Some combinatorical topics
 that we will encounter are root systems of Kac-Moody Lie algebras,
 Littlewood-Richardson coefficients, the braid group action on
 exceptional sequences, Kac' canonical decomposition of dimension
-vectors, cluster algebras and simplicial complexes.`,
+vectors, cluster algebras and simplicial complexes.<br><br><a href="./Derksen.pdf">Slides</a>`,
         category: "lecture",
         timeIndex: 2,
     },

@@ -532,6 +532,11 @@
                 qhs = A.findAllMAOs();
                 let poset = coverArrayToCyto(qhs.coverRel);
                 updateLog();
+                copyToClipboard(JSON.stringify(qhs.coverRel));
+                // This string can be directly copied into sage for further investigation using:
+                // from sage.combinat.posets.posets import FinitePoset
+                // P = FinitePoset(DiGraph(dict([[i,uc[i]] for i in range(len(uc))])), facade=False);
+                updateLog("*** Cover relation of qhs copied to clipboard ***");
                 cyto = initSVG(document.getElementById("cyQHS"), poset);
             } else {
                 qhs = data.qhs;

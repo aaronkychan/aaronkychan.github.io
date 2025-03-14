@@ -1,5 +1,59 @@
 let talks = [
     {
+        ymd: "2025-03-27",
+        start: "1030",
+        duration: 90,
+        title: `Reduction理論における変異が誘導する三角圏構造`,
+        speaker: "Ryota Iitsuka 飯塚 亮太",
+        affil: "Nagoya University 名古屋大学",
+        // web: `https://lmbp.uca.fr/~riche/`,
+        abstract: `準傾部分圏、$n$-団傾部分圏、単純系や $n$-simple-minded
+systemの変異は三角圏構造を誘導することが知られている。この三角圏構造は,
+変異で不変な部分を「潰すこと(reduction)」で得られる。また、潰す前の圏における変異は、潰した後に得られる三角圏のシフト関手を定める。そのためこの結果は、準傾部分圏などの特別な部分圏(または単純系などの特別な対象の集まり)が変異で保たれることを示す際に、重要な役割を果たした(いわゆるreduction理論)。しかしその一方で、それぞれの変異は独立に定義されており、それらの変異が三角圏構造を誘導するという結果も独立に示されていた。
+
+本公演では、準傾部分圏、$n$-団傾部分圏、単純系や $n$-simple-minded system
+の変異を共通一般化した枠組みである「reducible triple」を導入する。Reducible
+tripleがまさに既に紹介した4つの変異の例を一般化した概念になっていること、reducible
+tripleが定める変異は三角圏構造を誘導することを紹介する予定である。また、mutation
+tripleとの関連性についても紹介したいと考えている。`,
+        lang: "jp",
+        access: {
+            id: "871 6340 9751",
+            psw: "381921",
+        },
+        // record: {
+        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
+        // },
+    },
+    {
+        ymd: "2025-03-17",
+        start: "1430",
+        duration: 90,
+        title: `On Amiot's conjecture`,
+        speaker: "Junyang Liu",
+        affil: "University of Science and Technology of China",
+        // web: `https://lmbp.uca.fr/~riche/`,
+        abstract: `In 2010, Claire Amiot conjectured that algebraic
+2-Calabi-Yau categories with cluster-tilting object must come from
+quivers with potential. This would extend a structure theorem obtained
+by Keller-Reiten in the case where the endomorphism algebra of the
+cluster-tilting object is hereditary. Many other classes of examples
+are also known. We will report on the proof of the conjecture in the
+general case for categories with *algebraic* 2-Calabi-Yau structure.
+This result has been obtained in joint work with Bernhard Keller and
+is based on Van den Bergh's structure theorem for complete Calabi-Yau
+algebras. We also generalize his structure theorem to the relative
+case and use it to prove a relative variant of the conjecture.`,
+        lang: "en",
+        access: {
+            id: "853 1951 5047",
+            psw: "900788",
+        },
+        // record: {
+        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
+        // },
+    },
+    {
         ymd: "2024-12-20",
         start: "1700",
         duration: 90,

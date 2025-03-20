@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <script src="logger.min.js"></script>
     <script src="LNakayama.min.js"></script>
-    <script src="DiskModel.min.js"></script>
+    <!-- <script src="DiskModel.min.js"></script> -->
     <script src="cyto4poset.min.js"></script>
     <link rel="stylesheet" href="style.min.css">
     <title>LNakayama and its disk model</title>
@@ -41,7 +41,7 @@
                 <div style="display:block;">
                     Has direct summands: <input type="text" id="selectModule" cols="20"
                         placeholder="[[1,3],[2,2]]">&nbsp;
-                    <button id="btnSelectModule" onclick="filtTilt()" disabled>Filter</button>
+                    <button id="btnSelectModule" onclick="reductionAtMod()" disabled>Filter</button>
                     <br>
                     <div style="display:flex; flex-direction:row;justify-content: space-between; margin-top:2px;">
                         <div>
@@ -55,6 +55,14 @@
                     <hr>
                 </div>
                 <div style="display:block;margin-left: auto; margin-right:0;">
+                    <!-- Highlight:
+                    <input type="radio" id="FStd" name="hilite" value="FStd" />
+                    <label for="FDelta">F(Δ)</label>
+                    <input type="radio" id="FCostd" name="hilite" value="FCostd" />
+                    <label for="FNabla">F(∇)</label>
+                    <input type="radio" id="chtilt" name="hilite" value="chtilt" checked />
+                    <label for="chtilt">ch.tilting</label> -->
+
                     <button onclick="cyto.fit()">Fit qhs(A) to
                         canvas</button>
                     <!-- <button onclick="svgScaleToggle()">Resize disk</button> -->
@@ -81,7 +89,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="tikzTranslate-panel" class="accordion-panel">
+                <!-- <div id="tikzTranslate-panel" class="accordion-panel">
                     <button id="tikzTranslate-trigger" class="accordion-trigger" aria-expanded="false"
                         aria-controls="tikzTranslate-content">
                         Disk picture to TikZ
@@ -98,27 +106,27 @@
                             <button onclick="printTikz()" style="margin-top:1ch;">Translate</button>
                         </div>
                     </div>
-                </div>
-                <div id="drawModule-panel" class="accordion-panel">
-                    <button id="drawModule-trigger" class="accordion-trigger" aria-expanded="false"
+                </div> -->
+                <!-- <div id="drawModule-panel" class="accordion-panel"> -->
+                <!-- <button id="drawModule-trigger" class="accordion-trigger" aria-expanded="false"
                         aria-controls="drawModule-content">
                         Draw curves of modules
-                    </button>
+                    </button> -->
 
-                    <div class="accordion-content" role="region" aria-labelledby="drawModule-trigger" aria-hidden="true"
-                        id="drawModule-content">
-                        <div>
-                            <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
-                            <!-- <textarea name="modulesInput" id="modulesInput" cols="70" rows="3"
+                <!-- <div class="accordion-content" role="region" aria-labelledby="drawModule-trigger" aria-hidden="true"
+                        id="drawModule-content"> -->
+                <!-- <div> -->
+                <!-- [ <input type="number" name="topM0" id="topM0"> , <input type="number" name="socM0" id="socM0"> ] -->
+                <!-- <textarea name="modulesInput" id="modulesInput" cols="70" rows="3"
                         style="display:inline-block; vertical-align: top;">[[1,3],[2,2],[3,5],[4,4]]</textarea> -->
-                            <input type="text" name="modulesInput" id="modulesInput" size="35"
+                <!-- <input type="text" name="modulesInput" id="modulesInput" size="35"
                                 placeholder="[[1,3],[2,2],[3,5],[4,4]]">
                             <div style="display:inline-block; vertical-align: middle; margin-left:.2em;">
                                 <button onclick="addModulesFromInput()">Draw</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
             </div>
 
         </div>
@@ -164,21 +172,25 @@
         var greenPos = [], redPos = [], labelPos = []; // store positions of green/red mk pts
         var modules = [], arcs = [];
         var qhs, partition;
-        var A, disk, QR;
+        var A, disk, QR, ARquiver;
         var cyto, posetCyto;
         var arrowhead = s.select("#arrowhead");
         var logArea = document.getElementById("log");
 
-        function polarToCartesian(radius, degree, cx, cy) {
-            // Convert degree to radians
-            var radians = (degree - 90) * Math.PI / 180;
+        // function polarToCartesian(radius, degree, cx, cy) {
+        //     // Convert degree to radians
+        //     var radians = (degree - 90) * Math.PI / 180;
 
-            // Calculate x and y coordinates
-            var x = radius * Math.cos(radians);
-            var y = radius * Math.sin(radians);
+        //     // Calculate x and y coordinates
+        //     var x = radius * Math.cos(radians);
+        //     var y = radius * Math.sin(radians);
 
-            // Return x,y tuple
-            return [cx + x, cy + y];
+        //     // Return x,y tuple
+        //     return [cx + x, cy + y];
+        // }
+
+        function moduleToCSSValidString(M) {
+            return `ind${M[0]}_${M[1]}`;
         }
 
         /**
@@ -205,144 +217,45 @@
             return str.split("],[").join("]||[").split("||");
         }
 
-        function fracToPoint(start, end, ratio) {
-            return [(1 - ratio) * start[0] + ratio * end[0], (1 - ratio) * start[1] + ratio * end[1]];
-        }
-
-        function computeMkptPosition(m, withLabel = false) {
-            var angleIncrement = 360 / m; // angle increment between vertices
-            var green = [], red = [], labels = [];
-            for (let i = 0; i < m; i++) {
-                var angle = angleIncrement * i;
-                //add marked points positions
-                //postive angle = clockwise direction from 12 o'clock
-                [green, red].forEach((vxs, j) =>
-                    vxs.push(polarToCartesian(r, angle + j * angleIncrement / 2, cx, cy)));
-
-                // add labels positions
-                if (withLabel) {
-                    labels.push(polarToCartesian(r + 2.5 * vxR + 3, angle, cx, cy));
-                }
-            }
-            return [green, red, labels];
-        }
-
-        function drawDisk(recompute = false) {
-            var base = s.circle(cx, cy, r);
-            base.attr({
-                fill: "none",
-                stroke: "#000",
-                strokeWidth: 3
-            });
-            let [green, red, labels] = recompute ? computeMkptPosition(disk.m, true) : [greenPos, redPos, labelPos];
-
-            var fills = ["#FFF", "#F00"];
-            var strokes = ["#0F0", "#F00"];
-            [green, red].forEach((posArr, j) => {
-                posArr.forEach(([x, y]) => {
-                    let v = s.circle(x, y, vxR);
-                    v.attr({
-                        fill: fills[j],
-                        stroke: strokes[j],
-                        strokeWidth: 1.5
-                    });
-                });
-            })
-            labels.forEach(([x, y], i) => {
-                var txt = s.text(x, y, `${i + 1}`);
-                txt.attr({
-                    "text-anchor": "middle",
-                    "dominant-baseline": "central",
-                    "font-size": "10pt"
-                });
+        /* Snap drag  functions */
+        var move = function (dx, dy) {
+            this.attr({
+                transform: this.data('origTransform') + (this.data('origTransform') ? "T" : "t") + [dx, dy]
             });
         }
 
-        function drawCurveOnDisk(start, end) {
-            let ctrl0 = fracToPoint(start, [cx, cy], g);
-            let ctrl1 = fracToPoint(end, [cx, cy], g);
-            return s.path(`M${start} C${ctrl0} ${ctrl1} ${end}`);
+        var start = function () {
+            this.data('origTransform', this.transform().local);
+        }
+        var stop = function () {
+            // console.log('finished dragging');
         }
 
-        // use withLabel = {text: t, pos: r, abspos: [x,y], opt: {...}} to 
-        // change label text to t, and display position (ratio r on the arc), or
-        // display at absolute position [x,y]
-        // opt value determines additional attributes to the asociated text object
-        function drawArc(arc, type, withLabel = null, opt = { strokeWidth: 2, fill: "none" }) {
-            let start, end;
-            if (type == "green") {
-                start = greenPos[arc[0] - 1];
-                end = greenPos[arc[1] - 1];
-                opt.stroke = opt.stroke ? opt.stroke : "#0B0";
-            } else if (type == "red") {
-                start = redPos[arc[0] - 1];
-                end = redPos[arc[1] - 1];
-                opt.stroke = opt.stroke ? opt.stroke : "#F00";
-            }
-
-            let a = drawCurveOnDisk(start, end);
-            a.attr(opt);
-            if (withLabel) {
-                //let [x, y] = fracToPoint(fracToPoint(start, end, (withLabel.pos ? withLabel.pos : 0.5)), [cx, cy], g - 0.1);
-                let len = a.getTotalLength();
-                let { x, y } = a.getPointAtLength(len * (withLabel.pos ? withLabel.pos : 0.5));
-                let txt = s.text(x, y, withLabel.text);
-                txt.attr({
-                    "font-family": "monospace",
-                    "font-size": withLabel['font-size'] ? withLabel['font-size'] : "9pt",
-                    "text-anchor": "middle",
-                    "dominant-baseline": "central",
-                })
-                if (Array.isArray(withLabel.text) && withLabel.text.length > 1) {
-                    let dy = withLabel.text.length * 10 / 2;
-                    txt.selectAll("tspan").forEach(function (tspan, i) {
-                        tspan.attr({ x: x, y: y - dy + 10 * i });
-                        if (Array.isArray(withLabel.colors)) {
-                            tspan.attr({ fill: withLabel.colors[i] });
-                        }
-                    });
-                } else {
-                    if (withLabel.colors) {
-                        txt.attr({ fill: withLabel.colors[0] });
-                    }
-                }
-                if (withLabel.bounded) {
-                    let bbox = txt.getBBox();
-                    let rect = s.rect(bbox.x - 2, bbox.y - 2, bbox.width + 4, bbox.height + 4);
-                    rect.attr({
-                        fill: "#ddd",
-                        "fill-opacity": 0.8,
-                        stroke: "#000",
-                        strokeWidth: 1
-                    });
-                    rect.insertBefore(txt);
-                }
-                //　TODO　withLabel.opt ? txt.attr(withLabel.opt) : null;
-            }
-        }
-
-        function drawDualArcSys(clear = true, onlyarcs = true) {
-            clear ? s.selectAll('svg > *:not(defs)').remove() : null;
-            for (let a of disk.arcsys) { drawArc(a, "red"); }
-            onlyarcs ? null : drawDisk(false);
-        }
-
-        function drawARquiver(xsep = 50, ysep = 50) {
+        function drawARquiver(xsep = 40, ysep = 40) {
             let ox = 25, oy = 50; //relative origin
             let xpos = Array(A.rank).fill(0).map((x, i) => ox + i * xsep * 2);
             let ARq = s.g();
             let LL = Math.max(...A.kupisch);
+            // add rect background for dragging
+            let rect = s.rect(ox, oy, ox + A.rank * xsep * 2, oy + ysep * (LL + 1)).attr({ fill: 'white' });
+            ARq.add(rect);
 
-            //TODO: add id to object for later manipulation (highlighting modules)
             for (let l = 0; l < LL; l++) {
                 for (let i = 1; i <= A.rank; i++) {
                     let M = [A.rank + 1 - i, A.rank + 1 - i + l];
                     if (A.isModule(M)) {
                         let x = xpos[i - 1] - xsep * l;
                         let y = oy + (LL - l) * ysep;
-                        let [t, r] = drawLoewyDiagram(x, y, LoewyDiagram(...M), { id: JSON.stringify(M) });
-                        ARq.add(r);
-                        ARq.add(t);
+                        // let [t, r] = drawLoewyDiagram(x, y, LoewyDiagram(...M), { id: JSON.stringify(M) });
+                        // ARq.add(r);
+                        // ARq.add(t);
+                        let node = drawLoewyDiagram(x, y, LoewyDiagram(...M));
+                        node.attr({ id: moduleToCSSValidString(M) });
+                        ARq.add(node);
+                        // if (node.getBBox().cx != x || node.getBBox().cy != y) {
+                        //  they are always different, but only by very little
+                        //     console.log(`Our (x,y)=( ${x} , ${y} )`, " svg data: ", node.getBBox());
+                        // }
 
                         // draw arrow going out from M
                         let nextM = [[M[0], M[0] + l - 1], [M[0] - 1, M[0] + l]];
@@ -362,6 +275,8 @@
                     }
                 }
             }
+            ARq.drag(move, start, stop);
+            return ARq;
         }
 
         function drawQuiverAndRelations() {
@@ -417,27 +332,35 @@
             if (kupisch == [] && data == null) {
                 updateLog("Need data to generate algebra and disk model.");
             }
-            disk = new DiskModel({
-                kupisch: kupisch,
-                diskmodel: data !== null ? data.disk : null
-            });
-            A = disk.algebra;
+            A = new LNakayama({ kupisch: kupisch });
             document.getElementById("filenameInput").value = `[${A.kupisch}]`;
             document.getElementById("kupisch").value = `[${A.kupisch}]`;
             genQHS(data);
 
-            if (A.isGentle) {
-                [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
-                for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
-                drawDualArcSys(false, false);
-                updateLog("-------New Disk------");
-                let zcomp = A.gentleZComposition();
-                updateLog();
-            } else {
-                updateLog("Algebra is not gentle; disk will NOT be drawn.");
-                drawARquiver();
-            }
+            // if (A.isGentle) {
+            //     [greenPos, redPos, labelPos] = computeMkptPosition(disk.valencies.length, true);
+            //     for (let [i, a] of Object.entries(disk.dissection)) { drawArc(a, "green", { text: `${parseInt(i) + 1}`, "font-size": "12pt" }); }
+            //     drawDualArcSys(false, false);
+            //     updateLog("-------New Disk------");
+            //     let zcomp = A.gentleZComposition();
+            //     updateLog();
+            // } else {
+            // updateLog("Algebra is not gentle; disk will NOT be drawn.");
+            // }
+            // console.table(
+            //     A.indecs.map((X) => A.ExtNonVanishingDegree(X, [1, 1]))
+            // );
+            // console.log(
+            // A.ExtNonVanishingDegree([1, 1], [1, 4]),
+            // A.ExtNonVanishingDegree([1, 1], [2, 5]),
+            // A.ExtNonVanishingDegree([1, 1], [3, 5]),
+            // A.ExtNonVanishingDegree([1, 1], [4, 6]),
+            // A.ExtNonVanishingDegree([1, 1], [5, 6]),
+            // A.ExtNonVanishingDegree([1, 1], [6, 6]),
+            // );
 
+            ARquiver = drawARquiver();
+            // addModules(A.LeftOrthoCat([[1, 2]]));
             drawQuiverAndRelations();
         }
 
@@ -451,6 +374,7 @@
         }
 
         function drawLoewyDiagram(x, y, Loewy, txtAttr = {}) {
+            let node = s.g();
             let txt = s.text(x, y, Loewy);
             let attr = Object.assign({}, {
                 "font-family": "monospace",
@@ -473,9 +397,11 @@
                 stroke: "#000",
                 strokeWidth: 1
             });
-            rect.insertBefore(txt);
-
-            return [txt, rect];
+            // rect.insertBefore(txt);
+            // return [txt, rect];
+            node.add(rect);
+            node.add(txt);
+            return node;
         }
 
         function addModulesFromInput() {
@@ -485,41 +411,42 @@
             addModules(Ms);
         }
 
-        function addModules(Ms, highlightIndex = false) {
-            modules = [], arcs = [];
-            for (let M of Ms) {
-                A.isModule(M) ? modules.push({ topsoc: M, Loewy: LoewyDiagram(...M) }) : null;
-            }
+        function addModules(...MsCollect) {
+            s.selectAll('svg > *:not(defs)').remove();
+            let palette = chroma.scale("Set1").colors(Math.max(MsCollect.length, 5))
+                .map((c) => chroma(c).hex());
+            // console.log(MsCollect.length);
+            // console.log(palette);
 
-            // draw
-            if (A.isGentle) {
-                drawDualArcSys(true, true);
-                for (let [i, M] of Object.entries(modules)) {
-                    let a = disk.moduleToLaminate(M.topsoc);
-                    arcs.push(a);
-                    if (highlightIndex) {
-                        //TODO: change multicolorText to a correct thing
-                        let colorings = M.Loewy.map(s => s == `${parseInt(i) + 1}` ? "#F00" : "#000");
-                        // console.log(M.Loewy, `${parseInt(i) + 1}`, colorings);
-                        drawArc(a, "green", { text: M.Loewy, bounded: true, colors: colorings }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
-                    } else {
-                        drawArc(a, "green", { text: M.Loewy, bounded: true }, { stroke: "#00F", strokeWidth: 2, fill: "none" });
-                    }
+            ARquiver = drawARquiver();
+            for (const [i, Ms] of Object.entries(MsCollect)) {
+                modules = [];
+                for (const M of Ms) {
+                    A.isModule(M) ? modules.push({ topsoc: M, Loewy: LoewyDiagram(...M) }) : null;
                 }
-                drawDisk(false);
-            } else {
-                s.selectAll('svg > *:not(defs)').remove();
-                let ox = 30, oy = 100;
-                for (let [i, M] of Object.entries(modules)) {
-                    drawLoewyDiagram(ox + i * 25, oy, M.Loewy);
+
+                // let ox = 30, oy = 100;
+                // for (let [i, M] of Object.entries(modules)) {
+                //     drawLoewyDiagram(ox + i * 25, oy, M.Loewy);
+                // }
+                for (let M of Ms) {
+                    let node = ARquiver.select(`#${moduleToCSSValidString(M)}`);
+                    let bb = node.getBBox();
+                    // !! hard coded radius !!
+                    let cloud = s.circle(bb.cx, bb.cy, 30);
+                    cloud.attr({
+                        // fill: "#FFDC2E",
+                        fill: palette[i],
+                        opacity: 0.5
+                    });
+                    cloud.insertAfter(node);
                 }
             }
             drawQuiverAndRelations();
-            // display log
-            updateLog();
+            // updateLog();
         }
 
-        function filtTilt() {
+        function reductionAtMod() {
             let strMs = document.getElementById("selectModule").value;
             let dim = detectStringifiedArrayDim(strMs);
             let Ms = dim == 2 ? JSON.parse(strMs) : [JSON.parse(strMs)];
@@ -563,7 +490,7 @@
             logArea.innerHTML = "";
         }
         function updateLog(str = "") {
-            logArea.innerHTML += `\n${str}\n` + disk.log.allFromLastGet.join("\n");
+            logArea.innerHTML += `\n${str}\n` + A.log.allFromLastGet.join("\n");
             // console.log(`lastGet: ${disk.log.lastGet}.  logLenL: ${disk.log.log.length}`);
             logArea.scrollTop = logArea.scrollHeight;
         }
@@ -593,7 +520,13 @@
             let struc = qhs.qhs[parseInt(node.id()) - 1];
             posetCyto = initSVG(document.getElementById("cyPoset"), coverArrayToCyto(struc.coverRel));
             // console.log(`tilting module (id=${node.id()}) = `, A.charTilting(struc.std, struc.costd));
-            addModules(A.charTilting(struc.std, struc.costd), true);
+
+            // let hilite = document.querySelector('input[name="hilite"][type="radio"]:checked').value;
+            let T = A.charTilting(struc.std, struc.costd);
+            let FStd = A.LeftOrthoCat(T), FCostd = A.RightOrthoCat(T);
+            // let M = hilite == "FStd" ? A.LeftOrthoCat(T) : hilite == "FCostd" ? A.RightOrthoCat(T) : T;
+            // addModules(M, true);
+            addModules(FStd, FCostd, T);
         }
 
         function partitionQHS() {
@@ -746,6 +679,7 @@
          * 
          */
 
+        /*
         function printTikz() {
             let withdualarc = document.getElementById("withdualarc").checked;
             let withdissection = document.getElementById("withdissection").checked;
@@ -777,6 +711,7 @@
                 });
             return res;
         }
+        */
 
         async function copyToClipboard(txt) {
             /**

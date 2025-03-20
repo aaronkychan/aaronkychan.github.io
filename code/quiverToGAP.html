@@ -50,7 +50,6 @@
       );
 
       // *** translate relations ***
-      var relTxt = "";
       let relns = "";
       if (document.querySelector('input[name="relsep"]:checked').value == "space") {
         relns = Alg.relations.split(/\s+/);
@@ -61,10 +60,12 @@
         relns.map(reln => relationToQPA(reln))
       ).replace(/"/g, "");
 
-      relTxt = `AssignGeneratorVariables(KQ);\r\n`;
-      relTxt += `relns:=${relArrayTxt};\r\n`;
-      relTxt += `A:=KQ/relns;\r\n`;
-      // }
+      var relTxt = "";
+      if (relArrayTxt.length > 0) {
+        relTxt = `AssignGeneratorVariables(KQ);\r\n`;
+        relTxt += `relns:=${relArrayTxt};\r\n`;
+        relTxt += `A:=KQ/relns;\r\n`;
+      }
 
       //Tidy up data
       var oTB = document.getElementById("outTxtBox");
@@ -74,8 +75,8 @@
       oTB.disabled = false;
 
       strOut += `Q:=Quiver(${vxTxt}, ${arrTxt});\r\n`;
-      strOut += `KQ:=PathAlgebra(${field},Q);\r\n`;
-      strOut += `${relTxt}`;
+      strOut += `KQ:=PathAlgebra(${field},Q);`;
+      strOut += relArrayTxt.length > 0 ? `\r\n${relTxt}` : "";
       oTB.value = strOutCurrent + strOut;
 
       // copy everything to clipboard

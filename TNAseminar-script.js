@@ -49,107 +49,11 @@ case and use it to prove a relative variant of the conjecture.`,
             id: "853 1951 5047",
             psw: "900788",
         },
-        // record: {
-        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
-        // },
-    },
-    {
-        ymd: "2024-12-20",
-        start: "1700",
-        duration: 90,
-        title: `Semiinfinite sheaves on affine flag varieties`,
-        speaker: "Simon Riche",
-        affil: "Université Clermont Auvergne",
-        web: `https://lmbp.uca.fr/~riche/`,
-        abstract: `We will explain how, generalizing a construction of Gaitsgory, one can define and study a category of sheaves on the affine flag variety of a complex reductive group that "models" sheaves on the corresponding semiinfinite flag variety, with coefficients in a field of positive characteristic, and which should provide a geometric model for a category of representations of the Langlands dual Lie algebra over the given coefficient field. As an application, we use this construction to compute the dimensions of stalks of the intersection cohomology complex on Drinfeld's compactification, with coefficients in any field of good characteristic. This is joint work with Pramod Achar and Gurbir Dhillon.`,
-        lang: "en",
-        access: {
-            id: "882 1561 8969",
-            psw: "531394",
-        },
         record: {
-            slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
-        },
-    },
-    {
-        ymd: "2024-10-23",
-        start: "1030",
-        duration: 90,
-        title: `一般化マルコフ数とそのSL(2,Z)行列化`,
-        speaker: "Yasuaki Gyoda 行田 康晃",
-        affil: "University of Tokyo 東京大学",
-        web: `https://yasuaki-gyoda.github.io/jp/`,
-        abstract: `<p>マルコフ数とは、マルコフ方程式 $x^2 + y^2 + z^2 = 3xyz$の正整数解に現れる整数である。私は、共同研究者の松下浩大氏とともに、2021年から2022年にかけてこのマルコフ方程式を一般化し、次の形に拡張した。</p>
-<p> $x^2 + y^2 + z^2 + k(yz + zx + xy) = (3 + 3k)xyz$  ($k$は非負整数)</p>
-<p>この方程式を「$k$ 一般化マルコフ方程式」と呼び、その正整数解に現れる数を「$k$ 一般化マルコフ数」とする。私は、このクラスの方程式およびその解に関連する数が、古典的なマルコフ方程式やマルコフ数と同様の性質を保持していることを明らかにした。
-今回の発表では、これらのマルコフ数および $k$ 一般化マルコフ数を $(1,2)$ 成分に持つ $2 \\times 2$ 行列（特に $SL(2, \\mathbb{Z})$ の元）を導入する。そしてこの行列が、マルコフ数や一般化マルコフ数に備わる組み合わせ構造を保存することを説明する。さらにその応用として、スネークグラフの完全マッチングを利用して、既約分数から$k$一般化マルコフ数を計算する方法を紹介する予定である。</p>`,
-        lang: "jp",
-        access: {
-            id: "810 1799 9876",
-            psw: "456782",
-        },
-        record: {
-            slides: `TNA/2024/Gyoda-Generalised_Markov_numbers.pdf`,
-        },
-    },
-    {
-        ymd: "2024-06-28",
-        start: "1630",
-        duration: 90,
-        title: `Classifying KE-closed subcategories`,
-        speaker: "Shunya Saito 斎藤 峻也",
-        affil: "University of Tokyo 東京大学",
-        web: `https://sites.google.com/view/shunya-saito-math`,
-        abstract: `圏の局所化や導来圏のt構造、傾加群とその変異など種々の理論と関連して、これまで様々な種類のアーベル圏の部分圏が導入・研究されてきた。とくに環を固定したとき、その加群圏にはどのような部分圏があり、それらはどのように分類されるのかという問題は環の表現論において活発に研究されてきた。可換環の場合には、様々な部分圏がプライム・スペクトラムを用いて分類できることや、一般のアーベル圏では異なるクラスの部分圏が一致してしまうことなどがこれまでの研究で明らかにされてきた。
-本公演では、進行中の可換環上の加群圏におけるKE閉部分圏（＝核と拡大で閉じる部分圏）の分類について話す。とくに良いクラスの可換環に対してはKE閉部分圏がプライム・スペクトラムを用いて分類できることや他のクラスの部分圏と一致してしまうことを紹介する。またこれらを示すうえで加群の自己準同型環の中心の考察が重要な役割を果たしており、その性質やKE閉部分圏の分類との関係について述べる。分類に関する予想や関連する問題についても述べたいと考えている。
-本公演の内容は小林稔周氏（明治大学）との共同研究に基づく。`,
-        lang: "jp",
-        access: {
-            id: "890 0928 7250",
-            psw: "360908",
-        },
-        record: {
-            slides: `TNA/2024/Saito-Classify_KE-closed_subcats.pdf`,
-        },
-    },
-    {
-        ymd: "2024-06-21",
-        start: "1630",
-        duration: 90,
-        title: `松井スペクトラムを用いた復元定理の再解釈`,
-        speaker: "Daigo Ito 伊藤 大悟",
-        affil: "UC Berkeley",
-        web: `https://daigoi.github.io/`,
-        abstract: `代数多様体$X$上の連接層の導来圏は多くの幾何学的情報を含んでいることが知られており，特にBondal-OrlovとBallard氏によって$X$がGorenstein
-        (反)Fano多様体の場合は導来圏の三角圏構造から$X$を復元できることが示されている．一方で一般の代数多様体$X$についてもBalmer氏によって導来圏の三角圏構造と導来テンソル積によるモノイダル構造の組からXを復元できることが示されている．本講演では近年松井氏によって導入された三角圏の松井スペクトラムを用いることでBalmer氏による復元をモノイダル構造なしでどの程度理解することができるかという問いから出発し，この視点からBondal-OrlovとBallard氏の復元定理に完全な別証明を与える．この別証明をもとにこの復元定理のさらなる一般化やFavero氏によるいくつかの関連する復元定理の別証明や一般化に関しても解説する．またこの視点を採用することでFourier-Mukaiパートナーが複数存在する場合にどのように復元問題を考えることができるかについても双有理幾何との関係にも触れつつ時間が許す限り解説する．一部の内容は徳島大学の松井氏との共同研究(arXiv:2405.16776)に基づく．`,
-        lang: "jp",
-        access: {
-            id: "871 0903 4557",
-            psw: "788435",
-        },
-        record: {
-            slides: `TNA/2024/Ito-Reinterpret_reconstruction_theorem_for_Matsui_spectrum.pdf`,
-        },
-    },
-    {
-        ymd: "2024-06-07",
-        start: "1630",
-        duration: 90,
-        title: `スーパー代数群の表現と奇鏡映について`,
-        speaker: "Taiki Shibata 柴田 大樹",
-        affil: "Okayama University of Science 岡山理科大学",
-        web: `https://sites.google.com/site/mathshibata`,
-        abstract: `<p>良く知られているように分裂簡約代数群の表現論は，原理的には付随するルート・データ（やワイル群）の言葉で記述することが可能であり，既約表現の分類や指標理論などの研究が今日に至るまで盛んに行われてきている．一方で，スーパー代数群は対称テンソル圏の理論で本質的な役割を果たす（Deligneの定理）ことは知られていたが，それ自体の構造論や表現論に関する研究はまだ始まったばかりであり，非スーパーのときと比べて十分理解されているとは言い難い．例えば「付随するルート系の言葉で既約表現のパラメータを記述せよ」という問いは基本的であるにもかかわらず，いくつかのスーパー代数群に対してしか解決されていない．その理由としては，スーパーの場合はルートやボレル部分群の振る舞いが特異であり，そのコントロールが難しいという点があげられる．</p>
-
-        <p>本講演では，スーパー代数群の定義から始めて，いくつかの具体例をそのルート系とともに見ていく．そして誘導表現を用いた既約表現の構成法を紹介し，現状でどこまで（既約）表現に関して分かっているのか，またどのような困難があるのかを具体例を見ながら解説する．その後に Serganova らによって導入された（ワイル群のある意味の補完である）奇鏡映と呼ばれる操作が，スーパー代数群の誘導表現に対してどのように振る舞うかを解説する．</p>
-        `,
-        lang: "jp",
-        access: {
-            id: "858 1659 5222",
-            psw: "692360",
-        },
-        record: {
-            slides: `TNA/2024/Shibata-Rep_algebraic_supergroup_odd_reflection`,
+            slides: [
+                `TNA/2025/LiuJungyang-GinzburgMorphism.pdf`,
+                `TNA/2025/LiuJungyang-AmiotConjecture.pdf`,
+            ],
         },
     },
 ];

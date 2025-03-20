@@ -8,7 +8,8 @@ class LNakayama {
     injs = [];
     qhsPoset = [];
     qhsPosetPartitioned = [];
-    // TODO: modules = [];
+    indecs = [];
+    gldim = 0;
     constructor(
         { kupisch = [], logger = null, data = null } = { kupisch: [] }
     ) {
@@ -46,7 +47,17 @@ class LNakayama {
                 }
                 return [1, i + 1];
             });
-            // TODO: implement full module cat calculation
+            this.gldim = Math.max(
+                ...this.projs.map((P) => this.pdim([P[0], P[0]]))
+            );
+            this.log.add(`gldim(A)=${this.gldim}`);
+            this.indecs = this.projs
+                .map((_, i) =>
+                    [...Array(kupisch[i]).keys()].map((j) => [i + 1, i + 1 + j])
+                )
+                .flat();
+            console.table(this.indecs);
+            this.log.add(`| indec(A) | = ${this.indecs.length}`);
             // this.modules = Array(this.rank);
             // for (let i = 0; i < this.rank; i++) {
             //     this.modules[i] = Array(this.projs[i]);
@@ -142,13 +153,20 @@ class LNakayama {
         //     }
         // }
         this.relations = rels;
-        this.log.add(`Relations [src vx,tgt vx]: ${JSON.stringify(rels)}`);
+        if (this.relations.length > 0)
+            this.log.add(`Relations [src vx,tgt vx]: ${JSON.stringify(rels)}`);
+        else this.log.add("Quiver algebra with no relation");
         return rels;
     }
 
     // module M = [i,j] with i=top M, j=soc M
     isModule(M) {
-        return M[1] - M[0] <= this.kupisch[M[0] - 1];
+        return (
+            M[0] <= M[1] &&
+            M[0] >= 1 &&
+            M[1] <= this.rank &&
+            M[1] - M[0] < this.kupisch[M[0] - 1]
+        );
     }
 
     syzygy(M) {
@@ -170,31 +188,11 @@ class LNakayama {
     }
 
     isProjective(M) {
-        return this.isIsom(M, this.projs[M[0]]);
+        return this.isIsom(M, this.projs[M[0] - 1]);
     }
 
     isInjective(M) {
-        return this.isIsom(M, this.injs[M[1]]);
-    }
-
-    pdim(M) {
-        let d = 0,
-            X = M;
-        while (!this.isProjective(X)) {
-            X = syzygy(X);
-            d++;
-        }
-        return d;
-    }
-
-    idim(M) {
-        let d = 0,
-            X = M;
-        while (!this.isInjective(X)) {
-            X = syzygy(X);
-            d++;
-        }
-        return d;
+        return this.isIsom(M, this.injs[M[1] - 1]);
     }
 
     isNoHom(M, N) {
@@ -211,9 +209,8 @@ class LNakayama {
         let b = this.isNoHom(M, N);
         let K = b ? M : [N[1] + 1, M[1]];
         // this.log.add(
-        //     b
-        //         ? `💭 No non-zero hom [${M}]->[${N}] => Ker=[${M}]`
-        //         : `💭 Ker( [${M}]->[${N}] ) = [${K}]`
+        //     b ? `💭 No non-zero hom [${M}]->[${N}] => Ker=[${M}]`
+        //       : `💭 Ker( [${M}]->[${N}] ) = [${K}]`
         // );
         return K;
     }
@@ -222,9 +219,8 @@ class LNakayama {
         let b = this.isNoHom(M, N);
         let I = b ? [0, 0] : [M[0], N[1]];
         // this.log.add(
-        //     b
-        //         ? `💭 No non-zero hom [${M}]->[${N}] => Image=0`
-        //         : `💭 Image( [${M}]->[${N}] ) = [${I}]`
+        //     b ? `💭 No non-zero hom [${M}]->[${N}] => Image=0`
+        //       : `💭 Image( [${M}]->[${N}] ) = [${I}]`
         // );
         return I;
     }
@@ -233,12 +229,176 @@ class LNakayama {
         let b = this.isNoHom(M, N);
         let C = b ? N : [N[0], M[0] - 1];
         // this.log.add(
-        //     b
-        //         ? `💭 No hom [${M}]->[${N}] => Coker=0`
+        //     b   ? `💭 No hom [${M}]->[${N}] => Coker=0`
         //         : `💭 Coker( [${M}]->[${N}] ) = [${C}]`
         // );
         return C[0] > C[1] ? [0, 0] : C;
     }
+
+    composedImage(L, M, N) {
+        return this.isNoHom(M, N) ? [0, 0] : this.Image(this.Image(L, M), N);
+    }
+
+    isFactorThrough(L, M, N) {
+        return this.isNoHom(M, N)
+            ? false
+            : this.isIsom(this.Image(L, N), this.composedImage(L, M, N));
+    }
+
+    projRes(M) {
+        let sy = this.syzygy(M, this.kupisch);
+        let projres = [M[0]];
+        while (sy) {
+            projres.push(sy[0]);
+            sy = this.syzygy(sy, this.kupisch);
+        }
+        return projres;
+    }
+
+    ExtNonVanishingDegree(M, N) {
+        const res = this.projRes(M).map((i) => this.projs[i - 1]);
+        for (let i = 1; i < res.length; i++) {
+            // no hom at deg k
+            // console.log(`Hom([${res[i]}],[${N}])=${this.Image(res[i], N)}`);
+            if (this.isNoHom(res[i], N)) continue;
+            else {
+                if (res[i - 1][0] <= N[0]) {
+                    // there is map from P_{i-1} to N
+                    // if (this.isZero(this.composedImage(res[i], res[i - 1], N))) return i; // doesn't factor thru
+                    if (
+                        i < res.length - 1
+                            ? this.isZero(
+                                  this.composedImage(res[i + 1], res[i], N)
+                              )
+                            : true
+                    ) {
+                        // has cocycle
+                        // console.log(`Z${i} Hom( P_[${M}],[${N}] ) nonzero`);
+                        // console.log(
+                        //     `res[${i}]=${res[i]} -> res[${i - 1}]=${
+                        //         res[i - 1]
+                        //     } -> N=${N}`
+                        // );
+                        if (!this.isFactorThrough(res[i], res[i - 1], N)) {
+                            return i;
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
+    isSelfOrthogonal(M) {
+        return this.ExtNonVanishingDegree(M, M) < 0;
+    }
+
+    // if deg = -1, then take ortho at all degree
+    LeftOrthoCat(Ms, deg = -1) {
+        let d = deg >= 0 ? deg : this.gldim + 1;
+        return this.indecs.filter((X) =>
+            Ms.reduce((out, M) => {
+                let x = this.ExtNonVanishingDegree(X, M);
+                return out && (x > d || x == -1);
+            }, true)
+        );
+    }
+
+    RightOrthoCat(Ms, deg = -1) {
+        let d = deg >= 0 ? deg : this.gldim;
+        return this.indecs.filter((X) =>
+            Ms.reduce((out, M) => {
+                let x = this.ExtNonVanishingDegree(M, X);
+                return out && (x > d || x == -1);
+            }, true)
+        );
+    }
+
+    isTilting(Ms) {
+        if (Ms.length < this.rank) return false;
+        for (let M of Ms) {
+            for (let N of Ms) {
+                if (this.ExtNonVanishingDegree(M, N) > 0) return false;
+            }
+        }
+        return true;
+    }
+
+    tiltingModIrredLeftMutation(T, atX) {
+        let idx = Array.isArray(atX)
+            ? atX.findIndex((y) => y[0] == atX[0] && y[1] == atX[1])
+            : atX;
+        // let TquotX = idx[...T.slice(0, idx), ...T.slice(idx + 1)];
+        // sort by first top, then by Loewy length
+        let TquotX = this.orderDirectSummandsByTopThenLL(
+            T.filter((_, i) => i != idx)
+        );
+        console.log("tiltingModIrredLeftMutation: TquotX = ", TquotX);
+        let flag = false;
+        // find minimal left add(T/X)-approximation
+        let images = TquotX.map((M) => this.Image(T[idx], M));
+        let nonZeroMapIdx = images
+            .map((Imf, i) => (this.isZero(Imf) ? -1 : i))
+            .filter((j) => j != -1);
+        let approxAt = [];
+        for (let i = 0; i < nonZeroMapIdx; i++) {
+            let notApprox = false;
+            for (let j = 0; j < i; j++) {
+                notApprox =
+                    notApprox ||
+                    this.isFactorThrough(
+                        T[idx],
+                        TquotX[nonZeroMapIdx[j]],
+                        TquotX[nonZeroMapIdx[i]]
+                    );
+            }
+            if (!notApprox) approxAt.push(i);
+        }
+
+        if (approxAt.length == 0) return T;
+        if (approxAt.length == 1)
+            return this.isSub(T[idx], TquotX[approx[0]])
+                ? TquotX.concat([this.Coker(T[idx], TquotX[approxAt[0]])])
+                : T;
+        // two indec modules in min. left approx
+        let U = TquotX[approxAt[0]],
+            V = TquotX[approxAt[1]];
+        return TquotX.concat([U[1] < V[1] ? [V[0], U[1]] : [U[0], V[1]]]);
+    }
+
+    orderDirectSummandsByTopThenLL(M) {
+        // X < Y if top X > top Y
+        //          or  top X = top Y and LL(Y)<LL(X)
+        // i.e. X < Y if X is (roughly) on the left of Y on the AR quiver
+        return M.toSorted((a, b) => b[0] - a[0] || a[1] - a[0] - b[1] + b[0]);
+    }
+
+    pdim(M) {
+        let d = 0,
+            X = M;
+        while (!this.isProjective(X)) {
+            X = this.syzygy(X);
+            d++;
+        }
+        return d;
+    }
+
+    idim(M) {
+        let d = 0,
+            X = M;
+        while (!this.isInjective(X)) {
+            X = this.cosyzygy(X);
+            d++;
+        }
+        return d;
+    }
+
+    // gldim() {
+    //     let pdimS = Array.from(Array(this.rank).keys()).map((x) =>
+    //         this.pdim([x, x])
+    //     );
+    //     return Math.max(pdimS);
+    // }
 
     computeForModule(M) {
         let res = { top: M[0], soc: M[1], len: M[1] - M[0] + 1 };
@@ -316,16 +476,6 @@ class LNakayama {
         return std.map((M, i) => [costd[i][0], std[i][1]]);
     }
 
-    projRes(M) {
-        let sy = this.syzygy(M, this.kupisch);
-        let projres = [M[0]];
-        while (sy) {
-            projres.push(sy[0]);
-            sy = this.syzygy(sy, this.kupisch);
-        }
-        return projres;
-    }
-
     minAdaptedOrder(std, costd) {
         let dec = std.map((s, i) =>
             this.projs.reduce(
@@ -353,8 +503,8 @@ class LNakayama {
         );
     }
 
-    isSub(M, N) {
-        return M[1] == N[1] && M[0] <= N[0];
+    isSub(L, M) {
+        return L[1] == M[1] && L[0] <= M[0];
     }
 
     isQuot(M, N) {
@@ -570,13 +720,14 @@ class LNakayama {
  */
 
 function sameAsSet(arr1, arr2) {
-    // only works when we know arr1 and arr2 has no duplicate elt's
+    // ! only works when we know arr1 and arr2 has no duplicate elt's
     // o/w, use Set(...) is faster
     let sorted1 = arr1.sort();
     let sorted2 = arr2.sort();
     return sorted1.reduce((prev, x, i) => prev && x == sorted2[i], true);
 }
 
+// check if two covering relations are the same
 function matchingCoverRel(cover1, cover2) {
     //assume cover1.length=cover2.length
     return cover1.reduce((prev, x, i) => prev && sameAsSet(x, cover2[i]), true);

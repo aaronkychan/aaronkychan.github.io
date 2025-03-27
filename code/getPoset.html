@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Reader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #output {
+            width: 80%;
+            height: 400px;
+            margin: 20px auto;
+            padding: 10px;
+            border: 2px solid #333;
+            overflow: auto;
+            white-space: pre-wrap;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Read .tex output from String Applet</h2>
+    <input type="file" id="fileInput">
+    <div id="output">poset of s.tau-tilting</div>
+
+    <script>
+        function extractScopeLines(text) {
+            const startMarker = "\\begin{scope}[every node/.style={fill=white}]";
+            const endMarker = "\\end{scope}";
+            const lines = text.split("\n");
+            let capturing = false;
+            let extractedLines = [];
+
+            for (let line of lines) {
+                if (capturing) {
+                    if (line.trim() === endMarker) {
+                        break; // Stop reading once \end{scope} is found
+                    }
+                    extractedLines.push(line);
+                }
+                if (line.trim() === startMarker) {
+                    capturing = true; // Start capturing after this line
+                }
+            }
+
+            return extractedLines;
+        }
+
+        function translateToPoset(lines) {
+            const regex = /\\path \((\d+)\) edge\[\] \((\d+)\);/;
+            let hasse = [], vx = new Set();
+            for (let line of lines) {
+                line.trim().match(regex);
+                const match = line.match(regex);
+                if (match) {
+                    let u = parseInt(match[1], 10), v = parseInt(match[2], 10);
+                    hasse.push({ source: u, target: v });
+                    vx.add(u); vx.add(v);
+                }
+            }
+            let poset = Array(Math.max(...vx) + 1).fill(0).map(() => []);
+            for (let e of hasse) {
+                poset[e.target].push(e.source);
+            }
+            return poset;
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('output').textContent = JSON.stringify(translateToPoset(extractScopeLines(e.target.result)));
+                };
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+
+</html>

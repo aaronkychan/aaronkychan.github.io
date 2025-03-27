@@ -21,9 +21,9 @@ tripleとの関連性についても紹介したいと考えている。`,
             id: "871 6340 9751",
             psw: "381921",
         },
-        // record: {
-        //     slides: `TNA/2024/Riche-Semiinfinite_sheaves_on_affine_flag.pdf`,
-        // },
+        record: {
+            slides: `TNA/2025/Iitsuka-Triangulated_structure_from_reduction.pdf`,
+        },
     },
     {
         ymd: "2025-03-17",

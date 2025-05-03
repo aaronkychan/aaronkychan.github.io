@@ -1,5 +1,84 @@
 let talks = [
     {
+        ymd: "2025-06-10",
+        start: "1530",
+        duration: 90,
+        title: "TBC",
+        speaker: "Mohamad Haerizadeh",
+        affil: "Unieristy of Tehran",
+        abstract: "TBC",
+        lang: "en",
+        access: {},
+    },
+    {
+        ymd: "2025-05-12",
+        start: "1530",
+        duration: 90,
+        title: "TBC",
+        speaker: "Yuya Otake 大竹 優也",
+        affil: "Nagoya University 名古屋大学",
+        abstract: "TBC",
+        lang: "jp",
+        access: {},
+    },
+    {
+        ymd: "2025-05-07",
+        start: "1300",
+        duration: 90,
+        title: "Autoequivalences of triangulated categories via Hochschild cohomology",
+        speaker: "Sebastian Opper",
+        // web: "https://pas201.user.srcf.net/",
+        affil: "Universeity of Tokyo 東京大学",
+        abstract:
+            'I will talk about a general tool which allows one to study symmetries of (enhanced) triangulated categories in the form of their derived Picard groups. In general, these groups are rather elusive to computations which require a rather good understanding of the category at hand. A result of Keller shows that the Lie algebra of the derived Picard group of an algebra can be identified with its Hochschild cohomology equipped with the Gerstenhaber Lie bracket. Mimicking the classical relationship between Lie groups and their Lie algebras, I will explain how to "integrate" elements in the Hochschild cohomology of a dg category over fields of characteristic zero to elements in the derived Picard group via a generalized exponential map. Afterwards we discuss properties of this exponential and a few applications. This includes necessary conditions for the uniqueness of enhancements of triangulated functors and uniqueness of Fourier-Mukai kernels. Other applications concern derived Picard groups of categories arising in algebra and geometry: derived categories of graded gentle algebras and their corresponding partially wrapped Fukaya categories or stacky nodal curves as well as Fukaya categories of cotangent bundles and their plumbings.',
+        lang: "en",
+        access: {
+            id: "822 3531 1702",
+            psw: "596657",
+        },
+        // record: {
+        //     slides: "https://pas201.user.srcf.net/documents/2025-utokyo-slides",
+        // },
+    },
+    {
+        ymd: "2025-04-15",
+        start: "1030",
+        duration: 90,
+        title: "Torsion pairs for McKay quivers",
+        speaker: "Parth Shimpi",
+        web: "https://pas201.user.srcf.net/",
+        affil: "Glasgow",
+        abstract:
+            "Classifying torsion classes in the module category has been a problem\nof much interest in the representation theory of preprojective\nalgebras, owing to its immediate applications in the study of\nt-structures, bricks, and spherical objects in the derived category.\nWhen the preprojective algebra arises from a Dynkin quiver, all such\ntorsion classes must lead to algebraic intermediate hearts— in\nparticular, they arise from tilting modules and therefore admit a\nfinite combinatorial description. Affine ADE quivers, on the other\nhand, produce infinitely many tilting modules and moreover have\ngeometric hearts arising from the McKay correspondence. By realising\nthe geometric hearts as `limits’ of algebraic ones, I will explain how\nall torsion pairs for affine preprojective algebras can be described\nusing the above two possibilities; in particular a complete\nclassification is achieved.",
+        lang: "en",
+        access: {
+            id: "813 0345 0035",
+            psw: "706679",
+            hybrid: "Rm 128, <a href='https://www.ms.u-tokyo.ac.jp/access/index.html'>Graduate School of Mathematics, University of Tokyo</a>",
+        },
+        record: {
+            slides: "https://pas201.user.srcf.net/documents/2025-utokyo-slides",
+        },
+    },
+    {
+        ymd: "2025-04-02",
+        start: "1030",
+        duration: 90,
+        title: "因子類群が$\\mathbb{Z}^2$であるトーリック環の非可換クレパント特異点解消について",
+        speaker: "Koji Matsushita 松下光虹",
+        affil: "Universeity of Tokyo 東京大学",
+        abstract:
+            "<p>トーリック環上で定義されるconic因子的イデアルは非常に良い可換環論的性質を満たしている一方で、代数幾何や表現論など、可換環論にとどまらない様々な分野で重要な役割を担っている。\n実際、全てのconic因子的イデアルの直和の自己準同型環が、元のトーリック環の非可換特異点解消(NCR)になることが知られている。そのことから、これがそのまま非可換クレパント特異点解消(NCCR)になるかどうかを考えるのは自然であるが、多くの場合、NCCRにはならない。そこで、全てではなく、一部のconic因子的イデアルを抽出することでNCCRが構成できるかどうかを見る。例えば、因子類群が$\\mathbb{Z}$であるようなGorensteinトーリック環の場合は上手くconic因子的イデアルを選ぶことでNCCRを構成できるが、$\\mathbb{Z}^2$である場合で、どのようにconic因子的イデアルを選んでもNCCRを成さないようなGorensteinトーリック環が存在することが知られている。こういった状況を踏まえ、どのようなトーリック環がNCCRを持つのか、また、どのようにconic因子的イデアルを選べばNCCRを構成できるのかを考えるのは自然な問題となる。</p>\n\n<p>\n本講演ではトーリック環のconic因子的イデアルを用いたNCCRの構成について知られていることについて整理したのち、因子類群が$\\mathbb{Z}^2$であるGorensteinトーリック環がNCCRを持つための条件について、講演者が得た結果を紹介する。</p>",
+        lang: "jp",
+        access: {
+            id: "861 6231 1607",
+            psw: "593942",
+        },
+        record: {
+            slides: `TNA/2025/Matsushita_Koji-Toric_Ring_NCCR.pdf`,
+        },
+    },
+    {
         ymd: "2025-03-27",
         start: "1030",
         duration: 90,
@@ -234,12 +313,19 @@ for (let talk of talks) {
                   )}`
                 : "";
 
+        let hybridInfo =
+            "hybrid" in talk.access
+                ? "Hybrid meeting at " + talk.access.hybrid + "<br>"
+                : "";
+        // console.log(hybridInfo);
         let label = "custom" in talk.access ? talk.access.custom : "Zoom";
-        let accessString = inSchedule
-            ? linkurl.length > 1
-                ? `[&nbsp;<a href="${linkurl}" target="_blank">${label}</a>&nbsp;]&nbsp;`
-                : label
-            : `Meeting ended `;
+        let accessString =
+            hybridInfo +
+            (inSchedule
+                ? linkurl.length > 1
+                    ? `[&nbsp;<a href="${linkurl}" target="_blank">${label}</a>&nbsp;]&nbsp;`
+                    : label
+                : `Meeting ended `);
 
         accessString +=
             "customInfo" in talk.access ? talk.access.customInfo : "";
@@ -376,6 +462,7 @@ document.addEventListener(`click`, (e) => {
     lang: "jp",
     access: {"id": "123&nbsp;345&nbsp;6789", "psw":"4321", 
             "link":"http://www.math.nagoya-u.ac.jp", 
+            "hybrid": "Hybrid meeting information",
             "custom": "SEE HERE"}
     record: {"slides" : "Contact speaker/link", "vid": "link"}
 }

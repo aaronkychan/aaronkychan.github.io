@@ -56,7 +56,7 @@ class LNakayama {
                     [...Array(kupisch[i]).keys()].map((j) => [i + 1, i + 1 + j])
                 )
                 .flat();
-            console.table(this.indecs);
+            // console.table(this.indecs);
             this.log.add(`| indec(A) | = ${this.indecs.length}`);
             // this.modules = Array(this.rank);
             // for (let i = 0; i < this.rank; i++) {
@@ -427,6 +427,7 @@ class LNakayama {
         // }
     }
 
+    //#region QHS related
     /***** Quasi-hereditary structure related *****/
 
     Trace(Ms, N) {
@@ -492,8 +493,10 @@ class LNakayama {
                 dec[i]
             )
         );
-        return CoveringRelation(TransitiveClosure(BinRelToAdjMx(inc, true)));
-        // result[i] = everything covered by i.
+        let TC = TransitiveClosure(BinRelToAdjMx(inc, true));
+        return [CoveringRelation(TC), TC];
+        // result[0][i] = everything covered by i.
+        // result[1] = matrix with (i,j)-th entry <=> i<=j in the poset
     }
 
     minAdaptedOrderByPermutation(perm) {
@@ -638,13 +641,16 @@ class LNakayama {
                 return res;
             }
         }
-        struc.coverRel = this.minAdaptedOrder(struc.std, struc.costd);
+        [struc.coverRel, struc.relationMx] = this.minAdaptedOrder(
+            struc.std,
+            struc.costd
+        );
         struc.charTilt = this.charTilting(struc.std, struc.costd);
         return res;
     }
 
     neighbourMAOs(std, costd, mao = null) {
-        let poset = mao == null ? this.minAdaptedOrder(std, costd) : mao;
+        let poset = mao == null ? this.minAdaptedOrder(std, costd)[0] : mao;
         let foundList = []; //list of triple [poset,std,costd]
 
         for (let i = 0; i < std.length; i++) {
@@ -670,10 +676,11 @@ class LNakayama {
         );
         let std = this.standardMods(perm);
         let costd = this.costandardMods(perm);
-        let poset = this.minAdaptedOrder(std, costd);
+        let [poset, relMx] = this.minAdaptedOrder(std, costd);
         let foundList = [
             {
                 coverRel: poset,
+                relationMx: relMx,
                 std: std,
                 costd: costd,
                 charTilt: this.charTilting(std, costd),
@@ -701,7 +708,6 @@ class LNakayama {
             currLen = foundList.length;
             i++;
         }
-        // console.table(qhsPoset);
         this.qhsPoset = {
             qhs: foundList,
             coverRel: CoveringRelation(
@@ -739,7 +745,7 @@ function transpose(mx) {
 
 /**
  * @param  {number[][]} rel have elts of rel[i]>i
- * @param  {} transpose=false, set to ture if elts of rel[i] < i
+ * @param  {boolean} transpose=false, set to ture if elts of rel[i] < i
  */
 function BinRelToAdjMx(rel, transposeMx = false) {
     let adjMx = rel.map((x) => {
@@ -751,6 +757,19 @@ function BinRelToAdjMx(rel, transposeMx = false) {
     });
     return transposeMx ? transpose(adjMx) : adjMx;
 }
+
+// function coverRelToAdjMx(cov) {
+//     // cov is array with cov[i] = elements coveredBy i
+//     // convert this to binary relation: rel[i] = elts covering i and apply BinRelToAdj
+//     const maxElt = Math.max(...cov.flat());
+//     const B = Array.from({ length: maxElt + 1 }, () => []);
+//     for (let j = 0; j < cov.length; j++) {
+//         for (let i = 0; i < cov[j].length; i++) {
+//             B[cov[j][i]].push(j);
+//         }
+//     }
+//     return BinRelToAdjMx(B);
+// }
 
 /**
  * @param  {number[][]} arr each entry is a tuple [i,j]
@@ -782,6 +801,10 @@ function TransitiveClosure(adjMx) {
 }
 
 // rel is a transitively closed relation in matrix form
+/**
+ * @param  {number[][]} rel rel[i][j]=1 if i<j; otherwise 0
+ * @return {number[][]} i-th entry = elts coverd by i
+ */
 function CoveringRelation(rel) {
     let res = [];
     let baseSet = Array.from(Array(rel.length).keys());

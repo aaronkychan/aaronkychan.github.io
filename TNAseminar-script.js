@@ -14,12 +14,15 @@ let talks = [
         ymd: "2025-05-12",
         start: "1530",
         duration: 90,
-        title: "TBC",
+        title: "Auslander近似理論を用いたMartsinkovsky不変量へのアプローチ",
         speaker: "Yuya Otake 大竹 優也",
         affil: "Nagoya University 名古屋大学",
-        abstract: "TBC",
+        abstract: `Auslander-Buchweitz理論、あるいはAuslander-Bridger理論は、Gorenstein環上のいかなる有限生成加群も（極大）Cohen-Macaulay加群による近似（CM近似）を持つことを保証する。Auslanderは1987年にMSRIで開かれた可換環論Berkeleyシンポジウムにて、可換Gorenstein局所環上のCM近似の極小性について講演し、極小CM近似の一意存在性を述べた。さらにこの極小CM近似を用いて可換Gorenstein局所環上の有限生成加群に対しデルタ不変量なる整数量を定め、デルタ不変量0を持つ加群の著しい性質について講演したようである。上述した内容が記されたAuslanderの論文はついぞ公表されることはなかったが、数多の研究者の貢献によりデルタ不変量にはイデアル論・表現論の両側面から深い理論が構築され、また応用が見出されている。他方、1990年代後半、MartsinkovskyはGorensteinとは限らない一般の可換ネーター局所環上にグザイ不変量なる新しい量を定義し、それがデルタ不変量と多くの性質を共有する事、並びにGorenstein環上ではデルタ不変量と一致する事を証明した。グザイ不変量の理論の構築にあたりMartsinkovskyがとったアプローチは自由分解が持つ微分次数構造の精緻な解析に基づくが、この講演ではグザイ不変量に収束する非減少数列を考え、その各項をAuslander近似理論により記述するアプローチについて述べる。そのために、講演の前半では可換とは限らない一般のネーター環上のAuslanderの近似理論について詳説する。後半では同近似理論と安定圏の手法を用いて近似グザイ不変量の評価を与え、AuslanderやMartsinkovskyによる諸定理がどのように回復されるかをみる。`,
         lang: "jp",
-        access: {},
+        access: {
+            id: "894 5567 7050",
+            psw: "885666",
+        },
     },
     {
         ymd: "2025-05-07",

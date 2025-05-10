@@ -27,9 +27,7 @@ var logArea = document.getElementById("log");
 //     return [cx + x, cy + y];
 // }
 
-function moduleToCSSValidString(M) {
-    return `ind${M[0]}_${M[1]}`;
-}
+const moduleToCSSValidString = (M) => `ind${M[0]}_${M[1]}`;
 
 /**
  * @param  {string} str
@@ -269,6 +267,27 @@ function drawLoewyDiagram(x, y, Loewy, txtAttr = {}) {
     return node;
 }
 
+function selectTilts(list, overrideText = "") {
+    // console.log(Ms);
+    let matchingID = [];
+    for (let n of cyto.elements("node")) {
+        n.unselect();
+        n.removeClass("inList");
+    }
+    // console.log(qhs.qhs);
+    for (let i of list) {
+        let node = cyto.getElementById(`${parseInt(i) + 1}`);
+        node.addClass("inList");
+        node.select();
+        matchingID.push(i);
+    }
+    updateLog(
+        overrideText === ""
+            ? `-> Selecting ${matchingID.length} char.tiltings`
+            : overrideText
+    );
+}
+
 //#region generation
 function generate(kupisch = [], data = null) {
     // document.getElementById("btnSelectModule").disabled = true;
@@ -298,12 +317,29 @@ function generateFromZComp() {
     generate({ kupisch: LNakayama.kupischFromZComposition(zcomp) });
 }
 
-function addModulesFromInput() {
-    let strMs = document.getElementById("modulesInput").value;
-    let dim = detectStringifiedArrayDim(strMs);
-    let Ms = dim == 2 ? JSON.parse(strMs) : [JSON.parse(strMs)];
-    addModules(Ms);
-}
+//
+// function addModulesFromInput() {
+//     let strMs = document.getElementById("modulesInput").value;
+//     let dim = detectStringifiedArrayDim(strMs);
+//     let Ms = dim == 2 ? JSON.parse(strMs) : [JSON.parse(strMs)];
+//     addModules(Ms);
+// }
+
+let markNodeInARQuiver = (vid, markFn) => markFn(ARquiver.select(`#${vid}`));
+
+let nodeHilight = (color) => {
+    return (node) => {
+        let bb = node.getBBox();
+        let cloud = s.circle(bb.cx, bb.cy, 30);
+        cloud.attr({
+            // fill: "#FFDC2E",
+            fill: color,
+            opacity: 0.5,
+        });
+        cloud.insertBefore(node);
+        return cloud;
+    };
+};
 
 function addModules(...MsCollect) {
     s.selectAll("svg > *:not(defs)").remove();
@@ -311,7 +347,6 @@ function addModules(...MsCollect) {
         .scale("Set1")
         .colors(Math.max(MsCollect.length, 5))
         .map((c) => chroma(c).hex());
-    // console.log(MsCollect.length);
     // console.log(palette);
 
     ARquiver = drawARquiver();
@@ -328,20 +363,43 @@ function addModules(...MsCollect) {
         //     drawLoewyDiagram(ox + i * 25, oy, M.Loewy);
         // }
         for (let M of Ms) {
-            let node = ARquiver.select(`#${moduleToCSSValidString(M)}`);
-            let bb = node.getBBox();
-            // !! hard coded radius !!
-            let cloud = s.circle(bb.cx, bb.cy, 30);
-            cloud.attr({
-                // fill: "#FFDC2E",
-                fill: palette[i],
-                opacity: 0.5,
-            });
-            cloud.insertAfter(node);
+            markNodeInARQuiver(
+                moduleToCSSValidString(M),
+                nodeHilight(palette[i])
+            );
         }
     }
     drawQuiverAndRelations();
     // updateLog();
+}
+
+let stdMark = (node) => {
+    let bb = node.getBBox();
+    let y = bb.cy,
+        x = bb.x - 12;
+    let mark = s.polygon(x, y, x + 10, y, x + 5, y - 10);
+    mark.attr({ fill: "#F00" });
+    mark.insertAfter(node);
+    return mark;
+};
+
+let costdMark = (node) => {
+    let bb = node.getBBox();
+    let y = bb.cy,
+        x = bb.x - 12;
+    let mark = s.polygon(x, y, x + 10, y, x + 5, y + 10);
+    mark.attr({ fill: "#00F" });
+    mark.insertAfter(node);
+    return mark;
+};
+
+function markStdCostdModInARQuiver(std, costd) {
+    for (let s of std) {
+        markNodeInARQuiver(moduleToCSSValidString(s), stdMark);
+    }
+    for (let c of costd) {
+        markNodeInARQuiver(moduleToCSSValidString(c), costdMark);
+    }
 }
 
 function reductionAtMod() {
@@ -368,27 +426,6 @@ function reductionAtMod() {
         `Found ${
             matchingID.length
         } char.tilting containing direct sumnand ${JSON.stringify(Ms)}.`
-    );
-}
-
-function selectTilts(list, overrideText = "") {
-    // console.log(Ms);
-    let matchingID = [];
-    for (let n of cyto.elements("node")) {
-        n.unselect();
-        n.removeClass("inList");
-    }
-    // console.log(qhs.qhs);
-    for (let i of list) {
-        let node = cyto.getElementById(`${parseInt(i) + 1}`);
-        node.addClass("inList");
-        node.select();
-        matchingID.push(i);
-    }
-    updateLog(
-        overrideText === ""
-            ? `-> Selecting ${matchingID.length} char.tiltings`
-            : overrideText
     );
 }
 
@@ -430,6 +467,7 @@ function showTilting(node) {
     // let M = hilite == "FStd" ? A.LeftOrthoCat(T) : hilite == "FCostd" ? A.RightOrthoCat(T) : T;
     // addModules(M, true);
     addModules(FStd, FCostd, T);
+    markStdCostdModInARQuiver(struc.std, struc.costd);
 }
 
 function partitionQHS() {

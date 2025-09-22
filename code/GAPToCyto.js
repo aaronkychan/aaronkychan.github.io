@@ -106,7 +106,9 @@ function translateQPA() {
     // console.log("relations: ", relationStr);
 
     quiverIn = stripLineBreaksAndSpaces(quiverIn);
-    quiverIn = quiverIn.replace(/;/g, "");
+    quiverIn = quiverIn.replace(/(\r\n|\n|\r)/g, ""); // remove linebreaks
+    quiverIn = quiverIn.replace(/\\/g, ""); // replace " \ "
+    quiverIn = quiverIn.replace(/;/g, ""); // replace " ; "
     quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
     quiverIn = quiverIn.replace(/\)(\s*)$/, "");
     // turn input Quiver([vxs], [arrows]) into array [ [vxs], [arrows] ]

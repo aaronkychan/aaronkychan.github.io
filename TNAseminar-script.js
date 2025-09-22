@@ -1,14 +1,77 @@
 let talks = [
     {
+        ymd: "2025-08-19",
+        start: "1500",
+        duration: 90,
+        title: "自己入射的代数のCartan行列の正定値性と$\\tau$-傾有限性",
+        speaker: "Naoya Hiramae 平前 直也",
+        affil: "Kyoto University 京都大学",
+        abstract: `有限次元代数の$\\tau$-傾有限性は，ねじれ対の関手的有限性やbrickの有限性，さらには$g$-扇の完備性や準傾複体の連結性などといった表現論において重要な性質と密接に関係しており，昨今さかんに研究されている．有限群のモジュラー表現論（＝正標数体上の群環の加群論）の文脈では，正標数$p$の代数閉体$k$と有限群$G$に対して，群環$kG$の$\\tau$-傾有限性は$G$の$p$-超焦点部分群によって決まるのではないかと予想されており（[Hiramae-Kozakai,
+2025]），これは群環$kG$の表現型が$G$の$p$-Sylow部分群によって決定されるという古典的な結果の類似である．本講演ではまず自己入射的代数の$\\tau$-傾有限性とCartan行列の正定値性の関係について説明し，その応用例としてある半直積群の群環に対して上の予想が成り立つことを示す．
+`,
+        lang: "jp",
+        access: { id: "825 9241 0495", psw: "699837" },
+        record: {
+            slides: "TNA/2025/Hiramae-PosDefCartan_of_selfinj_algebras_and_tau-finiteness.pdf",
+        },
+    },
+    {
+        ymd: "2025-07-15",
+        start: "1530",
+        duration: 90,
+        title: "super category $\\mathcal{O}$におけるsemibrick",
+        speaker: "Shunsuke Hirota 廣田 竣介",
+        affil: "Kyoto University 京都大学",
+        abstract: `標数0の閉体上で、双対余根基可換な有限次元basic Hopf代数の分類は、"本質的に異なる基底の取り方を許すroot系"または"Conway-Coxeterのfrieze patternの高階版"ともいえる、Heckenberger-山根(2008)のWeyl groupoidがよく説明する。Weyl groupoidの少なくないクラスはKac-Moody Lie超代数から来る。古典的category $\\mathcal{O}$は最高ウェイト圏の代表的な例とされるが、super category $\\mathcal{O}$は複数の最高ウェイト構造を備えた圏の好例と考えられ、homの記述が容易な加群であるVerma加群がある意味多数存在することによりsemibrickが自然に生じ易い。本講演では、semibrickの概念なしに定式化し難い初歩的な結果や、super category $\\mathcal{O}$のホモロジー代数的な側面を紹介したい。`,
+        lang: "jp",
+        access: { id: "815 5125 0164", psw: "952236" },
+        record: {
+            slides: "TNA/2025/Hirota-Semibricks_in_super_category_O.pdf",
+        },
+    },
+    {
+        ymd: "2025-07-08",
+        start: "1030",
+        duration: 90,
+        title: "On the Auslander—Reiten theory for extended hearts of proper connective DG-algebras",
+        speaker: "Nao Mochizuki 望月 直央",
+        affil: "Nagoya University 名古屋大学",
+        abstract: `<p>本講演では, proper connective DG代数の$d$-extended heartにおけるAuslander-Reiten理論 を紹介する. 講演の主な対象となる$d$-extended heartsは, コホモロジーが次数$0$から$-d+1$の間に集中するような DG加群からなる導来圏の部分圏である. 特に, 有限次元代数の場合，$1$-extended heart は, 通常の有限生成加群圏に一致する.</p>
+<p>本講演では，この有限生成加群圏におけるAuslander-Reiten理論が, $d$-extended hearts を用いることで proper connective DG代数の文脈にまで一般化されることを紹介する. また, DG-quiverから構成されるDG代数に対するAR-quiverの具体的な計算例も併せて紹介する.</p>`,
+        lang: "jp",
+        access: { id: "870 3048 1997", psw: "392212" },
+        record: {
+            slides: "TNA/2025/Mochizuki_Nao-AR_theory_for_extended_hearts.pdf",
+        },
+    },
+    {
         ymd: "2025-06-10",
         start: "1530",
         duration: 90,
-        title: "TBC",
+        title: "Generic decompositions of g-vectors",
         speaker: "Mohamad Haerizadeh",
-        affil: "Unieristy of Tehran",
-        abstract: "TBC",
+        affil: "Univeristy of Tehran",
+        abstract: `<p>In this talk, we discuss the role of g-vectors in the representation
+theory of algebras. Specifically, we describe how generic
+decompositions of g-vectors yield decompositions of generically
+$\\tau$-reduced components of representation varieties and vice versa. This
+connection allows us to provide a partial answer to the
+Cerulli-Labardini-Schröer conjecture concerning the number of direct
+summands of generically $\\tau$-reduced components of representation
+varieties.</p>
+<p>
+Furthermore, we examine the cones of g-vectors, demonstrating that
+they are both rational and simplicial. We establish that $g$-vectors
+satisfy the ray condition if they are sufficiently far from the
+origin. These results enable us to generalize several results by Asai
+and Iyama concerning TF-equivalence classes of g-vectors. Therefore,
+our consequences can be utilized to study the wall and chamber
+structures of finite-dimensional algebras.  This is joint work with Siamak Yassemi.</p>`,
         lang: "en",
-        access: {},
+        access: { id: "844 4810 7612", psw: "275169" },
+        record: {
+            slides: "TNA/2025/Haerizadeh-GenericDecomp_gvec.pdf",
+        },
     },
     {
         ymd: "2025-05-12",
@@ -22,6 +85,9 @@ let talks = [
         access: {
             id: "894 5567 7050",
             psw: "885666",
+        },
+        record: {
+            slides: "TNA/2025/Otake_Yuya-Martsinkovsky_invariant.pdf",
         },
     },
     {

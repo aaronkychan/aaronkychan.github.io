@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasse of poset</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    <!-- <script src=" https://cdn.jsdelivr.net/npm/cytoscape-klay@3.1.4/cytoscape-klay.min.js "></script> -->
+    <script src=" https://cdn.jsdelivr.net/npm/elkjs@0.8.2/lib/elk.bundled.min.js "></script>
+    <script src=" https://cdn.jsdelivr.net/npm/cytoscape-elk@2.2.0/dist/cytoscape-elk.min.js "></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script> -->
+    <script src="cyto4poset.min.js"></script>
+    <style>
+        :root {
+            --canvas-height: max(600px, 60vh);
+        }
+
+        #hasseDiv {
+            box-sizing: border-box;
+            width: 100%;
+            height: var(--canvas-height);
+            border: 1px solid black;
+            display: block;
+        }
+
+        .cytoDiv {
+            box-sizing: border-box;
+            width: 100%;
+            height: var(--canvas-height);
+            border: 1px #000000 solid;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .cy_canvas {
+            box-sizing: border-box;
+            width: 100%;
+            height: var(--canvas-height);
+            display: block;
+        }
+
+        .viewer {
+            width: 100%;
+            box-sizing: border-box;
+            height: var(--canvas-height);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        Poset P: <br>
+
+        <input type="checkbox" name="accInput" id="gapIndex" class="" checked>
+        <label for="gapIndex">Use GAP indexing (starts from 1)</label>
+        <br>
+
+        <textarea name="poset" id="poset" cols="120" rows="7"
+            style="margin:1px;overflow:scroll"> [[2,3],[4],[],[4],[]] </textarea>
+        <br>
+        <button id="btnConvert" style="padding: 5px; font-size: large;"> Draw Hasse </button>
+    </div>
+    <br><br>
+    <!-- Hasse(P): -->
+    <div id="hasseDiv" class="cytoDiv">
+        <div class="viewer">
+            <div id="cyCanvas" class="cy_canvas"></div>
+        </div>
+    </div>
+
+    <script>
+        // var s = Snap("#svg");
+        var cyto;
+
+        function convert() {
+            console.log("convert starts")
+            // let arr = document.getElementById("poset").value.replace(/\s/g, '');
+            let arr = JSON.parse(document.getElementById("poset").value.replace(/\s/g, ""));
+            if (document.getElementById("gapIndex").checked) {
+                arr = arr.map((x) => x.map((i) => i - 1));
+            }
+            console.log(arr);
+            let poset = coverArrayToCyto(arr);
+            console.log(poset);
+            cyto = initSVG(document.getElementById("cyCanvas"), poset);
+        }
+
+        document.getElementById("btnConvert").addEventListener("click", (e) => convert());
+    </script>
+</body>
+
+</html>

@@ -1,5 +1,25 @@
 let talks = [
     {
+        ymd: "2025-10-20",
+        start: "1630",
+        duration: 90,
+        title: "Finiteness and tameness of Jacobian algebras",
+        speaker: "Toshiya Yurikusa 百合草 寿哉",
+        affil: "Osaka Metropolitan University 大阪公立大学",
+        abstract: `<p>本講演では、有限次元ヤコビ代数をその表現型の観点から研究し、$E$不変量によって定義される$E$有限性および$E$-tame性と、$g$有限性、$\\tau$傾有限性、表現有限性などの他の有限性・tame性の概念との対応について述べる。</p>
+
+<p>まず、これらの性質がクイバーとポテンシャルの変異の下で不変であることを示す。その結果として、有限次元ヤコビ代数$\\mathcal{J}(Q,W)$が$E$有限であることは、$g$有限、$\\tau$傾有限、表現有限であることと同値であり、この場合には
+$Q$がDynkin型であることが分かる。この結果は、Demonetの「$E$有限なら$g$有限である」という予想を含む形で成立している。</p>
+
+<p>また、$E$-tame性に関しては、例外的な3つの型を除いて、$g$-tame性および表現tame性と対応することが分かる。本講演は、Mohamad
+Haerizadeh氏との共同研究に基づくものである。</p>`,
+        lang: "jp",
+        access: { id: "829 2845 2592", psw: "265160" },
+        // record: {
+        //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
+        // },
+    },
+    {
         ymd: "2025-08-19",
         start: "1500",
         duration: 90,

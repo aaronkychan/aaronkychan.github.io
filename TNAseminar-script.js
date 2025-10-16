@@ -1,5 +1,33 @@
 let talks = [
     {
+        ymd: "2025-12-22",
+        start: "1630",
+        duration: 90,
+        title: "",
+        speaker: "Riku Fushimi 伏見 陸",
+        affil: "Nagoya University 名古屋大学",
+        abstract: `tbc`,
+        lang: "jp",
+        // access: { id: "829 2845 2592", psw: "265160" },
+        // record: {
+        //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
+        // },
+    },
+    {
+        ymd: "2025-11-17",
+        start: "1630",
+        duration: 90,
+        title: "",
+        speaker: "Yuto Moriwaki 森脇 湧登",
+        affil: "RIKEN 理化学研究所",
+        abstract: `tbc`,
+        lang: "jp",
+        // access: { id: "829 2845 2592", psw: "265160" },
+        // record: {
+        //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
+        // },
+    },
+    {
         ymd: "2025-10-20",
         start: "1630",
         duration: 90,

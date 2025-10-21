@@ -43,9 +43,9 @@ $Q$がDynkin型であることが分かる。この結果は、Demonetの「$E$�
 Haerizadeh氏との共同研究に基づくものである。</p>`,
         lang: "jp",
         access: { id: "829 2845 2592", psw: "265160" },
-        // record: {
-        //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
-        // },
+        record: {
+            slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
+        },
     },
     {
         ymd: "2025-08-19",

@@ -3,30 +3,44 @@ let talks = [
         ymd: "2025-12-22",
         start: "1630",
         duration: 90,
-        title: "tbc",
+        title: "siltingとsimple-minded collectionの双対性",
         speaker: "Riku Fushimi 伏見 陸",
         affil: "Nagoya University 名古屋大学",
-        abstract: `tbc`,
+        abstract: `silting対象と simple-minded collection（SMC）は、三角圏における互いに双対的な構造として、有限次元多元環や
+dg 代数の導来圏の研究において重要な役割を果たしている。silting対象を持つ三角圏は、常にconnective dg
+代数の完全導来圏として実現されることが知られているが、SMC の場合には同様の特徴付けは自明ではない。本講演では、SMC を持つ三角圏が
+connective dg 代数から得られるための必要十分条件を与える。また、加群圏における Smalø’s symmetry
+の三角圏類似についても紹介する。`,
         lang: "jp",
-        // access: { id: "829 2845 2592", psw: "265160" },
-        // record: {
-        //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
-        // },
+        access: { id: "893 4968 7566", psw: "008610" },
+        record: {
+            slides: "TNA/2025/Fushimi-Silting_SMC_correspondence.pdf",
+        },
     },
     {
         ymd: "2025-12-11",
         start: "1300",
         duration: 90,
-        title: "tbc",
+        title: "The stable permutation category of a finite group",
         speaker: "Paul Balmer",
         web: "https://www.math.ucla.edu/~balmer/",
         affil: "UCLA",
-        abstract: `tbc`,
+        abstract: `In this joint work with Martin Gallauer, we discuss the definition of
+the stable permutation category in modular representation theory. That
+category should be to the ordinary stable module category what the
+derived permutation category is to the ordinary derived category. Our
+construction is inspired by the picture provided by tensor-triangular
+geometry. We also use this geometric picture to decide when this new
+stable permutation category is connected or not, and to compute some
+components.`,
         lang: "en",
-        access: { 
-             custom: ` ~Hybrid~<br> `,
-             customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/">Zoom (TBC)</a> <b>ID</b> TBC <b>Password</b> TBC <br>&nbsp;<b>Location</b>: 東京大学大学院数理科学研究科 056講義室<br/>&nbsp;Graduate School of Mathematical Science Room 056, University of Tokyo`,
-         },
+        access: {
+            id: "895 8731 1175",
+            psw: "489352",
+            hybrid: "東京大学大学院数理科学研究科 056講義室<br/>Rm 056, <a href='https://www.ms.u-tokyo.ac.jp/access/index.html'>Graduate School of Mathematics, University of Tokyo</a>",
+            //  custom: ` ~Hybrid~<br> `,
+            //  customInfo: `&nbsp;<b>Online</b>: <a href="https://u-tokyo-ac-jp.zoom.us/j/">Zoom (TBC)</a> <b>ID</b> TBC <b>Password</b> TBC <br>&nbsp;<b>Location</b>: 東京大学大学院数理科学研究科 056講義室<br/>&nbsp;Graduate School of Mathematical Science Room 056, University of Tokyo`,
+        },
         // record: {
         //     slides: "TNA/2025/Yurikusa-Finite_Tame_Jacobian_Algebras.pdf",
         // },

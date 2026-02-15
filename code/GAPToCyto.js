@@ -1,8 +1,11 @@
 const letters = [...Array(52).keys()].map((i) =>
-    String.fromCharCode(97 + (i % 26) + (i < 26 ? 0 : -32))
+    String.fromCharCode(97 + (i % 26) + (i < 26 ? 0 : -32)),
 );
 // 26 small letters, then 26 capital letters
 var QuiverData, cy, Relations;
+let mode = "default";
+let addingArrow = false;
+let sourceNodeID = null;
 
 function infLetters(i) {
     // i=0,...,51 gives alphabet, othersie alphabet-with-hat
@@ -18,6 +21,16 @@ const primes = [
 ];
 const gens = [1, 2, 2, 3, 2, 2, 3, 2, 5, 2, 3, 2, 6, 3, 5, 2, 2, 2];
 
+const pa = (msg) => {
+    document.getElementById("outTxtBox").innerHTML =
+        `<span style='color:red; font-size: 20pt'>${msg}</span>`;
+};
+
+const stripLineBreaksAndSpaces = (str) =>
+    str.replace(/(\\\r\n|\\\r|\\\n)/, "").replace(/\s+/g, "");
+
+const matchDeepestBrackets = (str) => str.match(/\[([^\[\]])*\]/g);
+
 function isPowerOfPrime(x) {
     for (let p of primes) {
         if (x == p) return [p, 1];
@@ -28,6 +41,7 @@ function isPowerOfPrime(x) {
     return [0, 0];
 }
 
+//#region  *** Translation ***
 function findFieldChar(str) {
     // find the charactersitic of the field,
     // str is of the form "(Z(n)^d)"" or "(Z(n))" for some integers n,d if over finite field
@@ -66,17 +80,6 @@ function translateScalar(a, char) {
     }
 }
 
-const pa = (msg) => {
-    document.getElementById(
-        "outTxtBox"
-    ).innerHTML = `<span style='color:red; font-size: 20pt'>${msg}</span>`;
-};
-
-const stripLineBreaksAndSpaces = (str) =>
-    str.replace(/(\\\r\n|\\\r|\\\n)/, "").replace(/\s+/g, "");
-
-const matchDeepestBrackets = (str) => str.match(/\[([^\[\]])*\]/g);
-
 function detectRelation(str) {
     // brackets that do not contain brackets inside
     let deepest = matchDeepestBrackets(str);
@@ -88,7 +91,7 @@ function detectRelation(str) {
     // the sliced string contains the list of arrays inside the 2-dim array
     // without the outermost bracket
     let m = matchDeepestBrackets(
-        str.slice(s + 1, t + str.match(/\]\s*\]/)[0].length - 1)
+        str.slice(s + 1, t + str.match(/\]\s*\]/)[0].length - 1),
     ).length;
 
     // bad if deepest.length-m is neither 2 nor 1
@@ -97,9 +100,20 @@ function detectRelation(str) {
     return [str.slice(0, s), str.slice(s)];
 }
 
+function translateGraphToQPA(graphData) {
+    const nodes = graphData.nodes || [];
+    const edges = graphData.edges || [];
+    const vxNames = nodes.map((node) => node.data.id);
+    const arrStrs = edges.map((edge) => {
+        const { source, target, label } = edge.data;
+        return `["${source}", "${target}", "${label}"]`;
+    });
+    return `Quiver([${vxNames.map((v) => `"${v}"`).join(", ")}], [${arrStrs.join(", ")}]);`;
+}
+
 function translateQPA() {
     var [quiverIn, relationStr] = detectRelation(
-        document.getElementById("inQuiver").value
+        document.getElementById("inQuiver").value,
     );
 
     // console.log("quiver: ", quiverIn);
@@ -127,18 +141,18 @@ function translateQPA() {
     var quiverQPA = JSON.parse(quiverIn);
 
     // Forbid too many vertices
-    if (quiverQPA[0].length > 100) {
-        pa("More than 100 vertices! Abort translation.");
+    if (quiverQPA[0].length > 70) {
+        pa("More than 70 vertices! Abort translation.");
         // document.getElementById("outTxtBox").innerHTML =
         //     "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
         clearAll();
         return;
     }
 
-    //region# translate vx's
+    //region# Vertices
     var forceID = document.getElementById("forceID").checked;
     var vxQPA = quiverQPA[0].map((v, i) =>
-        forceID ? i + 1 : `${v}`.replace(/"/g, "")
+        forceID ? i + 1 : `${v}`.replace(/"/g, ""),
     );
     var vx = vxQPA.map((v) => {
         return {
@@ -148,8 +162,8 @@ function translateQPA() {
     //console.table(vxQPA);
     //console.table(vx);
 
-    //region# translate arrow
-    var arr = quiverQPA[1].map((ar, i) => {
+    //region# Arrows
+    var arrows = quiverQPA[1].map((ar, i) => {
         var idlabel = document.getElementById("forceArrow").checked
             ? infLetters(i)
             : ar[2];
@@ -163,9 +177,9 @@ function translateQPA() {
     });
     // console.table(arr);
 
-    const quiverData = { nodes: vx, edges: arr };
+    const quiverData = { nodes: vx, edges: arrows };
 
-    //region#  translate relations
+    //region# Relations
     // strip brackets and whitespaces
     relationStr =
         relationStr === ""
@@ -179,6 +193,18 @@ function translateQPA() {
         .split(",");
     var arrRef = quiverQPA[1].map((entry) => entry[2]);
     var charFound = -1; // charactersitic of the field
+    /**
+     * @typedef {object} TermsData
+     * @property {string} scalar
+     * @property {string[]} monomials
+     * @property {number} originalIdx the n-th term in the relation
+     */
+    /**
+     * @typedef {object} RelationData
+     * @property {string} reln  string display in output
+     * @property {TermsData[]} terms  details of each term
+     */
+    /** @type {RelationData[]} */
     var relData = [];
     for (let rel of arrRelns) {
         let readIndex = 0;
@@ -197,7 +223,7 @@ function translateQPA() {
                 scalar = "1";
             if (factors[0][0] != "(") {
                 // first factor is probably not a scalar
-                if (arr.find(({ data }) => data.id == factors[0])) {
+                if (arrows.find(({ data }) => data.id == factors[0])) {
                     arrInMon = factors;
                 } else {
                     scalar = factors[0];
@@ -211,11 +237,10 @@ function translateQPA() {
             if (charFound == -1) {
                 // try to find characteristic if not yet known
                 charFound = findFieldChar(scalar);
-                document.getElementById(
-                    "controlOutput"
-                ).innerHTML = `Detected characteristic as ${
-                    charFound != -1 ? charFound : "unknown"
-                }.`;
+                document.getElementById("controlOutput").innerHTML =
+                    `Detected characteristic as ${
+                        charFound != -1 ? charFound : "unknown"
+                    }.`;
             }
             // translate scalar string to more readable form if possible
             scalar = translateScalar(scalar, charFound);
@@ -243,8 +268,8 @@ function translateQPA() {
                 scalar == ""
                     ? newMono
                     : scalar == "-"
-                    ? `-${newMono}`
-                    : `${scalar}·${newMono}`;
+                      ? `-${newMono}`
+                      : `${scalar}·${newMono}`;
             readIndex++;
         }
         relData.push({ reln: newRel, terms: reldataentry });
@@ -260,10 +285,24 @@ function translateQPA() {
     presentData(quiverData, relData);
 }
 
-function presentData(quiver, relations, isPreset = false) {
-    //region# Display relations
+/**
+ * @param  {TermsData} terms
+ */
+function termsToRelation(terms) {
+    return terms.reduce(
+        (str, t) =>
+            str + t.scalar == ""
+                ? t.monomials.join("·")
+                : t.scalar == "-"
+                  ? `-${t.monomials.join("·")}`
+                  : `${t.scalar}·${t.monomials.join("·")}`,
+        "",
+    );
+}
+
+function refreshRelationsOutput(relations) {
     // TODO: improve relation handling
-    let outputDiv = document.getElementById("sysOutput");
+    let outputDiv = document.getElementById("relOutput");
     outputDiv.innerHTML = `Relations:<br>`;
     for (let i = 0; i < relations.length; i++) {
         // for (const r of relations) {
@@ -280,10 +319,15 @@ function presentData(quiver, relations, isPreset = false) {
         });
         outputDiv.appendChild(divElt);
     }
+}
 
+function presentData(quiver, relations, isPreset = false) {
+    refreshRelationsOutput(relations);
     // get Cyto ready
     document.getElementById("saveSVG").disabled = false;
     document.getElementById("fixCyto").disabled = false;
+    document.getElementById("wriggle").disabled = false;
+    document.getElementById("toQPABtn").disabled = false;
     cy = initCyto(quiver, isPreset);
 }
 
@@ -337,7 +381,7 @@ function sortReln(a, b) {
 // }
 
 function selectNthRelation(n) {
-    let rows = document.querySelectorAll("#sysOutput div");
+    let rows = document.querySelectorAll("#relOutput div");
     // unselect all paths
     for (const e of cy.edges()) {
         e.style(coloredEdgeStyle("#000"));
@@ -350,7 +394,7 @@ function selectNthRelation(n) {
             for (const t of Relations[i].terms) {
                 for (const m of t.monomials) {
                     cy.edges(`[id="${m}"]`).style(
-                        coloredEdgeStyle(i % 2 == 0 ? "#ff6f00" : "#0080ff")
+                        coloredEdgeStyle(i % 2 == 0 ? "#ff6f00" : "#0080ff"),
                     );
                 }
             }
@@ -449,6 +493,19 @@ const coloredEdgeStyle = (color) => {
     };
 };
 
+function promptNameAndCheck(msg, cyInstance) {
+    let name = prompt(msg);
+    if (name) {
+        if (cyInstance.getElementById(name).length !== 0) {
+            pa("Vertex/Arrow with this name already exists.");
+        } else {
+            return name;
+        }
+    }
+    return null;
+}
+
+//#region *** Cyto ***
 function initCyto(inputData, isPreset = false) {
     // **** Cytoscape part
     let layout = isPreset
@@ -462,7 +519,7 @@ function initCyto(inputData, isPreset = false) {
               nodeDimensionsIncludeLabels: true,
           };
     // TODO: add relation handling; c.f. https://github.com/dmx-systems/cytoscape-edge-connections
-    return cytoscape({
+    let cyInstance = cytoscape({
         container: document.getElementById("cy"),
         elements: inputData,
         style: [
@@ -536,6 +593,110 @@ function initCyto(inputData, isPreset = false) {
         wheelSensitivity: 0.5,
         pan: { x: 40, y: 40 },
     });
+
+    cyInstance.on("tap", (ev) => clickOnCanvas(ev, cyInstance));
+
+    return cyInstance;
+}
+
+function clickOnCanvas(ev, cyInstance) {
+    var evtTarget = ev.target;
+    if (mode === "add") {
+        if (evtTarget === cyInstance) {
+            // Clicked on background: Add Node
+            let name = promptNameAndCheck(
+                "Enter name for new vertex:",
+                cyInstance,
+            );
+            if (name) {
+                cyInstance.add({
+                    group: "nodes",
+                    data: { id: name },
+                    position: ev.position,
+                });
+            }
+        } else if (evtTarget.isNode()) {
+            if (addingArrow) {
+                let name = promptNameAndCheck(
+                    "Enter name for new arrow:",
+                    cyInstance,
+                );
+                if (name) {
+                    cyInstance.add({
+                        group: "edges",
+                        data: {
+                            id: name,
+                            source: sourceNodeID,
+                            target: evtTarget.id(),
+                            label: name,
+                        },
+                    });
+                    addingArrow = false;
+                    sourceNodeID = null;
+                    evtTarget.unselect();
+                }
+            } else {
+                addingArrow = true;
+                sourceNodeID = evtTarget.id();
+                // pa("Select arrow target");
+            }
+        }
+    } else if (mode === "delete") {
+        if (evtTarget !== cyInstance) {
+            cyInstance.remove(evtTarget);
+        }
+    } else if (mode === "rename") {
+        if (evtTarget !== cyInstance) {
+            let oldId = evtTarget.id();
+            let typeName = evtTarget.isNode() ? "vertex" : "arrow";
+            let newName = promptNameAndCheck(
+                `Enter new name for ${typeName} (current: ${oldId}):`,
+                cyInstance,
+            );
+            evtTarget.unselect();
+            if (newName) {
+                if (evtTarget.isNode()) {
+                    let edges = evtTarget.connectedEdges();
+                    let edgesJson = edges.jsons();
+                    let nodeJson = evtTarget.json();
+
+                    // remove -> change -> add, instead of jsut change
+                    // because we cannot alter data id
+                    cyInstance.remove(evtTarget);
+                    nodeJson.data.id = newName;
+                    cyInstance.add(nodeJson);
+
+                    edgesJson.forEach((edge) => {
+                        if (edge.data.source === oldId)
+                            edge.data.source = newName;
+                        if (edge.data.target === oldId)
+                            edge.data.target = newName;
+                        cyInstance.add(edge);
+                    });
+                } else {
+                    let edgeJson = evtTarget.json();
+                    cyInstance.remove(evtTarget);
+                    edgeJson.data.id = newName;
+                    edgeJson.data.label = newName;
+                    cyInstance.add(edgeJson);
+                    // update relations
+                    for (let r of Relations) {
+                        let needUpdate = false;
+                        for (let t of r.terms) {
+                            for (let i = 0; i < t.monomials.length; i++) {
+                                if (t.monomials[i] === oldId) {
+                                    t.monomials[i] = newName;
+                                    needUpdate = true;
+                                }
+                            }
+                        }
+                        if (needUpdate) r.reln = termsToRelation(r.terms);
+                    }
+                    refreshRelationsOutput(Relations);
+                }
+            }
+        }
+    }
 }
 
 function bendArrow(dir) {
@@ -560,7 +721,7 @@ function bendArrow(dir) {
             e.style("control-point-distance", dist); // >0 = bend right, <0 = bend left
         } else {
             let currDist = parseInt(
-                strCurrDist.substring(0, strCurrDist.indexOf("px"))
+                strCurrDist.substring(0, strCurrDist.indexOf("px")),
             );
             if ((currDist >= 0 && dist > 0) || (currDist <= 0 && dist < 0)) {
                 e.style("control-point-distance", currDist + dist);
@@ -579,7 +740,9 @@ function bendArrow(dir) {
 function clearAll() {
     document.getElementById("inQuiver").value = "";
     document.getElementById("inRelation").value = "";
+    document.getElementById("toQPABtn").disabled = true;
     document.getElementById("fixCyto").disabled = true;
+    document.getElementById("wriggle").disabled = true;
     document.getElementById("saveSVG").disabled = true;
 }
 
@@ -629,7 +792,7 @@ document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
             presentData(res.cy.elements, res.reln, true);
             // this will then display a text file
         },
-        false
+        false,
     );
     reader.readAsText(event.target.files[0]);
 });
@@ -641,6 +804,29 @@ document
     .getElementById("translateBtn")
     .addEventListener("click", () => translateQPA());
 
+document.querySelectorAll('input[name="editMode"]').forEach((elem) => {
+    elem.addEventListener("change", (event) => {
+        mode = event.target.value;
+        if (cy) cy.elements().unselect();
+    });
+});
+
 document
     .getElementById("btnUnselectRelns")
     .addEventListener("click", () => selectNthRelation(-1));
+
+document.getElementById("wriggle").addEventListener("click", () => {
+    cy.layout({
+        name: "cose",
+        animate: true,
+        animationDuration: 1500,
+        randomize: false,
+        nodeDimensionsIncludeLabels: true,
+    }).run();
+});
+
+document.getElementById("toQPABtn").addEventListener("click", () => {
+    const qpaCode = translateGraphToQPA(cy.json().elements);
+    console.log(qpaCode);
+    document.getElementById("outTxtBox").innerHTML = qpaCode;
+});

@@ -100,6 +100,37 @@ function detectRelation(str) {
     return [str.slice(0, s), str.slice(s)];
 }
 
+const positiveCoeffFirst = (x, y) =>
+    x.scalar > 0 ? (y.scalar > 0 ? 0 : -1) : 1;
+const increasingMonomialLength = (x, y) =>
+    x.monomials.length - y.monomials.length;
+const increasingNumOfTerms = (r1, r2) => r1.terms.length - r2.terms.length;
+const monomialWithPositiveCoeffFirst = (r1, r2) =>
+    r1.terms.length == 1 && r2.terms.length == 1
+        ? positiveCoeffFirst(r1.terms[0], r2.terms[0])
+        : increasingNumOfTerms(r1, r2);
+
+/**
+ * @typedef {object} TermsData
+ * @property {string} scalar
+ * @property {string[]} monomials
+ * @property {number} originalIdx the n-th term in the relation
+ */
+/**
+ * @param  {TermsData} terms
+ */
+function termsToRelation(terms, joinStr = "·") {
+    return terms.reduce(
+        (str, t) =>
+            str + t.scalar == ""
+                ? t.monomials.join(joinStr)
+                : t.scalar == "-"
+                  ? `-${t.monomials.join("·")}`
+                  : `${t.scalar}·${t.monomials.join("·")}`,
+        "",
+    );
+}
+
 function translateGraphToQPA(graphData) {
     const nodes = graphData.nodes || [];
     const edges = graphData.edges || [];
@@ -108,78 +139,36 @@ function translateGraphToQPA(graphData) {
         const { source, target, label } = edge.data;
         return `["${source}", "${target}", "${label}"]`;
     });
-    return `Quiver([${vxNames.map((v) => `"${v}"`).join(", ")}], [${arrStrs.join(", ")}]);`;
+    const relStrs = Relations.map(({ terms }) => termsToRelation(terms, "*"));
+    const relations = `[${relStrs.join(", ")}]`;
+    return `Q:=Quiver([${vxNames.map((v) => `"${v}"`).join(", ")}], [${arrStrs.join(", ")}]);\nR:=${relations};`;
 }
 
-function translateQPA() {
-    var [quiverIn, relationStr] = detectRelation(
-        document.getElementById("inQuiver").value,
-    );
+/**
+ * @typedef {[string, string, string]} Arrow
+ * An arrow: [source, target, name]
+ */
 
-    // console.log("quiver: ", quiverIn);
-    // console.log("relations: ", relationStr);
+/**
+ * @typedef {[string[], Arrow[]]} Quiver
+ * [nameOfVertices, arrows]
+ */
 
-    quiverIn = stripLineBreaksAndSpaces(quiverIn);
-    quiverIn = quiverIn.replace(/(\r\n|\n|\r)/g, ""); // remove linebreaks
-    quiverIn = quiverIn.replace(/\\/g, ""); // replace " \ "
-    quiverIn = quiverIn.replace(/;/g, ""); // replace " ; "
-    quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
-    quiverIn = quiverIn.replace(/\)(\s*)$/, "");
-    // turn input Quiver([vxs], [arrows]) into array [ [vxs], [arrows] ]
-    if (quiverIn[0] != "[") {
-        // input is possibly in the from Quiver( n, [arrows] )
-        let numVx = parseInt(quiverIn.split(",", 1));
-        if (numVx > 0) {
-            let arrv = Array.from({ length: numVx }, (_, i) => i + 1);
-            quiverIn =
-                JSON.stringify(arrv) + quiverIn.slice(quiverIn.indexOf(","));
-        } else {
-            console.log("not a number before first comma");
-        }
-    }
-    quiverIn = "[" + quiverIn + "]";
-    var quiverQPA = JSON.parse(quiverIn);
+//#region ** Relation **
+/**
+ * @typedef {object} RelationData
+ * @property {string} reln  string display in output
+ * @property {TermsData[]} terms  details of each term
+ */
 
-    // Forbid too many vertices
-    if (quiverQPA[0].length > 70) {
-        pa("More than 70 vertices! Abort translation.");
-        // document.getElementById("outTxtBox").innerHTML =
-        //     "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
-        clearAll();
-        return;
-    }
-
-    //region# Vertices
-    var forceID = document.getElementById("forceID").checked;
-    var vxQPA = quiverQPA[0].map((v, i) =>
-        forceID ? i + 1 : `${v}`.replace(/"/g, ""),
-    );
-    var vx = vxQPA.map((v) => {
-        return {
-            data: { id: v },
-        };
-    });
-    //console.table(vxQPA);
-    //console.table(vx);
-
-    //region# Arrows
-    var arrows = quiverQPA[1].map((ar, i) => {
-        var idlabel = document.getElementById("forceArrow").checked
-            ? infLetters(i)
-            : ar[2];
-        var core = {
-            id: idlabel,
-            source: forceID ? quiverQPA[0].indexOf(ar[0]) + 1 : ar[0],
-            target: forceID ? quiverQPA[0].indexOf(ar[1]) + 1 : ar[1],
-            label: idlabel,
-        };
-        return { data: core };
-    });
-    // console.table(arr);
-
-    const quiverData = { nodes: vx, edges: arrows };
-
-    //region# Relations
+/**
+ * @param  {string} relnStr
+ * @param  {Quiver} quiver
+ * @return {RelationData}
+ */
+function transalteQPARelation(relationStr, quiver) {
+    const arrows = quiver[1];
+    var arrRef = arrows.map(({ data }) => data.id);
     // strip brackets and whitespaces
     relationStr =
         relationStr === ""
@@ -191,19 +180,8 @@ function translateQPA() {
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
         .replace(/[\s\[\]]/g, "")
         .split(",");
-    var arrRef = quiverQPA[1].map((entry) => entry[2]);
     var charFound = -1; // charactersitic of the field
-    /**
-     * @typedef {object} TermsData
-     * @property {string} scalar
-     * @property {string[]} monomials
-     * @property {number} originalIdx the n-th term in the relation
-     */
-    /**
-     * @typedef {object} RelationData
-     * @property {string} reln  string display in output
-     * @property {TermsData[]} terms  details of each term
-     */
+
     /** @type {RelationData[]} */
     var relData = [];
     for (let rel of arrRelns) {
@@ -223,7 +201,7 @@ function translateQPA() {
                 scalar = "1";
             if (factors[0][0] != "(") {
                 // first factor is probably not a scalar
-                if (arrows.find(({ data }) => data.id == factors[0])) {
+                if (arrRef.indexOf(factors[0]) > -1) {
                     arrInMon = factors;
                 } else {
                     scalar = factors[0];
@@ -263,7 +241,6 @@ function translateQPA() {
                 .join("·");
             readIndex += monomials[i].length;
             newMono += i + 1 == monomials.length ? "" : rel[readIndex];
-            // TODO: extract following out of loop, calculate relation string after sorting terms
             newRel +=
                 scalar == ""
                     ? newMono
@@ -275,33 +252,86 @@ function translateQPA() {
         relData.push({ reln: newRel, terms: reldataentry });
         // relns.push(newRel);
     }
-    relData.sort(sortReln);
+    relData.sort(monomialWithPositiveCoeffFirst);
 
-    //Tidy up data
-    QuiverData = quiverData;
-    Relations = relData;
-    //console.log("Quiver prepared: ", quiverData);
-    //console.log("Relations: ",relData);
-    presentData(quiverData, relData);
+    return relData;
 }
 
-/**
- * @param  {TermsData} terms
- */
-function termsToRelation(terms) {
-    return terms.reduce(
-        (str, t) =>
-            str + t.scalar == ""
-                ? t.monomials.join("·")
-                : t.scalar == "-"
-                  ? `-${t.monomials.join("·")}`
-                  : `${t.scalar}·${t.monomials.join("·")}`,
-        "",
+function translateQPA() {
+    var [quiverIn, relationStr] = detectRelation(
+        document.getElementById("inQuiver").value,
     );
+
+    // console.log("quiver: ", quiverIn);
+    // console.log("relations: ", relationStr);
+
+    quiverIn = stripLineBreaksAndSpaces(quiverIn);
+    quiverIn = quiverIn.replace(/(\r\n|\n|\r)/g, ""); // remove linebreaks
+    quiverIn = quiverIn.replace(/\\/g, ""); // replace " \ "
+    quiverIn = quiverIn.replace(/;/g, ""); // replace " ; "
+    quiverIn = quiverIn.replace(/^(\s*)Quiver(\(*)/, "");
+    quiverIn = quiverIn.replace(/\)(\s*)$/, "");
+    // turn input Quiver([vxs], [arrows]) into array [ [vxs], [arrows] ]
+    if (quiverIn[0] != "[") {
+        // input is possibly in the from Quiver( n, [arrows] )
+        let numVx = parseInt(quiverIn.split(",", 1));
+        if (numVx > 0) {
+            let arrv = Array.from({ length: numVx }, (_, i) => i + 1);
+            quiverIn =
+                JSON.stringify(arrv) + quiverIn.slice(quiverIn.indexOf(","));
+        } else {
+            console.log("not a number before first comma");
+        }
+    }
+    quiverIn = "[" + quiverIn + "]";
+    /** @type {QuiverData} */
+    var quiverQPA = JSON.parse(quiverIn);
+
+    // Forbid too many vertices
+    if (quiverQPA[0].length > 70) {
+        pa("More than 70 vertices! Abort translation.");
+        // document.getElementById("outTxtBox").innerHTML =
+        //     "<span style='color:red; font-size: 20pt'>More than 25 vertices! Abort translation.</span>";
+        clearAll();
+        return;
+    }
+
+    //region# Vertices
+    var forceID = document.getElementById("forceID").checked;
+    var vxQPA = quiverQPA[0].map((v, i) =>
+        forceID ? i + 1 : `${v}`.replace(/"/g, ""),
+    );
+    var vx = vxQPA.map((v) => {
+        return {
+            data: { id: v },
+        };
+    });
+    //console.table(vxQPA);
+    //console.table(vx);
+
+    //region# Arrows
+    var arrows = quiverQPA[1].map((ar, i) => {
+        var idlabel = document.getElementById("forceArrow").checked
+            ? infLetters(i)
+            : ar[2];
+        var core = {
+            id: idlabel,
+            source: forceID ? quiverQPA[0].indexOf(ar[0]) + 1 : ar[0],
+            target: forceID ? quiverQPA[0].indexOf(ar[1]) + 1 : ar[1],
+            label: idlabel,
+        };
+        return { data: core };
+    });
+
+    //Tidy up data
+    QuiverData = { nodes: vx, edges: arrows };
+    Relations = transalteQPARelation(relationStr, quiverQPA);
+    //console.log("Quiver prepared: ", QuiverData);
+    //console.log("Relations: ", Relations);
+    presentData(QuiverData, Relations);
 }
 
 function refreshRelationsOutput(relations) {
-    // TODO: improve relation handling
     let outputDiv = document.getElementById("relOutput");
     outputDiv.innerHTML = `Relations:<br>`;
     for (let i = 0; i < relations.length; i++) {
@@ -341,44 +371,6 @@ function composeCompares(compfuncs, a, b) {
     let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
     return c.reduce((accum, curr) => (accum ? accum : curr));
 }
-
-const positiveCoeffFirst = (x, y) =>
-    x.scalar > 0 ? (y.scalar > 0 ? 0 : -1) : 1;
-const increasingMonomialLength = (x, y) =>
-    x.monomials.length - y.monomials.length;
-const increasingNumOfTerms = (r1, r2) => r1.terms.length - r2.terms.length;
-const monomialWithPositiveCoeffFirst = (r1, r2) =>
-    r1.terms.length == 1 && r2.terms.length == 1
-        ? positiveCoeffFirst(r1.terms[0], r2.terms[0])
-        : increasingNumOfTerms(r1, r2);
-
-/**
- * relationdata obj: {reln: string, terms: Array<termdata>}
- * termdata obj: {scalar: number, monomials:Array<string>, originalIdx: number}
- * @param  {relationdata} a
- * @param  {relationdata} b
- */
-function sortReln(a, b) {
-    // let firstsort = a.terms.length - b.terms.length;
-    // return firstsort != 0 ? firstsort : a.reln - b.reln;
-    return monomialWithPositiveCoeffFirst(a, b);
-}
-
-// function selectRelation(relnStr, color = "#ff6f00") {
-//     // unselect all paths
-//     for (const e of cy.edges()) {
-//         e.style(coloredEdgeStyle("#000"));
-//     }
-//     // select new paths
-//     let foundReln = Relations.find(({ reln }) => reln == relnStr);
-//     for (const t of foundReln.terms) {
-//         for (const m of t.monomials) {
-//             // TODO: add few more colors, one for each term
-//             cy.edges(`[id="${m}"]`).style(coloredEdgeStyle(color));
-//         }
-//     }
-//     // console.log("found relation: ", foundReln);
-// }
 
 function selectNthRelation(n) {
     let rows = document.querySelectorAll("#relOutput div");
@@ -507,7 +499,6 @@ function promptNameAndCheck(msg, cyInstance) {
 
 //#region *** Cyto ***
 function initCyto(inputData, isPreset = false) {
-    // **** Cytoscape part
     let layout = isPreset
         ? { name: "preset" }
         : {
@@ -599,6 +590,7 @@ function initCyto(inputData, isPreset = false) {
     return cyInstance;
 }
 
+//#region Edit Quiver
 function clickOnCanvas(ev, cyInstance) {
     var evtTarget = ev.target;
     if (mode === "add") {
@@ -643,7 +635,25 @@ function clickOnCanvas(ev, cyInstance) {
         }
     } else if (mode === "delete") {
         if (evtTarget !== cyInstance) {
+            let removedArrows = [];
+            if (evtTarget.isNode()) {
+                removedArrows = evtTarget.connectedEdges().map((e) => e.id());
+            } else if (evtTarget.isEdge()) {
+                removedArrows = [evtTarget.id()];
+            }
             cyInstance.remove(evtTarget);
+
+            if (removedArrows.length > 0) {
+                Relations = Relations.filter(
+                    (rel) =>
+                        !rel.terms.some((term) =>
+                            term.monomials.some((m) =>
+                                removedArrows.includes(m),
+                            ),
+                        ),
+                );
+                refreshRelationsOutput(Relations);
+            }
         }
     } else if (mode === "rename") {
         if (evtTarget !== cyInstance) {

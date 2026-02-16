@@ -6,6 +6,8 @@ var QuiverData, cy, Relations;
 let mode = "default";
 let addingArrow = false;
 let sourceNodeID = null;
+let autoNameVertexCounter = 0;
+let autoNameArrowCounter = 1;
 
 function infLetters(i) {
     // i=0,...,51 gives alphabet, othersie alphabet-with-hat
@@ -139,7 +141,9 @@ function translateGraphToQPA(graphData) {
         const { source, target, label } = edge.data;
         return `["${source}", "${target}", "${label}"]`;
     });
-    const relStrs = Relations.map(({ terms }) => termsToRelation(terms, "*"));
+    const relStrs = Relations
+        ? Relations.map(({ terms }) => termsToRelation(terms, "*"))
+        : [];
     const relations = `[${relStrs.join(", ")}]`;
     return `Q:=Quiver([${vxNames.map((v) => `"${v}"`).join(", ")}], [${arrStrs.join(", ")}]);\nR:=${relations};`;
 }
@@ -485,14 +489,27 @@ const coloredEdgeStyle = (color) => {
     };
 };
 
-function promptNameAndCheck(msg, cyInstance) {
-    let name = prompt(msg);
+function promptNameAndCheck(msg, cyInstance, type) {
+    const autoName = document.getElementById("autoName").checked;
+    let name;
+    if (autoName) {
+        let [t, counter] =
+            type === "vertex"
+                ? ["v", autoNameVertexCounter]
+                : ["a", autoNameArrowCounter];
+        do {
+            name = `${t}${counter++}`;
+        } while (cyInstance && cyInstance.getElementById(name).length !== 0);
+        return name;
+    }
+
+    name = prompt(msg);
     if (name) {
-        if (cyInstance.getElementById(name).length !== 0) {
+        if (cyInstance && cyInstance.getElementById(name).length !== 0) {
             pa("Vertex/Arrow with this name already exists.");
-        } else {
-            return name;
+            return null;
         }
+        return name;
     }
     return null;
 }
@@ -500,7 +517,7 @@ function promptNameAndCheck(msg, cyInstance) {
 //#region *** Cyto ***
 function initCyto(inputData, isPreset = false) {
     let layout = isPreset
-        ? { name: "preset" }
+        ? { name: "preset", fit: false }
         : {
               // name: "dagre",
               // rankDir: "LR",
@@ -599,6 +616,7 @@ function clickOnCanvas(ev, cyInstance) {
             let name = promptNameAndCheck(
                 "Enter name for new vertex:",
                 cyInstance,
+                "vertex",
             );
             if (name) {
                 cyInstance.add({
@@ -612,6 +630,7 @@ function clickOnCanvas(ev, cyInstance) {
                 let name = promptNameAndCheck(
                     "Enter name for new arrow:",
                     cyInstance,
+                    "arrow",
                 );
                 if (name) {
                     cyInstance.add({
@@ -625,7 +644,8 @@ function clickOnCanvas(ev, cyInstance) {
                     });
                     addingArrow = false;
                     sourceNodeID = null;
-                    evtTarget.unselect();
+                    // prompt cancel the event loop that unselect the vertex, so setTimeout to make sure it runs
+                    setTimeout(() => evtTarget.unselect(), 50);
                 }
             } else {
                 addingArrow = true;
@@ -662,6 +682,7 @@ function clickOnCanvas(ev, cyInstance) {
             let newName = promptNameAndCheck(
                 `Enter new name for ${typeName} (current: ${oldId}):`,
                 cyInstance,
+                typeName,
             );
             evtTarget.unselect();
             if (newName) {
@@ -839,4 +860,31 @@ document.getElementById("toQPABtn").addEventListener("click", () => {
     const qpaCode = translateGraphToQPA(cy.json().elements);
     console.log(qpaCode);
     document.getElementById("outTxtBox").innerHTML = qpaCode;
+});
+
+document.getElementById("cy").addEventListener("click", (e) => {
+    if (!cy && mode === "add") {
+        let name = promptNameAndCheck(
+            "Enter name for new vertex:",
+            null,
+            "vertex",
+        );
+        if (name) {
+            cy = initCyto(
+                {
+                    nodes: [
+                        {
+                            data: { id: name },
+                            position: { x: e.offsetX - 40, y: e.offsetY - 40 },
+                        },
+                    ],
+                    edges: [],
+                },
+                true,
+            );
+        }
+        ["toQPABtn", "fixCyto", "wriggle", "saveSVG"].forEach((id) => {
+            document.getElementById(id).disabled = false;
+        });
+    }
 });

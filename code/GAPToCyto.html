@@ -9,6 +9,11 @@
                 font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             }
 
+            .codetext{
+                        font-family: "Courier New", Courier, monospace;
+                    
+            }
+
             .site_row {
                 display: flex;
                 flex-direction: column;
@@ -264,7 +269,7 @@
                                 placeholder="Quiver([..vx..], [ [src,tgt,name],[...],...])\n[...relations...]"
                             >
 Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],["v3","v4","d"],["v3","v4","e"]])
-[a*b, a*d]
+[(+1)*a*b, (+1)*a*d+(-1)*a*e]
                 </textarea
                             >
                         </div>
@@ -486,28 +491,16 @@ Quiver(["v1","v2","v3","v4"], [["v1","v3","a"],["v3","v2","b"],["v2","v1","c"],[
                 "
             >
                 For quiver (with relations):
-                <div
-                    style="
-                        font-family:
-                            &quot;Courier New&quot;, Courier, monospace;
-                        margin-top: 5px;
-                        margin-bottom: 5px;
-                    "
-                >
+                <div class="codetext">
                     Quiver( [.. list of vertices ..], [..[src,tar,arr_name]..] )
                     [ ... list of relations ... ]
                 </div>
-                "<span
-                    style="
-                        font-family:
-                            &quot;Courier New&quot;, Courier, monospace;
-                    "
-                    >Quiver()</span
-                >" can be omitted. <br />
+                "<span class="codetext">Quiver()</span>" can be omitted. <br />
                 Relations must be the last array and cannot be 2-dimensional.
                 <br />
                 Relations in the "QPA Quiver code" has priority over those in
-                "Relation code".
+                "Relation code". <br />
+                Relations must be in the format "<span class="codetext">(scalar1)*arrow1*arrow2*... + (scalar2)*...</span>"
             </div>
             <!-- <div
             style="border:1px #000000 solid; padding:6px; position:relative; top:2px; margin-bottom:5px; margin-left: 10px; ">

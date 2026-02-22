@@ -8,6 +8,7 @@ let addingArrow = false;
 let sourceNodeID = null;
 let autoNameVertexCounter = 0;
 let autoNameArrowCounter = 1;
+let animationTimer = null;
 
 function infLetters(i) {
     // i=0,...,51 gives alphabet, othersie alphabet-with-hat
@@ -67,7 +68,7 @@ function translateScalar(a, char) {
     if (char == 0) {
         var res = getCpxNum(a);
         if (res[0] != "(") {
-            return res == "1" ? "" : res == "-1" ? "-" : res;
+            return res == "+1" || res == "1" ? "" : res == "-1" ? "-" : res;
         } else {
             return res;
         }
@@ -105,7 +106,7 @@ function detectRelation(str) {
 const positiveCoeffFirst = (x, y) =>
     x.scalar > 0 ? (y.scalar > 0 ? 0 : -1) : 1;
 const increasingMonomialLength = (x, y) =>
-    x.monomials.length - y.monomials.length;
+    x.monomial.length - y.monomial.length;
 const increasingNumOfTerms = (r1, r2) => r1.terms.length - r2.terms.length;
 const monomialWithPositiveCoeffFirst = (r1, r2) =>
     r1.terms.length == 1 && r2.terms.length == 1
@@ -115,8 +116,7 @@ const monomialWithPositiveCoeffFirst = (r1, r2) =>
 /**
  * @typedef {object} TermsData
  * @property {string} scalar
- * @property {string[]} monomials
- * @property {number} originalIdx the n-th term in the relation
+ * @property {number[]} monomial  index (in the arrow array) of each generator in the monomial
  */
 /**
  * @param  {TermsData} terms
@@ -125,12 +125,85 @@ function termsToRelation(terms, joinStr = "·") {
     return terms.reduce(
         (str, t) =>
             str + t.scalar == ""
-                ? t.monomials.join(joinStr)
+                ? t.monomial.join(joinStr)
                 : t.scalar == "-"
-                  ? `-${t.monomials.join("·")}`
-                  : `${t.scalar}·${t.monomials.join("·")}`,
+                  ? `-${t.monomial.join("·")}`
+                  : `${t.scalar}·${t.monomial.join("·")}`,
         "",
     );
+}
+
+/**
+ * @typedef {object} RelationData
+ * @property {string} reln  string display in output
+ * @property {TermsData[]} terms  details of each term
+ * @property {number} [fieldChar]
+ */
+/**
+ * @param  {string} relInputStr
+ * @param  {string[]} generatorReference
+ * @param  {number} fieldChar
+ * @return {RelationData}
+ */
+function QPARelationToRelationData(relInputStr, generatorReference, fieldChar) {
+    /** @type {RelationData} */
+    let relData = { reln: "", terms: [], fieldChar: fieldChar };
+
+    // split at a "+" that must be followed by a "("
+    let terms = relInputStr.split(/\+(?=\()/);
+    for (let i = 0; i < terms.length; i++) {
+        // split each term into scalar and generators
+        const match = terms[i].match(/^\((.*?)\)\*(.*)$/);
+        if (!match) {
+            pa(
+                `Relation string ${relInputStr}, term ${terms[i]} is of invalid format`,
+            );
+            throw new Error("Invalid format in a term of relation");
+        }
+        let [scalarRaw, generators] = [match[1], match[2].split("*")];
+
+        if (fieldChar == -1) {
+            // try to find characteristic if not yet known
+            relData.fieldChar = findFieldChar(scalarRaw);
+            document.getElementById("controlOutput").innerHTML =
+                `Detected characteristic as ${
+                    relData.fieldChar != -1 ? relData.fieldChar : "unknown"
+                }.`;
+        }
+
+        // translate scalar string to more readable form if possible
+        // empty string if scalar is 1
+        const scalar = translateScalar(scalarRaw, relData.fieldChar);
+        let termData = { scalar: scalar, monomial: [] };
+
+        // translate the monomial part in the term
+        let newMono = generators
+            .map((x) => {
+                let q = generatorReference.indexOf(x);
+                // q!=-1 => return replaced letters; otherwise its a scalar elt
+                let arr =
+                    q != -1
+                        ? document.getElementById("forceArrow").checked
+                            ? infLetters(q)
+                            : x
+                        : x;
+                termData.monomial.push(arr);
+                return arr;
+            })
+            .join("·");
+
+        relData.terms.push(termData);
+        const scalarString =
+            scalar == ""
+                ? i == 0
+                    ? ""
+                    : "+"
+                : scalar == "-"
+                  ? "-"
+                  : `+${scalar}·`;
+        relData.reln += `${scalarString}${newMono}`;
+    }
+    return relData;
 }
 
 function translateGraphToQPA(graphData) {
@@ -159,11 +232,6 @@ function translateGraphToQPA(graphData) {
  */
 
 //#region ** Relation **
-/**
- * @typedef {object} RelationData
- * @property {string} reln  string display in output
- * @property {TermsData[]} terms  details of each term
- */
 
 /**
  * @param  {string} relnStr
@@ -172,7 +240,7 @@ function translateGraphToQPA(graphData) {
  */
 function transalteQPARelation(relationStr, quiver) {
     const arrows = quiver[1];
-    var arrRef = arrows.map(({ data }) => data.id);
+    var arrRef = arrows.map((a) => a[2]);
     // strip brackets and whitespaces
     relationStr =
         relationStr === ""
@@ -184,77 +252,83 @@ function transalteQPARelation(relationStr, quiver) {
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
         .replace(/[\s\[\]]/g, "")
         .split(",");
+    // console.log("arrRelns: ", arrRelns);
     var charFound = -1; // charactersitic of the field
 
     /** @type {RelationData[]} */
     var relData = [];
     for (let rel of arrRelns) {
-        let readIndex = 0;
-        let monomials = rel.split(/[\+-]/);
-        let newRel = "";
-        let reldataentry = Array(monomials.length).fill({
-            scalar: 1,
-            monomials: [],
-            originalIdx: 0,
-        });
-        for (let i = 0; i < monomials.length; i++) {
-            reldataentry[i].originalIdx = i;
-            // split each monomial into scalar and generating factors
-            let factors = monomials[i].split("*");
-            let arrInMon = [],
-                scalar = "1";
-            if (factors[0][0] != "(") {
-                // first factor is probably not a scalar
-                if (arrRef.indexOf(factors[0]) > -1) {
-                    arrInMon = factors;
-                } else {
-                    scalar = factors[0];
-                    arrInMon = factors.slice(1);
-                }
-            } else {
-                scalar = factors[0];
-                arrInMon = factors.slice(1);
-            }
-            // let [scalar, ...arrs] = monomials[i].split("*");
-            if (charFound == -1) {
-                // try to find characteristic if not yet known
-                charFound = findFieldChar(scalar);
-                document.getElementById("controlOutput").innerHTML =
-                    `Detected characteristic as ${
-                        charFound != -1 ? charFound : "unknown"
-                    }.`;
-            }
-            // translate scalar string to more readable form if possible
-            scalar = translateScalar(scalar, charFound);
-            reldataentry[i].scalar = scalar; // empty string if scalar is 1
+        // let readIndex = 0;
+        // let terms = rel.split(/[\+-]/);
+        // // console.log("rel: ", rel, " | monomial:", monomial);
+        // let newRel = "";
+        // let reldataentry = Array(terms.length).fill({
+        //     scalar: 1,
+        //     monomial: [],
+        //     originalIdx: 0,
+        // });
+        // for (let i = 0; i < terms.length; i++) {
+        //     reldataentry[i].originalIdx = i;
+        //     // split each monomial into scalar and generating factors
+        //     let factors = terms[i].split("*");
+        //     let arrInMon = [],
+        //         scalar = "1";
+        //     if (factors[0][0] != "(") {
+        //         // first factor is probably not a scalar
+        //         if (arrRef.indexOf(factors[0]) > -1) {
+        //             arrInMon = factors;
+        //         } else {
+        //             scalar = factors[0];
+        //             arrInMon = factors.slice(1);
+        //         }
+        //     } else {
+        //         scalar = factors[0];
+        //         arrInMon = factors.slice(1);
+        //     }
+        //     // let [scalar, ...arrs] = monomial[i].split("*");
+        //     if (charFound == -1) {
+        //         // try to find characteristic if not yet known
+        //         charFound = findFieldChar(scalar);
+        //         document.getElementById("controlOutput").innerHTML =
+        //             `Detected characteristic as ${
+        //                 charFound != -1 ? charFound : "unknown"
+        //             }.`;
+        //     }
+        //     // translate scalar string to more readable form if possible
+        //     scalar = translateScalar(scalar, charFound);
+        //     reldataentry[i].scalar = scalar; // empty string if scalar is 1
 
-            // translate a summand of the relation
-            let newMono = arrInMon
-                .map((x) => {
-                    let q = arrRef.indexOf(x);
-                    // q!=-1 => return replaced letters; otherwise its a scalar elt
-                    let arr =
-                        q != -1
-                            ? document.getElementById("forceArrow").checked
-                                ? infLetters(q)
-                                : x
-                            : x;
-                    reldataentry[i].monomials.push(arr);
-                    return arr;
-                })
-                .join("·");
-            readIndex += monomials[i].length;
-            newMono += i + 1 == monomials.length ? "" : rel[readIndex];
-            newRel +=
-                scalar == ""
-                    ? newMono
-                    : scalar == "-"
-                      ? `-${newMono}`
-                      : `${scalar}·${newMono}`;
-            readIndex++;
-        }
-        relData.push({ reln: newRel, terms: reldataentry });
-        // relns.push(newRel);
+        //     // translate a summand of the relation
+        //     let newMono = arrInMon
+        //         .map((x) => {
+        //             let q = arrRef.indexOf(x);
+        //             // q!=-1 => return replaced letters; otherwise its a scalar elt
+        //             let arr =
+        //                 q != -1
+        //                     ? document.getElementById("forceArrow").checked
+        //                         ? infLetters(q)
+        //                         : x
+        //                     : x;
+        //             reldataentry[i].monomial.push(arr);
+        //             return arr;
+        //         })
+        //         .join("·");
+        //     readIndex += terms[i].length;
+        //     newMono += i + 1 == terms.length ? "" : rel[readIndex];
+        //     newRel +=
+        //         scalar == ""
+        //             ? newMono
+        //             : scalar == "-"
+        //               ? `-${newMono}`
+        //               : `${scalar}·${newMono}`;
+        //     readIndex++;
+        // }
+        // relData.push({ reln: newRel, terms: reldataentry });
+        // // relns.push(newRel);
+        let relobj = QPARelationToRelationData(rel, arrRef, charFound);
+        console.log(relobj);
+        relData.push(relobj);
+        charFound = charFound == -1 ? relobj.fieldChar : charFound;
     }
     relData.sort(monomialWithPositiveCoeffFirst);
 
@@ -377,23 +451,120 @@ function composeCompares(compfuncs, a, b) {
 }
 
 function selectNthRelation(n) {
+    if (animationTimer) {
+        if (Array.isArray(animationTimer)) {
+            animationTimer.forEach((t) => clearInterval(t));
+        } else {
+            clearInterval(animationTimer);
+        }
+        animationTimer = null;
+    }
     let rows = document.querySelectorAll("#relOutput div");
     // unselect all paths
     for (const e of cy.edges()) {
         e.style(coloredEdgeStyle("#000"));
+        e.removeStyle(
+            "line-fill line-gradient-stop-colors line-gradient-stop-positions",
+        );
     }
     // un/highlight the row and select new paths
     // if n=-1, then it will just unhighlight all rows and select no path
     for (let i = 0; i < rows.length; i++) {
         if (i == n) {
             rows[i].classList.add("selectedRelationRow");
+            let color = i % 2 == 0 ? "#ff6f00" : "#0080ff";
+            const pathsToAnimate = [];
+            let allEdges = cy.collection();
+            console.log(Relations[i]);
             for (const t of Relations[i].terms) {
-                for (const m of t.monomials) {
-                    cy.edges(`[id="${m}"]`).style(
-                        coloredEdgeStyle(i % 2 == 0 ? "#ff6f00" : "#0080ff"),
-                    );
+                const edgesInPath = [];
+                console.log("t: ", t.monomial.join("."));
+                for (const m of t.monomial) {
+                    let edge = cy.getElementById(m);
+                    edgesInPath.push(edge);
+                    allEdges = allEdges.union(edge);
                 }
+                pathsToAnimate.push(edgesInPath);
+                console.log(
+                    "pathsToAnimate length: ",
+                    pathsToAnimate.length,
+                    " | edges added: ",
+                    edgesInPath.length,
+                );
             }
+
+            allEdges.style(coloredEdgeStyle(color));
+            allEdges.style({
+                "line-fill": "linear-gradient",
+                "line-gradient-stop-colors": `${color} ${color} #dafd13 ${color} ${color}`,
+                "line-gradient-stop-positions": "0 0 0 0 0",
+            });
+
+            let pos = 0;
+            console.log(
+                `pathsToAnimate: `,
+                pathsToAnimate
+                    .map((p) => p.map((e) => e.id()).join("."))
+                    .join(" / "),
+            );
+            animationTimer = setInterval(() => {
+                pos = (pos + 2) % 200; // Cycle through 100 steps for the animation
+                const t = pos / 200; // Normalized time from 0 to 1
+                const edgeUpdates = new Map();
+
+                for (const path of pathsToAnimate) {
+                    const L = path.length;
+                    if (L === 0) continue;
+                    const global_pos = t * L * 100; // Total distance traveled along the whole path
+
+                    for (let k = 0; k < L; k++) {
+                        const edge = path[k];
+                        const edgeId = edge.id();
+                        const localCenter = global_pos - k * 100;
+                        const isVisible =
+                            localCenter > -20 && localCenter < 120;
+                        const dist = Math.abs(localCenter - 50);
+
+                        const stops = [
+                            0,
+                            localCenter - 15,
+                            localCenter,
+                            localCenter + 15,
+                            100,
+                        ].map((p) => Math.max(0, Math.min(100, p)));
+                        const stopsStr = stops.join(" ");
+
+                        const update = {
+                            dist,
+                            stops: stopsStr,
+                            isVisible,
+                        };
+
+                        if (!edgeUpdates.has(edgeId)) {
+                            edgeUpdates.set(edgeId, update);
+                        } else {
+                            const curr = edgeUpdates.get(edgeId);
+                            // Prioritize visible pulses, then those closest to the center
+                            if (isVisible && !curr.isVisible) {
+                                edgeUpdates.set(edgeId, update);
+                            } else if (
+                                isVisible &&
+                                curr.isVisible &&
+                                dist < curr.dist
+                            ) {
+                                edgeUpdates.set(edgeId, update);
+                            }
+                        }
+                    }
+                }
+
+                edgeUpdates.forEach((update, edgeId) => {
+                    cy.getElementById(edgeId).style(
+                        "line-gradient-stop-positions",
+                        update.stops,
+                    );
+                });
+            }, 60);
         } else {
             rows[i].classList.remove("selectedRelationRow");
         }
@@ -667,7 +838,7 @@ function clickOnCanvas(ev, cyInstance) {
                 Relations = Relations.filter(
                     (rel) =>
                         !rel.terms.some((term) =>
-                            term.monomials.some((m) =>
+                            term.monomial.some((m) =>
                                 removedArrows.includes(m),
                             ),
                         ),
@@ -714,9 +885,9 @@ function clickOnCanvas(ev, cyInstance) {
                     for (let r of Relations) {
                         let needUpdate = false;
                         for (let t of r.terms) {
-                            for (let i = 0; i < t.monomials.length; i++) {
-                                if (t.monomials[i] === oldId) {
-                                    t.monomials[i] = newName;
+                            for (let i = 0; i < t.monomial.length; i++) {
+                                if (t.monomial[i] === oldId) {
+                                    t.monomial[i] = newName;
                                     needUpdate = true;
                                 }
                             }

@@ -1,5 +1,29 @@
 let talks = [
     {
+        ymd: "2026-03-09",
+        start: "1600",
+        duration: 90,
+        title: "Algebras derived equivalent to skew-gentle algebras",
+        speaker: "Kyoungmo Kim 김 경모",
+        affil: "University of Cologne",
+        abstract: `The class of gentle algebras has several nice properties: 
+its derived categories are well understood, it has deep connections 
+with surface geometry, and it is closed under derived equivalence. A 
+generalized class of skew-gentle algebras also has well-behaved 
+derived categories and a geometric model. However, the class of 
+skew-gentle algebras is not closed under derived equivalence. In this 
+talk, we introduce a larger class of semi-gentle algebras with a 
+geometric model and talk about closedness of the class under derived 
+equivalence. This is a joint work with Severin Barmeier, Cheol-Hyun 
+Cho, Kyungmin Rho, Sibylle Schroll, and Zhengfang Wang.
+`,
+        lang: "en",
+        access: { id: "834 4165 7899", psw: "799113" },
+        // record: {
+        //     slides: "TNA/2025/Kyoungmo_Kim-Gentle_Algebras.pdf",
+        // },
+    },
+    {
         ymd: "2025-12-22",
         start: "1630",
         duration: 90,
@@ -314,9 +338,8 @@ let localtime = luxon.DateTime.local();
 let ourtime = localtime.setZone(ourZone);
 const sameTime = ourtime.offset == localtime.offset;
 if (ourZone !== localtime.zoneName) {
-    document.getElementById(
-        "timeInfo"
-    ).innerHTML = `<p>Date/time are displayed in your timezone (<b>${localtime.zoneName}, ${localtime.offsetNameShort}</b>).<br/>
+    document.getElementById("timeInfo").innerHTML =
+        `<p>Date/time are displayed in your timezone (<b>${localtime.zoneName}, ${localtime.offsetNameShort}</b>).<br/>
     Our timezone is ${ourZone} (${ourtime.offsetNameShort})</p>`;
 }
 
@@ -374,7 +397,7 @@ function timeDataToHTML(ymd, start, duration) {
             dt,
             hasStart,
             duration,
-            sameTime ? ourZone : localtime.zoneName
+            sameTime ? ourZone : localtime.zoneName,
         );
 
         inSchedule = localtime.valueOf() <= dt.plus({ minutes: 30 }).valueOf();
@@ -385,7 +408,7 @@ function timeDataToHTML(ymd, start, duration) {
                       dt,
                       hasStart,
                       duration,
-                      ourZone
+                      ourZone,
                   )} "> In our time: </abbr>]</span>`;
     } else {
         str = ymd;
@@ -403,11 +426,11 @@ for (let talk of talks) {
     if (Array.isArray(talk.ymd)) {
         let startArr = expandToArr(
             "start" in talk ? talk.start : "",
-            talk.ymd.length
+            talk.ymd.length,
         );
         let durArr = expandToArr(
             "duration" in talk ? talk.duration : 90,
-            talk.ymd.length
+            talk.ymd.length,
         );
         let lastTalk = [
             talk.ymd.slice(-1)[0],
@@ -432,7 +455,7 @@ for (let talk of talks) {
         let [s, b] = timeDataToHTML(
             talk.ymd,
             "start" in talk ? talk.start : "",
-            "duration" in talk ? talk.duration : 90
+            "duration" in talk ? talk.duration : 90,
         );
         inSchedule = b;
         str += `${s}</legend>`;
@@ -456,11 +479,11 @@ for (let talk of talks) {
             "link" in talk.access
                 ? talk.access.link
                 : "id" in talk.access
-                ? `https://u-tokyo-ac-jp.zoom.us/j/${talk.access.id.replaceAll(
-                      /[\s\xA0\uFEFF\u180E\u2000-\u200A\u202F\u205F\u3000]+/g,
-                      ""
-                  )}`
-                : "";
+                  ? `https://u-tokyo-ac-jp.zoom.us/j/${talk.access.id.replaceAll(
+                        /[\s\xA0\uFEFF\u180E\u2000-\u200A\u202F\u205F\u3000]+/g,
+                        "",
+                    )}`
+                  : "";
 
         let hybridInfo =
             "hybrid" in talk.access

@@ -252,7 +252,9 @@ function transalteQPARelation(relationStr, quiver) {
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
         .replace(/[\s\[\]]/g, "")
         .split(",");
-    // console.log("arrRelns: ", arrRelns);
+    if (arrRelns.length == 1 && arrRelns[0] === "") {
+        arrRelns = [];
+    }
     var charFound = -1; // charactersitic of the field
 
     /** @type {RelationData[]} */

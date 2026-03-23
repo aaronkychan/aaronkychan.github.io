@@ -19,9 +19,9 @@ Cho, Kyungmin Rho, Sibylle Schroll, and Zhengfang Wang.
 `,
         lang: "en",
         access: { id: "834 4165 7899", psw: "799113" },
-        // record: {
-        //     slides: "TNA/2025/Kyoungmo_Kim-Gentle_Algebras.pdf",
-        // },
+        record: {
+            slides: "TNA/2026/KimKyoungmo-Skew-gentle_derived_equivalent_algebras.pdf",
+        },
     },
     {
         ymd: "2025-12-22",

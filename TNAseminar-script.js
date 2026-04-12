@@ -1,5 +1,20 @@
 let talks = [
     {
+        ymd: "2026-04-08",
+        start: "1300",
+        duration: 90,
+        title: `$d$-無限表現型代数と射影多様体の導来同値について`,
+        speaker: "Ryu Tomonaga 朝永　龍",
+        affil: "University of Tokyo 東京大学",
+        abstract: `$d$-無限表現型代数とは、高次元Auslander-Reiten理論の観点からの、non-Dynkin型の道代数の大域次元dへの一般化である[Herschend-Iyama-Oppermann]。$d$-無限表現型代数は、non-Dynkin型の道代数と同様の表現論をもつが、特にtame型の場合は、$d$-regular componentがある$d$次元射影多様体の閉点により添字付けられる。一方、$d$次元の滑らかな射影多様体が$d$-傾束(=自己準同型環の大域次元が$d$以下である傾束)をもてば、その自己準同型環は自動的に$d$-無限表現型代数となる[Buchweitz-Hille]。このようにd-無限表現型代数は、d次元の射影幾何と密接な関わりを持つ。本講演では、$d$-無限表現型代数の基本事項から始め、$d$-傾束を持つような$d$次元の射影多様体(もしくはスタック)に関する講演者の結果を紹介する。
+`,
+        lang: "jp",
+        access: { id: "867 3982 9708", psw: "163904" },
+        record: {
+            slides: "TNA/2026/Tomonaga-d-RI_ProjVarDerEq.pdf",
+        },
+    },
+    {
         ymd: "2026-03-09",
         start: "1600",
         duration: 90,

@@ -1,5 +1,48 @@
 let talks = [
     {
+        ymd: "2026-06-10",
+        start: "1630",
+        duration: 90,
+        title: "TBC",
+        speaker: "Calvin Pfeifer",
+        affil: "University of Cologne",
+        abstract: `TBC`,
+        lang: "en",
+        // access: { id: "867 3982 9708", psw: "163904" },
+        // record: {
+        //     slides: "TNA/2026/.pdf",
+        // },
+    },
+    {
+        ymd: "2026-05-27",
+        start: "1630",
+        duration: 90,
+        title: "TBC",
+        speaker: "Yuki Mizuno 水野 雄貴",
+        web: `https://yuki-mizuno728.github.io/homepage/index.html`,
+        affil: "Utrecht University",
+        abstract: `TBC`,
+        lang: "jp",
+        // access: { id: "867 3982 9708", psw: "163904" },
+        // record: {
+        //     slides: "TNA/2026/.pdf",
+        // },
+    },
+    {
+        ymd: "2026-05-20",
+        start: "1300",
+        duration: 90,
+        title: "アフィン型団代数のモノイダル圏化におけるアフィン量子群の実加群と虚加群の分類",
+        speaker: "Heizo Sakamoto 坂本 平蔵",
+        affil: "University of Tokyo 東京大学",
+        abstract: `アフィン量子群の有限次元表現$L$は、$L\\otimes L$が既約のとき実加群、既約でないとき虚加群と呼ばれる。有限次元表現圏において部分圏$\\mathcal{C}$を適切に取ることで、そのGrothendieck環$K(\\mathcal{C})$が、団単項式が既約加群に対応するような団代数構造を持つようにできること（団代数の圏化）が知られている。団代数の圏化を与える$\\mathcal{C}$において、既約表現が「団単項式と対応すること」と「実加群であること」は同値だと予想されている。この予想は、実加群の分類が表現論的に基本的課題であることや、表現論と組合せ論をつなぐ問であることなどから重要であるが、圏化される団代数が有限型の場合を除き一般に未解決である。本講演では、アフィン型団代数を圏化する部分圏を構成し、その圏において本予想が成立することを解説する。`,
+        lang: "jp",
+        access: { id: "882 0676 3866", psw: "289404" },
+        // record: {
+        //     slides: "TNA/2026/Sakamoto-AffineClusterCategorification.pdf",
+        // },
+    },
+    {
         ymd: "2026-04-08",
         start: "1300",
         duration: 90,

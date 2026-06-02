@@ -8,25 +8,31 @@ let talks = [
         affil: "University of Cologne",
         abstract: `TBC`,
         lang: "en",
-        // access: { id: "867 3982 9708", psw: "163904" },
+        access: { id: "839 3959 5057", psw: "518784" },
         // record: {
         //     slides: "TNA/2026/.pdf",
         // },
     },
     {
         ymd: "2026-05-27",
-        start: "1630",
+        start: "1600",
         duration: 90,
-        title: "TBC",
+        title: "Bondal–Orlov’s reconstruction theorem in noncommutative projective geometry",
         speaker: "Yuki Mizuno 水野 雄貴",
         web: `https://yuki-mizuno728.github.io/homepage/index.html`,
         affil: "Utrecht University",
-        abstract: `TBC`,
+        abstract: `The (derived) category of coherent sheaves on a scheme encodes rich information about the underlying geometry. 
+        P. Gabriel showed that for noetherian schemes $X$ and $Y$, if $\\mathrm{Coh} X$ and $\\mathrm{Coh} Y$ are equivalent as abelian categories, then $X$ and $Y$ are isomorphic. 
+        Furthermore, A. Bondal and D. Orlov proved that for smooth projective schemes $X$ and $Y$ with (anti-)ample canonical bundles, if $D^b(\\mathrm{Coh} X)$ and $D^b(\\mathrm{Coh} Y)$ are equivalent as triangulated categories, then $X$ and $Y$ are isomorphic. 
+        On the other hand, J.-P. Serre showed that the category of coherent sheaves on a projective scheme can be described as the quotient category of finitely generated graded modules over the homogeneous coordinate ring by the subcategory of torsion modules. 
+        Motivated by the results of Gabriel and Serre, the quotient category of finitely generated graded modules over a (not necessarily commutative) graded ring by the subcategory of torsion modules is called a noncommutative projective scheme.  
+        In this talk, I will present an analogue of Bondal–Orlov’s reconstruction theorem for noncommutative projective geometry. Furthermore, if time permits, I will discuss recent progress on the study of the derived autoequivalence groups of noncommutative projective schemes. 
+        Specifically, I will mention a structure result for the derived autoequivalence groups of certain noncommutative projective planes.`,
         lang: "jp",
-        // access: { id: "867 3982 9708", psw: "163904" },
-        // record: {
-        //     slides: "TNA/2026/.pdf",
-        // },
+        access: { id: "828 6882 8074", psw: "131261" },
+        record: {
+            slides: "TNA/2026/Mizuno-Bondal-Orlov_reconstruction.pdf",
+        },
     },
     {
         ymd: "2026-05-20",
@@ -38,9 +44,9 @@ let talks = [
         abstract: `アフィン量子群の有限次元表現$L$は、$L\\otimes L$が既約のとき実加群、既約でないとき虚加群と呼ばれる。有限次元表現圏において部分圏$\\mathcal{C}$を適切に取ることで、そのGrothendieck環$K(\\mathcal{C})$が、団単項式が既約加群に対応するような団代数構造を持つようにできること（団代数の圏化）が知られている。団代数の圏化を与える$\\mathcal{C}$において、既約表現が「団単項式と対応すること」と「実加群であること」は同値だと予想されている。この予想は、実加群の分類が表現論的に基本的課題であることや、表現論と組合せ論をつなぐ問であることなどから重要であるが、圏化される団代数が有限型の場合を除き一般に未解決である。本講演では、アフィン型団代数を圏化する部分圏を構成し、その圏において本予想が成立することを解説する。`,
         lang: "jp",
         access: { id: "882 0676 3866", psw: "289404" },
-        // record: {
-        //     slides: "TNA/2026/Sakamoto-AffineClusterCategorification.pdf",
-        // },
+        record: {
+            slides: "TNA/2026/Sakamoto-RealImaginaryModuleClassification.pdf",
+        },
     },
     {
         ymd: "2026-04-08",

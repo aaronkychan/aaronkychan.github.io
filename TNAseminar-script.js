@@ -3,10 +3,27 @@ let talks = [
         ymd: "2026-06-10",
         start: "1630",
         duration: 90,
-        title: "TBC",
+        title: "Generic modules arising from stability",
         speaker: "Calvin Pfeifer",
         affil: "University of Cologne",
-        abstract: `TBC`,
+        abstract: `This talk is a report on joint work in progress with Lidia 
+Angeleri-Hügel and Rosanna Laking. Our aim is to extend parts of the 
+theory of large modules over tame hereditary algebras to arbitrary 
+tame algebras.
+Let $A$ be a tame finite dimensional algebra over an algebraically 
+closed field, and θ an additive functional on the Grothendieck group 
+of $A$. Baumann, Kamnitzer and Tingley associate to $\\theta$ a wide interval in 
+the lattice of torsion classes of the category of finite dimensional 
+$A$-modules, whose corresponding wide subcategory consists of the 
+$\\theta$-semistable $A$-modules in the sense of King. Angeleri-Hügel, Laking 
+and Sentieri use cosilting theory to assign to such a wide interval a 
+closed rigid subset of the Ziegler spectrum of the unbounded derived 
+category of all $A$-modules. On the other hand, Plamondon associates to 
+$\\theta$ a generically $τ^-$-regular irreducible component of the scheme of 
+$A$-modules. In this talk, we will explain how the closed rigid subset 
+of the Ziegler spectrum is determined by generic modules constructed 
+from the generically $τ^-$-regular irreducible component.
+`,
         lang: "en",
         access: { id: "839 3959 5057", psw: "518784" },
         // record: {

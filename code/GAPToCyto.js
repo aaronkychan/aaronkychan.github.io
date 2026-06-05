@@ -6,6 +6,8 @@ var QuiverData, cy, Relations;
 let mode = "default";
 let addingArrow = false;
 let sourceNodeID = null;
+let selectedRelationIndex = -1;
+let addRelationMode = false;
 let autoNameVertexCounter = 0;
 let autoNameArrowCounter = 1;
 let animationTimer = null;
@@ -122,15 +124,129 @@ const monomialWithPositiveCoeffFirst = (r1, r2) =>
  * @param  {TermsData} terms
  */
 function termsToRelation(terms, joinStr = "·") {
-    return terms.reduce(
-        (str, t) =>
-            str + t.scalar == ""
-                ? t.monomial.join(joinStr)
-                : t.scalar == "-"
-                  ? `-${t.monomial.join("·")}`
-                  : `${t.scalar}·${t.monomial.join("·")}`,
-        "",
+    return terms
+        .map((t, i) => {
+            const monomial = t.monomial.join(joinStr);
+            const joinToken = joinStr;
+            if (t.scalar === "") return `${i === 0 ? "" : "+"}${monomial}`;
+            if (t.scalar === "-") return `-${monomial}`;
+            const scalar = `${t.scalar}`;
+            const sign = scalar.startsWith("-") || i === 0 ? "" : "+";
+            return `${sign}${scalar}${joinToken}${monomial}`;
+        })
+        .join("");
+}
+
+function scalarToInputScalar(scalar) {
+    if (scalar === "") return "+1";
+    if (scalar === "-") return "-1";
+    return `${scalar}`;
+}
+
+function termsToRelationInput(terms) {
+    return terms
+        .map((term, i) => {
+            const scalar = scalarToInputScalar(term.scalar);
+            const sign = i === 0 ? "" : "+";
+            return `${sign}(${scalar})*${term.monomial.join("*")}`;
+        })
+        .join("");
+}
+
+function relationArrowNames(relations) {
+    return new Set(
+        (relations || []).flatMap((rel) =>
+            (rel.terms || []).flatMap((term) => term.monomial || []),
+        ),
     );
+}
+
+function currentArrowNames(cyInstance) {
+    if (!cyInstance) return new Set();
+    return new Set(cyInstance.edges().map((edge) => edge.id()));
+}
+
+function validateRelationArrowReferences(relations, cyInstance) {
+    const arrows = currentArrowNames(cyInstance);
+    const missing = [...relationArrowNames(relations)].filter(
+        (name) => !arrows.has(name),
+    );
+    if (missing.length > 0) {
+        pa(
+            `Relations refer to unknown arrow(s): ${[
+                ...new Set(missing),
+            ].join(", ")}`,
+        );
+        return false;
+    }
+    return true;
+}
+
+function renameArrowInRelations(oldName, newName, relations, cyInstance) {
+    if (!relations || relations.length === 0) return false;
+
+    let renamed = false;
+    for (const rel of relations) {
+        if (!rel.terms) continue;
+        let relationChanged = false;
+        for (const term of rel.terms) {
+            if (!term.monomial) continue;
+            for (let i = 0; i < term.monomial.length; i++) {
+                if (term.monomial[i] === oldName) {
+                    term.monomial[i] = newName;
+                    relationChanged = true;
+                    renamed = true;
+                }
+            }
+        }
+        if (relationChanged) rel.reln = termsToRelation(rel.terms);
+    }
+
+    if (renamed) {
+        validateRelationArrowReferences(relations, cyInstance);
+        refreshRelationsOutput(relations);
+    }
+    return renamed;
+}
+
+function splitRelationTerms(relInputStr) {
+    const terms = [];
+    let depth = 0;
+    let start = 0;
+    for (let i = 0; i < relInputStr.length; i++) {
+        const char = relInputStr[i];
+        if (char === "(") depth++;
+        if (char === ")") depth = Math.max(0, depth - 1);
+        if ((char === "+" || char === "-") && depth === 0 && i > start) {
+            terms.push(relInputStr.slice(start, i));
+            start = i;
+        }
+    }
+    terms.push(relInputStr.slice(start));
+    return terms.filter((term) => term !== "");
+}
+
+function parseRelationTerm(termInput) {
+    let term = termInput.trim();
+    let leadingSign = "";
+    if (term[0] === "+" || term[0] === "-") {
+        leadingSign = term[0];
+        term = term.slice(1);
+    }
+
+    const explicitScalar = term.match(/^\((.*?)\)\*(.*)$/);
+    if (explicitScalar) {
+        const scalar =
+            leadingSign === "-" && !explicitScalar[1].startsWith("-")
+                ? `-${explicitScalar[1]}`
+                : explicitScalar[1];
+        return { scalarRaw: scalar, generators: explicitScalar[2].split("*") };
+    }
+
+    return {
+        scalarRaw: leadingSign === "-" ? "-1" : "+1",
+        generators: term.split("*"),
+    };
 }
 
 /**
@@ -149,18 +265,15 @@ function QPARelationToRelationData(relInputStr, generatorReference, fieldChar) {
     /** @type {RelationData} */
     let relData = { reln: "", terms: [], fieldChar: fieldChar };
 
-    // split at a "+" that must be followed by a "("
-    let terms = relInputStr.split(/\+(?=\()/);
+    let terms = splitRelationTerms(relInputStr);
     for (let i = 0; i < terms.length; i++) {
-        // split each term into scalar and generators
-        const match = terms[i].match(/^\((.*?)\)\*(.*)$/);
-        if (!match) {
+        const { scalarRaw, generators } = parseRelationTerm(terms[i]);
+        if (!generators.length || generators.some((generator) => generator === "")) {
             pa(
                 `Relation string ${relInputStr}, term ${terms[i]} is of invalid format`,
             );
             throw new Error("Invalid format in a term of relation");
         }
-        let [scalarRaw, generators] = [match[1], match[2].split("*")];
 
         if (fieldChar == -1) {
             // try to find characteristic if not yet known
@@ -177,7 +290,7 @@ function QPARelationToRelationData(relInputStr, generatorReference, fieldChar) {
         let termData = { scalar: scalar, monomial: [] };
 
         // translate the monomial part in the term
-        let newMono = generators
+        generators
             .map((x) => {
                 let q = generatorReference.indexOf(x);
                 // q!=-1 => return replaced letters; otherwise its a scalar elt
@@ -189,20 +302,11 @@ function QPARelationToRelationData(relInputStr, generatorReference, fieldChar) {
                         : x;
                 termData.monomial.push(arr);
                 return arr;
-            })
-            .join("·");
+            });
 
         relData.terms.push(termData);
-        const scalarString =
-            scalar == ""
-                ? i == 0
-                    ? ""
-                    : "+"
-                : scalar == "-"
-                  ? "-"
-                  : `+${scalar}·`;
-        relData.reln += `${scalarString}${newMono}`;
     }
+    relData.reln = termsToRelation(relData.terms);
     return relData;
 }
 
@@ -238,7 +342,7 @@ function translateGraphToQPA(graphData) {
  * @param  {Quiver} quiver
  * @return {RelationData}
  */
-function transalteQPARelation(relationStr, quiver) {
+function transalteQPARelation(relationStr, quiver, updateRelationInput = true) {
     const arrows = quiver[1];
     var arrRef = arrows.map((a) => a[2]);
     // strip brackets and whitespaces
@@ -246,7 +350,9 @@ function transalteQPARelation(relationStr, quiver) {
         relationStr === ""
             ? document.getElementById("inRelation").value
             : relationStr;
-    document.getElementById("inRelation").value = relationStr;
+    if (updateRelationInput) {
+        document.getElementById("inRelation").value = relationStr;
+    }
     // remove line change and spaces
     var arrRelns = relationStr
         .replace(/(\\\r\n|\\\r|\\\n)/g, "")
@@ -337,6 +443,53 @@ function transalteQPARelation(relationStr, quiver) {
     return relData;
 }
 
+function quiverFromCyto(cyInstance) {
+    return [
+        cyInstance.nodes().map((node) => node.id()),
+        cyInstance
+            .edges()
+            .map((edge) => [
+                edge.data("source"),
+                edge.data("target"),
+                edge.id(),
+            ]),
+    ];
+}
+
+function parseSingleRelationInput(relationInput, cyInstance) {
+    const input = relationInput.trim();
+    if (!input) return null;
+
+    const relationData = transalteQPARelation(
+        input,
+        quiverFromCyto(cyInstance),
+        false,
+    );
+    if (relationData.length !== 1) {
+        pa("Please enter exactly one relation.");
+        return null;
+    }
+    return relationData[0];
+}
+
+function splitRelationEntries(relationInput) {
+    return relationInput
+        .split(/[\n,]+/)
+        .map((entry) => entry.trim())
+        .filter((entry) => entry !== "");
+}
+
+function parseRelationEntriesInput(relationInput, cyInstance) {
+    const entries = splitRelationEntries(relationInput);
+    if (entries.length === 0) return [];
+
+    return transalteQPARelation(
+        entries.join(","),
+        quiverFromCyto(cyInstance),
+        false,
+    );
+}
+
 function translateQPA() {
     var [quiverIn, relationStr] = detectRelation(
         document.getElementById("inQuiver").value,
@@ -412,23 +565,25 @@ function translateQPA() {
 }
 
 function refreshRelationsOutput(relations) {
+    addRelationMode = false;
     let outputDiv = document.getElementById("relOutput");
     outputDiv.innerHTML = `Relations:<br>`;
+    outputDiv.classList.remove("add-relation-mode");
+    outputDiv.contentEditable = "false";
+    selectedRelationIndex = -1;
     for (let i = 0; i < relations.length; i++) {
         // for (const r of relations) {
         let divElt = document.createElement("div");
         divElt.classList.add("relationRow");
+        divElt.contentEditable = "false";
         divElt.setAttribute("id", relations[i].reln);
         divElt.innerHTML = relations[i].reln;
         divElt.addEventListener("click", () => {
             selectNthRelation(i);
-            //     relations[i].reln,
-            //     i % 2 == 0 ? "#ff6f00" : "#0080ff"
-            // );
-            // divElt.classList.add("selectedRelationRow");
         });
         outputDiv.appendChild(divElt);
     }
+    document.getElementById("btnAddReln").value = "Add relation(s)";
 }
 
 function presentData(quiver, relations, isPreset = false) {
@@ -453,6 +608,7 @@ function composeCompares(compfuncs, a, b) {
 }
 
 function selectNthRelation(n) {
+    selectedRelationIndex = n;
     if (animationTimer) {
         if (Array.isArray(animationTimer)) {
             animationTimer.forEach((t) => clearInterval(t));
@@ -461,10 +617,11 @@ function selectNthRelation(n) {
         }
         animationTimer = null;
     }
-    let rows = document.querySelectorAll("#relOutput div");
+    let rows = document.querySelectorAll("#relOutput .relationRow");
     // unselect all paths
+    const colors = cytoThemeColors();
     for (const e of cy.edges()) {
-        e.style(coloredEdgeStyle("#000"));
+        e.style(coloredEdgeStyle(colors.edge));
         e.removeStyle(
             "line-fill line-gradient-stop-colors line-gradient-stop-positions",
         );
@@ -474,7 +631,7 @@ function selectNthRelation(n) {
     for (let i = 0; i < rows.length; i++) {
         if (i == n) {
             rows[i].classList.add("selectedRelationRow");
-            let color = i % 2 == 0 ? "#ff6f00" : "#0080ff";
+            let color = relationHighlightColor(i);
             const pathsToAnimate = [];
             let allEdges = cy.collection();
             console.log(Relations[i]);
@@ -573,6 +730,204 @@ function selectNthRelation(n) {
     }
 }
 
+function editSelectedRelation() {
+    if (!Relations || Relations.length === 0) {
+        pa("There are no relations to edit.");
+        return;
+    }
+    if (selectedRelationIndex < 0 || selectedRelationIndex >= Relations.length) {
+        pa("Select one relation first.");
+        return;
+    }
+
+    const oldRelation = termsToRelationInput(
+        Relations[selectedRelationIndex].terms,
+    );
+    const relationInput = prompt(
+        "Enter the replacement relation:",
+        oldRelation,
+    );
+    if (relationInput === null) return;
+
+    let newRelation;
+    try {
+        newRelation = parseSingleRelationInput(relationInput, cy);
+    } catch (err) {
+        pa(`Invalid relation: ${err.message}`);
+        return;
+    }
+    if (!newRelation) return;
+
+    Relations[selectedRelationIndex] = newRelation;
+    const relationToSelect = selectedRelationIndex;
+    refreshRelationsOutput(Relations);
+    selectNthRelation(relationToSelect);
+}
+
+function doubleQuiver() {
+    if (!cy) {
+        pa("Draw or load a quiver before doubling it.");
+        return;
+    }
+
+    const existingArrowIds = new Set(cy.edges().map((edge) => edge.id()));
+    const arrowsToDouble = cy.edges().filter((edge) => {
+        return !edge.data("isDoubleReverse");
+    });
+    const reverseArrows = [];
+    const skipped = [];
+
+    for (const edge of arrowsToDouble) {
+        const reverseId = `${edge.id()}*`;
+        if (existingArrowIds.has(reverseId)) {
+            skipped.push(reverseId);
+            continue;
+        }
+
+        reverseArrows.push({
+            group: "edges",
+            data: {
+                id: reverseId,
+                source: edge.data("target"),
+                target: edge.data("source"),
+                label: reverseId,
+                isDoubleReverse: true,
+            },
+        });
+        existingArrowIds.add(reverseId);
+    }
+
+    if (reverseArrows.length > 0) {
+        cy.add(reverseArrows);
+        cy.layout({
+            name: "preset",
+            fit: false,
+        }).run();
+    }
+
+    const message = [
+        reverseArrows.length > 0
+            ? `Added ${reverseArrows.length} reverse arrow(s).`
+            : "No reverse arrows were added.",
+        skipped.length > 0
+            ? `Skipped existing arrow name(s): ${skipped.join(", ")}.`
+            : "",
+    ]
+        .filter((part) => part !== "")
+        .join(" ");
+    document.getElementById("outTxtBox").innerHTML = message;
+}
+
+function ensureAddRelationEditor() {
+    let editor = document.getElementById("addRelationEditor");
+    if (editor) return editor;
+
+    editor = document.createElement("div");
+    editor.id = "addRelationEditor";
+    editor.classList.add("relation-editor");
+    editor.contentEditable = "true";
+    editor.tabIndex = 0;
+    editor.setAttribute("role", "textbox");
+    editor.setAttribute("aria-multiline", "true");
+    editor.addEventListener("keydown", handleAddRelationEditorKeydown);
+    document.getElementById("relOutput").appendChild(editor);
+    return editor;
+}
+
+function enterAddRelationMode() {
+    if (!cy) {
+        pa("Draw or load a quiver before adding relations.");
+        return;
+    }
+    addRelationMode = true;
+    selectNthRelation(-1);
+
+    const outputDiv = document.getElementById("relOutput");
+    outputDiv.classList.add("add-relation-mode");
+    outputDiv.contentEditable = "false";
+    outputDiv.querySelectorAll(".relationRow").forEach((row) => {
+        row.contentEditable = "false";
+    });
+
+    const editor = ensureAddRelationEditor();
+    editor.textContent = "";
+    document.getElementById("btnAddReln").value = "Save added relations";
+    editor.focus();
+}
+
+function exitAddRelationMode(commitChanges = true) {
+    const outputDiv = document.getElementById("relOutput");
+    const editor = document.getElementById("addRelationEditor");
+    const addedText = editor ? editor.innerText.trim() : "";
+
+    if (commitChanges && addedText !== "") {
+        let newRelations;
+        try {
+            newRelations = parseRelationEntriesInput(addedText, cy);
+        } catch (err) {
+            pa(`Invalid relation: ${err.message}`);
+            if (editor) editor.focus();
+            return false;
+        }
+        if (newRelations.length === 0) {
+            pa("No relation was entered.");
+            if (editor) editor.focus();
+            return false;
+        }
+
+        Relations = (Relations || []).concat(newRelations);
+        refreshRelationsOutput(Relations);
+        return true;
+    }
+
+    addRelationMode = false;
+    outputDiv.classList.remove("add-relation-mode");
+    outputDiv.contentEditable = "false";
+    if (editor) editor.remove();
+    document.getElementById("btnAddReln").value = "Add relation(s)";
+    return true;
+}
+
+function toggleAddRelationMode() {
+    if (addRelationMode) {
+        exitAddRelationMode(true);
+    } else {
+        enterAddRelationMode();
+    }
+}
+
+function handleAddRelationEditorKeydown(event) {
+    if (event.key !== "Enter" || event.shiftKey) return;
+    event.preventDefault();
+    exitAddRelationMode(true);
+}
+
+function relationEditTarget(eventTarget) {
+    const editor = document.getElementById("addRelationEditor");
+    if (!editor || !eventTarget) return null;
+    return editor.contains(eventTarget) ? editor : null;
+}
+
+function guardRelationOutputEdit(event) {
+    if (!addRelationMode) {
+        event.preventDefault();
+        return;
+    }
+    if (!relationEditTarget(event.target)) {
+        event.preventDefault();
+    }
+}
+
+function focusAddRelationEditor(event) {
+    if (!addRelationMode) return;
+    if (event.target.closest && event.target.closest(".relationRow")) return;
+
+    const editor = document.getElementById("addRelationEditor");
+    if (!editor || editor.contains(event.target)) return;
+    event.preventDefault();
+    editor.focus();
+}
+
 // var testdata = {
 //     nodes: [
 //         { data: { id: "a1" } },
@@ -662,6 +1017,97 @@ const coloredEdgeStyle = (color) => {
     };
 };
 
+function activeTheme() {
+    return document.body.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function cytoThemeColors(theme = activeTheme()) {
+    if (theme === "dark") {
+        return {
+            nodeFill: "#111827",
+            nodeBorder: "#cbd5e1",
+            nodeText: "#e5edf7",
+            selectedNode: "#f87171",
+            edge: "#d1d5db",
+            selectedEdge: "#93c5fd",
+            edgeLabel: "#fca5a5",
+            edgeLabelOutline: "#1f2937",
+        };
+    }
+    return {
+        nodeFill: "#ffffff",
+        nodeBorder: "#000000",
+        nodeText: "#000000",
+        selectedNode: "#fa5252",
+        edge: "#000000",
+        selectedEdge: "#7379f4",
+        edgeLabel: "#ff1818",
+        edgeLabelOutline: "#eeee00",
+    };
+}
+
+function relationHighlightColor(i) {
+    if (activeTheme() === "dark") {
+        return i % 2 == 0 ? "#fbbf24" : "#86efac";
+    }
+    return i % 2 == 0 ? "#ff6f00" : "#0080ff";
+}
+
+function cytoStyle(theme = activeTheme()) {
+    const colors = cytoThemeColors(theme);
+    return [
+        {
+            selector: "node",
+            css: {
+                width: 25,
+                height: 25,
+                shape: "ellipse",
+                "background-color": colors.nodeFill,
+                "border-width": "1px",
+                "border-style": "solid",
+                "border-color": colors.nodeBorder,
+                color: colors.nodeText,
+                content: "data(id)",
+                "text-valign": "center",
+                "text-halign": "center",
+            },
+        },
+        {
+            selector: "node:selected",
+            style: {
+                "background-color": colors.selectedNode,
+                width: 30,
+                height: 30,
+            },
+        },
+        {
+            selector: "edge",
+            style: coloredEdgeStyle(colors.edge),
+        },
+        {
+            selector: "edge:selected",
+            style: coloredEdgeStyle(colors.selectedEdge),
+        },
+        {
+            selector: "edge[label]",
+            style: {
+                label: "data(label)",
+                color: colors.edgeLabel,
+                "font-size": "22pt",
+                "font-weight": "bold",
+                "text-outline-color": colors.edgeLabelOutline,
+                "text-outline-width": 2,
+            },
+        },
+    ];
+}
+
+function applyCytoTheme(cyInstance = cy) {
+    if (!cyInstance) return;
+    cyInstance.style(cytoStyle());
+    selectNthRelation(selectedRelationIndex);
+}
+
 function promptNameAndCheck(msg, cyInstance, type) {
     const autoName = document.getElementById("autoName").checked;
     let name;
@@ -703,68 +1149,7 @@ function initCyto(inputData, isPreset = false) {
     let cyInstance = cytoscape({
         container: document.getElementById("cy"),
         elements: inputData,
-        style: [
-            {
-                selector: "node",
-                css: {
-                    width: 25,
-                    height: 25,
-                    shape: "ellipse",
-                    "background-color": "#ffffff",
-                    "border-width": "1px",
-                    "border-style": "solid",
-                    "border-color": "#000",
-                    // border: "1px solid #000",
-                    content: "data(id)",
-                    "text-valign": "center",
-                    "text-halign": "center",
-                },
-            },
-
-            {
-                selector: "node:selected",
-                style: {
-                    "background-color": "#fa5252",
-                    width: 30,
-                    height: 30,
-                },
-            },
-            {
-                selector: "edge",
-                style: coloredEdgeStyle("#000"),
-            },
-            {
-                selector: "edge:selected",
-                style: coloredEdgeStyle("#7379f4"),
-            },
-            // todo: dynamically add edge.loopCounter with "Counter"=1,2,...
-            // todo: use inputData to determine loop
-            // {
-            //     selector: "edge.loop2",
-            //     style: {
-            //         width: 2,
-            //         "line-color": "#000",
-            //         "target-arrow-color": "#000",
-            //         "target-arrow-shape": "triangle",
-            //         "curve-style": "bezier",
-            //         "loop-direction": "45deg",
-            //         "loop-sweep": "45deg",
-            //     },
-            // },
-            {
-                selector: "edge[label]",
-                style: {
-                    label: "data(label)",
-                    color: "#ff1818",
-                    "font-size": "22pt",
-                    "font-weight": "bold",
-                    "text-outline-color": "#ee0",
-                    "text-outline-width": 2,
-                    // "text-background-color": "#DDD",
-                    // "text-background-opacity": 0.6,
-                },
-            },
-        ],
+        style: cytoStyle(),
 
         layout: layout,
 
@@ -883,20 +1268,12 @@ function clickOnCanvas(ev, cyInstance) {
                     edgeJson.data.id = newName;
                     edgeJson.data.label = newName;
                     cyInstance.add(edgeJson);
-                    // update relations
-                    for (let r of Relations) {
-                        let needUpdate = false;
-                        for (let t of r.terms) {
-                            for (let i = 0; i < t.monomial.length; i++) {
-                                if (t.monomial[i] === oldId) {
-                                    t.monomial[i] = newName;
-                                    needUpdate = true;
-                                }
-                            }
-                        }
-                        if (needUpdate) r.reln = termsToRelation(r.terms);
-                    }
-                    refreshRelationsOutput(Relations);
+                    renameArrowInRelations(
+                        oldId,
+                        newName,
+                        Relations,
+                        cyInstance,
+                    );
                 }
             }
         }
@@ -942,12 +1319,41 @@ function bendArrow(dir) {
 }
 
 function clearAll() {
+    if (addRelationMode) exitAddRelationMode(false);
     document.getElementById("inQuiver").value = "";
     document.getElementById("inRelation").value = "";
     document.getElementById("toQPABtn").disabled = true;
     document.getElementById("fixCyto").disabled = true;
     document.getElementById("wriggle").disabled = true;
     document.getElementById("saveSVG").disabled = true;
+}
+
+function applyTheme(theme) {
+    document.body.dataset.theme = theme;
+    const themeToggle = document.getElementById("themeToggle");
+    if (!themeToggle) return;
+
+    const isDark = theme === "dark";
+    themeToggle.textContent = isDark ? "Light theme" : "Dark theme";
+    themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+    applyCytoTheme();
+}
+
+function initialTheme() {
+    const savedTheme = localStorage.getItem("gapToCytoTheme");
+    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+
+    return window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+}
+
+function toggleTheme() {
+    const currentTheme = document.body.dataset.theme || initialTheme();
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    localStorage.setItem("gapToCytoTheme", nextTheme);
+    applyTheme(nextTheme);
 }
 
 function savefile(type) {
@@ -1004,6 +1410,11 @@ document.getElementById("loadJsonBtn").addEventListener("change", (event) => {
 // document
 //     .getElementById("testBtn")
 // .addEventListener("click", () => initCyto(testdata));
+applyTheme(initialTheme());
+document
+    .getElementById("themeToggle")
+    .addEventListener("click", () => toggleTheme());
+
 document
     .getElementById("translateBtn")
     .addEventListener("click", () => translateQPA());
@@ -1016,8 +1427,24 @@ document.querySelectorAll('input[name="editMode"]').forEach((elem) => {
 });
 
 document
+    .getElementById("btnDoubleQuiver")
+    .addEventListener("click", () => doubleQuiver());
+
+document
     .getElementById("btnUnselectRelns")
     .addEventListener("click", () => selectNthRelation(-1));
+document
+    .getElementById("btnAddReln")
+    .addEventListener("click", () => toggleAddRelationMode());
+document
+    .getElementById("btnEditReln")
+    .addEventListener("click", () => editSelectedRelation());
+document
+    .getElementById("relOutput")
+    .addEventListener("beforeinput", (event) => guardRelationOutputEdit(event));
+document
+    .getElementById("relOutput")
+    .addEventListener("mousedown", (event) => focusAddRelationEditor(event));
 
 document.getElementById("wriggle").addEventListener("click", () => {
     cy.layout({

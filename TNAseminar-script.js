@@ -26,9 +26,9 @@ from the generically $τ^-$-regular irreducible component.
 `,
         lang: "en",
         access: { id: "839 3959 5057", psw: "518784" },
-        // record: {
-        //     slides: "TNA/2026/.pdf",
-        // },
+        record: {
+            slides: "TNA/2026/Pfeifer-Generic_modules_stability.pdf",
+        },
     },
     {
         ymd: "2026-05-27",

@@ -1,5 +1,21 @@
 let talks = [
     {
+        ymd: "2026-07-08",
+        start: "1300",
+        duration: 90,
+        title: "Characteristic-free approaches around Yu's construction",
+        speaker: "Yuta Takaya 髙谷 悠太",
+        web: "https://sites.google.com/g.ecc.u-tokyo.ac.jp/yutakaya/",
+        affil: "University of Tokyo 東京大学",
+        abstract: `Yu's construction is one of the most wide-ranging constructions of supercuspidal representations. Recently, Fintzen, Kaletha, and Spice introduced a quadratic twist of this construction to build stable L-packets, which also appears in the geometric realization via positive-depth Deligne-Lusztig induction. In this talk, I will present a direct approach to twisted Yu's construction and explain how to remove technical conditions on small primes in the theory of Yu's construction and positive-depth Deligne-Lusztig induction.
+`,
+        lang: "jp",
+        access: { id: "882 6509 3568", psw: "616173" },
+        record: {
+            slides: "TNA/2026/Takaya-Yu_Construction.pdf",
+        },
+    },
+    {
         ymd: "2026-06-10",
         start: "1630",
         duration: 90,

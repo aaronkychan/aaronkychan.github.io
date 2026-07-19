@@ -1,11 +1,25 @@
-const talkOrder = ["nordskova", "kulshammer", "", "", "odeho"];
-const lectureSeries = [
+// const talkOrder = ["nordskova", "kulshammer", "liu", "odeho", "minamoto"];  //chronological order amongst all talks regardless of category
+
+/**
+ * @typedef {Object} TalkData
+ * @property {string} author
+ * @property {string} id // format XXX(/YZW_...)  XXX=surname(use _ for space), YZW=first name initial or other refined distinguish method
+ * @property {string} affiliate
+ * @property {string} [web]
+ * @property {string} title
+ * @property {string} abstract
+ * @property {string} category - lecture, invited, contributed
+ * @property {boolean} [tbc]
+ * @property {number} timeIndex - chronological order in each category
+ */
+const speakersTalks = [
     {
         author: "Julian Külshamme",
         id: "kulshammer",
         affiliate: "Uppsala",
+        web: "https://julian-kuelshammer.github.io/",
         title: `TBC`,
-        abstract: `TBC`,
+        abstract: ``,
         category: "lecture",
         timeIndex: 1,
     },
@@ -13,155 +27,140 @@ const lectureSeries = [
         author: "Anya Nordskova",
         id: "nordskova",
         affiliate: "Kavli IPMU, University of Tokyo",
-        title: `TBC`,
-        abstract: `TBC`,
+        web: "https://anyanord.ru/",
+        title: `Around abelian envelopes of exact categories`,
+        abstract: ``,
         category: "lecture",
         timeIndex: 0,
     },
-];
-
-const invitedTalks = [
+    // {
+    //     author: "Samuel Odeberg Hollifeldt",
+    //     id: "odeho",
+    //     affiliate: "Uppsala",
+    //     title: ``,
+    //     abstract: ``,
+    //     category: "invited",
+    //     timeIndex: 3,
+    // },
     {
-        author: "Samuel Odeberg Hollifeldt",
-        id: "odeho",
-        affiliate: "Uppsala",
-        title: `TBC`,
-        abstract: `TBC`,
-        category: "invited",
-        timeIndex: 3,
-    },
-    {
-        author: "Yuki Hirano 平野 雄貴",
-        id: "hirano",
-        affiliate: "Tokyo U. of Agriculture and Technology 東京農工大学",
-        title: `Length of triangulated categories`,
-        abstract: `Composition series is fundamental in the study of finite groups and finite
-dimensional modules. One of the most important properties of such composition series is
-the Jordan-Hölder property, and this implies the property (called the Jordan–Dedekind
-property) that all composition series have the same length. In this talk, I will introduce
-the notion of composition series for triangulated categories, and discuss composition series
-of derived categories of certain finite dimensional algebras and smooth projective varieties.
-In particular, I will explain that the Jordan–Dedekind property does not hold for derived
-categories of certain finite dimensional algebras of finite global dimension and certain
-smooth projective toric surfaces. This talk is based on joint work with Kalck and Ouchi.`,
+        author: "Shunsuke Hirota",
+        id: "hirota",
+        affiliate: "RIMS Kyoto",
+        title: ``,
+        abstract: ``,
         category: "invited",
         timeIndex: 0,
     },
     {
-        author: "Norihiro Hanihara 埴原 紀宏",
-        id: "hanihara",
-        affiliate: "Kyushu 九州大学",
-        title: `Tilting ideals and Calabi-Yau structures`,
-        abstract: `We study singularity categories of Gorenstein algebras. There are many
-such rings whose singularity categories are Calabi-Yau, for example,
-preprojective algebras, their quotients by tilting ideals, cluster
-tilted algebras, and so on. These algebras and categories have played a
-prominent role in the development of cluster theory. We will discuss a
-lift of these Calabi-Yau properties to their dg enhancements. This is
-based on joint works with Bernhard Keller.`,
+        author: "Junyang Liu",
+        id: "liu",
+        affiliate: "Tokyo",
+        web: "https://webusers.imj-prg.fr/~junyang.liu/",
+        title: ``,
+        abstract: ``,
         category: "invited",
         timeIndex: 1,
     },
     {
-        author: "Naoya Hiramae 平前 直也",
-        id: "hiramae",
-        affiliate: "Kyoto 京都大学",
-        title: `Silting-discreteness of group algebras`,
-        abstract: `Silting-discreteness of finite dimensional algebras has been actively
-studied in recent years. One of the motivations for studying
-silting-discreteness is that over silting-discrete algebras, any two
-silting complexes are connected by iterative irreducible silting
-mutations. In this talk, we examine when group algebras are
-silting-discrete. For a finite group $G$ and an algebraically closed
-field $k$ of positive characteristic $p$, we give a sufficient condition
-for a group algebra $kG$ to be silting-discrete in terms of a
-$p$-hyperfocal subgroup of $G$. Moreover, we see that this is also a
-necessary condition in some cases. This talk is based on a joint work
-with Yuta Kozakai.<br><br>
-                    <a href="./Hiramae.pdf">Slides</a>
-`,
+        author: "Hiroyuki Minamoto",
+        id: "minamoto",
+        affiliate: "Osaka Metropolitan",
+        title: ``,
+        abstract: ``,
         category: "invited",
         timeIndex: 2,
     },
-    {
-        author: "Kaveh Mousavand",
-        id: "mousavand",
-        affiliate: "OIST 沖縄科学技術大学院大学",
-        title: `Hom-orthogonal modules and brick-Brauer-Thrall conjectures`,
-        abstract: `We investigate the set of pairwise Hom-orthogonal modules in the context of several open conjectures
-                    that have emerged in recent years, to which we refer as the brick-Brauer-Thrall (bBT) Conjectures.
-                    The bBT conjectures are closely connected to the study of bricks, and therefore to wide
-                    subcategories, torsion pairs, $\\tau$-tilting theory, stability conditions, g-fan, and related
-                    subjects. In this talk, we first adopt a geometric perspective to see the significance of
-                    Hom-orthogonality in the context of a conjecture that I posed in 2019, now known as the Second
-                    Brick-Brauer-Thrall (2nd bBT) Conjecture. Then, we show that some of the more recent bBT conjectures
-                    actually follow from the 2nd bBT conjecture. This provides new insights into these challenging open
-                    problems. As a result, we are able to verify the validity of the bBT conjectures for some new
-                    families of algebras.
-                    This talk is primarily based on a recent joint work (arXiv:2407.20877) with Charles Paquette.`,
-        category: "invited",
-        timeIndex: 3,
+];
+
+const groupedList = speakersTalks.reduce(
+    (res, item) => {
+        res[item.category === "lecture" ? 0 : 1].talks.push(item);
+        return res;
     },
-];
-
-const groupedTalks = [
-    { heading: "Lecture series 連続講演", talks: lectureSeries },
-    { heading: "Invited lectures 招待講演", talks: invitedTalks },
-    // { heading: "Contributed talks 一般講演", talks: contribtuedTalks },
-];
-
-/**
- * simple JSON containing talk data
- * @typedef {Object} TalkData
- * @property {string} author
- * @property {string} affiliate
- * @property {string} title
- * @property {string} abstract
- * @property {string} category - lecture, invited, contributed
- * @property {number} timeIndex - chronological order in each category
- */
+    [
+        { heading: "Lecture series 連続講演", talks: [] },
+        { heading: "Invited lectures 招待講演", talks: [] },
+    ],
+);
+// [
+//     { heading: "Lecture series 連続講演", talks: speakers.filter(({category})=>category==="lecture") },
+//     { heading: "Invited lectures 招待講演", talks: speakers.filter(({category})=>category==="lecture") },
+//     // { heading: "Contributed talks 一般講演", talks: ... },
+// ];
 
 /**
  * @param  {TalkData} talkData
  * @return {HTMLElement} a details tag containing everything
  */
 function talkDetails(talkData) {
-    const details = document.createElement("details");
+    const hasAbstract = talkData.abstract.length > 0,
+        hasTitle = talkData.title.length > 0;
+    // console.log(talkData.id, " : hasAbs=", hasAbstract, " hasTitle=", hasTitle);
+    const details = document.createElement(hasAbstract ? "details" : "div");
     details.classList.add("talk_details");
     details.setAttribute("id", talkData.id);
     details.setAttribute("aria-talkcategory", talkData.category);
     details.setAttribute("aria-talkorder", talkData.timeIndex);
 
-    const summary = document.createElement("summary");
-    summary.classList.add("talk_summary");
+    const summary = document.createElement(hasAbstract ? "summary" : "div");
+    summary.classList.add(hasAbstract ? "talk_summary" : "talk_title_only");
     summary.textContent = `${talkData.author} (${talkData.affiliate})`;
 
-    const title = document.createElement("div");
-    title.classList.add("subtitle");
-    title.innerHTML = talkData.title;
-
-    const abstract = document.createElement("p");
-    abstract.innerHTML =
-        talkData.abstract.length > 0 ? talkData.abstract : "TBC";
-
-    summary.appendChild(title);
+    if (hasTitle) {
+        const title = document.createElement("div");
+        title.classList.add("subtitle");
+        title.innerHTML = talkData.title;
+        summary.appendChild(title);
+    }
     details.appendChild(summary);
-    details.appendChild(abstract);
+
+    if (hasAbstract) {
+        const abstract = document.createElement("p");
+        abstract.innerHTML = talkData.abstract;
+        details.appendChild(abstract);
+    }
     return details;
 }
 
-function sortListOfTalks(talks, order = "time") {
-    return talks.toSorted((a, b) =>
-        order === "time" ? a.timeIndex - b.timeIndex : a.id.localeCompare(b.id),
-    );
+function sortListOfTalks(talks, order = "id") {
+    let method = (a, b) => a.id.localeCompare(b.id);
+    switch (order) {
+        case "time":
+            method = (a, b) => a.timeIndex - b.timeIndex;
+            break;
+        case "author":
+            method = (a, b) => a.author.localeCompare(b.author);
+            break;
+    }
+    return talks.toSorted(method);
 }
 
 function populateTalksHTML(grouped = true, order = "time") {
+    // Update Speaker list on heading info
+    const listDiv = document.getElementById("headingInfo_talk_list");
+    listDiv.replaceChildren();
+    for (const group of groupedList) {
+        const eltHeading = document.createElement("h4");
+        eltHeading.append(group.heading);
+        const eltList = document.createElement("ul");
+        eltList.classList.add("compact", "lineChangeAfter");
+        for (const { author, affiliate, web } of sortListOfTalks(group.talks)) {
+            const itm = document.createElement("li");
+            itm.innerHTML =
+                (web ? `<a href="${web}">` : "") +
+                author +
+                (web ? `</a>` : "") +
+                ` (${affiliate})`;
+            eltList.appendChild(itm);
+        }
+        listDiv.appendChild(eltHeading);
+        listDiv.appendChild(eltList);
+    }
+
+    // Update Title & Abstract section
     const mother = document.getElementById("titleAbstractDiv");
     mother.replaceChildren();
-    const fullList = grouped
-        ? groupedTalks
-        : { talks: [...groupedTalks.map(({ talks }) => talks)] };
+    const fullList = grouped ? groupedList : { talks: speakersTalks };
 
     for (const group of fullList) {
         const container = document.createElement("div");
@@ -197,24 +196,27 @@ function populateTalksHTML(grouped = true, order = "time") {
 
 window.onload = function () {
     // assign time index first
-    for (let i = 0; i < talkOrder.length; i++) {
-        for (const { talks } of groupedTalks) {
-            const elt = talks.find(({ id }) => id === talkOrder[i]);
-            if (elt !== undefined) {
-                elt.timeIndex = i;
-                break;
-            }
-        }
-    }
+    // for (let i = 0; i < talkOrder.length; i++) {
+    //     for (const { talks } of groupedList) {
+    //         const elt = talks.find(({ id }) => id === talkOrder[i]);
+    //         if (elt !== undefined) {
+    //             elt.timeIndex = i;
+    //             break;
+    //         }
+    //     }
+    // }
     // append HTML
-    populateTalksHTML(true, "time");
+    // *** switch to "time" when timetable is decided
+    // populateTalksHTML(true, "time");
+    populateTalksHTML(true, "alpha");
     // add events
-    const orderOpts = document.querySelectorAll("input[name=order]");
-    for (const rad of orderOpts) {
-        rad.addEventListener("change", (e) => {
-            if (e.target.checked) {
-                populateTalksHTML(true, e.target.value);
-            }
-        });
-    }
+    // *** use after timetable is decided
+    // const orderOpts = document.querySelectorAll("input[name=order]");
+    // for (const rad of orderOpts) {
+    //     rad.addEventListener("change", (e) => {
+    //         if (e.target.checked) {
+    //             populateTalksHTML(true, e.target.value);
+    //         }
+    //     });
+    // }
 };

@@ -294,6 +294,10 @@ ul.compact ul > li {
     margin: 0.3em 0;
 }
 
+ul.lineChangeAfter:not(:last-child) {
+    margin-bottom: 1em; /* Adjust spacing as needed */
+}
+
 /*--------------------------------------------------*/
 /* ul.vertical */
 /*--------------------------------------------------*/
@@ -658,18 +662,22 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
         padding: 0;
     }
 }
-.talk_details > .talk_summary {
+.talk_summary,
+.talk_title_only {
     list-style: none;
-    cursor: pointer;
     padding: 1rem 2em 1rem 0;
     font-size: 12pt;
 }
-.talk_details > .talk_summary > .subtitle {
-    cursor: pointer;
+.talk_title_only > .subtitle,
+.talk_summary > .subtitle {
     padding-left: 1.5em;
     padding-top: 0.4em;
     font-weight: bold;
     font-size: 12pt;
+}
+.talk_summary,
+.talk_summary > .subtitle {
+    cursor: pointer;
 }
 .talk_summary::before {
     content: " ►";

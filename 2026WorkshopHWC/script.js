@@ -70,6 +70,25 @@ const speakersTalks = [
         category: "invited",
         timeIndex: 2,
     },
+    {
+        author: "Haruto Murata",
+        id: "murata",
+        affiliate: "Tokyo",
+        web: "https://sites.google.com/view/hmurata/home/",
+        title: ``,
+        abstract: ``,
+        category: "invited",
+        timeIndex: 0,
+    },
+    {
+        author: "Ryo Tomonaga",
+        id: "tomonaga",
+        affiliate: "Tokyo",
+        title: ``,
+        abstract: ``,
+        category: "invited",
+        timeIndex: 0,
+    },
 ];
 
 const groupedList = speakersTalks.reduce(

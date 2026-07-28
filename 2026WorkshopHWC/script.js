@@ -18,7 +18,7 @@ const speakersTalks = [
         id: "kulshammer",
         affiliate: "Uppsala",
         web: "https://julian-kuelshammer.github.io/",
-        title: `TBC`,
+        title: `Highest weight categories, $A_\\infty$-algebras, and corings`,
         abstract: ``,
         category: "lecture",
         timeIndex: 1,

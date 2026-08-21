@@ -1,0 +1,1570 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Gentle Algebras — Recent Literature</title>
+    <style>
+        :root {
+            --bg: #f4f6f8;
+            --paper: #fff;
+            --ink: #20242a;
+            --muted: #69717c;
+            --line: #dfe5eb;
+            --accent: #275d87;
+            --head: #edf4f9
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            line-height: 1.45
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none
+        }
+
+        a:hover {
+            text-decoration: underline
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: auto;
+            padding: 36px 20px 70px
+        }
+
+        header,
+        nav,
+        section {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 15px
+        }
+
+        header {
+            padding: 28px 30px;
+            margin-bottom: 18px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.25rem;
+            letter-spacing: -.035em
+        }
+
+        header p {
+            margin: .4rem 0 0;
+            color: var(--muted)
+        }
+
+        nav {
+            padding: 15px 20px;
+            margin-bottom: 20px
+        }
+
+        .toc {
+            columns: 2;
+            column-gap: 34px;
+            margin: 0;
+            padding-left: 22px
+        }
+
+        .toc li {
+            break-inside: avoid;
+            margin: 4px 0
+        }
+
+        section {
+            padding: 23px 25px;
+            margin-bottom: 18px
+        }
+
+        h2 {
+            font-size: 1.38rem;
+            margin: 0 0 18px
+        }
+
+        h3 {
+            font-size: .99rem;
+            margin: 23px 0 8px;
+            color: #3c4652
+        }
+
+        h3:first-of-type {
+            margin-top: 0
+        }
+
+        .tw {
+            overflow-x: auto;
+            border: 1px solid var(--line);
+            border-radius: 10px
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 680px;
+            font-size: .93rem
+        }
+
+        th {
+            background: var(--head);
+            color: #52606d;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            font-size: .76rem;
+            text-align: left;
+            padding: 9px 12px
+        }
+
+        td {
+            padding: 9px 12px;
+            border-top: 1px solid var(--line);
+            vertical-align: top
+        }
+
+        tbody tr:hover {
+            background: #fafcff
+        }
+
+        .auth {
+            width: 50%;
+            font-weight: 600
+        }
+
+        .arx {
+            width: 29%;
+            white-space: nowrap
+        }
+
+        .pub {
+            width: 21%;
+            white-space: nowrap
+        }
+
+        .yr {
+            color: var(--muted);
+            display: inline-block;
+            min-width: 3.15rem
+        }
+
+        .code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: .9em
+        }
+
+        .dash {
+            color: #9aa3ad
+        }
+
+        @media(max-width:720px) {
+            .wrap {
+                padding: 16px 10px 40px
+            }
+
+            .toc {
+                columns: 1
+            }
+
+            header,
+            section {
+                padding: 18px 16px
+            }
+
+            h1 {
+                font-size: 1.72rem
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Gentle Algebras — Recent Literature</h1>
+            <p>Approximately 2021–August 2026, with selected closely related background items.</p>
+        </header>
+        <nav>
+            <ol class="toc">
+                <li><a href="#s1">1. Silting, tilting, derived equivalence, recollement</a></li>
+                <li><a href="#s2">2. τ-tilting, rigid modules, g-vectors and exchange combinatorics</a></li>
+                <li><a href="#s3">3. Classification of subcategories</a></li>
+                <li><a href="#s4">4. Cluster theory, Caldero–Chapoton, snake graphs and laminations</a></li>
+                <li><a href="#s5">5. Fukaya categories, A∞ structures, HMS and autoequivalences</a></li>
+                <li><a href="#s6">6. Stability conditions</a></li>
+                <li><a href="#s7">7. dg/CY structures, Koszul duality, Hochschild theory and deformations</a></li>
+                <li><a href="#s8">8. Representation varieties, generic modules and degenerations</a></li>
+                <li><a href="#s9">9. Homological algebra, Gorenstein theory and higher Auslander–Reiten theory</a></li>
+                <li><a href="#s10">10. Generalizations of gentle algebras</a></li>
+                <li><a href="#s11">11. Polyhedral and combinatorial aspects</a></li>
+            </ol>
+        </nav>
+        <section id="s1">
+            <h2>1. Silting, tilting, derived equivalence, recollement</h2>
+            <h3>Silting and complete derived invariants</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Amiot, Plamondon, Schroll</td>
+                            <td class="arx"><span class="yr">2019</span> <a class="code"
+                                    href="https://arxiv.org/abs/1904.02555">1904.02555</a></td>
+                            <td class="pub"><span class="yr">2023</span> <a
+                                    href="https://doi.org/10.1007/s00029-022-00822-x">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Schroll</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2012.12663">2012.12663</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Jin, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2303.17474">2303.17474</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2412.13971">2412.13971</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Jin, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.24316">2512.24316</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Reduction, recollement, homological epimorphisms</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Chang, Jin, Schroll</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2206.11196">2206.11196</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chen</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.06467">2212.06467</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Liu, Liu, Ma</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2409.08686">2409.08686</a></td>
+                            <td class="pub"><span class="yr">2025</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.05.029">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Xu, Liu, Ma, Shi</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2604.00109">2604.00109</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bodin</td>
+                            <td class="arx"><span class="yr">2024</span><a href="https://arxiv.org/abs/2407.04374" class="code">2407.04374</a></td>
+                            <td class="pub">2026 <a href="https://doi.org/10.1016/j.jalgebra.2026.05.006">DOI</a>  </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Exceptional sequences and hearts</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Chang, Schroll</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2205.15830">2205.15830</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Haiden, Schroll</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2301.04398">2301.04398</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2305.03998">2305.03998</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Geometric models of related categories</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Gupta</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2407.13627">2407.13627</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Jiménez González, Mróz</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2407.04817">2407.04817</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.jpaa.2026.108318">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Winspeare</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2506.04012">2506.04012</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Categorical dynamics</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Chang, Elagin, Schroll</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2508.14860">2508.14860</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s2">
+            <h2>2. τ-tilting, rigid modules, g-vectors</h2>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Fu, Geng, Liu, Zhou</td>
+                            <td class="arx"><span class="yr">2021</span> <a class="code"
+                                    href="https://arxiv.org/abs/2108.01925">2108.01925</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Schroll, Treffinger, Valdivieso</td>
+                            <td class="arx"><span class="yr">2019</span> <a class="code"
+                                    href="https://arxiv.org/abs/1911.09021">1911.09021</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">He, Zhou, Zhu</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.10880">2212.10880</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Jin, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.24316">2512.24316</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Garcia, Lavoué</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.01744">2601.01744</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Fu, Geng</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.11497">2212.11497</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2503.06819">2503.06819</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s3">
+            <h2>3. Classification of subcategories</h2>
+            <h3>Torsion classes</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Chan, Demonet</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2009.10266">2009.10266</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Thick subcategories</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Page</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2502.12023">2502.12023</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Resolving subcategories</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Dequêne, Schoonheere</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2502.20994">2502.20994</a><br>
+                                <span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2509.10120">2509.10120</a><br>
+                                <span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2606.21424">2606.21424</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Higher cluster-tilting subcategories</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Haugland, Jacobsen, Schroll</td>
+                            <td class="arx"><span class="yr">2021</span> <a class="code"
+                                    href="https://arxiv.org/abs/2107.01045">2107.01045</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>ICE / IKE / wide</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Enomoto</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s10468-023-10214-0">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+<h3>Almost rigid modules</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            
+                        <tr>
+                            <td class="auth">Barnard, Coelho Simões, Gunawan, Schiffler</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2408.16904">2408.16904</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Jordan recoverability and exact structures</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Dequêne</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2308.16626">2308.16626</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Dequêne, Roy</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2509.25012">2509.25012</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s4">
+            <h2>4. Cluster theory, Caldero–Chapoton, snake graphs and laminations</h2>
+            <h3>Orbifold surfaces and scattering diagrams</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Labardini-Fragoso, Mou</td>
+                            <td class="arx">
+                                
+                                
+                                <span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2203.11563">2203.11563</a>
+                                    <br>  
+                                <span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2309.16061">2309.16061</a>
+
+                                </td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s10468-023-10233-x">DOI</a>
+                                    <br>
+<span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.aim.2026.110905">DOI</a>
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Caldero–Chapoton, cluster characters, F-polynomials</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Mou</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2206.02289">2206.02289</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Banaian, Valdivieso</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2310.16925">2310.16925</a></td>
+                            <td class="pub"><span class="yr">2025</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.03.006">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Pilaud, Reading, Schroll</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2311.06033">2311.06033</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Labardini-Fragoso, Mou</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2309.16061">2309.16061</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.aim.2026.110905">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Snake graphs and submodule lattices</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Çanakçı, Schroll</td>
+                            <td class="arx"><span class="yr">2018</span> <a class="code"
+                                    href="https://arxiv.org/abs/1811.06064">1811.06064</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Generic bases, laminations and irreducible components</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Geiß, Labardini-Fragoso, Schröer</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2005.01073">2005.01073</a></td>
+                            <td class="pub"><span class="yr">2022</span> <a
+                                    href="https://doi.org/10.1007/s00029-021-00710-w">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Geiß, Labardini-Fragoso, Wilson</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2308.00792">2308.00792</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Geiß, Labardini-Fragoso, Wilson</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2310.03306">2310.03306</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Non-orientable surfaces and quasi-cluster categorification</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Bazier-Matte, Chan, Wright</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2211.15863">2211.15863</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s5">
+            <h2>5. Fukaya categories, A∞ structures, HMS and autoequivalences</h2>
+            <h3>(something) Fukaya categories, deformation</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Bocklandt, van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2304.10223">2304.10223</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bocklandt, van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2305.12608">2305.12608</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2305.09112">2305.09112</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2308.08026">2308.08026</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Barmeier, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2407.16358">2407.16358</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Amiot, Plamondon</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2405.15466">2405.15466</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.aim.2026.111064">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Barmeier, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.16354">2512.16354</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Derived Picard group and autoequivalences</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Opper</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2405.14448">2405.14448</a><br>
+                                    <span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2510.11543">2510.11543</a><br>
+                                    <span class="yr">2026</span> <a class="code"
+                                        href="https://arxiv.org/abs/2601.06018">2601.06018</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Elagin, Schroll</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2508.14860">2508.14860</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s6">
+            <h2>6. Stability conditions</h2>
+            <h3>King stability, walls and scattering</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Schroll, Tattar, Treffinger, Valdivieso, Williams</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2208.15000">2208.15000</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Labardini-Fragoso, Mou</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2203.11563">2203.11563</a></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s10468-023-10233-x">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Bridgeland stability and quadratic differentials</h3>
+            <p style="color:red;">TODO: add Ikeda-Qiu</p>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Lu, Qiu, Wu</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2310.20709">2310.20709</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Qiu, Zhang, Zhou</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.10369">2212.10369</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>q-stability and q-deformed rationals</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Bapat, Deopurkar, Licata</td>
+                            <td class="arx"><span class="yr">2021</span> <a class="code"
+                                    href="https://arxiv.org/abs/2108.09155">2108.09155</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bapat, Becker, Licata</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2202.07613">2202.07613</a></td>
+                            <td class="pub"><span class="yr">2023</span> <a
+                                    href="https://doi.org/10.1017/fms.2023.32">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Li, Qiu</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2306.00063">2306.00063</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s7">
+            <h2>7. dg/CY structures, Koszul duality, Hochschild theory and deformations</h2>
+            <h3>Graded/skew-gentle CY categories and Koszul duality</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Qiu, Zhang, Zhou</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.10369">2212.10369</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Li, Qiu, Zhou</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2403.15190">2403.15190</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Hochschild (co)homology, Gerstenhaber and Tamarkin–Tsygan structures</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Chaparro, Schroll, Solotar, Suárez-Álvarez</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2311.08003">2311.08003</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2026.04.058">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Opper</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.06018">2601.06018</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bian, Schroll, Solotar, Wang, Wen</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.05325">2601.05325</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Deformation, Maurer–Cartan and L∞ structures</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Bocklandt, van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2304.10223">2304.10223</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">van de Kreeke</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2308.09533">2308.09533</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Müller, Redondo, Rossi Bertone, Suarez</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2309.02582">2309.02582</a></td>
+                            <td class="pub"><span class="yr">2025</span> <a
+                                    href="https://doi.org/10.1080/00927872.2025.2473029">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Barmeier, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.16354">2512.16354</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s8">
+            <h2>8. Representation varieties, generic modules and degenerations</h2>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Geiß, Labardini-Fragoso, Schröer</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2005.01073">2005.01073</a></td>
+                            <td class="pub"><span class="yr">2022</span> <a
+                                    href="https://doi.org/10.1007/s00029-021-00710-w">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Dequêne</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2205.08164">2205.08164</a></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1016/j.jpaa.2023.107446">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Geiß, Labardini-Fragoso, Wilson</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2308.00792">2308.00792</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Geiß</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr"></span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.10.001">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Marquardt</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2507.13945">2507.13945</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2026.06.021">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s9">
+            <h2>9. Homological algebra, Gorenstein theory and higher Auslander–Reiten theory</h2>
+            <h3>Extensions and higher homological algebra</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Baur, Schroll</td>
+                            <td class="arx"><span class="yr">2019</span> <a class="code"
+                                    href="https://arxiv.org/abs/1906.05257">1906.05257</a></td>
+                            <td class="pub"><span class="yr">2021</span> <a
+                                    href="https://doi.org/10.1016/j.bulsci.2021.103010">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Haugland, Jacobsen, Schroll</td>
+                            <td class="arx"><span class="yr">2021</span> <a class="code"
+                                    href="https://arxiv.org/abs/2107.01045">2107.01045</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2305.03998">2305.03998</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2503.06819">2503.06819</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Homological dimensions and Gorenstein theory</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Liu, Gao, Huang</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2208.13180">2208.13180</a></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s11425-022-2120-8">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Liu, Liu, Ma</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2409.08686">2409.08686</a></td>
+                            <td class="pub"><span class="yr">2025</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.05.029">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Hu, Wang, Ye</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2403.02986">2403.02986</a></td>
+                            <td class="pub"><span class="yr">2025</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.02.031">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Auslander-type constructions</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Zhang, Liu, Zhang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2505.00072">2505.00072</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Xu, Liu, Ma, Shi</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2604.00109">2604.00109</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s10">
+            <h2>10. Generalizations of gentle algebras</h2>
+            <h3>Skew-gentle algebras and orbifold surfaces</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Labardini-Fragoso, Schroll, Valdivieso</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2006.05836">2006.05836</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">He, Zhou, Zhu</td>
+                            <td class="arx"><span class="yr">2020</span> <a class="code"
+                                    href="https://arxiv.org/abs/2004.11136">2004.11136</a></td>
+                            <td class="pub"><span class="yr">2023</span> <a
+                                    href="https://doi.org/10.1007/s00209-023-03275-w">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chen</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.06467">2212.06467</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Qiu, Zhang, Zhou</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.10369">2212.10369</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">He, Zhou, Zhu</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.10880">2212.10880</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Lu, Qiu, Wu</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2310.20709">2310.20709</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Amiot, Plamondon</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2405.15466">2405.15466</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.aim.2026.111064">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Barmeier, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2407.16358">2407.16358</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Chang, Jin, Schroll, Wang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.24316">2512.24316</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Garcia, Lavoué</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.01744">2601.01744</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bian, Schroll, Solotar, Wang, Wen</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.05325">2601.05325</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>String algebras</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Baur, Coelho Simões</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2403.07810">2403.07810</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Clannish and semilinear analogues</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Bennett-Tennenhaus, Crawley-Boevey</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2204.12138">2204.12138</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Bennett-Tennenhaus, Labardini-Fragoso</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2303.05326">2303.05326</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Banaian, Bennett-Tennenhaus, Jacobsen, Wright</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2402.04947">2402.04947</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Li, Zhang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.08194">2512.08194</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Locally gentle algebras</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Ford, Oswald, Zhang</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2409.08333">2409.08333</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Abram, Bastidas, Dequêne, Morales, Park, Thomas</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.08150">2601.08150</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Li, Zhang</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2512.08194">2512.08194</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Almost gentle, trivial extensions and Brauer-type algebras</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Fernández, Schroll, Treffinger, Trepode, Valdivieso</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2206.04581">2206.04581</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Wang, Huang, Liu</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2503.04445">2503.04445</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Wang, Zhang</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2204.06418">2204.06418</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Soto</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2406.10634">2406.10634</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Fractional Brauer graph and configuration algebras</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">N. Li, Y. Liu</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2406.11468">2406.11468</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1016/j.jalgebra.2025.12.011">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">N. Li, Y. Liu</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2412.13445">2412.13445</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">N. Li, Y. Liu</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2412.13449">2412.13449</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">B. Xing</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2408.03778">2408.03778</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Y. Liu, B. Xing</td>
+                            <td class="arx"><span class="yr">2024</span> <a class="code"
+                                    href="https://arxiv.org/abs/2408.02537">2408.02537</a></td>
+                            <td class="pub"><span class="yr">2026</span> <a
+                                    href="https://doi.org/10.1007/s10468-026-10378-5">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">B. Xing</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2604.06557">2604.06557</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">B. Xing</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2605.27738">2605.27738</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Brauer configurations, integer sequences and arithmetic</h3>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">Fernández Espinosa, Moreno Cañadas</td>
+                            <td class="arx"><span class="yr">2021</span> <a class="code"
+                                    href="https://arxiv.org/abs/2104.00050">2104.00050</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Moreno Cañadas, Marín Gaviria, Fernández Espinosa</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2022</span> <a
+                                    href="https://doi.org/10.3934/era.2022035">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Moreno Cañadas, Fernández Espinosa, Agudelo Muñetón</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2022</span> <a
+                                    href="https://doi.org/10.3934/era.2022157">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Moreno Cañadas, Bravo Rios, Marín Gaviria</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2022</span> <a
+                                    href="https://doi.org/10.3390/math10091378">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Moreno Cañadas, Rodríguez-Nieto, Salazar Díaz</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.3390/math12223626">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Malić, Schroll</td>
+                            <td class="arx"><span class="yr">2019</span> <a class="code"
+                                    href="https://arxiv.org/abs/1908.05509">1908.05509</a></td>
+                            <td class="pub"><span class="yr">2020</span> <a
+                                    href="https://doi.org/10.1007/978-3-030-51795-3_10">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Malić, Schroll</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s10468-023-10232-y">DOI</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="s11">
+            <h2>11. Polyhedral and combinatorial aspects</h2>
+            <div class="tw">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Authors</th>
+                            <th>arXiv</th>
+                            <th>Published</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="auth">von Bell, Braun, Bruegge, Hanely, Peterson, Serhiyenko, Yip</td>
+                            <td class="arx"><span class="dash">—</span></td>
+                            <td class="pub"><span class="yr">2024</span> <a
+                                    href="https://doi.org/10.1007/s00029-024-00942-6">DOI</a></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Fu, Geng</td>
+                            <td class="arx"><span class="yr">2022</span> <a class="code"
+                                    href="https://arxiv.org/abs/2212.11497">2212.11497</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Pilaud, Reading, Schroll</td>
+                            <td class="arx"><span class="yr">2023</span> <a class="code"
+                                    href="https://arxiv.org/abs/2311.06033">2311.06033</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Berggren</td>
+                            <td class="arx"><span class="yr">2025</span> <a class="code"
+                                    href="https://arxiv.org/abs/2507.12688">2507.12688</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td class="auth">Abram, Bastidas, Dequêne, Morales, Park, Thomas</td>
+                            <td class="arx"><span class="yr">2026</span> <a class="code"
+                                    href="https://arxiv.org/abs/2601.08150">2601.08150</a></td>
+                            <td class="pub"><span class="dash">—</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section style="text-align: center; margin-top: 2em;">
+            <div class="tw">
+                <img src="https://imgs.xkcd.com/comics/standards.png" alt="">
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

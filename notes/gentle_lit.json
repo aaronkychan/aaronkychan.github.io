@@ -1,0 +1,2209 @@
+[
+  {
+    "id": "arxiv:1904.02555",
+    "authors": "Amiot, Plamondon, Schroll",
+    "title": "A complete derived invariant for gentle algebras via winding numbers and Arf invariants",
+    "arxiv": {
+      "year": 2019,
+      "id": "1904.02555",
+      "url": "https://arxiv.org/abs/1904.02555"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00029-022-00822-x"
+    },
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2012.12663",
+    "authors": "W. Chang, Schroll",
+    "title": "A geometric realization of silting theory for gentle algebras",
+    "arxiv": {
+      "year": 2020,
+      "id": "2012.12663",
+      "url": "https://arxiv.org/abs/2012.12663"
+    },
+    "published": null,
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2303.17474",
+    "authors": "H. Jin, Schroll, Z. Wang",
+    "title": "A complete derived invariant and silting theory for graded gentle algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2303.17474",
+      "url": "https://arxiv.org/abs/2303.17474"
+    },
+    "published": null,
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2412.13971",
+    "authors": "W. Chang",
+    "title": "Tilting-completion for gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2412.13971",
+      "url": "https://arxiv.org/abs/2412.13971"
+    },
+    "published": null,
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2512.24316",
+    "authors": "W. Chang, H. Jin, Schroll, Q. Wang",
+    "title": "On the $τ$-tilting finiteness and silting-discreteness of graded (skew-) gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2512.24316",
+      "url": "https://arxiv.org/abs/2512.24316"
+    },
+    "published": null,
+    "tags": [
+      "s1-silting-and-complete-derived-invariants",
+      "s2",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2206.11196",
+    "authors": "W. Chang, H. Jin, Schroll",
+    "title": "Recollements of partially wrapped Fukaya categories and surface cuts",
+    "arxiv": {
+      "year": 2022,
+      "id": "2206.11196",
+      "url": "https://arxiv.org/abs/2206.11196"
+    },
+    "published": null,
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms"
+    ]
+  },
+  {
+    "id": "arxiv:2212.06467",
+    "authors": "Y. Chen",
+    "title": "A Characteristic free approach to skew-gentle algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.06467",
+      "url": "https://arxiv.org/abs/2212.06467"
+    },
+    "published": null,
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2409.08686",
+    "authors": "Y.-Z. Liu, D. Liu, X. Ma",
+    "title": "Recollements and Gorenstein projective modules for gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2409.08686",
+      "url": "https://arxiv.org/abs/2409.08686"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.05.029"
+    },
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms",
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2604.00109",
+    "authors": "J. Xu, Y.-Z. Liu, X. Ma, G. Shi",
+    "title": "Recollements of Cohen-Macaulay Auslander algebras for gentle algebras",
+    "arxiv": {
+      "year": 2026,
+      "id": "2604.00109",
+      "url": "https://arxiv.org/abs/2604.00109"
+    },
+    "published": null,
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms",
+      "s9-auslander-type-constructions"
+    ]
+  },
+  {
+    "id": "arxiv:2407.04374",
+    "authors": "Bodin",
+    "title": "Recollements for graded gentle algebras from spherical band objects",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.04374",
+      "url": "https://arxiv.org/abs/2407.04374"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2026.05.006"
+    },
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms"
+    ]
+  },
+  {
+    "id": "arxiv:2205.15830",
+    "authors": "W. Chang, Schroll",
+    "title": "Exceptional sequences in the derived category of a gentle algebra",
+    "arxiv": {
+      "year": 2022,
+      "id": "2205.15830",
+      "url": "https://arxiv.org/abs/2205.15830"
+    },
+    "published": null,
+    "tags": [
+      "s1-exceptional-sequences-and-hearts"
+    ]
+  },
+  {
+    "id": "arxiv:2301.04398",
+    "authors": "W. Chang, Haiden, Schroll",
+    "title": "Braid group actions on branched coverings and full exceptional sequences",
+    "arxiv": {
+      "year": 2023,
+      "id": "2301.04398",
+      "url": "https://arxiv.org/abs/2301.04398"
+    },
+    "published": null,
+    "tags": [
+      "s1-exceptional-sequences-and-hearts"
+    ]
+  },
+  {
+    "id": "arxiv:2305.03998",
+    "authors": "W. Chang",
+    "title": "Geometric models for the algebraic hearts in the derived category of a gentle algebra",
+    "arxiv": {
+      "year": 2023,
+      "id": "2305.03998",
+      "url": "https://arxiv.org/abs/2305.03998"
+    },
+    "published": null,
+    "tags": [
+      "s1-exceptional-sequences-and-hearts",
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:2407.13627",
+    "authors": "Gupta",
+    "title": "A restricted model for the bounded derived category of gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.13627",
+      "url": "https://arxiv.org/abs/2407.13627"
+    },
+    "published": null,
+    "tags": [
+      "s1-geometric-models-of-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2407.04817",
+    "authors": "Jiménez González, Mróz",
+    "title": "A graph theoretic model for the derived categories of gentle algebras and their homological bilinear forms",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.04817",
+      "url": "https://arxiv.org/abs/2407.04817"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2026.108318"
+    },
+    "tags": [
+      "s1-geometric-models-of-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2506.04012",
+    "authors": "Winspeare",
+    "title": "The 1-periodic derived category of a gentle algebra : Part 1 -- Indecomposable objects",
+    "arxiv": {
+      "year": 2025,
+      "id": "2506.04012",
+      "url": "https://arxiv.org/abs/2506.04012"
+    },
+    "published": null,
+    "tags": [
+      "s1-geometric-models-of-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2508.14860",
+    "authors": "W. Chang, Elagin, Schroll",
+    "title": "Entropy of the Serre functor for partially wrapped Fukaya categories of surfaces with stops",
+    "arxiv": {
+      "year": 2025,
+      "id": "2508.14860",
+      "url": "https://arxiv.org/abs/2508.14860"
+    },
+    "published": null,
+    "tags": [
+      "s1-categorical-dynamics",
+      "s5-derived-picard-group-and-autoequivalences"
+    ]
+  },
+  {
+    "id": "arxiv:2108.01925",
+    "authors": "C. Fu, S. Geng, P. Liu, Y. Zhou",
+    "title": "On support $τ$-tilting graphs of gentle algebras",
+    "arxiv": {
+      "year": 2021,
+      "id": "2108.01925",
+      "url": "https://arxiv.org/abs/2108.01925"
+    },
+    "published": null,
+    "tags": [
+      "s2"
+    ]
+  },
+  {
+    "id": "arxiv:1911.09021",
+    "authors": "Schroll, Treffinger, Valdivieso",
+    "title": "On band modules and $τ$-tilting finiteness",
+    "arxiv": {
+      "year": 2019,
+      "id": "1911.09021",
+      "url": "https://arxiv.org/abs/1911.09021"
+    },
+    "published": null,
+    "tags": [
+      "s2"
+    ]
+  },
+  {
+    "id": "arxiv:2212.10880",
+    "authors": "P. He, Y. Zhou, B. Zhu",
+    "title": "Mutation graph of support $τ$-tilting modules over a skew-gentle algebra",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.10880",
+      "url": "https://arxiv.org/abs/2212.10880"
+    },
+    "published": null,
+    "tags": [
+      "s2",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2601.01744",
+    "authors": "Garcia, Lavoué",
+    "title": "Brick-finite skew-gentle algebras are representation-finite",
+    "arxiv": {
+      "year": 2026,
+      "id": "2601.01744",
+      "url": "https://arxiv.org/abs/2601.01744"
+    },
+    "published": null,
+    "tags": [
+      "s2",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2212.11497",
+    "authors": "C. Fu, S. Geng",
+    "title": "Intersection vectors over tilings with applications to gentle algebras and cluster algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.11497",
+      "url": "https://arxiv.org/abs/2212.11497"
+    },
+    "published": null,
+    "tags": [
+      "s2",
+      "s11"
+    ]
+  },
+  {
+    "id": "arxiv:2503.06819",
+    "authors": "W. Chang",
+    "title": "Maximal rigid modules over a gentle algebra and applications to higher Auslander-Reiten theory",
+    "arxiv": {
+      "year": 2025,
+      "id": "2503.06819",
+      "url": "https://arxiv.org/abs/2503.06819"
+    },
+    "published": null,
+    "tags": [
+      "s2",
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:2009.10266",
+    "authors": "A. Chan, Demonet",
+    "title": "Classifying torsion classes of gentle algebras",
+    "arxiv": {
+      "year": 2020,
+      "id": "2009.10266",
+      "url": "https://arxiv.org/abs/2009.10266"
+    },
+    "published": null,
+    "tags": [
+      "s3-torsion-classes"
+    ]
+  },
+  {
+    "id": "arxiv:2502.12023",
+    "authors": "Page",
+    "title": "Thick subcategories of derived categories of gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2502.12023",
+      "url": "https://arxiv.org/abs/2502.12023"
+    },
+    "published": null,
+    "tags": [
+      "s3-thick-subcategories"
+    ]
+  },
+  {
+    "id": "arxiv:2502.20994",
+    "authors": "Dequêne, Schoonheere",
+    "title": "Resolving subcategories for gentle algebras I: Monogeneous resolving subcategories for gentle trees",
+    "arxiv": {
+      "year": 2025,
+      "id": "2502.20994",
+      "url": "https://arxiv.org/abs/2502.20994"
+    },
+    "published": null,
+    "tags": [
+      "s3-resolving-subcategories"
+    ]
+  },
+  {
+    "id": "arxiv:2107.01045",
+    "authors": "Haugland, Jacobsen, Schroll",
+    "title": "The role of gentle algebras in higher homological algebra",
+    "arxiv": {
+      "year": 2021,
+      "id": "2107.01045",
+      "url": "https://arxiv.org/abs/2107.01045"
+    },
+    "published": null,
+    "tags": [
+      "s3-higher-cluster-tilting-subcategories",
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "doi:10.1007/s10468-023-10214-0",
+    "authors": "Enomoto",
+    "title": "From the Lattice of Torsion Classes to the Posets of Wide Subcategories and ICE-closed Subcategories",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-023-10214-0"
+    },
+    "tags": [
+      "s3-ice-ike-wide"
+    ]
+  },
+  {
+    "id": "arxiv:2408.16904",
+    "authors": "Barnard, Coelho Simões, Gunawan, Schiffler",
+    "title": "Maximal almost rigid modules over gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2408.16904",
+      "url": "https://arxiv.org/abs/2408.16904"
+    },
+    "published": null,
+    "tags": [
+      "s3-almost-rigid-modules"
+    ]
+  },
+  {
+    "id": "arxiv:2308.16626",
+    "authors": "Dequêne",
+    "title": "Canonically Jordan recoverable categories for modules over the path algebra of $A_n$ type quivers",
+    "arxiv": {
+      "year": 2023,
+      "id": "2308.16626",
+      "url": "https://arxiv.org/abs/2308.16626"
+    },
+    "published": null,
+    "tags": [
+      "s3-jordan-recoverability-and-exact-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2509.25012",
+    "authors": "Dequêne, Roy",
+    "title": "Exact structures and maximal canonically Jordan recoverable subcategories for modules over type $A$ algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2509.25012",
+      "url": "https://arxiv.org/abs/2509.25012"
+    },
+    "published": null,
+    "tags": [
+      "s3-jordan-recoverability-and-exact-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2203.11563",
+    "authors": "Labardini-Fragoso, L. Mou",
+    "title": "Gentle algebras arising from surfaces with orbifold points of order 3, Part I: scattering diagrams",
+    "arxiv": {
+      "year": 2022,
+      "id": "2203.11563",
+      "url": "https://arxiv.org/abs/2203.11563"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-023-10233-x"
+    },
+    "tags": [
+      "s4-orbifold-surfaces-and-scattering-diagrams",
+      "s6-king-stability-walls-and-scattering"
+    ]
+  },
+  {
+    "id": "arxiv:2206.02289",
+    "authors": "L. Mou",
+    "title": "Locally free Caldero-Chapoton functions via reflections",
+    "arxiv": {
+      "year": 2022,
+      "id": "2206.02289",
+      "url": "https://arxiv.org/abs/2206.02289"
+    },
+    "published": null,
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "arxiv:2310.16925",
+    "authors": "Banaian, Valdivieso",
+    "title": "Snake Graphs and Caldero-Chapoton Functions from Triangulated Orbifolds",
+    "arxiv": {
+      "year": 2023,
+      "id": "2310.16925",
+      "url": "https://arxiv.org/abs/2310.16925"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.03.006"
+    },
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "arxiv:2311.06033",
+    "authors": "Pilaud, Reading, Schroll",
+    "title": "Posets for $F$-polynomials in cluster algebras from surfaces",
+    "arxiv": {
+      "year": 2023,
+      "id": "2311.06033",
+      "url": "https://arxiv.org/abs/2311.06033"
+    },
+    "published": null,
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials",
+      "s11"
+    ]
+  },
+  {
+    "id": "arxiv:2309.16061",
+    "authors": "Labardini-Fragoso, L. Mou",
+    "title": "Gentle algebras arising from surfaces with orbifold points, Part II: Locally free Caldero-Chapoton functions",
+    "arxiv": {
+      "year": 2023,
+      "id": "2309.16061",
+      "url": "https://arxiv.org/abs/2309.16061"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.aim.2026.110905"
+    },
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "arxiv:1811.06064",
+    "authors": "Çanakçı, Schroll",
+    "title": "Lattice bijections for string modules, snake graphs and the weak Bruhat order",
+    "arxiv": {
+      "year": 2018,
+      "id": "1811.06064",
+      "url": "https://arxiv.org/abs/1811.06064"
+    },
+    "published": null,
+    "tags": [
+      "s4-snake-graphs-and-submodule-lattices"
+    ]
+  },
+  {
+    "id": "arxiv:2005.01073",
+    "authors": "Geiß, Labardini-Fragoso, Schröer",
+    "title": "Schemes of modules over gentle algebras and laminations of surfaces",
+    "arxiv": {
+      "year": 2020,
+      "id": "2005.01073",
+      "url": "https://arxiv.org/abs/2005.01073"
+    },
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00029-021-00710-w"
+    },
+    "tags": [
+      "s4-generic-bases-laminations-and-irreducible-components",
+      "s8"
+    ]
+  },
+  {
+    "id": "arxiv:2308.00792",
+    "authors": "Geiß, Labardini-Fragoso, Wilson",
+    "title": "Laminations of punctured surfaces as $τ$-regular irreducible components",
+    "arxiv": {
+      "year": 2023,
+      "id": "2308.00792",
+      "url": "https://arxiv.org/abs/2308.00792"
+    },
+    "published": null,
+    "tags": [
+      "s4-generic-bases-laminations-and-irreducible-components",
+      "s8"
+    ]
+  },
+  {
+    "id": "arxiv:2310.03306",
+    "authors": "Geiß, Labardini-Fragoso, Wilson",
+    "title": "Bangle functions are the generic basis for cluster algebras from punctured surfaces with boundary",
+    "arxiv": {
+      "year": 2023,
+      "id": "2310.03306",
+      "url": "https://arxiv.org/abs/2310.03306"
+    },
+    "published": null,
+    "tags": [
+      "s4-generic-bases-laminations-and-irreducible-components"
+    ]
+  },
+  {
+    "id": "arxiv:2211.15863",
+    "authors": "Bazier-Matte, A. Chan, Wright",
+    "title": "Marked non-orientable surfaces and cluster categories via symmetric representations",
+    "arxiv": {
+      "year": 2022,
+      "id": "2211.15863",
+      "url": "https://arxiv.org/abs/2211.15863"
+    },
+    "published": null,
+    "tags": [
+      "s4-non-orientable-surfaces-and-quasi-cluster-categorification"
+    ]
+  },
+  {
+    "id": "arxiv:2304.10223",
+    "authors": "Bocklandt, van de Kreeke",
+    "title": "Deformations of Gentle $A_\\infty$-Algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2304.10223",
+      "url": "https://arxiv.org/abs/2304.10223"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s7-deformation-maurer-cartan-and-l-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2305.12608",
+    "authors": "Bocklandt, van de Kreeke",
+    "title": "Deformed Mirror Symmetry for Punctured Surfaces",
+    "arxiv": {
+      "year": 2023,
+      "id": "2305.12608",
+      "url": "https://arxiv.org/abs/2305.12608"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation"
+    ]
+  },
+  {
+    "id": "arxiv:2305.09112",
+    "authors": "van de Kreeke",
+    "title": "Relative Fukaya Categories via Gentle Algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2305.09112",
+      "url": "https://arxiv.org/abs/2305.09112"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation"
+    ]
+  },
+  {
+    "id": "arxiv:2308.08026",
+    "authors": "van de Kreeke",
+    "title": "$ A_\\infty $-Deformations and their Derived Categories",
+    "arxiv": {
+      "year": 2023,
+      "id": "2308.08026",
+      "url": "https://arxiv.org/abs/2308.08026"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation"
+    ]
+  },
+  {
+    "id": "arxiv:2407.16358",
+    "authors": "Barmeier, Schroll, Z. Wang",
+    "title": "Partially wrapped Fukaya categories of orbifold surfaces",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.16358",
+      "url": "https://arxiv.org/abs/2407.16358"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2405.15466",
+    "authors": "Amiot, Plamondon",
+    "title": "Skew-group $A_{\\infty}$-categories as Fukaya categories of orbifolds",
+    "arxiv": {
+      "year": 2024,
+      "id": "2405.15466",
+      "url": "https://arxiv.org/abs/2405.15466"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.aim.2026.111064"
+    },
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2512.16354",
+    "authors": "Barmeier, Schroll, Z. Wang",
+    "title": "Deformations of partially wrapped Fukaya categories of surfaces",
+    "arxiv": {
+      "year": 2025,
+      "id": "2512.16354",
+      "url": "https://arxiv.org/abs/2512.16354"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s7-deformation-maurer-cartan-and-l-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2405.14448",
+    "authors": "Opper",
+    "title": "Integration of Hochschild cohomology, derived Picard groups and uniqueness of lifts",
+    "arxiv": {
+      "year": 2024,
+      "id": "2405.14448",
+      "url": "https://arxiv.org/abs/2405.14448"
+    },
+    "published": null,
+    "tags": [
+      "s5-derived-picard-group-and-autoequivalences"
+    ]
+  },
+  {
+    "id": "arxiv:2208.15000",
+    "authors": "Schroll, Tattar, Treffinger, Valdivieso, Williams",
+    "title": "Stability spaces of string and band modules",
+    "arxiv": {
+      "year": 2022,
+      "id": "2208.15000",
+      "url": "https://arxiv.org/abs/2208.15000"
+    },
+    "published": null,
+    "tags": [
+      "s6-king-stability-walls-and-scattering"
+    ]
+  },
+  {
+    "id": "arxiv:2310.20709",
+    "authors": "S. Lu, Y. Qiu, D. Wu",
+    "title": "Quadratic Differentials as Stability Conditions of Graded Skew-gentle Algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2310.20709",
+      "url": "https://arxiv.org/abs/2310.20709"
+    },
+    "published": null,
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2212.10369",
+    "authors": "Y. Qiu, C. Zhang, Y. Zhou",
+    "title": "Two geometric models for graded skew-gentle algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.10369",
+      "url": "https://arxiv.org/abs/2212.10369"
+    },
+    "published": null,
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials",
+      "s7-graded-skew-gentle-cy-categories-and-koszul-duality",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2108.09155",
+    "authors": "Bapat, Deopurkar, Licata",
+    "title": "Spherical objects and stability conditions on 2-Calabi--Yau quiver categories",
+    "arxiv": {
+      "year": 2021,
+      "id": "2108.09155",
+      "url": "https://arxiv.org/abs/2108.09155"
+    },
+    "published": null,
+    "tags": [
+      "s6-q-stability-and-q-deformed-rationals"
+    ]
+  },
+  {
+    "id": "arxiv:2202.07613",
+    "authors": "Bapat, Becker, Licata",
+    "title": "$q$-deformed rational numbers and the 2-Calabi--Yau category of type $A_2$",
+    "arxiv": {
+      "year": 2022,
+      "id": "2202.07613",
+      "url": "https://arxiv.org/abs/2202.07613"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1017/fms.2023.32"
+    },
+    "tags": [
+      "s6-q-stability-and-q-deformed-rationals"
+    ]
+  },
+  {
+    "id": "arxiv:2306.00063",
+    "authors": "F. Li, Y. Qiu",
+    "title": "Topological model for q-deformed rational number and categorification",
+    "arxiv": {
+      "year": 2023,
+      "id": "2306.00063",
+      "url": "https://arxiv.org/abs/2306.00063"
+    },
+    "published": null,
+    "tags": [
+      "s6-q-stability-and-q-deformed-rationals"
+    ]
+  },
+  {
+    "id": "arxiv:2403.15190",
+    "authors": "Z. Li, Y. Qiu, Y. Zhou",
+    "title": "A geometric realization of Koszul duality for graded gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2403.15190",
+      "url": "https://arxiv.org/abs/2403.15190"
+    },
+    "published": null,
+    "tags": [
+      "s7-graded-skew-gentle-cy-categories-and-koszul-duality"
+    ]
+  },
+  {
+    "id": "arxiv:2311.08003",
+    "authors": "Chaparro, Schroll, Solotar, Suárez-Álvarez",
+    "title": "The Hochschild cohomology and the Tamarkin-Tsygan calculus of gentle algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2311.08003",
+      "url": "https://arxiv.org/abs/2311.08003"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2026.04.058"
+    },
+    "tags": [
+      "s7-hochschild-co-homology-gerstenhaber-and-tamarkin-tsygan-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2601.06018",
+    "authors": "Opper",
+    "title": "Hochschild cohomology of graded gentle algebras and intrinsic formality",
+    "arxiv": {
+      "year": 2026,
+      "id": "2601.06018",
+      "url": "https://arxiv.org/abs/2601.06018"
+    },
+    "published": null,
+    "tags": [
+      "s7-hochschild-co-homology-gerstenhaber-and-tamarkin-tsygan-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2601.05325",
+    "authors": "X. Bian, Schroll, Solotar, X.-C. Wang, C. Wen",
+    "title": "Hochschild cohomology of graded skew-gentle algebras: Gerstenhaber algebra structure and geometric interpretation",
+    "arxiv": {
+      "year": 2026,
+      "id": "2601.05325",
+      "url": "https://arxiv.org/abs/2601.05325"
+    },
+    "published": null,
+    "tags": [
+      "s7-hochschild-co-homology-gerstenhaber-and-tamarkin-tsygan-structures",
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2308.09533",
+    "authors": "van de Kreeke",
+    "title": "Explicit Hochschild Cocycles for Gentle Algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2308.09533",
+      "url": "https://arxiv.org/abs/2308.09533"
+    },
+    "published": null,
+    "tags": [
+      "s7-deformation-maurer-cartan-and-l-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2309.02582",
+    "authors": "Müller, Redondo, Rossi Bertone, Suarez",
+    "title": "Maurer-Cartan equation for gentle algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2309.02582",
+      "url": "https://arxiv.org/abs/2309.02582"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2025.2473029"
+    },
+    "tags": [
+      "s7-deformation-maurer-cartan-and-l-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2205.08164",
+    "authors": "Dequêne",
+    "title": "Jordan recoverability of some subcategories of modules over gentle algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2205.08164",
+      "url": "https://arxiv.org/abs/2205.08164"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2023.107446"
+    },
+    "tags": [
+      "s8"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jalgebra.2025.10.001",
+    "authors": "Geiß",
+    "title": "On homomorphisms and generically τ-regular components for skewed-gentle algebras",
+    "arxiv": null,
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.10.001"
+    },
+    "tags": [
+      "s8"
+    ]
+  },
+  {
+    "id": "arxiv:2507.13945",
+    "authors": "Marquardt",
+    "title": "Degenerations of families of bands and strings for gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2507.13945",
+      "url": "https://arxiv.org/abs/2507.13945"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2026.06.021"
+    },
+    "tags": [
+      "s8"
+    ]
+  },
+  {
+    "id": "arxiv:1906.05257",
+    "authors": "Baur, Schroll",
+    "title": "Higher extensions for gentle algebras",
+    "arxiv": {
+      "year": 2019,
+      "id": "1906.05257",
+      "url": "https://arxiv.org/abs/1906.05257"
+    },
+    "published": {
+      "year": 2021,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.bulsci.2021.103010"
+    },
+    "tags": [
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:2208.13180",
+    "authors": "Y.-Z. Liu, H. Gao, Z. Huang",
+    "title": "Homological Dimensions of Gentle Algebras via Geometric Models",
+    "arxiv": {
+      "year": 2022,
+      "id": "2208.13180",
+      "url": "https://arxiv.org/abs/2208.13180"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s11425-022-2120-8"
+    },
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2403.02986",
+    "authors": "H. Hu, X.-C. Wang, Y. Ye",
+    "title": "Quasi-diagrams and gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2403.02986",
+      "url": "https://arxiv.org/abs/2403.02986"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.02.031"
+    },
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2505.00072",
+    "authors": "M. Zhang, Y.-Z. Liu, C. Zhang",
+    "title": "On BD-algebra and CM-Auslander algebra for a gentle algebra and their representation types",
+    "arxiv": {
+      "year": 2025,
+      "id": "2505.00072",
+      "url": "https://arxiv.org/abs/2505.00072"
+    },
+    "published": null,
+    "tags": [
+      "s9-auslander-type-constructions"
+    ]
+  },
+  {
+    "id": "arxiv:2006.05836",
+    "authors": "Labardini-Fragoso, Schroll, Valdivieso",
+    "title": "Derived categories of skew-gentle algebras and orbifolds",
+    "arxiv": {
+      "year": 2020,
+      "id": "2006.05836",
+      "url": "https://arxiv.org/abs/2006.05836"
+    },
+    "published": null,
+    "tags": [
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2004.11136",
+    "authors": "P. He, Y. Zhou, B. Zhu",
+    "title": "A geometric model for the module category of a skew-gentle algebra",
+    "arxiv": {
+      "year": 2020,
+      "id": "2004.11136",
+      "url": "https://arxiv.org/abs/2004.11136"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00209-023-03275-w"
+    },
+    "tags": [
+      "s10-skew-gentle-algebras-and-orbifold-surfaces"
+    ]
+  },
+  {
+    "id": "arxiv:2403.07810",
+    "authors": "Baur, Coelho Simões",
+    "title": "A geometric model for the module category of a string algebra",
+    "arxiv": {
+      "year": 2024,
+      "id": "2403.07810",
+      "url": "https://arxiv.org/abs/2403.07810"
+    },
+    "published": null,
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2204.12138",
+    "authors": "Bennett-Tennenhaus, Crawley-Boevey",
+    "title": "Semilinear clannish algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2204.12138",
+      "url": "https://arxiv.org/abs/2204.12138"
+    },
+    "published": null,
+    "tags": [
+      "s10-clannish-and-semilinear-analogues"
+    ]
+  },
+  {
+    "id": "arxiv:2303.05326",
+    "authors": "Bennett-Tennenhaus, Labardini-Fragoso",
+    "title": "Semilinear clannish algebras arising from surfaces with orbifold points",
+    "arxiv": {
+      "year": 2023,
+      "id": "2303.05326",
+      "url": "https://arxiv.org/abs/2303.05326"
+    },
+    "published": null,
+    "tags": [
+      "s10-clannish-and-semilinear-analogues"
+    ]
+  },
+  {
+    "id": "arxiv:2402.04947",
+    "authors": "Banaian, Bennett-Tennenhaus, Jacobsen, Wright",
+    "title": "A geometric model for semilinear locally gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2402.04947",
+      "url": "https://arxiv.org/abs/2402.04947"
+    },
+    "published": null,
+    "tags": [
+      "s10-clannish-and-semilinear-analogues"
+    ]
+  },
+  {
+    "id": "arxiv:2512.08194",
+    "authors": "J. Li, C. Zhang",
+    "title": "The locally complexified-gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2512.08194",
+      "url": "https://arxiv.org/abs/2512.08194"
+    },
+    "published": null,
+    "tags": [
+      "s10-clannish-and-semilinear-analogues",
+      "s10-locally-gentle-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2409.08333",
+    "authors": "Ford, Oswald, J. J. Zhang",
+    "title": "Homological conditions on locally gentle algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2409.08333",
+      "url": "https://arxiv.org/abs/2409.08333"
+    },
+    "published": null,
+    "tags": [
+      "s10-locally-gentle-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2601.08150",
+    "authors": "Abram, Bastidas, Dequêne, Morales, Park, Thomas",
+    "title": "Flows on graphs with cycles, locally gentle algebras, and the Mutoperhedron",
+    "arxiv": {
+      "year": 2026,
+      "id": "2601.08150",
+      "url": "https://arxiv.org/abs/2601.08150"
+    },
+    "published": null,
+    "tags": [
+      "s10-locally-gentle-algebras",
+      "s11"
+    ]
+  },
+  {
+    "id": "arxiv:2206.04581",
+    "authors": "Fernández, Schroll, Treffinger, Trepode, Valdivieso",
+    "title": "Characterisations of trivial extensions",
+    "arxiv": {
+      "year": 2022,
+      "id": "2206.04581",
+      "url": "https://arxiv.org/abs/2206.04581"
+    },
+    "published": null,
+    "tags": [
+      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2503.04445",
+    "authors": "D. Wang, Z. Huang, Y.-Z. Liu",
+    "title": "Homological dimensions over almost gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2503.04445",
+      "url": "https://arxiv.org/abs/2503.04445"
+    },
+    "published": null,
+    "tags": [
+      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2204.06418",
+    "authors": "Q. Wang, Y. Zhang",
+    "title": "On $τ$-tilting modules over trivial extensions of gentle tree algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2204.06418",
+      "url": "https://arxiv.org/abs/2204.06418"
+    },
+    "published": null,
+    "tags": [
+      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2406.10634",
+    "authors": "Soto",
+    "title": "Tilting mutations as generalized Kauer moves for (skew) Brauer graph algebras with multiplicity",
+    "arxiv": {
+      "year": 2024,
+      "id": "2406.10634",
+      "url": "https://arxiv.org/abs/2406.10634"
+    },
+    "published": null,
+    "tags": [
+      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2406.11468",
+    "authors": "N. Li, Y. Liu",
+    "title": "Fractional Brauer configuration algebras I: definitions and examples",
+    "arxiv": {
+      "year": 2024,
+      "id": "2406.11468",
+      "url": "https://arxiv.org/abs/2406.11468"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.12.011"
+    },
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2412.13445",
+    "authors": "N. Li, Y. Liu",
+    "title": "Fractional Brauer configuration algebras II: covering theory",
+    "arxiv": {
+      "year": 2024,
+      "id": "2412.13445",
+      "url": "https://arxiv.org/abs/2412.13445"
+    },
+    "published": null,
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2412.13449",
+    "authors": "N. Li, Y. Liu",
+    "title": "Fractional Brauer configuration algebras III: fractional Brauer graph algebras of type MS",
+    "arxiv": {
+      "year": 2024,
+      "id": "2412.13449",
+      "url": "https://arxiv.org/abs/2412.13449"
+    },
+    "published": null,
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2408.03778",
+    "authors": "B. Xing",
+    "title": "Quasi-biserial algebras, special quasi-biserial algebras and symmetric fractional Brauer graph algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2408.03778",
+      "url": "https://arxiv.org/abs/2408.03778"
+    },
+    "published": null,
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2408.02537",
+    "authors": "Y. Liu, B. Xing",
+    "title": "Trivial extensions of monomial algebras are symmetric fractional Brauer configuration algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2408.02537",
+      "url": "https://arxiv.org/abs/2408.02537"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-026-10378-5"
+    },
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2604.06557",
+    "authors": "B. Xing",
+    "title": "Invariants of derived equivalences for admissible fractional Brauer graph algebras",
+    "arxiv": {
+      "year": 2026,
+      "id": "2604.06557",
+      "url": "https://arxiv.org/abs/2604.06557"
+    },
+    "published": null,
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2605.27738",
+    "authors": "B. Xing",
+    "title": "Two-term tilting complexes of biserial fractional Brauer graph algebras",
+    "arxiv": {
+      "year": 2026,
+      "id": "2605.27738",
+      "url": "https://arxiv.org/abs/2605.27738"
+    },
+    "published": null,
+    "tags": [
+      "s10-fractional-brauer-graph-and-configuration-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2104.00050",
+    "authors": "Fernández Espinosa, Moreno Cañadas",
+    "title": "Homological Ideals as Integer Specializations of Some Brauer Configuration Algebras",
+    "arxiv": {
+      "year": 2021,
+      "id": "2104.00050",
+      "url": "https://arxiv.org/abs/2104.00050"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.3934/era.2022035",
+    "authors": "Moreno Cañadas, Marín Gaviria, Fernández Espinosa",
+    "title": "Brauer configuration algebras and Kronecker modules to categorify integer sequences",
+    "arxiv": null,
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.3934/era.2022035"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.3934/era.2022157",
+    "authors": "Moreno Cañadas, Fernández Espinosa, Agudelo Muñetón",
+    "title": "Brauer configuration algebras defined by snake graphs and Kronecker modules",
+    "arxiv": null,
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.3934/era.2022157"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.3390/math10091378",
+    "authors": "Moreno Cañadas, Bravo Rios, Marín Gaviria",
+    "title": "Brauer Configuration Algebras Arising from Dyck Paths",
+    "arxiv": null,
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.3390/math10091378"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.3390/math12223626",
+    "authors": "Moreno Cañadas, Rodríguez-Nieto, Salazar Díaz",
+    "title": "Brauer Configuration Algebras Induced by Integer Partitions and Their Applications in the Theory of Branched Coverings",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.3390/math12223626"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "arxiv:1908.05509",
+    "authors": "Malić, Schroll",
+    "title": "Dessins d'enfants and Brauer configuration algebras",
+    "arxiv": {
+      "year": 2019,
+      "id": "1908.05509",
+      "url": "https://arxiv.org/abs/1908.05509"
+    },
+    "published": {
+      "year": 2020,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/978-3-030-51795-3_10"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.1007/s10468-023-10232-y",
+    "authors": "Malić, Schroll",
+    "title": "Dessins D’Enfants, Brauer Graph Algebras and Galois Invariants",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-023-10232-y"
+    },
+    "tags": [
+      "s10-brauer-configurations-integer-sequences-and-arithmetic"
+    ]
+  },
+  {
+    "id": "doi:10.1007/s00029-024-00942-6",
+    "authors": "von Bell, Braun, Bruegge, Hanely, Peterson, Serhiyenko, Yip",
+    "title": "Triangulations of flow polytopes, ample framings, and gentle algebras",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00029-024-00942-6"
+    },
+    "tags": [
+      "s11"
+    ]
+  },
+  {
+    "id": "arxiv:2507.12688",
+    "authors": "Berggren",
+    "title": "Flows on Gentle Algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2507.12688",
+      "url": "https://arxiv.org/abs/2507.12688"
+    },
+    "published": null,
+    "tags": [
+      "s11"
+    ]
+  },
+  {
+    "id": "arxiv:1812.00010",
+    "authors": "Ikeda, Y. Qiu",
+    "title": "$q$-Stability conditions via $q$-quadratic differentials for Calabi-Yau-$\\mathbb{X}$ categories",
+    "arxiv": {
+      "year": 2018,
+      "id": "1812.00010",
+      "url": "https://arxiv.org/abs/1812.00010"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1090/memo/1557"
+    },
+    "tags": [
+      "s6-q-stability-and-q-deformed-rationals"
+    ]
+  },
+  {
+    "id": "arxiv:2107.10091",
+    "authors": "Christ",
+    "title": "Geometric models for the derived categories of Ginzburg algebras of n-angulated surfaces via local-to-global principles",
+    "arxiv": {
+      "year": 2021,
+      "id": "2107.10091",
+      "url": "https://arxiv.org/abs/2107.10091"
+    },
+    "published": null,
+    "tags": [
+      "s7-perverse-schobers-and-surface-categories"
+    ]
+  },
+  {
+    "id": "arxiv:math/0002060",
+    "authors": "Huerfano, Khovanov",
+    "title": "A category for the adjoint representation",
+    "arxiv": {
+      "year": 2000,
+      "id": "math/0002060",
+      "url": "https://arxiv.org/abs/math/0002060"
+    },
+    "published": null,
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2006.00009",
+    "authors": "Ikeda, Y. Qiu, Y. Zhou",
+    "title": "Graded decorated marked surfaces: Calabi-Yau-$\\mathbb{X}$ categories of gentle algebras",
+    "arxiv": {
+      "year": 2020,
+      "id": "2006.00009",
+      "url": "https://arxiv.org/abs/2006.00009"
+    },
+    "published": null,
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s7-graded-skew-gentle-cy-categories-and-koszul-duality"
+    ]
+  },
+  {
+    "id": "arxiv:2502.14852",
+    "authors": "Gnedin",
+    "title": "Derived invariants of gentle orders",
+    "arxiv": {
+      "year": 2025,
+      "id": "2502.14852",
+      "url": "https://arxiv.org/abs/2502.14852"
+    },
+    "published": null,
+    "tags": [
+      "s10-locally-gentle-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2511.00438",
+    "authors": "Y. Qiu, Y. Zhou",
+    "title": "Decorated Marked Surfaces with vortices: Cluster braid group vs. braid twist group",
+    "arxiv": {
+      "year": 2025,
+      "id": "2511.00438",
+      "url": "https://arxiv.org/abs/2511.00438"
+    },
+    "published": null,
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2403.11308",
+    "authors": "Ciliberti",
+    "title": "A categorification of cluster algebras of type B and C through symmetric quivers",
+    "arxiv": {
+      "year": 2024,
+      "id": "2403.11308",
+      "url": "https://arxiv.org/abs/2403.11308"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2024.09.015"
+    },
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "arxiv:2411.00207",
+    "authors": "Barbieri, Y. Qiu",
+    "title": "Verdier quotients of Calabi-Yau categories from quivers with potential",
+    "arxiv": {
+      "year": 2024,
+      "id": "2411.00207",
+      "url": "https://arxiv.org/abs/2411.00207"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.4171/DM/1091"
+    },
+    "tags": [
+      "s7-perverse-schobers-and-surface-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1911.12955",
+    "authors": "Heng, Nge",
+    "title": "Curves in the disc, the type B braid group, and the type B zigzag algebra",
+    "arxiv": {
+      "year": 2019,
+      "id": "1911.12955",
+      "url": "https://arxiv.org/abs/1911.12955"
+    },
+    "published": null,
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1804.00094",
+    "authors": "Buan, Y. Qiu, Y. Zhou",
+    "title": "Decorated marked surfaces III: The derived category of a decorated marked surface",
+    "arxiv": {
+      "year": 2018,
+      "id": "1804.00094",
+      "url": "https://arxiv.org/abs/1804.00094"
+    },
+    "published": null,
+    "tags": [
+      "s7-graded-skew-gentle-cy-categories-and-koszul-duality"
+    ]
+  },
+  {
+    "id": "arxiv:1607.05965",
+    "authors": "A. Chan, Marczinzik",
+    "title": "On representation-finite gendo-symmetric biserial algebras",
+    "arxiv": {
+      "year": 2016,
+      "id": "1607.05965",
+      "url": "https://arxiv.org/abs/1607.05965"
+    },
+    "published": {
+      "year": 2018,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-017-9760-6"
+    },
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory",
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2507.16575",
+    "authors": "Adachi, A. Chan, Kimura, Tsukamoto",
+    "title": "Tilting theoretic approach to quasi-hereditary structures",
+    "arxiv": {
+      "year": 2025,
+      "id": "2507.16575",
+      "url": "https://arxiv.org/abs/2507.16575"
+    },
+    "published": null,
+    "tags": [
+      "s9-tilting-and-quasi-hereditary-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2407.00154",
+    "authors": "Christ, Haiden, Y. Qiu",
+    "title": "Perverse schobers, stability conditions and quadratic differentials II: relative graded Brauer graph algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.00154",
+      "url": "https://arxiv.org/abs/2407.00154"
+    },
+    "published": null,
+    "tags": [
+      "s7-perverse-schobers-and-surface-categories",
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2101.01939",
+    "authors": "Christ",
+    "title": "Ginzburg algebras of triangulated surfaces and perverse schobers",
+    "arxiv": {
+      "year": 2021,
+      "id": "2101.01939",
+      "url": "https://arxiv.org/abs/2101.01939"
+    },
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1017/fms.2022.1"
+    },
+    "tags": [
+      "s7-perverse-schobers-and-surface-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1902.04063",
+    "authors": "Erdmann, Skowroński",
+    "title": "Weighted surface algebras: general version",
+    "arxiv": {
+      "year": 2019,
+      "id": "1902.04063",
+      "url": "https://arxiv.org/abs/1902.04063"
+    },
+    "published": {
+      "year": 2020,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2019.10.020"
+    },
+    "tags": [
+      "s10-brauer-graph-weighted-surface-and-hybrid-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2209.06595",
+    "authors": "Christ",
+    "title": "Cluster theory of topological Fukaya categories",
+    "arxiv": {
+      "year": 2022,
+      "id": "2209.06595",
+      "url": "https://arxiv.org/abs/2209.06595"
+    },
+    "published": null,
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials",
+      "s5-something-fukaya-categories-deformation"
+    ]
+  },
+  {
+    "id": "arxiv:2212.08433",
+    "authors": "Barbieri, Möller, Y. Qiu, So",
+    "title": "Quadratic differentials as stability conditions: collapsing subsurfaces",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.08433",
+      "url": "https://arxiv.org/abs/2212.08433"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1515/crelle-2024-0005"
+    },
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials"
+    ]
+  },
+  {
+    "id": "arxiv:1605.08082",
+    "authors": "Manion",
+    "title": "Khovanov-Seidel quiver algebras and Ozsváth-Szabó's bordered theory",
+    "arxiv": {
+      "year": 2016,
+      "id": "1605.08082",
+      "url": "https://arxiv.org/abs/1605.08082"
+    },
+    "published": {
+      "year": 2017,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2017.05.029"
+    },
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1703.06011",
+    "authors": "Licata, Queffelec",
+    "title": "Braid groups of type ADE, Garside monoids, and the categorified root lattice",
+    "arxiv": {
+      "year": 2017,
+      "id": "1703.06011",
+      "url": "https://arxiv.org/abs/1703.06011"
+    },
+    "published": {
+      "year": 2021,
+      "label": "DOI",
+      "url": "https://doi.org/10.24033/asens.2464"
+    },
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1911.11719",
+    "authors": "Dyckerhoff, Jasso, Lekili",
+    "title": "The symplectic geometry of higher Auslander algebras: Symmetric products of disks",
+    "arxiv": {
+      "year": 2019,
+      "id": "1911.11719",
+      "url": "https://arxiv.org/abs/1911.11719"
+    },
+    "published": {
+      "year": 2021,
+      "label": "DOI",
+      "url": "https://doi.org/10.1017/fms.2021.2"
+    },
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:1504.07596",
+    "authors": "Gadbled, Thiel, Wagner",
+    "title": "Categorical action of the extended braid group of affine type A",
+    "arxiv": {
+      "year": 2015,
+      "id": "1504.07596",
+      "url": "https://arxiv.org/abs/1504.07596"
+    },
+    "published": {
+      "year": 2017,
+      "label": "DOI",
+      "url": "https://doi.org/10.1142/s0219199716500243"
+    },
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1312.7692",
+    "authors": "Y. Qi, Sussan",
+    "title": "A Categorification of the Burau representation at prime roots of unity",
+    "arxiv": {
+      "year": 2013,
+      "id": "1312.7692",
+      "url": "https://arxiv.org/abs/1312.7692"
+    },
+    "published": {
+      "year": 2016,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00029-015-0216-8"
+    },
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:1908.08895",
+    "authors": "Gnedin",
+    "title": "Calabi-Yau properties of ribbon graph orders",
+    "arxiv": {
+      "year": 2019,
+      "id": "1908.08895",
+      "url": "https://arxiv.org/abs/1908.08895"
+    },
+    "published": null,
+    "tags": [
+      "s10-locally-gentle-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1807.00469",
+    "authors": "Ikeda, Y. Qiu",
+    "title": "q-Stability conditions on Calabi-Yau-X categories",
+    "arxiv": {
+      "year": 2018,
+      "id": "1807.00469",
+      "url": "https://arxiv.org/abs/1807.00469"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1112/s0010437x23007194"
+    },
+    "tags": [
+      "s6-q-stability-and-q-deformed-rationals"
+    ]
+  },
+  {
+    "id": "arxiv:2103.05963",
+    "authors": "Erdmann, Skowroński",
+    "title": "Hybrid algebras",
+    "arxiv": {
+      "year": 2021,
+      "id": "2103.05963",
+      "url": "https://arxiv.org/abs/2103.05963"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00209-024-03451-6"
+    },
+    "tags": [
+      "s10-brauer-graph-weighted-surface-and-hybrid-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1708.00889",
+    "authors": "Cooper, Samuelson",
+    "title": "The Hall Algebras of Surfaces I",
+    "arxiv": {
+      "year": 2017,
+      "id": "1708.00889",
+      "url": "https://arxiv.org/abs/1708.00889"
+    },
+    "published": {
+      "year": 2020,
+      "label": "DOI",
+      "url": "https://doi.org/10.1017/S1474748018000324"
+    },
+    "tags": [
+      "s5-something-fukaya-categories-deformation"
+    ]
+  },
+  {
+    "id": "arxiv:1504.04827",
+    "authors": "Adachi, Aihara, A. Chan",
+    "title": "Classification of two-term tilting complexes over Brauer graph algebras",
+    "arxiv": {
+      "year": 2015,
+      "id": "1504.04827",
+      "url": "https://arxiv.org/abs/1504.04827"
+    },
+    "published": {
+      "year": 2017,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00209-017-2006-9"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2106.15218",
+    "authors": "Skowroński, Skowyrski",
+    "title": "Generalized weighted surface algebras",
+    "arxiv": {
+      "year": 2021,
+      "id": "2106.15218",
+      "url": "https://arxiv.org/abs/2106.15218"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-weighted-surface-and-hybrid-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2311.16597",
+    "authors": "Christ",
+    "title": "Relative Calabi-Yau structures and perverse schobers on surfaces",
+    "arxiv": {
+      "year": 2023,
+      "id": "2311.16597",
+      "url": "https://arxiv.org/abs/2311.16597"
+    },
+    "published": null,
+    "tags": [
+      "s7-perverse-schobers-and-surface-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2508.06957",
+    "authors": "Klász",
+    "title": "The Auslander-Gorenstein condition for monomial algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2508.06957",
+      "url": "https://arxiv.org/abs/2508.06957"
+    },
+    "published": null,
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2403.10265",
+    "authors": "Y. Qiu",
+    "title": "Moduli spaces of quadratic differentials: Abel-Jacobi map and deformation",
+    "arxiv": {
+      "year": 2024,
+      "id": "2403.10265",
+      "url": "https://arxiv.org/abs/2403.10265"
+    },
+    "published": null,
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials"
+    ]
+  },
+  {
+    "id": "arxiv:2011.14320",
+    "authors": "Ishibashi, Kano",
+    "title": "Sign stability of mapping classes on marked surfaces II: general case via reductions",
+    "arxiv": {
+      "year": 2020,
+      "id": "2011.14320",
+      "url": "https://arxiv.org/abs/2011.14320"
+    },
+    "published": null,
+    "tags": [
+      "s1-categorical-dynamics"
+    ]
+  },
+  {
+    "id": "arxiv:2105.08332",
+    "authors": "Kano",
+    "title": "Categorical dynamical systems arising from sign-stable mutation loops",
+    "arxiv": {
+      "year": 2021,
+      "id": "2105.08332",
+      "url": "https://arxiv.org/abs/2105.08332"
+    },
+    "published": null,
+    "tags": [
+      "s1-categorical-dynamics"
+    ]
+  },
+  {
+    "id": "arxiv:2008.00282",
+    "authors": "Y. Qiu",
+    "title": "Contractible flow of stability conditions via global dimension function",
+    "arxiv": {
+      "year": 2020,
+      "id": "2008.00282",
+      "url": "https://arxiv.org/abs/2008.00282"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.4310/jdg/1738163897"
+    },
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials"
+    ]
+  },
+  {
+    "id": "arxiv:1407.0806",
+    "authors": "Y. Qiu",
+    "title": "Decorated marked surfaces: spherical twists versus braid twists",
+    "arxiv": {
+      "year": 2014,
+      "id": "1407.0806",
+      "url": "https://arxiv.org/abs/1407.0806"
+    },
+    "published": {
+      "year": 2016,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00208-015-1339-0"
+    },
+    "tags": [
+      "s5-derived-picard-group-and-autoequivalences"
+    ]
+  },
+  {
+    "id": "arxiv:1703.02346",
+    "authors": "Erdmann, Skowroński",
+    "title": "Weighted Surface Algebras",
+    "arxiv": {
+      "year": 2017,
+      "id": "1703.02346",
+      "url": "https://arxiv.org/abs/1703.02346"
+    },
+    "published": {
+      "year": 2018,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2018.02.033"
+    },
+    "tags": [
+      "s10-brauer-graph-weighted-surface-and-hybrid-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2502.06410",
+    "authors": "Ciliberti",
+    "title": "A multiplication formula for cluster characters in gentle algebras",
+    "arxiv": {
+      "year": 2025,
+      "id": "2502.06410",
+      "url": "https://arxiv.org/abs/2502.06410"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1093/imrn/rnaf272"
+    },
+    "tags": [
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "arxiv:math/0006056",
+    "authors": "Khovanov, Seidel",
+    "title": "Quivers, Floer cohomology, and braid group actions",
+    "arxiv": {
+      "year": 2000,
+      "id": "math/0006056",
+      "url": "https://arxiv.org/abs/math/0006056"
+    },
+    "published": null,
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:math/0001043",
+    "authors": "Seidel, Thomas",
+    "title": "Braid group actions on derived categories of coherent sheaves",
+    "arxiv": {
+      "year": 2000,
+      "id": "math/0001043",
+      "url": "https://arxiv.org/abs/math/0001043"
+    },
+    "published": null,
+    "tags": [
+      "s5-braid-group-actions-and-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2303.18249",
+    "authors": "Christ, Haiden, Y. Qiu",
+    "title": "Perverse schobers, stability conditions and quadratic differentials I",
+    "arxiv": {
+      "year": 2023,
+      "id": "2303.18249",
+      "url": "https://arxiv.org/abs/2303.18249"
+    },
+    "published": null,
+    "tags": [
+      "s6-bridgeland-stability-and-quadratic-differentials",
+      "s7-perverse-schobers-and-surface-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2311.16859",
+    "authors": "Di Dedda",
+    "title": "Symplectic higher Auslander correspondence for type A",
+    "arxiv": {
+      "year": 2023,
+      "id": "2311.16859",
+      "url": "https://arxiv.org/abs/2311.16859"
+    },
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.4171/qt/253"
+    },
+    "tags": [
+      "s5-something-fukaya-categories-deformation",
+      "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:2103.12049",
+    "authors": "Opper, Zvonareva",
+    "title": "Derived equivalence classification of Brauer graph algebras",
+    "arxiv": {
+      "year": 2021,
+      "id": "2103.12049",
+      "url": "https://arxiv.org/abs/2103.12049"
+    },
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.aim.2022.108341"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1908.09645",
+    "authors": "Antipov, Zvonareva",
+    "title": "Brauer graph algebras are closed under derived equivalence",
+    "arxiv": {
+      "year": 2019,
+      "id": "1908.09645",
+      "url": "https://arxiv.org/abs/1908.09645"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1711.05021",
+    "authors": "Antipov, Zvonareva",
+    "title": "On stably biserial algebras and the Auslander-Reiten conjecture for special biserial algebras",
+    "arxiv": {
+      "year": 2017,
+      "id": "1711.05021",
+      "url": "https://arxiv.org/abs/1711.05021"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1508.01721",
+    "authors": "Volkov, Zvonareva",
+    "title": "Derived Picard groups of selfinjective Nakayama algebras",
+    "arxiv": {
+      "year": 2015,
+      "id": "1508.01721",
+      "url": "https://arxiv.org/abs/1508.01721"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1401.6952",
+    "authors": "Zvonareva",
+    "title": "On the derived Picard group of the Brauer star algebra",
+    "arxiv": {
+      "year": 2014,
+      "id": "1401.6952",
+      "url": "https://arxiv.org/abs/1401.6952"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  }
+]

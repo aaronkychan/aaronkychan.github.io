@@ -1,0 +1,260 @@
+[
+  {
+    "alias": "s1-silting-and-complete-derived-invariants",
+    "sectionAlias": "s1",
+    "sectionTitle": "Silting, tilting, derived equivalence, recollement",
+    "subsectionTitle": "Silting and complete derived invariants"
+  },
+  {
+    "alias": "s1-reduction-recollement-homological-epimorphisms",
+    "sectionAlias": "s1",
+    "sectionTitle": "Silting, tilting, derived equivalence, recollement",
+    "subsectionTitle": "Reduction, recollement, homological epimorphisms"
+  },
+  {
+    "alias": "s1-exceptional-sequences-and-hearts",
+    "sectionAlias": "s1",
+    "sectionTitle": "Silting, tilting, derived equivalence, recollement",
+    "subsectionTitle": "Exceptional sequences and hearts"
+  },
+  {
+    "alias": "s1-geometric-models-of-related-categories",
+    "sectionAlias": "s1",
+    "sectionTitle": "Silting, tilting, derived equivalence, recollement",
+    "subsectionTitle": "Geometric models of related categories"
+  },
+  {
+    "alias": "s1-categorical-dynamics",
+    "sectionAlias": "s1",
+    "sectionTitle": "Silting, tilting, derived equivalence, recollement",
+    "subsectionTitle": "Categorical dynamics"
+  },
+  {
+    "alias": "s2",
+    "sectionAlias": "s2",
+    "sectionTitle": "τ-tilting, rigid modules, g-vectors",
+    "subsectionTitle": null
+  },
+  {
+    "alias": "s3-torsion-classes",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Torsion classes"
+  },
+  {
+    "alias": "s3-thick-subcategories",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Thick subcategories"
+  },
+  {
+    "alias": "s3-resolving-subcategories",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Resolving subcategories"
+  },
+  {
+    "alias": "s3-higher-cluster-tilting-subcategories",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Higher cluster-tilting subcategories"
+  },
+  {
+    "alias": "s3-ice-ike-wide",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "ICE / IKE / wide"
+  },
+  {
+    "alias": "s3-almost-rigid-modules",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Almost rigid modules"
+  },
+  {
+    "alias": "s3-jordan-recoverability-and-exact-structures",
+    "sectionAlias": "s3",
+    "sectionTitle": "Classification of subcategories",
+    "subsectionTitle": "Jordan recoverability and exact structures"
+  },
+  {
+    "alias": "s4-orbifold-surfaces-and-scattering-diagrams",
+    "sectionAlias": "s4",
+    "sectionTitle": "Cluster theory, Caldero–Chapoton, snake graphs and laminations",
+    "subsectionTitle": "Orbifold surfaces and scattering diagrams"
+  },
+  {
+    "alias": "s4-caldero-chapoton-cluster-characters-f-polynomials",
+    "sectionAlias": "s4",
+    "sectionTitle": "Cluster theory, Caldero–Chapoton, snake graphs and laminations",
+    "subsectionTitle": "Caldero–Chapoton, cluster characters, F-polynomials"
+  },
+  {
+    "alias": "s4-snake-graphs-and-submodule-lattices",
+    "sectionAlias": "s4",
+    "sectionTitle": "Cluster theory, Caldero–Chapoton, snake graphs and laminations",
+    "subsectionTitle": "Snake graphs and submodule lattices"
+  },
+  {
+    "alias": "s4-generic-bases-laminations-and-irreducible-components",
+    "sectionAlias": "s4",
+    "sectionTitle": "Cluster theory, Caldero–Chapoton, snake graphs and laminations",
+    "subsectionTitle": "Generic bases, laminations and irreducible components"
+  },
+  {
+    "alias": "s4-non-orientable-surfaces-and-quasi-cluster-categorification",
+    "sectionAlias": "s4",
+    "sectionTitle": "Cluster theory, Caldero–Chapoton, snake graphs and laminations",
+    "subsectionTitle": "Non-orientable surfaces and quasi-cluster categorification"
+  },
+  {
+    "alias": "s5-something-fukaya-categories-deformation",
+    "sectionAlias": "s5",
+    "sectionTitle": "Fukaya categories, A∞ structures, HMS and autoequivalences",
+    "subsectionTitle": "(something) Fukaya categories, deformation"
+  },
+  {
+    "alias": "s5-derived-picard-group-and-autoequivalences",
+    "sectionAlias": "s5",
+    "sectionTitle": "Fukaya categories, A∞ structures, HMS and autoequivalences",
+    "subsectionTitle": "Derived Picard group and autoequivalences"
+  },
+  {
+    "alias": "s5-braid-group-actions-and-related-categories",
+    "sectionAlias": "s5",
+    "sectionTitle": "Fukaya categories, A∞ structures, HMS and autoequivalences",
+    "subsectionTitle": "Braid group actions and related categories"
+  },
+  {
+    "alias": "s6-king-stability-walls-and-scattering",
+    "sectionAlias": "s6",
+    "sectionTitle": "Stability conditions",
+    "subsectionTitle": "King stability, walls and scattering"
+  },
+  {
+    "alias": "s6-bridgeland-stability-and-quadratic-differentials",
+    "sectionAlias": "s6",
+    "sectionTitle": "Stability conditions",
+    "subsectionTitle": "Bridgeland stability and quadratic differentials"
+  },
+  {
+    "alias": "s6-q-stability-and-q-deformed-rationals",
+    "sectionAlias": "s6",
+    "sectionTitle": "Stability conditions",
+    "subsectionTitle": "q-stability and q-deformed rationals"
+  },
+  {
+    "alias": "s7-graded-skew-gentle-cy-categories-and-koszul-duality",
+    "sectionAlias": "s7",
+    "sectionTitle": "dg/CY structures, Koszul duality, Hochschild theory and deformations",
+    "subsectionTitle": "Graded/skew-gentle CY categories and Koszul duality"
+  },
+  {
+    "alias": "s7-hochschild-co-homology-gerstenhaber-and-tamarkin-tsygan-structures",
+    "sectionAlias": "s7",
+    "sectionTitle": "dg/CY structures, Koszul duality, Hochschild theory and deformations",
+    "subsectionTitle": "Hochschild (co)homology, Gerstenhaber and Tamarkin–Tsygan structures"
+  },
+  {
+    "alias": "s7-deformation-maurer-cartan-and-l-structures",
+    "sectionAlias": "s7",
+    "sectionTitle": "dg/CY structures, Koszul duality, Hochschild theory and deformations",
+    "subsectionTitle": "Deformation, Maurer–Cartan and L∞ structures"
+  },
+  {
+    "alias": "s7-perverse-schobers-and-surface-categories",
+    "sectionAlias": "s7",
+    "sectionTitle": "dg/CY structures, Koszul duality, Hochschild theory and deformations",
+    "subsectionTitle": "Perverse schobers and surface categories"
+  },
+  {
+    "alias": "s8",
+    "sectionAlias": "s8",
+    "sectionTitle": "Representation varieties, generic modules and degenerations",
+    "subsectionTitle": null
+  },
+  {
+    "alias": "s9-extensions-and-higher-homological-algebra",
+    "sectionAlias": "s9",
+    "sectionTitle": "Homological algebra, Gorenstein theory and higher Auslander–Reiten theory",
+    "subsectionTitle": "Extensions and higher homological algebra"
+  },
+  {
+    "alias": "s9-homological-dimensions-and-gorenstein-theory",
+    "sectionAlias": "s9",
+    "sectionTitle": "Homological algebra, Gorenstein theory and higher Auslander–Reiten theory",
+    "subsectionTitle": "Homological dimensions and Gorenstein theory"
+  },
+  {
+    "alias": "s9-auslander-type-constructions",
+    "sectionAlias": "s9",
+    "sectionTitle": "Homological algebra, Gorenstein theory and higher Auslander–Reiten theory",
+    "subsectionTitle": "Auslander-type constructions"
+  },
+  {
+    "alias": "s9-tilting-and-quasi-hereditary-structures",
+    "sectionAlias": "s9",
+    "sectionTitle": "Homological algebra, Gorenstein theory and higher Auslander–Reiten theory",
+    "subsectionTitle": "Tilting and quasi-hereditary structures"
+  },
+  {
+    "alias": "s10-brauer-graph-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Brauer graph algebras"
+  },
+  {
+    "alias": "s10-skew-gentle-algebras-and-orbifold-surfaces",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Skew-gentle algebras and orbifold surfaces"
+  },
+  {
+    "alias": "s10-string-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "String algebras"
+  },
+  {
+    "alias": "s10-clannish-and-semilinear-analogues",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Clannish and semilinear analogues"
+  },
+  {
+    "alias": "s10-locally-gentle-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Locally gentle algebras"
+  },
+  {
+    "alias": "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Almost gentle, trivial extensions and Brauer-type algebras"
+  },
+  {
+    "alias": "s10-fractional-brauer-graph-and-configuration-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Fractional Brauer graph and configuration algebras"
+  },
+  {
+    "alias": "s10-brauer-configurations-integer-sequences-and-arithmetic",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Brauer configurations, integer sequences and arithmetic"
+  },
+  {
+    "alias": "s10-brauer-graph-weighted-surface-and-hybrid-algebras",
+    "sectionAlias": "s10",
+    "sectionTitle": "Generalizations of gentle algebras",
+    "subsectionTitle": "Weighted surface algebra"
+  },
+  {
+    "alias": "s11",
+    "sectionAlias": "s11",
+    "sectionTitle": "Polyhedral and combinatorial aspects",
+    "subsectionTitle": null
+  }
+]

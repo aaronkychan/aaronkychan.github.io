@@ -2205,5 +2205,19 @@
     "tags": [
       "s10-brauer-graph-algebras"
     ]
+  },
+  {
+    "id": "arxiv:2108.07844",
+    "authors": "Domínguez, García Elsener",
+    "title": "Extenesions in Jacobian algebras via punctured skein relations",
+    "arxiv": {
+      "year": 2021,
+      "id": "2108.07844",
+      "url": "https://arxiv.org/abs/2108.07844"
+    },
+    "published": null,
+    "tags": [
+      "s9-extensions-and-higher-homological-algebra"
+    ]
   }
 ]

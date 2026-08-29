@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Gentle Literature Validator</title>
+    <style>
+        :root {
+            --bg: #fff;
+            --paper: #fff;
+            --ink: #20242a;
+            --muted: #69717c;
+            --line: #dfe5eb;
+            --accent: #275d87;
+            --head: #edf4f9;
+            --hover: #fafcff;
+            --focus: #b54a31;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #161b22;
+                --paper: #202731;
+                --ink: #e6edf3;
+                --muted: #a9b4c0;
+                --line: #394554;
+                --accent: #8cc9ff;
+                --head: #293847;
+                --hover: #263343;
+                --focus: #ff9a7a;
+            }
+        }
+
+        * { box-sizing: border-box }
+        html { scroll-behavior: smooth }
+        body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif }
+        a { color: var(--accent) }
+        button, input, select, textarea { font: inherit }
+        button { cursor: pointer }
+        button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px }
+        .admin-page { max-width: 1420px; margin: 0 auto; padding: 16px 20px 48px }
+        .admin-header { border-bottom: 1px solid var(--line); margin-bottom: 16px; padding-bottom: 12px }
+        h1 { margin: 0; font-size: 1.35rem; font-weight: 600 }
+        .admin-header p { margin: 4px 0 0; color: var(--muted) }
+        .review-layout { padding-right: 210px }
+        .queue-panel { min-width: 0 }
+        .toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-bottom: 8px }
+        .toolbar input, .toolbar select { min-height: 34px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); padding: 5px 8px }
+        .toolbar input { flex: 1 1 260px }
+        .toolbar button, .handoff button { min-height: 34px; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink); padding: 5px 9px }
+        .toolbar button:hover, .handoff button:hover { background: var(--head) }
+        .toolbar .primary { border-color: var(--accent); background: var(--accent); color: var(--paper) }
+        .toolbar .primary:hover { filter: brightness(1.08) }
+        .status { min-height: 1.4em; margin: 0 0 9px; color: var(--muted) }
+        .status[data-kind="success"] { color: #267053 }
+        .status[data-kind="error"] { color: #b34a36 }
+        .table-wrap { overflow-x: auto; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+        table { width: 100%; min-width: 940px; border-collapse: collapse; font-size: .9rem }
+        th { padding: 8px 9px; background: var(--head); color: var(--muted); text-align: left; font-size: .72rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase }
+        td { padding: 9px; border-top: 1px solid var(--line); vertical-align: top }
+        tr[data-row-id] { cursor: default }
+        tr[data-row-id]:hover { background: var(--hover) }
+        tr[data-row-id].is-focused { outline: 2px solid var(--focus); outline-offset: -2px; background: var(--hover) }
+        tr[data-row-id]:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px }
+        .work-cell { min-width: 260px }
+        .work-cell strong, .work-cell span { display: block }
+        .work-cell strong { font-weight: 600 }
+        .work-cell span { margin-top: 3px; color: var(--muted); font-size: .85rem }
+        .category-cell { min-width: 220px; color: var(--accent) }
+        .reason-cell { max-width: 300px; color: var(--muted) }
+        .decision { display: inline-block; padding: 2px 5px; border: 1px solid var(--line); color: var(--muted); font-size: .76rem }
+        .decision-include { border-color: #69aa91; color: #267053 }
+        .empty { padding: 38px 15px; color: var(--muted); text-align: center }
+        .muted { color: var(--muted) }
+        .review-status { position: fixed; z-index: 2; top: 16px; right: 20px; width: 180px; border-left: 2px solid var(--accent); padding: 4px 0 4px 12px; background: var(--bg) }
+        .review-status dl { display: grid; grid-template-columns: 1fr auto; gap: 3px 10px; margin: 0 0 16px }
+        .review-status dt { color: var(--muted) }
+        .review-status dd { margin: 0; font-weight: 600; text-align: right }
+        .focused-label { margin: 0 0 3px; color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .04em }
+        #focused-record { margin: 0; overflow-wrap: anywhere }
+        .handoff, .instructions { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 14px }
+        .handoff h2, .instructions h2 { margin: 0 0 5px; font-size: 1rem; font-weight: 600 }
+        .handoff p, .instructions p { margin: 5px 0; color: var(--muted) }
+        .handoff textarea { display: block; width: min(760px, 100%); min-height: 86px; resize: vertical; border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); padding: 7px; font: .82rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace }
+        .handoff button { margin-top: 7px }
+        dialog { max-width: min(580px, calc(100% - 28px)); border: 1px solid var(--line); border-radius: 3px; background: var(--paper); color: var(--ink); padding: 0 }
+        dialog::backdrop { background: rgb(0 0 0 / .5) }
+        .dialog-body { padding: 18px }
+        .dialog-body h2 { margin: 0 0 7px; font-size: 1.15rem; font-weight: 600 }
+        .dialog-body p { color: var(--muted) }
+        .confirm-line { display: flex; gap: 8px; align-items: flex-start; margin: 14px 0; }
+        .dialog-actions { display: flex; justify-content: flex-end; gap: 7px }
+        .dialog-actions button { min-height: 32px; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink); padding: 5px 9px; cursor: pointer }
+        .dialog-actions .confirm { border-color: var(--accent); background: var(--accent); color: var(--paper) }
+        @media (max-width: 960px) {
+            .review-layout { padding-right: 0 }
+            .review-status { position: sticky; top: 0; width: auto; margin: 0 0 15px; border: 1px solid var(--line); border-left: 2px solid var(--accent); padding: 8px 10px; }
+            .review-status dl { grid-template-columns: repeat(6, auto); justify-content: start; gap: 3px 8px; margin-bottom: 7px }
+            .review-status dt:nth-of-type(n+4), .review-status dd:nth-of-type(n+4) { display: none }
+            .focused-label { display: inline; margin-right: 5px }
+            #focused-record { display: inline }
+        }
+        @media (max-width: 640px) {
+            .admin-page { padding: 12px 10px 34px }
+            .review-status dl { grid-template-columns: repeat(6, max-content); font-size: .86rem }
+            .review-status dt:nth-of-type(n+4), .review-status dd:nth-of-type(n+4) { display: none }
+            .toolbar input { flex-basis: 100% }
+            table { min-width: 760px }
+        }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important } }
+    </style>
+</head>
+
+<body>
+    <div class="admin-page">
+        <header class="admin-header">
+            <h1>Literature review queue</h1>
+            <p>Source: discarded_literature.csv · loaded automatically</p>
+        </header>
+
+        <div class="review-layout">
+            <aside id="review-status" class="review-status" aria-label="Review status">
+                <dl>
+                    <dt>Records</dt><dd id="queue-count">0</dd>
+                    <dt>Pending</dt><dd id="pending-count">0</dd>
+                    <dt>Selected</dt><dd id="selected-count">0</dd>
+                </dl>
+                <p class="focused-label">Focused item</p>
+                <p id="focused-record">No row focused.</p>
+            </aside>
+
+            <main class="queue-panel">
+                <div class="toolbar">
+                    <input id="search" type="search" placeholder="Search title, author, journal, or reason" aria-label="Search review queue">
+                    <select id="status-filter" aria-label="Filter by decision">
+                        <option value="all">All records</option>
+                        <option value="pending">Pending</option>
+                        <option value="include">Included</option>
+                        <option value="exclude">Excluded</option>
+                        <option value="imported">Imported</option>
+                    </select>
+                    <button id="select-visible" type="button">Select visible</button>
+                    <button id="clear-visible" type="button">Clear visible</button>
+                    <button id="review-selected" class="primary" type="button" disabled>Review selection</button>
+                </div>
+                <p id="status-message" class="status" aria-live="polite">Loading the review queue…</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Include</th>
+                                <th scope="col">Literature</th>
+                                <th scope="col">Source</th>
+                                <th scope="col">Suggested category</th>
+                                <th scope="col">Why it was held back</th>
+                                <th scope="col">Links</th>
+                                <th scope="col">Decision</th>
+                            </tr>
+                        </thead>
+                        <tbody id="queue-body">
+                            <tr><td class="empty" colspan="7">No records loaded.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <section id="handoff" class="handoff" hidden>
+                    <h2>Reviewed CSV ready</h2>
+                    <p>The reviewed CSV was downloaded. Copy this prompt into the Codex conversation with the reviewed file.</p>
+                    <textarea id="handoff-text" readonly aria-label="Codex handoff prompt"></textarea>
+                    <button id="copy-handoff" type="button">Copy handoff</button>
+                </section>
+
+                <section id="instructions" class="instructions" aria-labelledby="instructions-heading">
+                    <h2 id="instructions-heading">Usage</h2>
+                    <p>Click a row or press Tab to focus it. Use <strong>ArrowUp</strong> and <strong>ArrowDown</strong> to move between visible records. Press <strong>Space</strong> to check or uncheck the focused record.</p>
+                    <p>Use search or the decision filter to narrow the list. Select the records to include, choose Review selection, then complete both confirmations to export the reviewed CSV.</p>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <dialog id="review-dialog" aria-labelledby="review-heading">
+        <div class="dialog-body">
+            <h2 id="review-heading">Confirm the review</h2>
+            <p id="review-summary"></p>
+            <label class="confirm-line"><input id="confirmation-check" type="checkbox"> I have reviewed the selected records and want to export these decisions.</label>
+            <div class="dialog-actions">
+                <button id="cancel-review" type="button">Cancel</button>
+                <button id="confirm-review" class="confirm" type="button">Confirm and export</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script type="module" src="./gentle_lit_validator.js"></script>
+</body>
+
+</html>

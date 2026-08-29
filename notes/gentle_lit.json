@@ -84,7 +84,11 @@
       "id": "2206.11196",
       "url": "https://arxiv.org/abs/2206.11196"
     },
-    "published": null,
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1093/imrn/rnag133"
+    },
     "tags": [
       "s1-reduction-recollement-homological-epimorphisms"
     ]
@@ -179,7 +183,11 @@
       "id": "2301.04398",
       "url": "https://arxiv.org/abs/2301.04398"
     },
-    "published": null,
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.aim.2025.110284"
+    },
     "tags": [
       "s1-exceptional-sequences-and-hearts"
     ]
@@ -208,7 +216,11 @@
       "id": "2407.13627",
       "url": "https://arxiv.org/abs/2407.13627"
     },
-    "published": null,
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.08.018"
+    },
     "tags": [
       "s1-geometric-models-of-related-categories"
     ]
@@ -269,7 +281,11 @@
       "id": "2108.01925",
       "url": "https://arxiv.org/abs/2108.01925"
     },
-    "published": null,
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2023.03.013"
+    },
     "tags": [
       "s2"
     ]
@@ -750,7 +766,11 @@
       "id": "2208.15000",
       "url": "https://arxiv.org/abs/2208.15000"
     },
-    "published": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2023.107503"
+    },
     "tags": [
       "s6-king-stability-walls-and-scattering"
     ]
@@ -1098,7 +1118,11 @@
       "id": "2204.12138",
       "url": "https://arxiv.org/abs/2204.12138"
     },
-    "published": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1112/plms.12637"
+    },
     "tags": [
       "s10-clannish-and-semilinear-analogues"
     ]
@@ -1112,7 +1136,11 @@
       "id": "2303.05326",
       "url": "https://arxiv.org/abs/2303.05326"
     },
-    "published": null,
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.5802/art.32"
+    },
     "tags": [
       "s10-clannish-and-semilinear-analogues"
     ]
@@ -1155,7 +1183,11 @@
       "id": "2409.08333",
       "url": "https://arxiv.org/abs/2409.08333"
     },
-    "published": null,
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2026.108343"
+    },
     "tags": [
       "s10-locally-gentle-algebras"
     ]
@@ -1226,9 +1258,14 @@
       "id": "2406.10634",
       "url": "https://arxiv.org/abs/2406.10634"
     },
-    "published": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2024.05.030"
+    },
     "tags": [
-      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras"
+      "s10-almost-gentle-trivial-extensions-and-brauer-type-algebras",
+      "s10-brauer-graph-algebras"
     ]
   },
   {
@@ -2218,6 +2255,409 @@
     "published": null,
     "tags": [
       "s9-extensions-and-higher-homological-algebra"
+    ]
+  },
+  {
+    "id": "arxiv:2608.21777",
+    "authors": "J. Hu, Y.-Z. Liu, T. Zhao",
+    "title": "Semi-orthogonal and derived decompositions for gentle algebras",
+    "arxiv": {
+      "year": 2026,
+      "id": "2608.21777",
+      "url": "https://arxiv.org/abs/2608.21777"
+    },
+    "published": null,
+    "tags": [
+      "s1-reduction-recollement-homological-epimorphisms",
+      "s1-geometric-models-of-related-categories"
+    ]
+  },
+  {
+    "id": "arxiv:2608.22715",
+    "authors": "N. Li, P. Chen, Y. Liu, B. Xing",
+    "title": "Classification of Brauer graph algebras under stable equivalence of Morita type",
+    "arxiv": {
+      "year": 2026,
+      "id": "2608.22715",
+      "url": "https://arxiv.org/abs/2608.22715"
+    },
+    "published": null,
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2608.22929",
+    "authors": "Z. Ni",
+    "title": "Derived equivalent gentle algebras which are not tilting-cotilting equivalent",
+    "arxiv": {
+      "year": 2026,
+      "id": "2608.22929",
+      "url": "https://arxiv.org/abs/2608.22929"
+    },
+    "published": null,
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2305.12885",
+    "authors": "R. Bennett-Tennenhaus",
+    "title": "String algebras over local rings: admissibility and biseriality",
+    "arxiv": {
+      "year": 2023,
+      "id": "2305.12885",
+      "url": "https://arxiv.org/abs/2305.12885"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2024.12.019"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2011.07364",
+    "authors": "M. P. Fonseca",
+    "title": "Derived tame quadratic string algebras",
+    "arxiv": {
+      "year": 2020,
+      "id": "2011.07364",
+      "url": "https://arxiv.org/abs/2011.07364"
+    },
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2021.1986832"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2102.08216",
+    "authors": "C. Chaio, V. Guazzelli, P. Suarez",
+    "title": "On cycles of length three",
+    "arxiv": {
+      "year": 2021,
+      "id": "2102.08216",
+      "url": "https://arxiv.org/abs/2102.08216"
+    },
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2021.2009493"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2212.09105",
+    "authors": "H. Zhang, Y.-Z. Liu",
+    "title": "There are no strictly shod algebras in hereditary gentle algebras",
+    "arxiv": {
+      "year": 2022,
+      "id": "2212.09105",
+      "url": "https://arxiv.org/abs/2212.09105"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2024.2400214"
+    },
+    "tags": [
+      "s1-silting-and-complete-derived-invariants",
+      "s9-tilting-and-quasi-hereditary-structures"
+    ]
+  },
+  {
+    "id": "arxiv:2507.03693",
+    "authors": "J. F. Caranguay-Mainguez, P. Rizzo, J. A. Vélez-Marulanda",
+    "title": "On universal deformation rings and stable homogeneous tubes",
+    "arxiv": {
+      "year": 2025,
+      "id": "2507.03693",
+      "url": "https://arxiv.org/abs/2507.03693"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2025.2598422"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:2003.09797",
+    "authors": "T. Aoki, T. Yurikusa",
+    "title": "Complete gentle and special biserial algebras are g-tame",
+    "arxiv": {
+      "year": 2020,
+      "id": "2003.09797",
+      "url": "https://arxiv.org/abs/2003.09797"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10801-023-01216-8"
+    },
+    "tags": [
+      "s2"
+    ]
+  },
+  {
+    "id": "arxiv:2303.06645",
+    "authors": "Y.-Z. Liu, C. Zhang",
+    "title": "The Cohen-Macaulay Auslander algebras of string algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2303.06645",
+      "url": "https://arxiv.org/abs/2303.06645"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10485-024-09779-8"
+    },
+    "tags": [
+      "s9-auslander-type-constructions"
+    ]
+  },
+  {
+    "id": "arxiv:2311.10178",
+    "authors": "S. Srivastava, V. Sinha, A. Kuber",
+    "title": "On the stable radical of the module category for special biserial algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2311.10178",
+      "url": "https://arxiv.org/abs/2311.10178"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1112/jlms.70275"
+    },
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2407.02326",
+    "authors": "S. Srivastava, A. Kuber",
+    "title": "Automating the stable rank computation for special biserial algebras",
+    "arxiv": {
+      "year": 2024,
+      "id": "2407.02326",
+      "url": "https://arxiv.org/abs/2407.02326"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-025-10366-1"
+    },
+    "tags": [
+      "s9-homological-dimensions-and-gorenstein-theory"
+    ]
+  },
+  {
+    "id": "arxiv:2301.05956",
+    "authors": "S. Sinha, A. Kuber, S. Sengupta, S. Kale",
+    "title": "Hammocks for non-domestic string algebras",
+    "arxiv": {
+      "year": 2023,
+      "id": "2301.05956",
+      "url": "https://arxiv.org/abs/2301.05956"
+    },
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-024-10285-7"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "arxiv:1904.11514",
+    "authors": "K. Mousavand",
+    "title": "τ-tilting finiteness of biserial algebras",
+    "arxiv": {
+      "year": 2019,
+      "id": "1904.11514",
+      "url": "https://arxiv.org/abs/1904.11514"
+    },
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s10468-022-10170-1"
+    },
+    "tags": [
+      "s2"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jpaa.2025.107954",
+    "authors": "J. Guo, Y. Liu, Y. Ye",
+    "title": "The associated graded algebras of Brauer graph algebras II: Infinite representation type",
+    "arxiv": null,
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2025.107954"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jpaa.2024.107763",
+    "authors": "S. Sardar, A. Kuber",
+    "title": "On the order types of hammocks for domestic string algebras",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2024.107763"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jpaa.2026.108317",
+    "authors": "J. F. Caranguay-Mainguez, P. Rizzo, J. A. Vélez-Marulanda",
+    "title": "Universal deformation rings of a special class of modules over generalized Brauer tree algebras",
+    "arxiv": null,
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2026.108317"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jpaa.2022.107278",
+    "authors": "C. Chaio, V. Guazzelli, P. Suarez",
+    "title": "On the nilpotency index of the radical of a module category",
+    "arxiv": null,
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jpaa.2022.107278"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jalgebra.2023.05.036",
+    "authors": "H. Huang, Z. Lin, X. Su",
+    "title": "Components of AR-quivers for string algebras of type tilde C and a conjecture by Geiss-Leclerc-Schröer",
+    "arxiv": null,
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2023.05.036"
+    },
+    "tags": [
+      "s10-string-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1016/j.jalgebra.2025.10.047",
+    "authors": "G. Benitez, G. Costa",
+    "title": "From the homotopy category of projective modules over gentle algebras to poset representations",
+    "arxiv": null,
+    "published": {
+      "year": 2026,
+      "label": "DOI",
+      "url": "https://doi.org/10.1016/j.jalgebra.2025.10.047"
+    },
+    "tags": [
+      "s1-geometric-models-of-related-categories"
+    ]
+  },
+  {
+    "id": "doi:10.1112/jlms.12591",
+    "authors": "F. Eisele",
+    "title": "Bijections of silting complexes and derived Picard groups",
+    "arxiv": null,
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1112/jlms.12591"
+    },
+    "tags": [
+      "s1-silting-and-complete-derived-invariants",
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1112/plms.12543",
+    "authors": "A. Padrol, Y. Palu, V. Pilaud, P.-G. Plamondon",
+    "title": "Associahedra for finite-type cluster algebras and minimal relations between g-vectors",
+    "arxiv": null,
+    "published": {
+      "year": 2023,
+      "label": "DOI",
+      "url": "https://doi.org/10.1112/plms.12543"
+    },
+    "tags": [
+      "s2",
+      "s4-caldero-chapoton-cluster-characters-f-polynomials"
+    ]
+  },
+  {
+    "id": "doi:10.1080/00927872.2024.2336134",
+    "authors": "J. Saunders",
+    "title": "Cohomology and Ext for blocks whose Brauer trees are lines or stars",
+    "arxiv": null,
+    "published": {
+      "year": 2024,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2024.2336134"
+    },
+    "tags": [
+      "s10-brauer-graph-algebras"
+    ]
+  },
+  {
+    "id": "doi:10.1080/00927872.2021.2008412",
+    "authors": "H. Nakaoka",
+    "title": "Finite gentle repetitions of gentle algebras and their Avella-Alaminos-Geiss invariants",
+    "arxiv": null,
+    "published": {
+      "year": 2022,
+      "label": "DOI",
+      "url": "https://doi.org/10.1080/00927872.2021.2008412"
+    },
+    "tags": [
+      "s1-silting-and-complete-derived-invariants"
+    ]
+  },
+  {
+    "id": "arxiv:2209.05696",
+    "authors": "K. Mousavand, C. Paquette",
+    "title": "Biserial algebras and generic bricks",
+    "arxiv": {
+      "year": 2022,
+      "id": "2209.05696",
+      "url": "https://arxiv.org/abs/2209.05696"
+    },
+    "published": {
+      "year": 2025,
+      "label": "DOI",
+      "url": "https://doi.org/10.1007/s00209-025-03756-0"
+    },
+    "tags": [
+      "s2",
+      "s8"
     ]
   }
 ]

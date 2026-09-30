@@ -662,6 +662,9 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
         padding: 0;
     }
 }
+.talk_summary{
+    position: relative;
+}
 .talk_summary,
 .talk_title_only {
     list-style: none;
@@ -679,14 +682,14 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
 .talk_summary > .subtitle {
     cursor: pointer;
 }
-.talk_summary::before {
-    content: " ►";
-    margin-right: 5px;
+.talk_summary::after {
+    content: " ◀";
+    position: absolute;
+    top: 1rem;right: 5px;
 }
 .talk_details[open] {
     padding-bottom: 1em;
 }
-.talk_details[open] .talk_summary:before {
+.talk_details[open] .talk_summary:after {
     content: " ▼";
-    margin-right: 5px;
 }

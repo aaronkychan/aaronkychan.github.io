@@ -56,8 +56,19 @@ const speakersTalks = [
         author: "Shunsuke Hirota",
         id: "hirota",
         affiliate: "RIMS Kyoto",
-        title: ``,
-        abstract: ``,
+        title: `On infinite-dimensional Khovanov arc algebras`,
+        abstract: `Khovanov introduced arc algebras using a two-dimensional TQFT
+in his construction of a categorification of tangle invariants.
+Brundan--Stroppel subsequently established a natural graded Morita
+equivalence between these algebras and certain level-two cyclotomic KLR
+algebras of type A, revealing connections with Lie theory. Through this
+connection, their quasi-hereditary analogues $K^m_n$, $K^\\infty_n$,
+$K^{\\pm\\infty}_n$, and $K^{\\infty}_{\\infty}$ provide diagrammatic realizations
+of various fundamental module categories arising in type A Lie theory,
+together with certain exact functors on them. In this talk, we will
+present concrete examples of arc algebras, including quiver
+presentations, and illustrate phenomena specific to highest weight
+categories beyond the finite setting.`,
         category: "invited",
         timeIndex: 0,
     },
@@ -66,8 +77,13 @@ const speakersTalks = [
         id: "liu",
         affiliate: "Tokyo",
         web: "https://webusers.imj-prg.fr/~junyang.liu/",
-        title: ``,
-        abstract: ``,
+        title: `$A_\\infty$-deformations of zigzag algebras via Ginzburg dg algebras`,
+        abstract: `We aim to give a short proof of the recent result due to Etgü--Lekili
+(2017) and Lekili--Ueda (2021): the zigzag algebra of any finite tree
+over a field of characteristic 0 is intrinsically formal if and only if
+the tree is of type ADE. We also complete the proof of this result by
+considering a field of arbitrary characteristic for type E, which was
+still open.`,
         category: "invited",
         timeIndex: 1,
     },
@@ -75,7 +91,7 @@ const speakersTalks = [
         author: "Hiroyuki Minamoto",
         id: "minamoto",
         affiliate: "Osaka Metropolitan",
-        title: ``,
+        title: `Ringel duality and recollements`,
         abstract: ``,
         category: "invited",
         timeIndex: 2,

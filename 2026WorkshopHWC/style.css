@@ -570,6 +570,11 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
         1px 1px 0 #000; */
 }
 
+.ttgrid .info {
+    font-size: smaller;
+    color: #555;
+}
+
 @media screen and (max-width: 700px) {
     .ttgrid > .timeColumn > .note,
     .ttgrid > .timeColumn > .smallernote {
@@ -662,7 +667,7 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
         padding: 0;
     }
 }
-.talk_summary{
+.talk_summary {
     position: relative;
 }
 .talk_summary,
@@ -685,7 +690,8 @@ ul.twocolumns > li > div.maincolumn > ul.normal > li {
 .talk_summary::after {
     content: " ◀";
     position: absolute;
-    top: 1rem;right: 5px;
+    top: 1rem;
+    right: 5px;
 }
 .talk_details[open] {
     padding-bottom: 1em;

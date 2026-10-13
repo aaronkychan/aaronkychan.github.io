@@ -14,7 +14,7 @@
  */
 const speakersTalks = [
     {
-        author: "Julian Külshamme",
+        author: "Julian Külshammer",
         id: "kulshammer",
         affiliate: "Uppsala",
         web: "https://julian-kuelshammer.github.io/",
@@ -26,7 +26,7 @@ const speakersTalks = [
     {
         author: "Anya Nordskova",
         id: "nordskova",
-        affiliate: "Kavli IPMU, University of Tokyo",
+        affiliate: "Kavli IPMU Tokyo",
         web: "https://anyanord.ru/",
         title: `Around abelian envelopes of exact categories`,
         abstract: ``,
@@ -43,14 +43,13 @@ const speakersTalks = [
     //     timeIndex: 3,
     // },
     {
-        author: "Toshitaka Aoki", 
+        author: "Toshitaka Aoki",
         id: "aoki",
         affiliate: "Kobe",
         title: `Reedy and quasi-hereditary structures on endomorphism algebras of interval modules`,
         abstract: ``,
         category: "invited",
         timeIndex: 0,
-    
     },
     {
         author: "Shunsuke Hirota",

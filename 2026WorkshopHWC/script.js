@@ -54,7 +54,7 @@ const speakersTalks = [
     {
         author: "Shunsuke Hirota",
         id: "hirota",
-        affiliate: "RIMS Kyoto",
+        affiliate: "Kyoto",
         title: `On infinite-dimensional Khovanov arc algebras`,
         abstract: `Khovanov introduced arc algebras using a two-dimensional TQFT
 in his construction of a categorification of tangle invariants.

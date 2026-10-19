@@ -115,7 +115,7 @@ still open.`,
         timeIndex: 0,
     },
     {
-        author: "Ryo Tomonaga",
+        author: "Ryu Tomonaga",
         id: "tomonaga",
         affiliate: "Tokyo",
         title: `Derived Auslander-Iyama correspondence from a global dimension perspective`,

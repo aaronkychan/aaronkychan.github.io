@@ -26,9 +26,9 @@ let talks = [
         abstract: `Caldero and Chapoton described a function which sends representations of an ADE quiver to elements of the associated cluster algebra. This transformative work paved the way for many more interesting studies, and in particular this CC map has been generalized to a variety of settings. We propose a CC map for the derived category of a gentle algebra. A main feature of our definition is how it interacts with the geometric model of the derived category, and a key property is that our CC functions respect skein relations from (graded) intersections of curves. This is based on ongoing joint work with Azzurra Ciliberti, Ilaria Di Dedda, Khrystyna Serhiyenko, Yadira Valdivieso-Diaz and Kayla Wright.`,
         lang: "en",
         access: { id: "975 9621 1188", psw: "208284" },
-        // record: {
-        //     slides: "TNA/2026/Nanaian-CC_map_for_gentle_algebras.pdf",
-        // },
+        record: {
+            slides: "contact",
+        },
     },
     {
         ymd: "2026-07-08",

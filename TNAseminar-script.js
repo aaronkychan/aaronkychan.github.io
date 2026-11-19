@@ -1,5 +1,20 @@
 let talks = [
     {
+        ymd: "2026-12-09",
+        start: "0900",
+        duration: 90,
+        title: "Spin link homology and equivariant categorification",
+        speaker: "Ben Elias",
+        web: "https://pages.uoregon.edu/belias/",
+        affil: "University of Oregon",
+        abstract: `The categorical dimension of the second fundamental representation of $\\mathfrak{sl}_4$ is $q^4 + q^2 + 2 + q^{-2} + q^{-4}$, which is the graded dimension of a vector space spanned by all partitions fitting in a $2 \\times 2$ box. The transpose operation preserves that set of partitions, and if instead of counting partitions (the trace of the identity) one takes the trace of the transpose, one obtains $q^4 + q^2 + q^{-2} + q^{-4}$, which is the categorical dimension of the spin representation of $\\mathfrak{so}(5)$. This is an indication of a relationship between representation theory in types $A$ and $B$ that falls under the rubric of "folding." Folding is not a statement which makes rigorous sense without categorification: the relationship between those Laurent polynomials is merely that they agree modulo 2; only when one constructs the vector space can one see the true relationship. In joint work with Elijah Bodish and David Rose (arXiv '24) we construct a new involution on categorified quantum $\\mathfrak{sl}_{2n}$, which is not itself a Dynkin diagram involution, but corresponds to the type $A$ Dynkin diagram involution under skew Howe duality. This yields an involution on Khovanov-Rozansky homology, whose trace yields the type $B$ spin-colored link homology (modulo some conjectures). In order to prove this, we also must prove new results about the Grothendieck group; we provide a new diagrammatic calculus describing morphisms between tensor powers of the spin representation in type $B$. Time permitting (and it won't!) we discuss joint work which extends this diagrammatic calculus to a full description of type $B$ webs.`,
+        lang: "en",
+        access: { id: "922 4741 7962", psw: "495791" },
+        //     record: {
+        //         slides: "TNA/2026/Elias-Folding_Categorification.pdf",
+        //     },
+    },
+    {
         ymd: "2026-11-12",
         start: "1500",
         duration: 90,
@@ -11,9 +26,9 @@ let talks = [
   まず、パーシステントホモロジーの基礎と安定性を概説し、ガラスの構造解析など材料科学への応用を紹介する。次に、こうした応用を背景としてマルチパラメータ・パーシステンスを導入し、Auslander–Reiten理論や区間近似理論に基づく数学的アプローチを説明する。さらに、パーシステンス加群の表現多様体に着目し、その既約成分の集合がもつ組合せ論的構造を考察する。最後に、マルチパラメータ・パーシステンスと幾何学的表現論を結ぶ今後の課題と展望を述べる。`,
         lang: "jp",
         access: { id: "941 7398 2699", psw: "241624" },
-        // record: {
-        //     slides: "TNA/2026/Nanaian-CC_map_for_gentle_algebras.pdf",
-        // },
+        record: {
+            slides: "TNA/2026/Hiraoka-PersistenceHomology.pdf",
+        },
     },
     {
         ymd: "2026-10-29",
@@ -26,9 +41,9 @@ let talks = [
         abstract: `Caldero and Chapoton described a function which sends representations of an ADE quiver to elements of the associated cluster algebra. This transformative work paved the way for many more interesting studies, and in particular this CC map has been generalized to a variety of settings. We propose a CC map for the derived category of a gentle algebra. A main feature of our definition is how it interacts with the geometric model of the derived category, and a key property is that our CC functions respect skein relations from (graded) intersections of curves. This is based on ongoing joint work with Azzurra Ciliberti, Ilaria Di Dedda, Khrystyna Serhiyenko, Yadira Valdivieso-Diaz and Kayla Wright.`,
         lang: "en",
         access: { id: "975 9621 1188", psw: "208284" },
-        record: {
-            slides: "contact",
-        },
+        // record: {
+        //     slides: "TNA/2026/Nanaian-CC_map_for_gentle_algebras.pdf",
+        // },
     },
     {
         ymd: "2026-07-08",
